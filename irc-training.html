@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./brand/favicon-red.svg">
+<title>Mastering the IRC for Roofers — Hamstra Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#EB1A2C;--charcoal:#2F2F2F;--gray:#8A8A8A;--black:#111;--white:#fff;--off:#1a1a1a;--card:#222;--border:#333;--gold:#F5C518;--green:#27ae60;--rad:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);line-height:1.6;font-size:16px}
+
+/* NAV */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0d0d0d;border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-logo svg{height:32px;width:auto}
+.nav-logo-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-left:12px;border-left:1px solid #444}
+#progress-wrap{flex:1;max-width:400px;background:#333;height:8px;border-radius:4px;overflow:hidden}
+#progress-bar{height:100%;background:var(--red);width:0%;transition:width .4s ease;border-radius:4px}
+#score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--gold);white-space:nowrap}
+#score-display span{color:var(--gray);font-weight:400;font-size:13px}
+
+/* HERO */
+#hero{margin-top:56px;position:relative;height:520px;overflow:hidden;display:flex;align-items:flex-end}
+#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:48px 64px;max-width:800px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.hero-content h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(42px,6vw,72px);line-height:.95;margin-bottom:16px}
+.hero-content h1 em{color:var(--red);font-style:normal}
+.hero-content p{font-size:18px;font-weight:300;color:rgba(255,255,255,.75);max-width:520px;margin-bottom:24px}
+.hero-badges{display:flex;gap:16px;flex-wrap:wrap}
+.badge{background:rgba(235,26,44,.15);border:1px solid var(--red);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+
+/* MODULE NAV */
+#module-nav{background:#161616;border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;position:sticky;top:56px;z-index:100}
+.mnav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:16px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.mnav-btn:hover{color:var(--white)}
+.mnav-btn.done{color:var(--green)}
+.mnav-btn.done::before{content:'✓ '}
+.mnav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* SECTIONS */
+.training-section{padding:64px 0;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;padding-left:40px;padding-right:40px}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';width:24px;height:2px;background:var(--red)}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;margin-bottom:16px}
+.sec-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:40px;line-height:1.7}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin-bottom:12px}
+.acc-trigger{width:100%;background:var(--card);border:none;color:var(--white);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-align:left;transition:background .2s}
+.acc-trigger:hover{background:#2a2a2a}
+.acc-trigger .icon{width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:transform .3s}
+.acc-trigger[aria-expanded="true"] .icon{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body.open{max-height:2000px}
+.acc-inner{padding:24px;border-top:1px solid var(--border);background:#1d1d1d}
+.acc-inner p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner ul{padding-left:20px;margin:8px 0}
+.acc-inner li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:4px}
+.acc-inner strong{color:var(--white)}
+
+/* CODE TAGS / TOOLTIPS */
+.code-tag{display:inline-block;background:rgba(235,26,44,.2);border:1px solid var(--red);color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;padding:2px 8px;border-radius:3px;cursor:pointer;position:relative;transition:background .2s}
+.code-tag:hover{background:rgba(235,26,44,.35)}
+.tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#111;border:1px solid var(--red);padding:12px 16px;border-radius:6px;font-family:'Barlow',sans-serif;font-weight:400;font-size:13px;color:var(--white);width:280px;z-index:300;line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.6)}
+.tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--red)}
+.code-tag:hover .tooltip{display:block}
+
+/* VISUAL CARD */
+.visual-card{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin:32px 0}
+.visual-card img{width:100%;display:block}
+.visual-caption{background:var(--card);padding:14px 20px;font-size:13px;color:var(--gray);font-style:italic}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px;border-top:3px solid var(--red)}
+.info-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--white);margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--gray);line-height:1.5}
+.info-card .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);line-height:1;margin-bottom:4px}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.data-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;text-align:left}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.data-table tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.data-table tr:hover td{background:rgba(235,26,44,.08)}
+
+/* QUIZ */
+.quiz-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.quiz-header{display:flex;align-items:center;gap:24px;margin-bottom:28px}
+.quiz-header img{width:120px;height:120px;object-fit:cover;border-radius:50%;box-shadow:0 0 24px rgba(235,26,44,.45),0 0 6px rgba(235,26,44,.3);flex-shrink:0}
+.quiz-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white)}
+.quiz-header p{font-size:13px;color:var(--gray)}
+.question-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.question-block:last-of-type{border-bottom:none}
+.question-block h4{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.5}
+.q-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* TRUE/FALSE */
+.tf-btns{display:flex;gap:12px}
+.tf-btn{padding:12px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;border:2px solid var(--border);background:transparent;color:var(--white);border-radius:var(--rad);cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--red);color:var(--red)}
+.tf-btn.correct{background:var(--green);border-color:var(--green);color:var(--white)}
+.tf-btn.wrong{background:var(--red);border-color:var(--red);color:var(--white)}
+.tf-btn:disabled{cursor:default;opacity:.7}
+
+/* MULTIPLE CHOICE */
+.mc-options{display:flex;flex-direction:column;gap:10px}
+.mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.mc-option:hover{border-color:rgba(235,26,44,.5)}
+.mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15)}
+.mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15)}
+.mc-option:disabled,.mc-option.disabled{cursor:default;pointer-events:none}
+
+/* FEEDBACK */
+.q-feedback{margin-top:12px;padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;display:none}
+.q-feedback.show{display:block}
+.q-feedback.good{background:rgba(39,174,96,.2);border-left:4px solid var(--green);color:#aaffcc}
+.q-feedback.bad{background:rgba(235,26,44,.15);border-left:4px solid var(--red);color:#ffaaaa}
+
+/* QUIZ SCORE BAR */
+.quiz-result{display:none;margin-top:24px;padding:24px;background:rgba(235,26,44,.1);border:2px solid var(--red);border-radius:var(--rad);text-align:center}
+.quiz-result.show{display:block}
+.quiz-result h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--white);margin-bottom:4px}
+.quiz-result p{color:var(--gray);font-size:15px}
+.quiz-result .pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--gold);line-height:1}
+
+/* DRAG & DROP */
+.drag-arena{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0;align-items:start}
+.drag-chips{display:flex;flex-direction:column;gap:10px}
+.drag-chip{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;padding:12px 16px;border-radius:6px;cursor:grab;user-select:none;border:2px solid transparent;transition:opacity .2s}
+.drag-chip:active{cursor:grabbing;opacity:.7}
+.drag-chip.placed{opacity:.4;pointer-events:none}
+.drop-zones{display:flex;flex-direction:column;gap:10px}
+.drop-zone{background:var(--card);border:2px dashed var(--border);border-radius:6px;padding:14px 16px;min-height:52px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+.drop-zone.over{border-color:var(--red);background:rgba(235,26,44,.1)}
+.drop-zone.correct{border-color:var(--green) !important;background:rgba(39,174,96,.1) !important}
+.drop-zone.wrong{border-color:var(--red) !important;background:rgba(235,26,44,.1) !important;animation:shake .4s}
+.drop-zone-label{font-size:13px;color:var(--gray);flex:1}
+.drop-zone-label strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:2px}
+.drop-slot{min-width:120px;padding:8px 12px;background:#333;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--gray);text-align:center}
+.check-drag-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:opacity .2s}
+.check-drag-btn:hover{opacity:.85}
+
+/* POPUP MODAL */
+#popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;align-items:center;justify-content:center}
+#popup-overlay.open{display:flex}
+#popup-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:40px;max-width:520px;width:90%;position:relative;max-height:90vh;overflow-y:auto}
+#popup-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--gray);font-size:24px;cursor:pointer;line-height:1}
+#popup-close:hover{color:var(--white)}
+#popup-box h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);margin-bottom:16px}
+#popup-box p{font-size:15px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:10px}
+
+/* JEOPARDY */
+#jeopardy-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:600;overflow-y:auto;padding:40px 20px}
+#jeopardy-modal.open{display:block}
+.j-header{display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto 24px}
+.j-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--gold)}
+.j-close{background:var(--red);color:var(--white);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px}
+.j-score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--gold)}
+.j-board{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:900px;margin:0 auto}
+.j-cat-header{background:#1a1a60;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;text-align:center;padding:16px 8px;border:2px solid #3333aa;letter-spacing:.06em;text-transform:uppercase}
+.j-cell{background:#1a1a99;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-align:center;padding:24px 8px;cursor:pointer;border:2px solid #3333cc;transition:all .2s}
+.j-cell:hover{background:#2222cc;transform:scale(1.02)}
+.j-cell.used{background:#111;color:#333;cursor:default;pointer-events:none}
+.j-q-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,20,.95);z-index:700;align-items:center;justify-content:center}
+.j-q-overlay.open{display:flex}
+.j-q-box{background:#1a1a60;border:3px solid var(--gold);border-radius:12px;padding:48px;max-width:600px;width:90%;text-align:center}
+.j-q-box .j-pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--gold);margin-bottom:16px}
+.j-q-box .j-question{font-size:22px;font-weight:600;color:var(--white);margin-bottom:32px;line-height:1.5}
+.j-answer-input{width:100%;padding:14px 18px;background:#111;border:2px solid #3333cc;border-radius:8px;color:var(--white);font-size:16px;font-family:'Barlow',sans-serif;margin-bottom:16px}
+.j-submit-btn{background:var(--gold);color:#111;border:none;padding:14px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;margin-right:8px}
+.j-skip-btn{background:transparent;color:var(--gray);border:1px solid var(--border);padding:14px 24px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;cursor:pointer}
+.j-reveal{margin-top:16px;padding:16px;border-radius:8px;font-size:15px;font-weight:600;display:none}
+.j-reveal.show{display:block}
+.j-reveal.right{background:rgba(39,174,96,.2);color:#aaffcc}
+.j-reveal.oops{background:rgba(235,26,44,.2);color:#ffaaaa}
+
+/* TIMED EXAM */
+.exam-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.exam-timer{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--red);text-align:center;margin:12px 0}
+.exam-timer.warn{color:var(--gold);animation:pulse 1s infinite}
+.exam-progress-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--gray);text-align:center;margin-bottom:24px}
+.exam-q{display:none}
+.exam-q.active{display:block}
+.start-exam-btn{display:block;width:100%;padding:18px;background:var(--red);color:var(--white);border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:24px}
+.start-exam-btn:hover{opacity:.88}
+
+/* CERTIFICATE */
+#cert-section{display:none;text-align:center;padding:80px 40px;max-width:900px;margin:0 auto}
+#cert-section.show{display:block}
+.cert-name-input{padding:14px 20px;background:var(--card);border:2px solid var(--border);border-radius:8px;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:22px;text-align:center;width:320px;margin:16px auto;display:block}
+.cert-name-input:focus{outline:none;border-color:var(--red)}
+.cert-img-wrap{position:relative;margin:32px auto;max-width:800px}
+.cert-img-wrap img{width:100%;border-radius:8px}
+.cert-overlay-name{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(18px,3vw,32px);color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.8);letter-spacing:.05em;white-space:nowrap}
+.print-cert-btn{margin-top:20px;padding:14px 40px;background:var(--gold);color:#111;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;letter-spacing:.05em}
+.final-score-box{background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:32px 48px;display:inline-block;margin-bottom:32px}
+.final-score-box .big-score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;color:var(--gold);line-height:1}
+.final-score-box p{color:var(--gray);font-size:16px}
+
+/* UTILITIES */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.callout{background:rgba(235,26,44,.08);border-left:4px solid var(--red);padding:16px 20px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;color:rgba(255,255,255,.8)}
+.callout strong{color:var(--red)}
+.fact-pill{display:inline-block;background:var(--card);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.7);margin:4px}
+.fact-pill strong{color:var(--red)}
+.section-divider{border:none;border-top:1px solid var(--border);margin:64px 0}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;z-index:999;animation:confetti-fall 2.5s ease-in forwards}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+@media(max-width:768px){
+  .two-col,.drag-arena{grid-template-columns:1fr}
+  .training-section{padding:40px 20px}
+  .hero-content{padding:32px 20px}
+  #topnav{padding:0 16px}
+  #progress-wrap{max-width:120px}
+}
+@media print{
+  #topnav,#module-nav,.quiz-box,.exam-box,#jeopardy-modal,.print-cert-btn{display:none!important}
+  #cert-section{display:block!important}
+  body{background:white;color:black}
+}
+</style>
+<style>
+#lock-screen{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;align-items:center;justify-content:center}
+#lock-screen.hidden{display:none}
+.lock-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:48px 40px;max-width:400px;width:90%;text-align:center}
+.lock-box img{height:56px;width:auto;margin-bottom:24px}
+.lock-box h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:6px}
+.lock-box p{font-size:14px;color:var(--gray);margin-bottom:28px}
+#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;letter-spacing:.1em;box-sizing:border-box;outline:none;transition:border-color .2s}
+#pw-input:focus{border-color:var(--red)}
+#pw-input.shake{animation:shake .35s ease}
+#pw-btn{margin-top:14px;width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s}
+#pw-btn:hover{opacity:.85}
+#pw-error{margin-top:12px;font-size:13px;color:var(--red);min-height:18px}
+body.locked>*:not(#lock-screen){visibility:hidden}
+</style>
+</head>
+<body class="locked">
+
+<!-- ═══ LOCK SCREEN ═══ -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <img src="./brand/logo-horz-white-red-line-divider.svg" alt="Hamstra Roofing">
+    <h2>IRC Training</h2>
+    <p>Enter your access password to continue.</p>
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <button id="pw-btn" onclick="unlockPage()">Enter</button>
+    <div id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const HASH='aa52c01300cfb3a1603a480392b845d23ced0186befc058acaf54838014b10d0';
+  async function digest(str){
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  if(sessionStorage.getItem('irc-auth')==='1'){unlock();}
+  window.unlockPage=async function(){
+    const val=document.getElementById('pw-input').value;
+    const h=await digest(val);
+    if(h===HASH){sessionStorage.setItem('irc-auth','1');unlock();}
+    else{
+      const inp=document.getElementById('pw-input');
+      const err=document.getElementById('pw-error');
+      inp.classList.remove('shake');
+      void inp.offsetWidth;
+      inp.classList.add('shake');
+      err.textContent='Incorrect password. Try again.';
+      inp.value='';
+    }
+  };
+  function unlock(){
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+  }
+})();
+</script>
+
+<!-- ═══ NAV ═══ -->
+<nav id="topnav">
+  <div class="nav-logo"><svg width="264" height="87" viewBox="0 0 264 87" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M92.7055 1.30418V43.5267C92.7055 44.1148 92.4114 44.4089 91.8234 44.4089H86.2287C85.6406 44.4089 85.3465 44.1148 85.3465 43.5267V25.5585H81.1982V43.5267C81.1982 44.1148 80.9041 44.4089 80.3161 44.4089H74.7214C74.1333 44.4089 73.8392 44.1148 73.8392 43.5267V1.30418C73.8392 0.716097 74.1333 0.422058 74.7214 0.422058H80.3161C80.9041 0.422058 81.1982 0.716097 81.1982 1.30418V18.2075H85.3465V1.30418C85.3465 0.716097 85.6406 0.422058 86.2287 0.422058H91.8234C92.4114 0.422058 92.7055 0.716097 92.7055 1.30418Z" fill="white"/><path d="M263.161 43.5267C263.249 44.1148 262.994 44.4089 262.406 44.4089H256.692C256.144 44.4089 255.834 44.1148 255.747 43.5267L255.246 36.74H251.352L250.851 43.5267C250.764 44.1148 250.454 44.4089 249.906 44.4089H244.192C243.604 44.4089 243.349 44.1148 243.437 43.5267L248.149 1.30418C248.237 0.716097 248.57 0.422058 249.151 0.422058H257.447C258.035 0.422058 258.369 0.716097 258.457 1.30418L263.161 43.5267ZM254.745 29.7069L253.553 12.6764H253.053L251.861 29.7069H254.745Z" fill="white"/><path d="M121.291 43.5267C121.378 44.1148 121.124 44.4089 120.536 44.4089H114.822C114.274 44.4089 113.964 44.1148 113.876 43.5267L113.376 36.74H109.482L108.981 43.5267C108.893 44.1148 108.584 44.4089 108.035 44.4089H102.321C101.733 44.4089 101.479 44.1148 101.566 43.5267L106.279 1.30418C106.366 0.716097 106.7 0.422058 107.28 0.422058H115.577C116.165 0.422058 116.499 0.716097 116.586 1.30418L121.291 43.5267ZM112.875 29.7069L111.683 12.6764H111.182L109.99 29.7069H112.875Z" fill="white"/><path d="M154.652 1.30418V43.5267C154.652 44.1148 154.358 44.4089 153.77 44.4089H147.739C147.15 44.4089 146.856 44.1148 146.856 43.5267V23.6751L142.708 39.887C142.621 40.0936 142.517 40.2049 142.39 40.2049C142.263 40.2049 142.16 40.1016 142.08 39.887L137.932 23.6751V43.5267C137.932 44.1148 137.638 44.4089 137.05 44.4089H131.018C130.43 44.4089 130.136 44.1148 130.136 43.5267V1.30418C130.136 0.716097 130.43 0.422058 131.018 0.422058H136.358C136.613 0.422058 136.827 0.517421 137.018 0.70815C137.209 0.898879 137.344 1.09755 137.423 1.30418L142.39 23.7943L147.357 1.30418C147.444 1.09755 147.58 0.898879 147.762 0.70815C147.953 0.517421 148.168 0.422058 148.422 0.422058H153.762C154.358 0.422058 154.652 0.716097 154.652 1.30418Z" fill="white"/><path d="M177.461 0.612773C178.422 1.03397 179.264 1.5982 179.972 2.30549C180.687 3.02072 181.251 3.85516 181.672 4.81675C182.094 5.77834 182.3 6.80351 182.3 7.89225V10.2764C182.3 10.8644 182.03 11.2379 181.482 11.4048L175.768 12.9148C175.219 13.0817 174.949 12.875 174.949 12.287V8.20218C174.949 7.78099 174.806 7.43132 174.512 7.13728C174.218 6.84324 173.861 6.70019 173.447 6.70019H172.947C172.525 6.70019 172.168 6.85119 171.882 7.13728C171.588 7.43132 171.445 7.78894 171.445 8.20218V13.9161C171.484 14.377 171.572 14.7744 171.699 15.1081C171.826 15.4419 172.057 15.7757 172.39 16.1174L180.623 22.2764C181.291 22.8644 181.72 23.4605 181.911 24.0644C182.102 24.6684 182.237 25.3519 182.316 26.1068V36.9148C182.316 38.0035 182.11 39.0287 181.688 39.9903C181.267 40.9519 180.703 41.7943 179.988 42.5015C179.272 43.2168 178.438 43.781 177.476 44.1943C176.515 44.6155 175.49 44.8221 174.401 44.8221H172.017C170.928 44.8221 169.903 44.6155 168.941 44.1943C167.98 43.7731 167.137 43.2088 166.43 42.5015C165.715 41.7863 165.151 40.9519 164.737 39.9903C164.316 39.0287 164.11 38.0035 164.11 36.9148V30.883C164.11 30.2949 164.38 29.9214 164.928 29.7545L170.642 28.2446C171.182 28.0777 171.461 28.2843 171.461 28.8724V36.5969C171.461 37.0181 171.604 37.3757 171.898 37.6618C172.192 37.9558 172.549 38.0989 172.963 38.0989H173.463C173.884 38.0989 174.234 37.9558 174.528 37.6618C174.822 37.3678 174.965 37.0102 174.965 36.5969V28.3241C174.925 27.7837 174.838 27.2989 174.711 26.8777C174.584 26.4565 174.337 26.083 173.956 25.7492L165.85 19.5267C165.222 18.9386 164.769 18.3585 164.499 17.7704C164.229 17.1823 164.094 16.4115 164.094 15.4499V7.90814C164.094 6.8194 164.3 5.79423 164.721 4.83264C165.143 3.87105 165.707 3.02867 166.414 2.32138C167.129 1.60615 167.964 1.04191 168.925 0.628666C169.887 0.207474 170.912 0.000851828 172.001 0.000851828H174.385C175.474 -0.0150422 176.499 0.191581 177.461 0.612773Z" fill="white"/><path d="M207.492 1.30413V6.89883C207.492 7.48691 207.198 7.78095 206.61 7.78095H202.152V43.5346C202.152 44.1227 201.858 44.4167 201.27 44.4167H195.675C195.468 44.4167 195.27 44.3293 195.079 44.1624C194.888 43.9956 194.793 43.7889 194.793 43.5346V7.77301H190.406C189.818 7.77301 189.524 7.47897 189.524 6.89089V1.29618C189.524 0.708101 189.818 0.414062 190.406 0.414062H206.618C207.198 0.42201 207.492 0.716049 207.492 1.30413Z" fill="white"/><path d="M236.086 43.5267C236.213 44.1148 235.998 44.4089 235.458 44.4089H229.744C229.49 44.4089 229.251 44.3214 229.021 44.1545C228.79 43.9877 228.631 43.781 228.552 43.5267L223.966 28.1333V44.4089L223.903 43.781C223.815 44.2022 223.545 44.4089 223.084 44.4089H217.49C216.902 44.4089 216.608 44.1148 216.608 43.5267V1.30418C216.608 0.716097 216.902 0.422058 217.49 0.422058H226.915C228.004 0.422058 229.029 0.62868 229.99 1.04987C230.952 1.47106 231.794 2.0353 232.502 2.75054C233.217 3.46577 233.781 4.30021 234.194 5.2618C234.616 6.22339 234.822 7.24855 234.822 8.3373V18.581C234.822 20.1307 234.425 21.5214 233.63 22.7612C232.835 24.0009 231.786 24.9466 230.491 25.6221L236.086 43.5267ZM223.959 19.7731H225.969C226.39 19.7731 226.74 19.63 227.034 19.336C227.328 19.0419 227.471 18.6843 227.471 18.2711V8.65518C227.471 8.23399 227.32 7.88432 227.034 7.59028C226.74 7.29624 226.382 7.15319 225.969 7.15319H223.959V19.7731Z" fill="white"/><path d="M77.6801 60.8857L83.9084 60.8704C84.5426 60.8688 85.0035 60.9515 85.2911 61.1183C85.5907 61.2851 85.7412 61.6557 85.7426 62.23L85.7436 62.6608C85.7448 63.1275 85.6319 63.4748 85.4051 63.7027C85.1903 63.9186 84.8136 64.0272 84.2751 64.0286L77.6878 64.0447L77.6801 60.8857ZM73.7193 70.6598L77.704 70.65L77.6957 67.2756L83.96 67.2602C84.5822 67.2587 85.0073 67.3893 85.2353 67.6519C85.4753 67.9146 85.5961 68.387 85.5978 69.069L85.6016 70.6306L89.5863 70.6208L89.5809 68.4131C89.5796 67.8746 89.5187 67.438 89.3982 67.1033C89.2897 66.7565 89.1334 66.4757 88.9295 66.2608C88.7375 66.0459 88.5097 65.8909 88.2462 65.7958C87.9827 65.6887 87.7013 65.6057 87.402 65.5466L87.4019 65.5107C87.8564 65.4019 88.227 65.2574 88.5137 65.0772C88.8124 64.885 89.0392 64.6571 89.1941 64.3934C89.361 64.1298 89.4739 63.8243 89.5329 63.4772C89.5919 63.13 89.6208 62.7411 89.6198 62.3103L89.6178 61.4846C89.6163 60.8983 89.5552 60.3719 89.4344 59.9055C89.3136 59.4272 89.1032 59.0209 88.8032 58.6865C88.5152 58.3522 88.1197 58.0959 87.6166 57.9176C87.1136 57.7274 86.4792 57.6332 85.7133 57.6351L73.6874 57.6646L73.7193 70.6598ZM94.0105 66.0509C94.0129 67.0082 94.1404 67.7916 94.3932 68.4013C94.658 68.999 95.0361 69.4767 95.5275 69.8345C96.031 70.1802 96.6358 70.4181 97.3422 70.548C98.0485 70.6779 98.8504 70.7417 99.7478 70.7395L106.138 70.7238C107.035 70.7216 107.837 70.6539 108.542 70.5205C109.248 70.3871 109.846 70.1463 110.336 69.7981C110.837 69.4379 111.213 68.9583 111.463 68.3594C111.725 67.7485 111.854 66.9644 111.852 66.0071L111.842 62.1301C111.84 61.1848 111.707 60.4073 111.442 59.7977C111.189 59.188 110.811 58.7103 110.308 58.3645C109.816 58.0068 109.217 57.7629 108.511 57.633C107.804 57.5031 107.003 57.4393 106.105 57.4415L99.7152 57.4572C98.8178 57.4594 98.0162 57.5272 97.3106 57.6605C96.6049 57.7939 96.0012 58.0407 95.4995 58.4009C95.0097 58.7491 94.634 59.2287 94.3722 59.8396C94.1224 60.4505 93.9987 61.2286 94.001 62.1739L94.0105 66.0509ZM98.0965 63.4023C98.0955 62.9955 98.1245 62.6364 98.1836 62.3252C98.2546 62.0019 98.3795 61.7264 98.5585 61.4986C98.7374 61.2708 98.9883 61.0967 99.311 60.9762C99.6338 60.8558 100.058 60.7949 100.585 60.7936L105.252 60.7821C105.778 60.7809 106.203 60.8396 106.527 60.9585C106.85 61.0774 107.102 61.2503 107.282 61.4772C107.462 61.7041 107.582 61.979 107.643 62.302C107.715 62.6129 107.752 62.9718 107.753 63.3786L107.757 64.7787C107.758 65.2453 107.729 65.6463 107.67 65.9815C107.611 66.3167 107.498 66.5862 107.331 66.79C107.164 66.9939 106.931 67.144 106.632 67.2405C106.333 67.3369 105.95 67.3857 105.483 67.3869L100.386 67.3994C99.9191 67.4005 99.5361 67.3536 99.2367 67.2586C98.9373 67.1636 98.7036 67.0146 98.5356 66.8116C98.3676 66.6086 98.2532 66.3396 98.1926 66.0047C98.1319 65.6698 98.101 65.269 98.0999 64.8024L98.0965 63.4023ZM115.95 65.9971C115.952 66.9544 116.08 67.7378 116.333 68.3475C116.597 68.9451 116.975 69.4229 117.467 69.7806C117.97 70.1264 118.575 70.3643 119.281 70.4941C119.988 70.624 120.79 70.6879 121.687 70.6857L128.077 70.67C128.974 70.6678 129.776 70.6 130.482 70.4667C131.187 70.3333 131.785 70.0925 132.275 69.7443C132.777 69.3841 133.152 68.9045 133.402 68.3056C133.664 67.6947 133.794 66.9106 133.791 65.9533L133.782 62.0763C133.779 61.131 133.646 60.3535 133.381 59.7439C133.128 59.1342 132.75 58.6565 132.247 58.3107C131.755 57.9529 131.156 57.7091 130.45 57.5792C129.744 57.4493 128.942 57.3855 128.044 57.3877L121.655 57.4033C120.757 57.4056 119.956 57.4733 119.25 57.6067C118.544 57.74 117.94 57.9868 117.439 58.3471C116.949 58.6953 116.573 59.1748 116.312 59.7858C116.062 60.3966 115.938 61.1747 115.94 62.1201L115.95 65.9971ZM120.036 63.3485C120.035 62.9417 120.064 62.5826 120.123 62.2713C120.194 61.9481 120.319 61.6726 120.498 61.4448C120.677 61.217 120.928 61.0428 121.25 60.9224C121.573 60.8019 121.998 60.7411 122.524 60.7398L127.191 60.7283C127.718 60.727 128.142 60.7858 128.466 60.9047C128.789 61.0236 129.041 61.1964 129.221 61.4234C129.401 61.6503 129.521 61.9252 129.582 62.2481C129.655 62.5591 129.691 62.918 129.692 63.3248L129.696 64.7249C129.697 65.1915 129.668 65.5925 129.609 65.9277C129.55 66.2629 129.437 66.5324 129.27 66.7362C129.103 66.94 128.87 67.0902 128.571 67.1867C128.272 67.2831 127.889 67.3319 127.423 67.3331L122.325 67.3456C121.858 67.3467 121.475 67.2998 121.176 67.2048C120.877 67.1098 120.643 66.9608 120.475 66.7578C120.307 66.5548 120.193 66.2858 120.132 65.9509C120.071 65.616 120.04 65.2152 120.039 64.7485L120.036 63.3485ZM138.187 70.5016L142.172 70.4918L142.161 66.0584L151.297 66.036L151.29 63.0205L142.154 63.043L142.148 60.6198L151.733 60.5963L151.725 57.4732L138.156 57.5065L138.187 70.5016ZM156.346 70.4571L160.33 70.4473L160.298 57.4521L156.314 57.4619L156.346 70.4571ZM165.221 70.4353L169.206 70.4255L169.183 60.9843L169.219 60.9842L176.727 70.4071L182.901 70.3919L182.869 57.3968L178.884 57.4065L178.908 66.8478L178.872 66.8479L171.364 57.425L165.189 57.4401L165.221 70.4353ZM187.265 65.8221C187.268 66.7794 187.395 67.5629 187.648 68.1725C187.913 68.7702 188.291 69.2479 188.782 69.6057C189.286 69.9515 189.891 70.1893 190.597 70.3192C191.303 70.4491 192.105 70.5129 193.003 70.5107L197.795 70.499C198.92 70.4962 199.883 70.4639 200.685 70.4021C201.498 70.3403 202.162 70.1831 202.676 69.9306C203.202 69.678 203.59 69.2882 203.84 68.761C204.09 68.2339 204.213 67.5037 204.211 66.5703L204.202 62.8728L195.263 62.8947L195.27 65.5871L200.224 65.5749L200.225 65.9519C200.226 66.263 200.166 66.5144 200.047 66.7062C199.928 66.8979 199.767 67.0419 199.564 67.1381C199.372 67.2343 199.151 67.3007 198.9 67.3372C198.661 67.3617 198.41 67.3743 198.146 67.375L193.892 67.3854C193.39 67.3866 192.971 67.3518 192.636 67.2808C192.312 67.2098 192.055 67.0728 191.863 66.8698C191.683 66.6669 191.551 66.392 191.466 66.0452C191.393 65.6983 191.356 65.2437 191.355 64.6813L191.351 63.0659C191.35 62.5154 191.384 62.0666 191.455 61.7194C191.538 61.3602 191.669 61.0787 191.848 60.8748C192.039 60.6709 192.296 60.5327 192.619 60.4601C192.954 60.3875 193.373 60.3506 193.875 60.3493L198.201 60.3387C198.524 60.3379 198.805 60.3552 199.045 60.3905C199.296 60.4138 199.505 60.4791 199.673 60.5864C199.853 60.6817 199.985 60.825 200.069 61.0162C200.165 61.2074 200.214 61.4646 200.215 61.7877L204.128 61.7781L204.127 61.3652C204.125 60.731 204.064 60.1568 203.943 59.6426C203.834 59.1283 203.599 58.6921 203.24 58.334C202.88 57.9759 202.359 57.702 201.676 57.5122C200.993 57.3104 200.09 57.2109 198.965 57.2137L192.97 57.2284C192.073 57.2306 191.271 57.2984 190.565 57.4317C189.86 57.5651 189.256 57.8119 188.754 58.1721C188.264 58.5203 187.889 58.9999 187.627 59.6108C187.377 60.2217 187.253 60.9998 187.256 61.9451L187.265 65.8221Z" fill="white"/><path d="M58.5303 0V69.1865H0V0H58.5303ZM34.832 25.248L32.9561 24.5488C32.0422 24.2071 31.3986 23.3882 31.2793 22.4268L30.9219 19.4619L5.43555 9.41699C6.04747 10.9428 6.40484 12.3659 6.60352 13.4785L27.29 22.0527L6.70703 14.1064C6.87255 15.1864 6.8817 15.8596 6.88184 15.8701L34.999 26.7256L35.1572 28.1006C35.075 28.0812 22.3117 25.0761 8.86914 28.4268C8.89376 28.4492 10.6191 30.0424 9.72754 35.9443L4.04492 66.7705C4.07491 66.7623 25.5591 60.9096 39.7188 65.4043C33.8936 61.415 26.5986 60.3574 26.5986 60.3574L26.4795 48.8262C23.6673 47.5307 20.902 47.343 20.8691 47.3408L20.3281 59.7139C15.1786 59.5868 11.2129 60.4209 11.2129 60.4209L15.6475 31.3906C17.9019 30.9872 21.5582 30.8276 21.5918 30.8262L21.1074 41.9443C23.6107 42.1828 26.416 43.2793 26.416 43.2793L26.2646 30.8027C26.2646 30.8027 30.9775 30.8106 35.7695 32.1377L32.249 32.0186L34.085 58.0371C34.1066 58.0502 37.1955 59.9132 40.458 60.1904L36.6201 27.3613L38.6943 28.1641C39.3219 28.4025 39.759 28.9588 39.8545 29.6182L40.252 32.4717L55.7012 38.7021C56.7402 35.9296 56.6139 34.6388 55.3037 32.7422L36.4453 25.8438L36.1035 22.8877L39.8145 23.9922L35.833 4.53027C34.1913 2.54066 33.8259 2.25108 33.4492 2.14551L35.0859 17.6738L32.2568 1.74805C32.039 1.21747 31.8599 1.05589 31.4619 0.954102L34.832 25.248Z" fill="white"/><line y1="84.8835" x2="263.519" y2="84.8835" stroke="#EB1A2C" stroke-width="2.53383"/></svg><span class="nav-logo-title">IRC Training</span></div>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+  <div id="score-display"><span>Score: </span><span id="score-val">0</span> / <span id="score-max">800</span> pts</div>
+</nav>
+
+<!-- ═══ MODULE NAV ═══ -->
+<div id="module-nav">
+  <button class="mnav-btn active" onclick="scrollTo('#m1')">1. IRC History</button>
+  <button class="mnav-btn" onclick="scrollTo('#m2')">2. Structure (Ch.8)</button>
+  <button class="mnav-btn" onclick="scrollTo('#m3')">3. Assemblies (Ch.9)</button>
+  <button class="mnav-btn" onclick="scrollTo('#m4')">4. Reroofing + IL</button>
+  <button class="mnav-btn" onclick="scrollTo('#m5')">5. Exam Prep</button>
+  <button class="mnav-btn" onclick="scrollTo('#m6')">6. Final Exam</button>
+  <button class="mnav-btn" onclick="scrollTo('#cert')">🏆 Certificate</button>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <img src="./generated_imgs/generated-2026-03-11T19-32-15-130Z-4sbtjl.png" alt="Roofer at golden hour">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hamstra Roofing Training Program</div>
+    <h1>MASTERING THE <em>IRC</em><br>FOR ROOFERS</h1>
+    <p>The code book is as essential as the nail gun. Know it, use it, own every inspection.</p>
+    <div class="hero-badges">
+      <span class="badge">6 Modules</span>
+      <span class="badge">5 Quiz Types</span>
+      <span class="badge">Jeopardy Challenge</span>
+      <span class="badge">Timed Final Exam</span>
+      <span class="badge">Certificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 1: IRC HISTORY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m1" class="training-section">
+  <div class="sec-label">Module 1</div>
+  <h2 class="sec-title">IRC History & Why It Matters</h2>
+  <p class="sec-desc">Before you can master the code, you need to understand where it came from — and why a contractor in Frankfort, IL is using the same rulebook as one in Miami or Seattle.</p>
+
+  <div class="visual-card">
+    <img src="./generated_imgs/generated-2026-03-11T19-34-09-811Z-mfmylm.png" alt="IRC History Timeline">
+    <div class="visual-caption">From the 1871 Great Chicago Fire to the unified IRC 2000 — a century of building code evolution.</div>
+  </div>
+
+  <!-- ACCORDION: History -->
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      The Disasters That Built the Code <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Building codes didn't come from bureaucrats in conference rooms — they came from tragedy. The <strong>1871 Great Chicago Fire</strong> burned 3.3 square miles and killed 300 people, largely because wooden construction offered no resistance. Cities scrambled to write their own rules.</p>
+        <p>Then the <strong>1906 San Francisco Earthquake</strong> reminded the country that fire wasn't the only threat — structural failure could be catastrophic too. Each disaster produced a new wave of local codes, each slightly different, each well-intentioned, none coordinated.</p>
+        <p>The result? A patchwork of rules that meant a roofing contractor doing jobs across state lines was essentially working in three different countries.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      The Era of Regional Fragmentation (pre-2000) <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>By the mid-20th century, three regional organizations each published their own code. Manufacturers had to test products against three different standards — driving up housing costs nationwide.</p>
+        <table class="data-table">
+          <tr><th>Organization</th><th>Code Name</th><th>Territory</th><th>Primary Focus</th></tr>
+          <tr><td>BOCA</td><td>National Building Code</td><td>Northeast / Midwest</td><td>Snow loads, fire prevention</td></tr>
+          <tr><td>SBCCI</td><td>Standard Building Code</td><td>South / Southeast</td><td>Wind uplift, hurricane resilience</td></tr>
+          <tr><td>ICBO</td><td>Uniform Building Code</td><td>West / Southwest</td><td>Seismic stability</td></tr>
+        </table>
+        <p>For roofers, this fragmentation was especially painful. Wind uplift requirements in Florida were irrelevant in Vermont — but you still had to know which code applied where, and inspectors enforced them differently.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Unification: Birth of the ICC and the IRC (1972–2000) <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The push for unification began in 1972 when BOCA, SBCCI, and ICBO formed the <strong>Council of American Building Officials (CABO)</strong> as a joint venture. CABO's "One and Two Family Dwelling Code" served as a prototype for a standalone residential code.</p>
+        <p>In <strong>1994</strong>, the three organizations merged to form the <strong>International Code Council (ICC)</strong>. In <strong>2000</strong>, the ICC published the first <strong>International Residential Code (IRC)</strong> — effectively ending the era of regional codes.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="val">1972</div><h4>CABO Formed</h4><p>Joint venture between BOCA, SBCCI, and ICBO — first step toward unification</p></div>
+          <div class="info-card"><div class="val">1994</div><h4>ICC Created</h4><p>Three regional orgs merge into the International Code Council</p></div>
+          <div class="info-card"><div class="val">2000</div><h4>IRC Published</h4><p>First edition of the International Residential Code. One nation, one code.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      What the IRC Actually Is — and Isn't <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The IRC covers <strong>detached one- and two-family dwellings and townhouses only</strong>. Anything bigger falls under the International Building Code (IBC). The IRC is a <strong>prescriptive</strong> document — meaning it gives you pre-calculated solutions so you don't need an engineer for every standard job.</p>
+        <p>The IRC bundles building, plumbing, mechanical, fuel gas, energy conservation, and electrical provisions into one volume. For roofers, the most critical chapters are:</p>
+        <ul>
+          <li><strong>Chapter 3</strong> — Building Planning (design criteria, load tables)</li>
+          <li><strong>Chapter 8</strong> — Roof-Ceiling Construction (framing, rafters, ventilation)</li>
+          <li><strong>Chapter 9</strong> — Roof Assemblies and Roofing (your daily bread)</li>
+        </ul>
+        <div class="callout"><strong>Pro Tip:</strong> The IRC is updated every three years. Always confirm which edition your jurisdiction has adopted — Batavia, IL still uses the <strong>2006 IRC</strong>, while Illinois's new statewide code (effective Jan 1, 2025) requires at least the 2018 edition.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK FACTS -->
+  <div style="margin:32px 0">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--gray);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">Quick Facts — Click to Reveal</p>
+    <span class="fact-pill" onclick="showPopup('p1')">🔥 What sparked the first building codes? <strong>Click</strong></span>
+    <span class="fact-pill" onclick="showPopup('p2')">📚 How often is the IRC updated? <strong>Click</strong></span>
+    <span class="fact-pill" onclick="showPopup('p3')">🏠 What does IRC NOT cover? <strong>Click</strong></span>
+    <span class="fact-pill" onclick="showPopup('p4')">📅 When did Illinois adopt statewide code? <strong>Click</strong></span>
+  </div>
+
+  <!-- MODULE 1 QUIZ: TRUE / FALSE -->
+  <div class="quiz-box" id="quiz1">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="quiz badge">
+      <div><h3>Module 1 Quiz — True or False</h3><p>4 questions · 25 points each · 100 pts total</p></div>
+    </div>
+
+    <div class="question-block" id="q1_1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>The International Residential Code (IRC) was first published in 1994.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="answerTF(this,'q1_1',false,25,'The IRC was first published in <strong>2000</strong>. The ICC was formed in 1994, but the first IRC came six years later.')">TRUE</button>
+        <button class="tf-btn" onclick="answerTF(this,'q1_1',true,25,'The IRC was first published in <strong>2000</strong>. The ICC was formed in 1994, but the first IRC came six years later.')">FALSE</button>
+      </div>
+      <div class="q-feedback" id="q1_1-fb"></div>
+    </div>
+
+    <div class="question-block" id="q1_2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>The 1871 Great Chicago Fire was a major catalyst for the development of standardized building codes in the United States.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="answerTF(this,'q1_2',true,25,'Correct! The Chicago Fire burned 3.3 square miles. Cities across the country began drafting their own fire prevention codes in response.')">TRUE</button>
+        <button class="tf-btn" onclick="answerTF(this,'q1_2',false,25,'Correct! The Chicago Fire burned 3.3 square miles. Cities across the country began drafting their own fire prevention codes in response.')">FALSE</button>
+      </div>
+      <div class="q-feedback" id="q1_2-fb"></div>
+    </div>
+
+    <div class="question-block" id="q1_3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>BOCA (Building Officials and Code Administrators) governed the western United States with the Uniform Building Code.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="answerTF(this,'q1_3',false,25,'FALSE — BOCA covered the <strong>Northeast and Midwest</strong>. The western US used ICBO\'s Uniform Building Code. SBCCI covered the South.')">TRUE</button>
+        <button class="tf-btn" onclick="answerTF(this,'q1_3',true,25,'FALSE — BOCA covered the <strong>Northeast and Midwest</strong>. The western US used ICBO\'s Uniform Building Code. SBCCI covered the South.')">FALSE</button>
+      </div>
+      <div class="q-feedback" id="q1_3-fb"></div>
+    </div>
+
+    <div class="question-block" id="q1_4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>CABO (Council of American Building Officials) was formed in 1972 as a joint venture between the three regional code bodies.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="answerTF(this,'q1_4',true,25,'Correct! CABO was formed in 1972 by BOCA, SBCCI, and ICBO. Their One and Two Family Dwelling Code was the blueprint for the IRC.')">TRUE</button>
+        <button class="tf-btn" onclick="answerTF(this,'q1_4',false,25,'Correct! CABO was formed in 1972 by BOCA, SBCCI, and ICBO. Their One and Two Family Dwelling Code was the blueprint for the IRC.')">FALSE</button>
+      </div>
+      <div class="q-feedback" id="q1_4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="quiz1-result">
+      <div class="pts" id="quiz1-pts">0</div>
+      <h3>/ 100 pts</h3>
+      <p id="quiz1-msg"></p>
+    </div>
+  </div>
+</section>
+<!-- END MODULE 1 -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 2: STRUCTURAL DESIGN (CH.3 & 8) -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m2" class="training-section">
+  <div class="sec-label">Module 2</div>
+  <h2 class="sec-title">Structural Design — Chapters 3 & 8</h2>
+  <p class="sec-desc">Snow, wind, gravity, seismic — every force hits the roof first. Chapter 3 tells you what loads to plan for. Chapter 8 tells you how to build a structure that handles them.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Chapter 3 — Geographic Design Parameters <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><span class="code-tag">R301<div class="tooltip"><strong>Section R301</strong> — Building Planning. Requires jurisdictions to publish local design criteria in Table R301.2(1) covering snow load, wind speed, seismic category, and weathering index.</div></span> requires every jurisdiction to populate a <strong>Design Criteria table</strong> with minimum performance standards. This is why a roofer in Frankfort, IL and one in Crown Point, IN have different fastening requirements even though they're 30 miles apart.</p>
+        <table class="data-table">
+          <tr><th>Design Factor</th><th>Code Reference</th><th>What It Drives</th></tr>
+          <tr><td>Ground Snow Load</td><td>Table R301.2(1)</td><td>Rafter sizing, ice barrier necessity</td></tr>
+          <tr><td>Ultimate Wind Speed</td><td>Figure R301.2(4)A</td><td>Shingle fastening patterns, edge metal thickness</td></tr>
+          <tr><td>Seismic Design Category</td><td>Section R301.2.2</td><td>Roof diaphragm connection to walls</td></tr>
+          <tr><td>Weathering Index</td><td>Table R301.2(1)</td><td>Material selection for freeze-thaw cycles</td></tr>
+        </table>
+        <div class="callout"><strong>Critical:</strong> Ultimate design wind speed directly controls fastening prescriptions. As wind speeds increase, more nails per shingle are required. This is not optional — failing a nailing inspection kills the job.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Load Path — How Forces Travel Through the Roof <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Every force on your roof — snow, wind, gravity — must travel in a continuous, unbroken path from roof sheathing down through rafters, to wall plates, to foundation. Break any link in that chain and you get structural failure.</p>
+        <p>In high-wind zones, <strong>hurricane clips or H-straps</strong> tie rafters directly to wall top plates. In the Midwest, most code inspectors focus on proper nailing of the rafter-to-plate connection. A missed strap or under-nailed connection can fail the mid-roof inspection.</p>
+        <div class="info-grid">
+          <div class="info-card"><h4>Roof Sheathing</h4><p>First link. Transfers load to rafters/trusses via nailing schedule.</p></div>
+          <div class="info-card"><h4>Rafters / Trusses</h4><p>Carry dead load + live load. Span tables govern sizing.</p></div>
+          <div class="info-card"><h4>Wall Plates</h4><p>Rafters connect here. Hurricane clips required in high-wind zones.</p></div>
+          <div class="info-card"><h4>Foundation</h4><p>Terminal point. Load path must be complete and unbroken.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Chapter 8 — Rafter Sizing & Span Tables <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><span class="code-tag">R802.4<div class="tooltip"><strong>Section R802.4</strong> — Rafter Span Tables. Prescriptive tables allow contractors to size rafters without an engineer for standard applications. Variables include species, grade, spacing, span, and snow load.</div></span> gives you span tables so you can size rafters without hiring an engineer for every house. The tables account for:</p>
+        <ul>
+          <li><strong>Load profiles:</strong> Roof live load (typically 20 psf) and snow loads (30–70 psf by location)</li>
+          <li><strong>Lumber species &amp; grade:</strong> Southern Pine vs. Hem-Fir have different bending strengths — a 2×8 Southern Pine #2 can span further than a 2×8 Hem-Fir #2</li>
+          <li><strong>On-center spacing:</strong> 12", 16", 19.2", or 24" — the wider the spacing, the shorter the allowed span</li>
+          <li><strong>Member depth:</strong> 2×4 up to 2×12</li>
+        </ul>
+        <div class="callout"><strong>Horizontal Thrust — The Hidden Problem:</strong> Loaded rafters push <em>outward</em> on walls. Ceiling joists act as ties to resist this thrust. Per <span class="code-tag" style="font-size:11px">R802<div class="tooltip"><strong>Section R802</strong> — Roof-Ceiling Construction. Includes horizontal thrust requirements, rafter tie placement rules, and the rafter space adjustment factor for elevated tie locations.</div></span>, rafter ties must be placed within the <strong>lower one-third</strong> of attic height. Move them higher and you increase rafter stress — you'll need the rafter space adjustment factor or an engineer.</div>
+        <div class="info-grid">
+          <div class="info-card"><div class="val">20 psf</div><h4>Roof Live Load</h4><p>Typical minimum for rafter sizing calculations</p></div>
+          <div class="info-card"><div class="val">30–70 psf</div><h4>Snow Load Range</h4><p>Varies by location — Frankfort, IL is in a moderate snow zone</p></div>
+          <div class="info-card"><div class="val">1/3</div><h4>Rafter Tie Rule</h4><p>Ties must be in the lower third of attic height</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Section R806 — Attic Ventilation <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><span class="code-tag">R806<div class="tooltip"><strong>Section R806</strong> — Attic Ventilation. Establishes net free ventilating area (NFVA) ratios, air gap requirements, and climate-zone exceptions to prevent ice dams and moisture damage.</div></span> governs attic ventilation to manage temperature and humidity. Under-ventilated attics cause ice dams in winter and cook shingles in summer — both are callbacks waiting to happen.</p>
+        <table class="data-table">
+          <tr><th>Ratio</th><th>Conditions</th><th>Why</th></tr>
+          <tr><td><strong>1:150</strong></td><td>General requirement, all vented attics</td><td>Higher airflow compensates for unbalanced or low-quality venting</td></tr>
+          <tr><td><strong>1:300</strong></td><td>Balanced 40–50% of vent area in upper half</td><td>Uses stack effect for efficient air movement</td></tr>
+          <tr><td><strong>1:300</strong></td><td>Climate Zones 6–8 with Class I/II vapor retarder</td><td>Limits moisture migration from living space to cold attic</td></tr>
+        </table>
+        <div class="callout"><strong>The 1-Inch Rule:</strong> A minimum <strong>1-inch air gap</strong> must be maintained between attic insulation and roof sheathing at the vent location. If insulation blocks the soffit vents, airflow is choked — you've passed a new roof and created a future ice dam liability.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="visual-card">
+    <img src="./generated_imgs/generated-2026-03-11T19-33-14-400Z-z92yn0.png" alt="Attic Ventilation Diagram">
+    <div class="visual-caption">R806: Cool air enters at soffit → flows up with 1-inch gap → exits at ridge. Ventilation ratio 1:150 baseline, 1:300 with balanced system.</div>
+  </div>
+
+  <!-- MODULE 2 QUIZ: DRAG & DROP MATCHING -->
+  <div class="quiz-box" id="quiz2">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="quiz badge">
+      <div><h3>Module 2 Quiz — Code Section Match</h3><p>Drag each code section to its correct description · 25 pts each · 100 pts total</p></div>
+    </div>
+    <p style="color:var(--gray);font-size:14px;margin-bottom:20px">Drag the red code section chips onto the correct description boxes.</p>
+    <div class="drag-arena">
+      <div class="drag-chips" id="chip-pool">
+        <div class="drag-chip" draggable="true" data-val="R301" id="chip-R301" ondragstart="dragStart(event)">R301</div>
+        <div class="drag-chip" draggable="true" data-val="R802" id="chip-R802" ondragstart="dragStart(event)">R802</div>
+        <div class="drag-chip" draggable="true" data-val="R806" id="chip-R806" ondragstart="dragStart(event)">R806</div>
+        <div class="drag-chip" draggable="true" data-val="R908" id="chip-R908" ondragstart="dragStart(event)">R908</div>
+      </div>
+      <div class="drop-zones">
+        <div class="drop-zone" id="dz-R301" data-answer="R301" ondragover="dragOver(event)" ondrop="dropChip(event,'dz-R301')" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-R301">Drop here</div>
+          <div class="drop-zone-label"><strong>Geographic Design Parameters</strong>Snow load, wind speed, seismic category — the local performance minimums every structure must meet.</div>
+        </div>
+        <div class="drop-zone" id="dz-R802" data-answer="R802" ondragover="dragOver(event)" ondrop="dropChip(event,'dz-R802')" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-R802">Drop here</div>
+          <div class="drop-zone-label"><strong>Rafter Sizing, Horizontal Thrust &amp; Attic Framing</strong>Prescriptive span tables and rafter tie placement rules.</div>
+        </div>
+        <div class="drop-zone" id="dz-R806" data-answer="R806" ondragover="dragOver(event)" ondrop="dropChip(event,'dz-R806')" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-R806">Drop here</div>
+          <div class="drop-zone-label"><strong>Attic Ventilation Requirements</strong>Ratios, air gaps, soffit-to-ridge airflow. The 1:150 baseline rule lives here.</div>
+        </div>
+        <div class="drop-zone" id="dz-R908" data-answer="R908" ondragover="dragOver(event)" ondrop="dropChip(event,'dz-R908')" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-R908">Drop here</div>
+          <div class="drop-zone-label"><strong>Reroofing Regulations</strong>Two-layer limit, mandatory tear-off conditions, inspection requirements.</div>
+        </div>
+      </div>
+    </div>
+    <button class="check-drag-btn" onclick="checkDragDrop()">Check My Answers →</button>
+    <div class="quiz-result" id="quiz2-result">
+      <div class="pts" id="quiz2-pts">0</div>
+      <h3>/ 100 pts</h3>
+      <p id="quiz2-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 3: ROOF ASSEMBLIES (CH.9) -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m3" class="training-section">
+  <div class="sec-label">Module 3</div>
+  <h2 class="sec-title">Roof Assemblies — Chapter 9</h2>
+  <p class="sec-desc">This is your daily code. Minimum slopes. Underlayment specs. Drip edge. Ice barriers. Valleys. Know Chapter 9 cold and you'll sail through every inspection.</p>
+
+  <div class="visual-card">
+    <img src="./generated_imgs/generated-2026-03-11T19-32-47-991Z-7jgflc.png" alt="Roof Assembly Cross Section">
+    <div class="visual-caption">A fully-engineered roof assembly: shingles → synthetic underlayment → ice &amp; water shield at eave → plywood deck → rafter. Each layer is prescribed in Chapter 9.</div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Roof Slope &amp; Material Minimums <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Slope is measured as vertical rise over a 12-inch horizontal run. The material you're installing dictates the minimum slope — install below it and you're writing a callback.</p>
+        <table class="data-table">
+          <tr><th>Material</th><th>Min Slope</th><th>Special Conditions</th></tr>
+          <tr><td>Asphalt Shingles</td><td><strong>2:12</strong></td><td>2:12–4:12 requires double underlayment or ice/water shield</td></tr>
+          <tr><td>Clay / Concrete Tile</td><td><strong>4:12</strong></td><td>High dead load — verify structural capacity</td></tr>
+          <tr><td>Metal Panels (standing seam)</td><td><strong>3:12</strong></td><td>Some systems lower — verify manufacturer data</td></tr>
+          <tr><td>Wood Shingles</td><td><strong>4:12</strong></td><td>Wood shakes: 5:12 minimum</td></tr>
+        </table>
+        <div class="callout"><strong>Code Violation #1:</strong> Installing material below its code-mandated minimum slope is the most common Chapter 9 failure. It's explicitly prohibited and immediately flagged by inspectors.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Underlayment — The Secondary Water Barrier <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><span class="code-tag">R905<div class="tooltip"><strong>Section R905</strong> — Requirements for Roof Coverings. Specifies underlayment ASTM standards (D226 for organic felt, D4869 for synthetic), installation methods, and material-specific rules for all roof covering types.</div></span> mandates underlayment conform to ASTM standards. Synthetic underlayments (woven polypropylene) are increasingly common due to tear resistance — but they must meet ASTM D4869 performance criteria to be code-compliant.</p>
+        <div class="two-col">
+          <div>
+            <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--red);margin-bottom:12px">Steep-Slope (4:12+)</h4>
+            <ul>
+              <li>Single layer underlayment</li>
+              <li>Minimum 2-inch head lap</li>
+              <li>6-inch side lap at end joints</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--red);margin-bottom:12px">Low-Slope Shingles (2:12–4:12)</h4>
+            <ul>
+              <li>Start with 19-inch felt strip at eave</li>
+              <li>Full 36-inch sheets overlapping 19 inches</li>
+              <li>Creates two full protection layers everywhere</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Drip Edge — Section R905.2.8.5 <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Drip edge is mandatory on asphalt shingle roofs. This was a significant code update — many older roofs have none, and contractors who don't install it are failing inspections and voiding manufacturer warranties.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="val">0.019"</div><h4>Minimum Thickness</h4><p>26-gauge corrosion-resistant metal. Using lighter material is a code violation.</p></div>
+          <div class="info-card"><div class="val">2"</div><h4>Section Overlap</h4><p>Each drip edge section must overlap the next by at least 2 inches.</p></div>
+          <div class="info-card"><div class="val">12"</div><h4>Fastening Spacing</h4><p>Nailed to deck at maximum 12-inch intervals.</p></div>
+        </div>
+        <div class="callout"><strong>The Eave vs. Rake Rule — Most-Failed Inspection Point:</strong><br>• <strong>At the EAVE:</strong> Install drip edge FIRST, then lay underlayment ON TOP of drip edge.<br>• <strong>At the RAKE (gable):</strong> Install underlayment FIRST, then drip edge ON TOP of underlayment.<br>Get these backwards and water wicks behind the drip edge.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="visual-card">
+    <img src="./generated_imgs/generated-2026-03-11T19-35-03-164Z-wvbtz1.png" alt="Drip Edge Eave vs Rake">
+    <div class="visual-caption">R905.2.8.5: Eave — underlayment over drip edge. Rake/Gable — drip edge over underlayment. Getting this wrong is the single most common drip edge installation failure.</div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Ice Barriers &amp; Valley Flashing <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><strong>Ice Barrier</strong> — In northern climates, a self-adhering polymer-modified bitumen membrane is required from the eave edge to a point at least <strong>24 inches inside the interior wall line</strong>. It stops water that backs up under shingles during ice dam formation from entering the building.</p>
+        <div class="callout"><strong>24 inches inside the wall line</strong> — not 24 inches from the eave. Measure from the inside face of the exterior wall. In tight eave conditions, this can require more membrane than you'd expect.</div>
+        <p style="margin-top:16px"><strong>Valley Options:</strong></p>
+        <table class="data-table">
+          <tr><th>Valley Type</th><th>Minimum Width</th><th>Notes</th></tr>
+          <tr><td>Metal Valley</td><td><strong>24 inches</strong></td><td>Corrosion-resistant metal, center-crimped</td></tr>
+          <tr><td>Mineral-Surface Roll Roofing</td><td>Two plies for open valleys</td><td>Older method, less common now</td></tr>
+          <tr><td>Self-Adhering Ice/Water Shield</td><td>Per manufacturer</td><td>Best performance for closed/woven valleys</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box" id="quiz3">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="quiz badge">
+      <div><h3>Module 3 Quiz — Multiple Choice</h3><p>5 questions · 20 pts each · 100 pts total</p></div>
+    </div>
+
+    <div class="question-block" id="q3_1">
+      <div class="q-num">Question 1 of 5</div>
+      <h4>What is the minimum slope for standard asphalt shingles under the IRC?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q3_1','A',false,20,'Incorrect. 1:12 is far too low for asphalt shingles — water would pool and back up under the shingles.')"><span class="letter">A</span>1:12</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_1','B',true,20,'Correct! 2:12 is the minimum slope for asphalt shingles. Between 2:12 and 4:12, double underlayment or ice/water shield is required.')"><span class="letter">B</span>2:12</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_1','C',false,20,'Incorrect. 4:12 is the minimum for clay/concrete tile and wood shingles — not asphalt.')"><span class="letter">C</span>4:12</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_1','D',false,20,'Incorrect. 5:12 is the minimum for wood shakes — stricter than wood shingles.')"><span class="letter">D</span>5:12</div>
+      </div>
+      <div class="q-feedback" id="q3_1-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3_2">
+      <div class="q-num">Question 2 of 5</div>
+      <h4>Per Section R905.2.8.5, what is the minimum thickness for code-compliant drip edge metal?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q3_2','A',false,20,'Too thin — 0.012-inch material would not provide adequate rigidity or corrosion resistance.')"><span class="letter">A</span>0.012 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_2','B',false,20,'Close, but not quite. 0.016 is thinner than the IRC requires for drip edge.')"><span class="letter">B</span>0.016 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_2','C',true,20,'Correct! 0.019 inches (26 gauge) is the minimum. Using lighter drip edge is a code violation — and a common one.')"><span class="letter">C</span>0.019 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_2','D',false,20,'0.024 is heavier than required — which is fine to use, but not the minimum the IRC mandates.')"><span class="letter">D</span>0.024 inches</div>
+      </div>
+      <div class="q-feedback" id="q3_2-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3_3">
+      <div class="q-num">Question 3 of 5</div>
+      <h4>Ice barriers must extend from the eave edge to a point at least _____ inside the interior wall line.</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q3_3','A',false,20,'12 inches is not enough — ice dams can push water further back than that under certain conditions.')"><span class="letter">A</span>12 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_3','B',false,20,'Not quite. 18 inches is not the IRC standard for ice barrier extent.')"><span class="letter">B</span>18 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_3','C',true,20,'Correct! 24 inches inside the interior wall line. Remember — measured from the inside face of the exterior wall, not from the eave.')"><span class="letter">C</span>24 inches</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_3','D',false,20,'36 inches exceeds the IRC requirement, though using more ice/water shield is never a problem.')"><span class="letter">D</span>36 inches</div>
+      </div>
+      <div class="q-feedback" id="q3_3-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3_4">
+      <div class="q-num">Question 4 of 5</div>
+      <h4>What is the baseline attic ventilation ratio required by Section R806?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q3_4','A',false,20,'1:100 is more aggressive than the baseline IRC requirement — not the standard.')"><span class="letter">A</span>1 sq ft per 100 sq ft (1:100)</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_4','B',true,20,'Correct! 1:150 is the baseline — one square foot of net free ventilating area for every 150 square feet of attic floor space.')"><span class="letter">B</span>1 sq ft per 150 sq ft (1:150)</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_4','C',false,20,'1:300 is the reduced ratio allowed when you have balanced 40-50% high venting — not the baseline.')"><span class="letter">C</span>1 sq ft per 300 sq ft (1:300)</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_4','D',false,20,'1:500 is not an IRC-recognized ventilation ratio.')"><span class="letter">D</span>1 sq ft per 500 sq ft (1:500)</div>
+      </div>
+      <div class="q-feedback" id="q3_4-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3_5">
+      <div class="q-num">Question 5 of 5</div>
+      <h4>At the RAKE (gable) edge of a roof, how is drip edge installed relative to the underlayment?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q3_5','A',false,20,'That\'s the EAVE rule, not the rake rule. At the eave, underlayment goes over drip edge. At the rake, it\'s the opposite.')"><span class="letter">A</span>Drip edge is installed first, then underlayment is laid over it</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_5','B',true,20,'Correct! At the rake/gable edge, underlayment goes on first, then drip edge is installed ON TOP. This prevents water from getting behind the drip edge at the gable.')"><span class="letter">B</span>Underlayment is installed first, then drip edge is placed on top</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_5','C',false,20,'Drip edge is never installed between shingle layers — it must be at the deck/underlayment interface.')"><span class="letter">C</span>Drip edge is installed between the first and second shingle courses</div>
+        <div class="mc-option" onclick="answerMC(this,'q3_5','D',false,20,'Drip edge is required at both eaves and rakes on asphalt shingle roofs.')"><span class="letter">D</span>No drip edge required at rake edges</div>
+      </div>
+      <div class="q-feedback" id="q3_5-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="quiz3-result">
+      <div class="pts" id="quiz3-pts">0</div>
+      <h3>/ 100 pts</h3>
+      <p id="quiz3-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 4: REROOFING + ILLINOIS -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m4" class="training-section">
+  <div class="sec-label">Module 4</div>
+  <h2 class="sec-title">Reroofing Rules + Illinois Law</h2>
+  <p class="sec-desc">Most of what Hamstra does is reroofing. Section R908 governs it — and starting January 1, 2025, Illinois changed the game with a mandatory statewide building code.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      The Two-Layer Limit — Section R908 <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><span class="code-tag">R908<div class="tooltip"><strong>Section R908</strong> — Reroofing. Limits roof covering layers, requires tear-off under specific conditions, and addresses the liability of concealing existing damage under new material.</div></span> — A structure cannot support more than <strong>two applications of roof covering</strong>. Adding a new layer of asphalt shingles over an existing layer adds approximately <strong>200–250 pounds per square</strong> (per 100 sq ft). On a 30-square house, that's 6,000–7,500 lbs of additional dead load — not nothing.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="val">2</div><h4>Maximum Layers</h4><p>Per IRC R908 — never more than two applications of roof covering on any structure</p></div>
+          <div class="info-card"><div class="val">200–250 lbs</div><h4>Weight Per Square</h4><p>Additional dead load per 100 sq ft when overlaying asphalt shingles</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      When a Full Tear-Off is REQUIRED <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Even if only one layer exists, a complete tear-off is mandatory when:</p>
+        <ul>
+          <li>Existing roofing is <strong>water-soaked or severely deteriorated</strong> — overlaying it conceals structural rot</li>
+          <li>Existing material is <strong>wood shake, slate, clay tile, or cement tile</strong> — too heavy and uneven to serve as a base layer</li>
+          <li>The existing roof has <strong>structural damage</strong> requiring deck inspection</li>
+          <li>The structure already has <strong>two existing layers</strong> — never add a third</li>
+        </ul>
+        <div class="callout"><strong>Liability Note:</strong> Installing new shingles over a deteriorated deck doesn't fix the problem — it hides it. When that roof fails in two years, you're the last contractor who touched it. Always pull a permit, always do the deck inspection.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      The Inspection Process <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <table class="data-table">
+          <tr><th>Phase</th><th>What Happens</th><th>Your Goal</th></tr>
+          <tr><td>Permit Acquisition</td><td>Submit plan + state license number</td><td>Legal authorization, credential verification</td></tr>
+          <tr><td>Tear-Off / Deck Inspection</td><td>Inspector checks deck for rot and nailing after strip</td><td>Identify hidden structural issues before covering</td></tr>
+          <tr><td>Nailing / Progress (10–40% complete)</td><td>Verify fastener type and spacing</td><td>Confirm wind-resistance requirements met</td></tr>
+          <tr><td>Final Inspection</td><td>Walk-through of flashings, vents, drains</td><td>Completion certificate, life-safety sign-off</td></tr>
+        </table>
+        <div class="callout"><strong>Critical:</strong> Failure to call for the mid-roof inspection can result in an order to <em>remove the newly installed roof</em> so the inspector can verify underlayment and fastening. Call it in. Every time.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Illinois Public Act 103-0510 — The 2025 Statewide Code <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Illinois historically had no mandatory statewide building code. Cities like Batavia were still using the <strong>2006 IRC</strong> as of 2024. That changed with Public Act 103-0510.</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="val">Jan 1, 2025</div><h4>Effective Date</h4><p>Illinois mandatory statewide building code took effect</p></div>
+          <div class="info-card"><div class="val">2018+</div><h4>Minimum Edition</h4><p>All jurisdictions must adopt at least the 2018 IRC (2021 or 2024 also accepted)</p></div>
+        </div>
+        <p style="margin-top:16px"><strong>What changes for roofers in IL:</strong></p>
+        <ul>
+          <li>Stricter fastening schedules in wind exposure categories</li>
+          <li>Updated ventilation requirements for newer climate zone designations</li>
+          <li>Energy code triggers — reroofing may require bringing attic insulation to current standards</li>
+          <li>Batavia work hours: <strong>7 a.m. to 9 p.m., Monday–Saturday</strong> (local ordinance still applies)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box" id="quiz4">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="quiz badge">
+      <div><h3>Module 4 Quiz — Multiple Choice</h3><p>4 questions · 25 pts each · 100 pts total</p></div>
+    </div>
+
+    <div class="question-block" id="q4_1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>Per Section R908, what is the maximum number of roof covering layers allowed on a residential structure?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q4_1','A',false,25,'One layer is always allowed, but the IRC permits a second layer before requiring tear-off.')"><span class="letter">A</span>1</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_1','B',true,25,'Correct! Maximum two layers. Adding a third is a code violation — the structure cannot support the additional dead load and you risk concealing serious deck damage.')"><span class="letter">B</span>2</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_1','C',false,25,'3 layers is never permitted under the IRC — the dead load would be 600–750 lbs per square over the original structure.')"><span class="letter">C</span>3</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_1','D',false,25,'There is no "depends on structure" option in the IRC — the two-layer limit is absolute.')"><span class="letter">D</span>Depends on the structure</div>
+      </div>
+      <div class="q-feedback" id="q4_1-fb"></div>
+    </div>
+
+    <div class="question-block" id="q4_2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>Approximately how much weight does overlaying one layer of asphalt shingles add per 100 sq ft (one square)?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q4_2','A',false,25,'100–150 lbs underestimates the load — asphalt shingles are heavier than most people expect.')"><span class="letter">A</span>100–150 pounds</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_2','B',false,25,'Close, but slightly under — 200–250 lbs is the correct range for asphalt shingle overlay load.')"><span class="letter">B</span>150–200 pounds</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_2','C',true,25,'Correct! 200–250 lbs per square. On a 30-square house that\'s potentially 7,500 lbs of additional dead load.')"><span class="letter">C</span>200–250 pounds</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_2','D',false,25,'250–300 lbs is on the high end — the actual IRC-recognized range is 200–250 lbs per square.')"><span class="letter">D</span>250–300 pounds</div>
+      </div>
+      <div class="q-feedback" id="q4_2-fb"></div>
+    </div>
+
+    <div class="question-block" id="q4_3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>Illinois Public Act 103-0510 — when did the mandatory statewide building code take effect?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q4_3','A',false,25,'January 1, 2024 predates the effective date of Public Act 103-0510.')"><span class="letter">A</span>January 1, 2024</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_3','B',true,25,'Correct! January 1, 2025. This was a major shift for Illinois — no more jurisdictions hiding behind the 2006 IRC.')"><span class="letter">B</span>January 1, 2025</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_3','C',false,25,'January 1, 2026 is after the actual effective date.')"><span class="letter">C</span>January 1, 2026</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_3','D',false,25,'July 1, 2025 is not the effective date — it\'s January 1, 2025.')"><span class="letter">D</span>July 1, 2025</div>
+      </div>
+      <div class="q-feedback" id="q4_3-fb"></div>
+    </div>
+
+    <div class="question-block" id="q4_4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>In Batavia, Illinois — what are the allowable work hours for roofing under local ordinance?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="answerMC(this,'q4_4','A',false,25,'6 a.m. to 8 p.m. is not the Batavia ordinance — starting at 6 a.m. would get you noise complaints before the first nail.')"><span class="letter">A</span>6 a.m. to 8 p.m., Mon–Sat</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_4','B',true,25,'Correct! 7 a.m. to 9 p.m., Monday through Saturday. Showing up early or working late risks a stop-work order.')"><span class="letter">B</span>7 a.m. to 9 p.m., Mon–Sat</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_4','C',false,25,'8 a.m. to 6 p.m. is too restrictive — Batavia allows work until 9 p.m.')"><span class="letter">C</span>8 a.m. to 6 p.m., Mon–Sat</div>
+        <div class="mc-option" onclick="answerMC(this,'q4_4','D',false,25,'7 a.m. to 7 p.m. is not the Batavia ordinance — work is permitted until 9 p.m.')"><span class="letter">D</span>7 a.m. to 7 p.m., Mon–Sat</div>
+      </div>
+      <div class="q-feedback" id="q4_4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="quiz4-result">
+      <div class="pts" id="quiz4-pts">0</div>
+      <h3>/ 100 pts</h3>
+      <p id="quiz4-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 5: EXAM PREP + JEOPARDY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m5" class="training-section">
+  <div class="sec-label">Module 5</div>
+  <h2 class="sec-title">F14/G14 Exam Prep</h2>
+  <p class="sec-desc">The ICC exam is open-book — but 3 minutes per question doesn't leave time for random searching. Speed comes from knowing the layout cold. Here's how the pros tackle it.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Exam Structure — Know Before You Sit Down <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <div class="info-grid">
+          <div class="info-card"><div class="val">60</div><h4>Questions</h4><p>Multiple-choice, open-book format</p></div>
+          <div class="info-card"><div class="val">3 hrs</div><h4>Time Limit</h4><p>3 minutes per question average</p></div>
+          <div class="info-card"><div class="val">70%</div><h4>Passing Score</h4><p>42 of 60 correct to pass</p></div>
+        </div>
+        <table class="data-table" style="margin-top:16px">
+          <tr><th>Content Area</th><th>% of Exam</th><th>Key Sections</th></tr>
+          <tr><td>Roof Coverings</td><td><strong>45%</strong></td><td>Chapter 9, material specs, fastening</td></tr>
+          <tr><td>Reroofing</td><td><strong>15%</strong></td><td>R908, tear-off rules, layer limits</td></tr>
+          <tr><td>Insulation &amp; Drainage</td><td><strong>15%</strong></td><td>R-values, scuppers, roof drains</td></tr>
+          <tr><td>Weather/Fire Protection</td><td><strong>15%</strong></td><td>Class A–C, wind zones, ice barriers</td></tr>
+          <tr><td>General Administration</td><td><strong>10%</strong></td><td>Permits, inspections, stop-work orders</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      The Four-Pass Method — How to Attack the Exam <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <table class="data-table">
+          <tr><th>Pass</th><th>Action</th><th>Time</th></tr>
+          <tr><td><strong>Pass 1</strong></td><td>Answer every question you know from memory or experience — don't look anything up</td><td>30 min</td></tr>
+          <tr><td><strong>Pass 2</strong></td><td>Questions where you know exactly which table or section to find the answer — look it up fast</td><td>60 min</td></tr>
+          <tr><td><strong>Pass 3</strong></td><td>Use the book to research the hard questions you couldn't place</td><td>60 min</td></tr>
+          <tr><td><strong>Pass 4</strong></td><td>Final review — hunt for trap words: "not," "only," "maximum," "minimum"</td><td>30 min</td></tr>
+        </table>
+        <div class="callout"><strong>Trap words kill scores.</strong> "Which of the following does NOT require a permit?" — the word "not" flips the whole question. Circle it before you read the options.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Tabbing &amp; Highlighting Your Code Book <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>An unmarked code book is a liability in a timed exam. Build your tabs before exam day:</p>
+        <div class="info-grid">
+          <div class="info-card"><h4>Must-Tab Sections</h4><p>R905 (Materials), R806 (Ventilation), R802 (Framing), Chapter 3 (Design Criteria), R908 (Reroofing), Chapter 2 (Definitions)</p></div>
+          <div class="info-card"><h4>What to Highlight</h4><p>Operative words: <strong>"shall"</strong> (mandatory), <strong>"may"</strong> (optional), <strong>"except"</strong> (most common test source), and all specific numbers (0.019, 1:150, 24 inches)</p></div>
+          <div class="info-card"><h4>Margin Notes</h4><p>Write "See Table R301.2" or "Cross-ref R905.2.8.5" in margins. Saves 30–60 seconds per lookup.</p></div>
+        </div>
+        <div class="callout"><strong>"Shall" vs "May":</strong> "Shall" is a legal command — no negotiation. "May" gives the contractor flexibility. Many exam questions hinge on this distinction.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false" onclick="toggleAcc(this)">
+      Future of Roofing: Solar, Energy Codes &amp; What's Coming <span class="icon">+</span>
+    </button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The IRC updates every three years. The 2021 and 2024 editions push hard on energy efficiency and solar integration — knowing this future content gives you an edge now.</p>
+        <ul>
+          <li><strong>PV Solar Panels:</strong> Create new dead loads and wind uplift forces requiring Chapter 8 recalculation. Must maintain firefighter access pathways.</li>
+          <li><strong>Federal Solar Tax Credit:</strong> 30% Residential Clean Energy Credit on qualified solar roofing that meets IRC structural and energy standards.</li>
+          <li><strong>"Cool Roofs":</strong> Required in southern climates to reduce cooling loads. Material reflectance is now a design parameter.</li>
+          <li><strong>Energy Code Triggers:</strong> In many jurisdictions, reroofing triggers a requirement to bring attic insulation to current energy code — even if framing is unchanged.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- JEOPARDY LAUNCH -->
+  <div style="margin-top:48px;text-align:center;padding:48px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad)">
+    <img src="./generated_imgs/generated-2026-03-11T19-35-52-633Z-kpa3bq.png" alt="Jeopardy Board" style="width:100%;max-width:560px;border-radius:8px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto">
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;margin-bottom:8px">🎰 ROOFING JEOPARDY CHALLENGE</h3>
+    <p style="color:var(--gray);margin-bottom:24px">20 questions across 5 categories. Up to 200 bonus points. Think you know your stuff?</p>
+    <button onclick="openJeopardy()" style="background:var(--gold);color:#111;border:none;padding:16px 48px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;cursor:pointer;letter-spacing:.05em">PLAY JEOPARDY →</button>
+    <p style="color:var(--gray);font-size:13px;margin-top:12px">Jeopardy bonus points: <span id="j-bonus-display" style="color:var(--gold);font-weight:700">0</span> / 200</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- MODULE 6: FINAL TIMED EXAM -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section id="m6" class="training-section">
+  <div class="sec-label">Module 6 — Final Challenge</div>
+  <h2 class="sec-title">Timed Final Exam</h2>
+  <p class="sec-desc">15 questions. 45 seconds each. Mix of everything. This is your F14 warm-up — no looking back at the modules. Go from memory.</p>
+
+  <div class="exam-box" id="exam-box">
+    <div id="exam-start-screen" style="text-align:center;padding:24px 0">
+      <div style="font-size:48px;margin-bottom:16px">⏱️</div>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;margin-bottom:12px">Ready for the Final Exam?</h3>
+      <p style="color:var(--gray);margin-bottom:8px">15 questions · 45 seconds each · 20 points per question · 300 points total</p>
+      <p style="color:var(--gray);font-size:14px;margin-bottom:24px">Questions auto-advance when time runs out. No going back.</p>
+      <button class="start-exam-btn" onclick="startExam()">START FINAL EXAM →</button>
+    </div>
+    <div id="exam-running" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <span class="exam-progress-text" id="exam-q-counter">Question 1 of 15</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--gray);font-size:14px">Exam Score: <span id="exam-live-score" style="color:var(--gold)">0</span> pts</span>
+      </div>
+      <div style="background:#333;height:6px;border-radius:3px;margin-bottom:16px"><div id="exam-time-bar" style="height:100%;background:var(--red);border-radius:3px;width:100%;transition:width .1s linear"></div></div>
+      <div class="exam-timer" id="exam-timer">45</div>
+      <div id="exam-questions"></div>
+    </div>
+    <div id="exam-done" style="display:none;text-align:center;padding:32px 0">
+      <div style="font-size:56px;margin-bottom:16px">🏆</div>
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;margin-bottom:8px">Exam Complete!</h3>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;color:var(--gold);line-height:1;margin:16px 0" id="exam-final-score">0</div>
+      <p style="color:var(--gray);margin-bottom:24px">/ 300 pts — <span id="exam-grade"></span></p>
+      <button onclick="scrollTo('#cert')" style="background:var(--red);color:var(--white);border:none;padding:14px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer">Claim Your Certificate →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- CERTIFICATE -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="cert" style="background:var(--off);border-top:2px solid var(--border);padding:80px 40px">
+  <div id="cert-section" style="display:block;text-align:center;max-width:900px;margin:0 auto">
+    <div class="sec-label" style="justify-content:center">Training Complete</div>
+    <h2 class="sec-title" style="margin-bottom:8px">Your Certificate</h2>
+    <p style="color:var(--gray);margin-bottom:32px">Enter your name below, then print or save your certificate.</p>
+    <div class="final-score-box">
+      <div class="big-score" id="cert-total-score">—</div>
+      <p>Total Score / 800 pts</p>
+      <p id="cert-grade-label" style="color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;margin-top:4px"></p>
+    </div>
+    <div>
+      <input type="text" class="cert-name-input" id="cert-name-input" placeholder="Enter your full name" oninput="updateCertName(this.value)">
+    </div>
+    <div class="cert-img-wrap">
+      <img src="./generated_imgs/generated-2026-03-11T19-35-32-429Z-vbuhjd.png" alt="Certificate of Completion">
+      <div class="cert-overlay-name" id="cert-overlay-name">Your Name Here</div>
+    </div>
+    <button class="print-cert-btn" onclick="window.print()">🖨️ Print Certificate</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- JEOPARDY MODAL -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="jeopardy-modal">
+  <div class="j-header">
+    <h2>🎰 ROOFING JEOPARDY</h2>
+    <span class="j-score-display">Bonus: <span id="j-score-val">0</span> pts</span>
+    <button class="j-close" onclick="closeJeopardy()">✕ Close</button>
+  </div>
+  <div class="j-board" id="j-board">
+    <div class="j-cat-header">IRC History</div>
+    <div class="j-cat-header">Chapter 8</div>
+    <div class="j-cat-header">Chapter 9</div>
+    <div class="j-cat-header">Reroofing</div>
+    <div class="j-cat-header">Exam Prep</div>
+    <!-- 20 cells filled by JS -->
+  </div>
+</div>
+
+<!-- Jeopardy Question Overlay -->
+<div class="j-q-overlay" id="j-q-overlay">
+  <div class="j-q-box">
+    <div class="j-pts" id="jq-pts">$100</div>
+    <div class="j-question" id="jq-text"></div>
+    <input type="text" class="j-answer-input" id="jq-input" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')checkJeopardy()">
+    <br>
+    <button class="j-submit-btn" onclick="checkJeopardy()">Submit</button>
+    <button class="j-skip-btn" onclick="skipJeopardy()">Skip / Reveal</button>
+    <div class="j-reveal" id="jq-reveal"></div>
+  </div>
+</div>
+
+<!-- POPUP MODAL -->
+<div id="popup-overlay" onclick="if(event.target===this)closePopup()">
+  <div id="popup-box">
+    <button id="popup-close" onclick="closePopup()">✕</button>
+    <h3 id="popup-title"></h3>
+    <div id="popup-body"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════ STATE ═══════════════════════════
+const S = {
+  score: 0,
+  maxScore: 800,
+  quizDone: {q1:false, q2:false, q3:false, q4:false},
+  dragAnswers: {},
+  jScore: 0,
+  examScore: 0,
+  examActive: false,
+  examQ: 0,
+  examTimer: null,
+  examTimeLeft: 45,
+  jActive: null
+};
+
+// ═══════════════════════════ SCORE ═══════════════════════════
+function addScore(pts){
+  S.score = Math.min(S.score + pts, S.maxScore);
+  document.getElementById('score-val').textContent = S.score;
+  updateProgress();
+  updateCertScore();
+}
+
+function updateProgress(){
+  const pct = Math.min((S.score / S.maxScore) * 100, 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function updateCertScore(){
+  const el = document.getElementById('cert-total-score');
+  if(el) el.textContent = S.score;
+  const gl = document.getElementById('cert-grade-label');
+  if(gl){
+    const pct = (S.score/S.maxScore)*100;
+    gl.textContent = pct >= 90 ? '🏆 Expert — Top of the Roof!' : pct >= 75 ? '⭐ Proficient — You Know Your Code' : pct >= 60 ? '✅ Certified — Keep Studying!' : '📚 Keep Going — You Can Get There';
+  }
+}
+
+// ═══════════════════════════ SCROLL ═══════════════════════════
+function scrollTo(id){
+  const el = document.querySelector(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ═══════════════════════════ ACCORDION ═══════════════════════════
+function toggleAcc(btn){
+  const body = btn.nextElementSibling;
+  const isOpen = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+
+// ═══════════════════════════ TRUE/FALSE ═══════════════════════════
+function answerTF(btn, qId, isCorrect, pts, explanation){
+  const block = document.getElementById(qId);
+  if(block.dataset.answered) return;
+  block.dataset.answered = '1';
+  const btns = block.querySelectorAll('.tf-btn');
+  btns.forEach(b => b.disabled = true);
+  const clickedTrue = btn.textContent.trim() === 'TRUE';
+  const wasCorrect = (clickedTrue && isCorrect) || (!clickedTrue && !isCorrect);
+  btn.classList.add(wasCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.innerHTML = (wasCorrect ? '✅ Correct! ' : '❌ Not quite. ') + explanation;
+  fb.className = 'q-feedback show ' + (wasCorrect ? 'good' : 'bad');
+  if(wasCorrect){ addScore(pts); shoot(); }
+  checkQuizComplete(qId);
+}
+
+// ═══════════════════════════ MULTIPLE CHOICE ═══════════════════════════
+function answerMC(el, qId, letter, isCorrect, pts, explanation){
+  const block = document.getElementById(qId);
+  if(block.dataset.answered) return;
+  block.dataset.answered = '1';
+  block.querySelectorAll('.mc-option').forEach(o => o.classList.add('disabled'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.innerHTML = (isCorrect ? '✅ Correct! ' : '❌ Not quite. ') + explanation;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if(isCorrect){ addScore(pts); shoot(); }
+  checkQuizComplete(qId);
+}
+
+// ═══════════════════════════ QUIZ COMPLETE CHECK ═══════════════════════════
+const quizQuestions = {q1:[4,'q1_'],q2:[4,'q2_drag'],q3:[5,'q3_'],q4:[4,'q4_']};
+
+function checkQuizComplete(qId){
+  if(qId.startsWith('q1_')){ checkModuleDone('q1',4,'q1_',100,'quiz1'); }
+  else if(qId.startsWith('q3_')){ checkModuleDone('q3',5,'q3_',100,'quiz3'); }
+  else if(qId.startsWith('q4_')){ checkModuleDone('q4',4,'q4_',100,'quiz4'); }
+}
+
+function checkModuleDone(key, total, prefix, maxPts, resultId){
+  if(S.quizDone[key]) return;
+  for(let i=1;i<=total;i++){
+    if(!document.getElementById(prefix+i)?.dataset.answered) return;
+  }
+  S.quizDone[key] = true;
+  let earned = 0;
+  for(let i=1;i<=total;i++){
+    const b = document.getElementById(prefix+i);
+    const fb = document.getElementById(prefix+i+'-fb');
+    if(fb && fb.classList.contains('good')) earned += Math.round(maxPts/total);
+  }
+  showQuizResult(resultId, earned, maxPts);
+  markNavDone(key);
+}
+
+function showQuizResult(id, earned, max){
+  const r = document.getElementById(id+'-result');
+  if(!r) return;
+  r.classList.add('show');
+  document.getElementById(id+'-pts').textContent = earned;
+  const pct = (earned/max)*100;
+  document.getElementById(id+'-msg').textContent = pct === 100 ? '🔥 Perfect score! You nailed it.' : pct >= 75 ? '⭐ Solid work! Review any misses.' : '📚 Keep studying — retake the module.';
+}
+
+function markNavDone(key){
+  const map = {q1:0,q2:1,q3:2,q4:3};
+  const btns = document.querySelectorAll('.mnav-btn');
+  if(btns[map[key]]) btns[map[key]].classList.add('done');
+}
+
+// ═══════════════════════════ DRAG & DROP ═══════════════════════════
+let dragging = null;
+function dragStart(e){ dragging = e.target.dataset.val; e.dataTransfer.effectAllowed='move'; }
+function dragOver(e){ e.preventDefault(); e.currentTarget.classList.add('over'); }
+function dragLeave(e){ e.currentTarget.classList.remove('over'); }
+function dropChip(e, dzId){
+  e.preventDefault();
+  const dz = document.getElementById(dzId);
+  dz.classList.remove('over');
+  const slot = dz.querySelector('.drop-slot');
+  const prev = slot.dataset.placed;
+  if(prev){
+    const prevChip = document.getElementById('chip-'+prev);
+    if(prevChip){ prevChip.classList.remove('placed'); }
+  }
+  if(dragging){
+    slot.textContent = dragging;
+    slot.dataset.placed = dragging;
+    slot.style.color = 'var(--white)';
+    slot.style.background = 'var(--red)';
+    const chip = document.getElementById('chip-'+dragging);
+    if(chip) chip.classList.add('placed');
+    S.dragAnswers[dzId] = dragging;
+  }
+  dragging = null;
+}
+
+function checkDragDrop(){
+  if(S.quizDone.q2) return;
+  const answers = {
+    'dz-R301':'R301','dz-R802':'R802','dz-R806':'R806','dz-R908':'R908'
+  };
+  let pts = 0;
+  Object.entries(answers).forEach(([dz,correct])=>{
+    const slot = document.getElementById(dz);
+    const placed = slot.querySelector('.drop-slot').dataset.placed;
+    if(placed === correct){ slot.classList.add('correct'); pts += 25; }
+    else { slot.classList.add('wrong'); }
+  });
+  S.quizDone.q2 = true;
+  addScore(pts);
+  showQuizResult('quiz2', pts, 100);
+  if(pts > 0) shoot();
+  markNavDone('q2');
+}
+
+// ═══════════════════════════ POPUP ═══════════════════════════
+const popups = {
+  p1:{title:'Disasters That Built the Code',body:'The 1871 Great Chicago Fire burned 3.3 square miles. The 1906 San Francisco Earthquake collapsed thousands of buildings. Both disasters revealed that uncoordinated, reactive construction practices were catastrophic at scale — and both directly triggered waves of new building regulation.'},
+  p2:{title:'How Often Is the IRC Updated?',body:'The IRC is published on a 3-year cycle by the International Code Council. Current editions: 2018, 2021, and 2024. Jurisdictions choose when and which edition to adopt — Illinois now requires at least the 2018 edition statewide as of January 1, 2025.'},
+  p3:{title:'What the IRC Does NOT Cover',body:'The IRC only covers detached one- and two-family dwellings and townhouses (3 stories max). Anything larger — apartment buildings, commercial structures, multi-family beyond townhouses — falls under the International Building Code (IBC), not the IRC.'},
+  p4:{title:'Illinois Statewide Code — Jan 1, 2025',body:'Illinois Public Act 103-0510 created the first mandatory statewide building code. Before this, cities like Batavia were still using the 2006 IRC. Now every Illinois jurisdiction must adopt at least the 2018 IRC. This means stricter ventilation, fastening, and energy code requirements across the state.'}
+};
+
+function showPopup(id){
+  const p = popups[id]; if(!p) return;
+  document.getElementById('popup-title').textContent = p.title;
+  document.getElementById('popup-body').innerHTML = '<p>'+p.body+'</p>';
+  document.getElementById('popup-overlay').classList.add('open');
+}
+function closePopup(){ document.getElementById('popup-overlay').classList.remove('open'); }
+
+// ═══════════════════════════ JEOPARDY ═══════════════════════════
+const J_DATA = [
+  // IRC History $100-$400
+  {cat:0,pts:100,q:'This 1871 disaster was a primary catalyst for early building codes in the US.',a:'chicago fire'},
+  {cat:0,pts:200,q:'The three regional code bodies (BOCA, SBCCI, ICBO) merged in this year to form the ICC.',a:'1994'},
+  {cat:0,pts:300,q:'CABO (Council of American Building Officials) was formed in this year.',a:'1972'},
+  {cat:0,pts:400,q:'This ICBO code governed the western US before the IRC was created.',a:'uniform building code'},
+  // Chapter 8 $100-$400
+  {cat:1,pts:100,q:'The typical minimum roof live load used in rafter span table calculations.',a:'20 psf'},
+  {cat:1,pts:200,q:'Rafter ties must be placed within this fraction of attic height from the bottom.',a:'one third'},
+  {cat:1,pts:300,q:'The IRC section governing rafter sizing and span tables.',a:'r802'},
+  {cat:1,pts:400,q:'The minimum air gap between attic insulation and roof sheathing per R806.',a:'1 inch'},
+  // Chapter 9 $100-$400
+  {cat:2,pts:100,q:'Minimum slope for asphalt shingles per IRC.',a:'2:12'},
+  {cat:2,pts:200,q:'Minimum drip edge thickness in inches per R905.2.8.5.',a:'0.019'},
+  {cat:2,pts:300,q:'Ice barriers must extend this far inside the interior wall line.',a:'24 inches'},
+  {cat:2,pts:400,q:'Minimum width for a metal valley flashing per Chapter 9.',a:'24 inches'},
+  // Reroofing $100-$400
+  {cat:3,pts:100,q:'Maximum number of roof covering layers allowed by the IRC.',a:'2'},
+  {cat:3,pts:200,q:'Approximate weight added per square when overlaying asphalt shingles.',a:'200'},
+  {cat:3,pts:300,q:'This material type on an existing roof ALWAYS requires full tear-off before reroofing.',a:'wood shake'},
+  {cat:3,pts:400,q:'The IRC section number governing reroofing regulations.',a:'r908'},
+  // Exam Prep $100-$400
+  {cat:4,pts:100,q:'Number of questions on the F14/G14 ICC roofing exam.',a:'60'},
+  {cat:4,pts:200,q:'Passing score percentage for the ICC F14 exam.',a:'70'},
+  {cat:4,pts:300,q:'This mandatory word in the IRC means no exceptions without a formal variance.',a:'shall'},
+  {cat:4,pts:400,q:'Illinois Public Act 103-0510 statewide code effective date (month and year).',a:'january 2025'},
+];
+const J_USED = new Set();
+
+function buildBoard(){
+  const board = document.getElementById('j-board');
+  const cats = board.querySelectorAll('.j-cat-header');
+  // Remove existing cells
+  board.querySelectorAll('.j-cell').forEach(c=>c.remove());
+  const pts = [100,200,300,400];
+  pts.forEach(p=>{
+    [0,1,2,3,4].forEach(cat=>{
+      const idx = J_DATA.findIndex(q=>q.cat===cat&&q.pts===p);
+      const cell = document.createElement('div');
+      cell.className = 'j-cell';
+      cell.textContent = '$'+p;
+      cell.dataset.idx = idx;
+      cell.id = 'jc-'+cat+'-'+p;
+      cell.onclick = ()=>openJQuestion(idx, cell.id);
+      board.appendChild(cell);
+    });
+  });
+}
+
+function openJeopardy(){
+  buildBoard();
+  J_USED.clear();
+  document.getElementById('jeopardy-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeJeopardy(){
+  document.getElementById('jeopardy-modal').classList.remove('open');
+  document.body.style.overflow='';
+  document.getElementById('j-bonus-display').textContent = S.jScore;
+}
+
+function openJQuestion(idx, cellId){
+  if(J_USED.has(cellId)) return;
+  S.jActive = {idx, cellId};
+  const q = J_DATA[idx];
+  document.getElementById('jq-pts').textContent = '$'+q.pts;
+  document.getElementById('jq-text').textContent = q.q;
+  document.getElementById('jq-input').value = '';
+  document.getElementById('jq-reveal').className = 'j-reveal';
+  document.getElementById('jq-reveal').textContent = '';
+  document.getElementById('j-q-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('jq-input').focus(),100);
+}
+
+function checkJeopardy(){
+  if(!S.jActive) return;
+  const q = J_DATA[S.jActive.idx];
+  const ans = document.getElementById('jq-input').value.trim().toLowerCase();
+  const correct = q.a.toLowerCase();
+  const isRight = ans.includes(correct) || correct.includes(ans.split(' ').filter(w=>w.length>2).join(' '));
+  const rev = document.getElementById('jq-reveal');
+  if(isRight){
+    rev.textContent = '✅ Correct! +'+q.pts+' bonus pts';
+    rev.className = 'j-reveal show right';
+    S.jScore += q.pts;
+    addScore(q.pts > 300 ? 20 : q.pts > 200 ? 15 : q.pts > 100 ? 10 : 5);
+    document.getElementById('j-score-val').textContent = S.jScore;
+  } else {
+    rev.innerHTML = '❌ The answer was: <strong>'+q.a+'</strong>';
+    rev.className = 'j-reveal show oops';
+  }
+  J_USED.add(S.jActive.cellId);
+  document.getElementById(S.jActive.cellId).classList.add('used');
+  setTimeout(()=>{
+    document.getElementById('j-q-overlay').classList.remove('open');
+    S.jActive = null;
+  }, 2200);
+}
+
+function skipJeopardy(){
+  if(!S.jActive) return;
+  const q = J_DATA[S.jActive.idx];
+  const rev = document.getElementById('jq-reveal');
+  rev.innerHTML = 'Answer: <strong>'+q.a+'</strong>';
+  rev.className = 'j-reveal show oops';
+  J_USED.add(S.jActive.cellId);
+  document.getElementById(S.jActive.cellId).classList.add('used');
+  setTimeout(()=>{
+    document.getElementById('j-q-overlay').classList.remove('open');
+    S.jActive = null;
+  }, 2000);
+}
+
+// ═══════════════════════════ FINAL EXAM ═══════════════════════════
+const EXAM_QS = [
+  {q:'What is the minimum slope for asphalt shingles?',opts:['1:12','2:12','3:12','4:12'],ans:1},
+  {q:'The baseline attic ventilation ratio per R806 is:',opts:['1:100','1:150','1:300','1:500'],ans:1},
+  {q:'Drip edge minimum thickness per R905.2.8.5:',opts:['0.012"','0.015"','0.019"','0.025"'],ans:2},
+  {q:'Maximum roof covering layers per IRC R908:',opts:['1','2','3','4'],ans:1},
+  {q:'Ice barriers must extend at least ___ inside the interior wall line:',opts:['12 inches','18 inches','24 inches','36 inches'],ans:2},
+  {q:'The IRC was first published in:',opts:['1994','1997','2000','2003'],ans:2},
+  {q:'BOCA governed building codes in which US region?',opts:['South','West','Northeast/Midwest','Southwest'],ans:2},
+  {q:'Rafter ties must be placed within ___ of attic height:',opts:['Top third','Middle third','Lower third','Any height'],ans:2},
+  {q:'At the EAVE, underlayment is installed ___ the drip edge:',opts:['Under','Over','Between layers of','On top of shingles over'],ans:1},
+  {q:'Illinois statewide building code (PA 103-0510) took effect:',opts:['Jan 1, 2024','July 1, 2024','Jan 1, 2025','July 1, 2025'],ans:2},
+  {q:'Wood shakes require a minimum slope of:',opts:['3:12','4:12','5:12','6:12'],ans:2},
+  {q:'Chapter 9 of the IRC covers:',opts:['Plumbing','Roof-Ceiling Construction','Roof Assemblies & Coverings','Electrical'],ans:2},
+  {q:'Minimum metal valley width per the IRC:',opts:['12 inches','18 inches','24 inches','36 inches'],ans:2},
+  {q:'The F14 exam passing score is generally:',opts:['60%','65%','70%','75%'],ans:2},
+  {q:'In Batavia, IL — roofing work is permitted until what time?',opts:['7 p.m.','8 p.m.','9 p.m.','10 p.m.'],ans:2},
+];
+
+let examAnswered = new Array(15).fill(null);
+
+function startExam(){
+  document.getElementById('exam-start-screen').style.display='none';
+  document.getElementById('exam-running').style.display='block';
+  S.examActive=true; S.examQ=0; S.examScore=0;
+  renderExamQ();
+  startExamTimer();
+}
+
+function renderExamQ(){
+  const i = S.examQ;
+  if(i >= EXAM_QS.length){ endExam(); return; }
+  const q = EXAM_QS[i];
+  document.getElementById('exam-q-counter').textContent = 'Question '+(i+1)+' of 15';
+  document.getElementById('exam-live-score').textContent = S.examScore;
+  const container = document.getElementById('exam-questions');
+  container.innerHTML = `
+    <h4 style="font-size:18px;font-weight:600;color:var(--white);margin-bottom:20px;line-height:1.5">${q.q}</h4>
+    <div class="mc-options" id="exam-opts">
+      ${q.opts.map((o,idx)=>`<div class="mc-option" id="eq-${idx}" onclick="answerExam(${idx})""><span class="letter">${'ABCD'[idx]}</span>${o}</div>`).join('')}
+    </div>`;
+}
+
+function answerExam(selected){
+  if(!S.examActive) return;
+  clearInterval(S.examTimer);
+  const i = S.examQ;
+  const correct = EXAM_QS[i].ans;
+  document.querySelectorAll('#exam-opts .mc-option').forEach(o=>o.classList.add('disabled'));
+  document.getElementById('eq-'+selected).classList.add(selected===correct?'correct':'wrong');
+  document.getElementById('eq-'+correct).classList.add('correct');
+  if(selected===correct){ S.examScore+=20; addScore(20); shoot(); }
+  document.getElementById('exam-live-score').textContent = S.examScore;
+  setTimeout(()=>{ S.examQ++; renderExamQ(); if(S.examQ<15) startExamTimer(); },1200);
+}
+
+function startExamTimer(){
+  S.examTimeLeft=45;
+  const bar = document.getElementById('exam-time-bar');
+  const timer = document.getElementById('exam-timer');
+  S.examTimer = setInterval(()=>{
+    S.examTimeLeft--;
+    timer.textContent = S.examTimeLeft;
+    bar.style.width = (S.examTimeLeft/45*100)+'%';
+    if(S.examTimeLeft <= 10) timer.classList.add('warn');
+    else timer.classList.remove('warn');
+    if(S.examTimeLeft <= 0){
+      clearInterval(S.examTimer);
+      S.examQ++;
+      if(S.examQ < 15){ renderExamQ(); startExamTimer(); }
+      else endExam();
+    }
+  },1000);
+}
+
+function endExam(){
+  S.examActive=false;
+  clearInterval(S.examTimer);
+  document.getElementById('exam-running').style.display='none';
+  document.getElementById('exam-done').style.display='block';
+  document.getElementById('exam-final-score').textContent = S.examScore;
+  const pct = (S.examScore/300)*100;
+  document.getElementById('exam-grade').textContent = pct>=90?'🏆 Outstanding':pct>=75?'⭐ Proficient':pct>=60?'✅ Passing':'📚 Keep Practicing';
+  document.querySelector('.mnav-btn:nth-child(6)').classList.add('done');
+  shoot();
+}
+
+// ═══════════════════════════ CERT ═══════════════════════════
+function updateCertName(name){
+  document.getElementById('cert-overlay-name').textContent = name || 'Your Name Here';
+}
+
+// ═══════════════════════════ CONFETTI ═══════════════════════════
+function shoot(){
+  const colors=['#EB1A2C','#F5C518','#ffffff','#27ae60','#3498db'];
+  for(let i=0;i<18;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.cssText=`left:${Math.random()*100}%;top:-20px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>.5?'50%':'2px'};animation-duration:${1.5+Math.random()}s;animation-delay:${Math.random()*.4}s;transform:rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 3000);
+  }
+}
+
+// ═══════════════════════════ NAV ACTIVE STATE ═══════════════════════════
+const sections = ['m1','m2','m3','m4','m5','m6','cert'];
+window.addEventListener('scroll',()=>{
+  let cur=0;
+  sections.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<120) cur=i;
+  });
+  document.querySelectorAll('.mnav-btn').forEach((b,i)=>{
+    b.classList.toggle('active',i===cur&&!b.classList.contains('done'));
+  });
+  updateCertScore();
+});
+
+updateCertScore();
+</script>
+</body>
+</html>
