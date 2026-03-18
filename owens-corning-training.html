@@ -1745,6 +1745,12 @@ function launchConfetti() {
     setTimeout(() => c.remove(), 4000);
   }
 }
+
+window.addEventListener('pagehide', () => {
+  sessionStorage.removeItem('oc-auth');
+  sessionStorage.removeItem('oc-session-id');
+  sessionStorage.removeItem('oc-user-name');
+});
 </script>
 </body>
 </html>

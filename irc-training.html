@@ -1818,6 +1818,12 @@ window.addEventListener('scroll',()=>{
 });
 
 updateCertScore();
+
+window.addEventListener('pagehide', () => {
+  sessionStorage.removeItem('irc-auth');
+  sessionStorage.removeItem('irc-session-id');
+  sessionStorage.removeItem('irc-user-name');
+});
 </script>
 </body>
 </html>
