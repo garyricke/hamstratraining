@@ -13,6 +13,7 @@
 
     :root {
       --red: #EB1A2C;
+      --blue: #3B82F6;
       --charcoal: #2F2F2F;
       --gray: #8A8A8A;
       --black: #000000;
@@ -353,7 +354,7 @@
     /* ─── COLORS ─── */
     .color-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 0;
       border: 1px solid var(--light-gray);
     }
@@ -981,7 +982,7 @@
   <div class="container">
     <div class="section-label">Brand Colors</div>
     <h2 class="section-title">Color System</h2>
-    <p class="section-desc">The Hamstra palette is built on four primary colors. Hamstra Red is the brand's defining mark — commanding, confident, and earned. Use it with intention.</p>
+    <p class="section-desc">The Hamstra palette is built on five core colors. Hamstra Red is the brand's defining mark — commanding, confident, and earned. Hamstra Blue provides a clear, authoritative counterpoint used for emphasis and digital UI accents. Use both with intention.</p>
 
     <div style="margin-top: 48px;">
       <div class="color-grid">
@@ -998,6 +999,21 @@
               <span><strong>CMYK</strong> 0, 89, 81, 8</span>
             </div>
             <p class="swatch-role">Primary brand color. CTAs, accents, dividers, icon fills, and headline emphasis.</p>
+          </div>
+        </div>
+        <!-- Blue -->
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#3B82F6; aspect-ratio:1;">
+            <span class="swatch-name" style="color:white;">Brand Blue</span>
+          </div>
+          <div class="swatch-info">
+            <h4>Hamstra Blue</h4>
+            <div class="swatch-values">
+              <span><strong>HEX</strong> #3B82F6</span>
+              <span><strong>RGB</strong> 59, 130, 246</span>
+              <span><strong>CMYK</strong> 76, 47, 0, 4</span>
+            </div>
+            <p class="swatch-role">Digital accent and emphasis color. Course titles, favicon, UI highlights, and emphasis text on dark backgrounds.</p>
           </div>
         </div>
         <!-- Black -->
@@ -1068,6 +1084,7 @@
         <h4>Digital (Web &amp; App)</h4>
         <ul>
           <li>Red for primary buttons and key links</li>
+          <li>Blue for emphasis text, course titles, and digital UI accents</li>
           <li>Black/Charcoal for navigation backgrounds</li>
           <li>Gray for body text on white backgrounds</li>
           <li>Red underlines or borders as accent elements</li>
@@ -1234,6 +1251,15 @@
         <div class="logo-label">Favicon / Icon Mark — Red · Favicons, App Icons, Stamps</div>
       </div>
 
+      <!-- Favicon Blue -->
+      <div class="logo-card" style="background:#0d0d0d;">
+        <div class="logo-display favicon">
+          <svg width="64" height="76" viewBox="0 0 260 307" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M259.626 0V306.897H0V0H259.626ZM154.507 111.993L146.188 108.892C142.134 107.376 139.278 103.745 138.749 99.4795L137.163 86.3301L24.1123 41.7725C26.8266 48.5407 28.4127 54.851 29.2939 59.7861L121.053 97.8223L29.752 62.5713C30.4876 67.3709 30.5269 70.3599 30.5273 70.3965L155.247 118.55L155.951 124.648C155.761 124.603 99.0615 111.208 39.3408 126.094L43.1475 159.441L17.9434 296.182C18.1631 296.122 113.405 270.189 176.186 290.118C150.389 272.452 118.094 267.749 117.986 267.733L117.457 216.584C104.952 210.823 92.6579 209.998 92.5703 209.992L90.1729 264.878C67.33 264.314 49.7393 268.016 49.7393 268.016L69.4102 139.242C79.4281 137.45 95.6845 136.744 95.7773 136.74L93.627 186.057C104.696 187.111 117.096 191.948 117.175 191.979L116.506 136.634C116.608 136.634 137.462 136.684 158.666 142.557L143.05 142.027L151.192 257.44C151.192 257.44 164.94 265.759 179.464 266.993L162.438 121.37L171.639 124.931C174.423 125.988 176.362 128.456 176.785 131.382L178.548 144.037L247.076 171.674C251.686 159.374 251.126 153.649 245.313 145.235L161.662 114.637L160.146 101.523L176.609 106.424L158.948 20.0928C151.666 11.2669 150.044 9.9858 148.373 9.51758L155.635 78.3984L143.085 7.75488C142.119 5.40048 141.325 4.68205 139.56 4.23047L154.507 111.993Z" fill="#3B82F6"/>
+          </svg>
+        </div>
+        <div class="logo-label">Favicon / Icon Mark — Blue · Training Pages &amp; Digital App</div>
+      </div>
       <!-- Favicon Black -->
       <div class="logo-card" style="background:#F5F5F5;">
         <div class="logo-display favicon">
