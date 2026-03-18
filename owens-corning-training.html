@@ -277,14 +277,34 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .lock-box img{height:56px;width:auto;margin-bottom:24px}
 .lock-box h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:6px}
 .lock-box p{font-size:14px;color:var(--gray);margin-bottom:28px}
-#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;letter-spacing:.1em;box-sizing:border-box;outline:none;transition:border-color .2s}
-#pw-input:focus{border-color:var(--red)}
+#name-input,#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;box-sizing:border-box;outline:none;transition:border-color .2s;margin-bottom:10px}
+#name-input:focus,#pw-input:focus{border-color:var(--red)}
+#pw-input{letter-spacing:.1em}
+
+/* HISTORY */
+#history-section{padding:72px 0;border-top:2px solid var(--border)}
+.history-wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+.history-session{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:16px;border-left:4px solid var(--red)}
+.history-session-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.history-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:var(--white)}
+.history-date{font-size:13px;color:var(--gray)}
+.history-score-badge{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:var(--gold)}
+.history-modules{display:flex;flex-wrap:wrap;gap:8px}
+.history-mod{background:#1a1a1a;border:1px solid var(--border);padding:5px 12px;border-radius:4px;font-size:13px;color:rgba(255,255,255,.7)}
+.history-mod.earned{border-color:rgba(39,174,96,.4);color:#7dffb3}
+.history-empty{color:var(--gray);font-size:15px;padding:24px 0}
+.admin-table-wrap{overflow-x:auto}
+.admin-table{width:100%;border-collapse:collapse;font-size:14px}
+.admin-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;text-align:left;white-space:nowrap}
+.admin-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.admin-table tr:hover td{background:rgba(235,26,44,.06)}
 #pw-input.shake{animation:shake .35s ease}
 #pw-btn{margin-top:14px;width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s}
 #pw-btn:hover{opacity:.85}
 #pw-error{margin-top:12px;font-size:13px;color:var(--red);min-height:18px}
 body.locked>*:not(#lock-screen){visibility:hidden}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="locked">
 
@@ -293,7 +313,8 @@ body.locked>*:not(#lock-screen){visibility:hidden}
   <div class="lock-box">
     <img src="./brand/logo-horz-white-red-line-divider.svg" alt="Hamstra Roofing">
     <h2>OC Installation Training</h2>
-    <p>Enter your access password to continue.</p>
+    <p>Enter your name and password to begin.</p>
+    <input id="name-input" type="text" placeholder="Your Full Name" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
     <input id="pw-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
     <button id="pw-btn" onclick="unlockPage()">Enter</button>
     <div id="pw-error"></div>
@@ -301,20 +322,46 @@ body.locked>*:not(#lock-screen){visibility:hidden}
 </div>
 
 <script>
+// ── SUPABASE CLIENT ──
+const _supa = supabase.createClient(
+  'https://jdxmzazrijmeodonwvor.supabase.co',
+  'sb_publishable_vmB_mq1HLDoxRiIddW7okw_pgJPb3S9'
+);
+
+// ── LOCK SCREEN ──
 (function(){
   const HASH='aa52c01300cfb3a1603a480392b845d23ced0186befc058acaf54838014b10d0';
   async function digest(str){
     const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
     return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
   }
-  if(sessionStorage.getItem('oc-auth')==='1'){unlock();}
+  // Restore existing session (same tab/window only)
+  if(sessionStorage.getItem('oc-auth')==='1' && sessionStorage.getItem('oc-session-id')){
+    unlock();
+    // defer history load until page JS is ready
+    window.addEventListener('load', () => loadHistory());
+  }
   window.unlockPage=async function(){
+    const name=document.getElementById('name-input').value.trim();
     const val=document.getElementById('pw-input').value;
+    const err=document.getElementById('pw-error');
+    if(!name){err.textContent='Please enter your full name.';return;}
     const h=await digest(val);
-    if(h===HASH){sessionStorage.setItem('oc-auth','1');unlock();}
-    else{
+    if(h===HASH){
+      // Create a new session row in Supabase
+      const {data,error}=await _supa
+        .from('training_sessions')
+        .insert({name,course:'oc',total_score:0,max_score:700})
+        .select().single();
+      if(data){
+        sessionStorage.setItem('oc-auth','1');
+        sessionStorage.setItem('oc-session-id',data.id);
+        sessionStorage.setItem('oc-user-name',name);
+      }
+      unlock();
+      loadHistory();
+    } else {
       const inp=document.getElementById('pw-input');
-      const err=document.getElementById('pw-error');
       inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');
       err.textContent='Incorrect password. Try again.';inp.value='';
     }
@@ -1141,6 +1188,18 @@ body.locked>*:not(#lock-screen){visibility:hidden}
   </div>
 </section>
 
+<!-- ═══ HISTORY ═══ -->
+<div id="history-section">
+  <div class="history-wrap">
+    <div class="sec-label">Your Progress</div>
+    <h2 class="sec-title" style="margin-bottom:8px">SESSION HISTORY</h2>
+    <p style="color:var(--gray);font-size:15px;margin-bottom:32px">Your training sessions are saved automatically. Log in again to start a new session.</p>
+    <div id="history-content">
+      <p style="color:var(--gray);font-size:15px">Complete the password gate to view your history.</p>
+    </div>
+  </div>
+</div>
+
 <!-- JEOPARDY MODAL -->
 <div id="jeopardy-modal">
   <div class="j-header">
@@ -1214,11 +1273,18 @@ const S = {
       const idx = parseInt(modKey.replace('m', ''));
       const btns = document.querySelectorAll('.mnav-btn');
       if (btns[idx - 1]) btns[idx - 1].classList.add('done');
+      const maxMap = { m1: 100, m2: 100, m3: 100, m4: 100 };
+      recordQuizResult(modKey, pts, maxMap[modKey] || 100);
     }
     if (this.examDone) {
       document.getElementById('cert-section').classList.add('show');
       document.getElementById('cert-final-score').textContent = this.score;
       document.querySelectorAll('.mnav-btn')[5]?.classList.add('done');
+      const savedName = sessionStorage.getItem('oc-user-name');
+      if (savedName) {
+        document.getElementById('cert-name').value = savedName;
+        document.getElementById('cert-name-overlay').textContent = savedName;
+      }
       launchConfetti();
     }
   }
@@ -1467,6 +1533,7 @@ function finishExam() {
   document.getElementById('exam-progress').style.display = 'none';
   S.examDone = true;
   S.add(examScore, null);
+  recordQuizResult('exam', examScore, 300);
 }
 
 // ═══ CERTIFICATE ═══
@@ -1515,6 +1582,7 @@ const jData = [
 ];
 
 let jScore = 0;
+let jScoreLogged = 0;
 let currentJCat = 0;
 let currentJRow = 0;
 const jUsed = Array.from({ length: 5 }, () => [false, false, false, false]);
@@ -1524,6 +1592,10 @@ function openJeopardy() {
 }
 function closeJeopardy() {
   document.getElementById('jeopardy-modal').classList.remove('open');
+  if (jScore > jScoreLogged) {
+    recordQuizResult('m5', jScore, 200);
+    jScoreLogged = jScore;
+  }
 }
 function openJQ(cat, row) {
   if (jUsed[cat][row]) return;
@@ -1578,6 +1650,88 @@ function markJUsed() {
 function closeJQ() {
   document.getElementById('j-q-overlay').classList.remove('open');
   document.getElementById('j-answer').disabled = false;
+}
+
+// ═══ SUPABASE TRACKING ═══
+async function recordQuizResult(module, score, maxScore) {
+  const sessionId = sessionStorage.getItem('oc-session-id');
+  if (!sessionId) return;
+  await _supa.from('quiz_results').insert({ session_id: sessionId, module, score, max_score: maxScore });
+  await updateSessionScore();
+}
+
+async function updateSessionScore() {
+  const sessionId = sessionStorage.getItem('oc-session-id');
+  if (!sessionId) return;
+  await _supa.from('training_sessions').update({ total_score: S.score }).eq('id', sessionId);
+}
+
+async function loadHistory() {
+  const name = sessionStorage.getItem('oc-user-name');
+  const container = document.getElementById('history-content');
+  if (!container || !name) return;
+  const isAdmin = name === 'Joe Hamstra';
+  const modLabels = { m1:'Roof Deck', m2:'Underlayment', m3:'SureNail & Fastening', m4:'Valleys & Flashing', m5:'Jeopardy Bonus', exam:'Final Exam' };
+
+  if (isAdmin) {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, name, started_at, total_score, max_score, quiz_results(module, score, max_score, completed_at)')
+      .eq('course', 'oc')
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No sessions recorded yet.</p>';
+      return;
+    }
+    let html = `<p style="color:var(--gray);margin-bottom:24px">Admin view — all ${sessions.length} session(s)</p>
+    <table class="admin-table">
+      <thead><tr><th>Name</th><th>Date</th><th>Score</th><th>Max</th><th>%</th><th>Modules</th></tr></thead><tbody>`;
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const mods = (s.quiz_results || []).map(q => `${modLabels[q.module] || q.module}: ${q.score}`).join(', ') || '—';
+      html += `<tr><td>${s.name}</td><td>${date}</td><td>${s.total_score}</td><td>${s.max_score}</td><td>${pct}%</td><td style="font-size:12px;color:var(--gray)">${mods}</td></tr>`;
+    }
+    html += '</tbody></table>';
+    container.innerHTML = html;
+  } else {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, started_at, total_score, max_score, quiz_results(module, score, max_score)')
+      .eq('course', 'oc')
+      .eq('name', name)
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No previous sessions found — complete a quiz to save your progress.</p>';
+      return;
+    }
+    let html = '';
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const quizRows = (s.quiz_results || []).map(q => {
+        const qPct = q.max_score ? Math.round((q.score / q.max_score) * 100) : 0;
+        return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px">
+          <span style="color:rgba(255,255,255,.7)">${modLabels[q.module] || q.module}</span>
+          <span style="color:var(--gold);font-weight:600">${q.score} / ${q.max_score} pts &nbsp;(${qPct}%)</span>
+        </div>`;
+      }).join('') || '<p style="color:var(--gray);font-size:13px;padding:8px 0">No quiz results yet — quiz scores save when you complete each module.</p>';
+      html += `<div class="history-session">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px">${date}</div>
+            <div style="color:var(--gray);font-size:13px">OC Shingle Installation Training</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--gold)">${s.total_score} pts</div>
+            <div style="font-size:12px;color:var(--gray)">${pct}% of ${s.max_score} max</div>
+          </div>
+        </div>
+        ${quizRows}
+      </div>`;
+    }
+    container.innerHTML = html;
+  }
 }
 
 // ═══ CONFETTI ═══
