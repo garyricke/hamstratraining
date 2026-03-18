@@ -23,7 +23,7 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 
 /* ── HERO ── */
 #hero{position:relative;height:100vh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end}
-#hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+#hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
 #hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.1) 100%);z-index:1}
 #hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.98) 0%,rgba(0,0,0,.5) 35%,transparent 65%);z-index:1}
 .hero-inner{position:relative;z-index:2;padding:0 64px 80px;max-width:1200px;width:100%}
@@ -152,7 +152,7 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <img id="hero-img" src="./generated_imgs/generated-2026-03-18T18-54-38-076Z-hmdi27.png" alt="Hamstra roofing crew at golden hour">
+  <video id="hero-vid" src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1773866260/hamstra-training-home-hero-vid_mhj1c6.mp4" autoplay muted loop playsinline></video>
   <div class="hero-inner">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
@@ -350,11 +350,6 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
 </footer>
 
 <script>
-// Subtle parallax on hero image
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  document.getElementById('hero-img').style.transform = `translateY(${y * 0.3}px)`;
-});
 </script>
 </body>
 </html>
