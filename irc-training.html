@@ -289,7 +289,7 @@ const _supa = supabase.createClient(
     const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
     return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
   }
-  if(sessionStorage.getItem('irc-auth')==='1' && sessionStorage.getItem('irc-session-id')){
+  if(sessionStorage.getItem('irc-auth')==='1'){
     unlock();
     window.addEventListener('load', () => loadHistory());
   }
@@ -300,15 +300,8 @@ const _supa = supabase.createClient(
     if(!name){err.textContent='Please enter your full name.';return;}
     const h=await digest(val);
     if(h===HASH){
-      const {data}=await _supa
-        .from('training_sessions')
-        .insert({name,course:'irc',total_score:0,max_score:800})
-        .select().single();
-      if(data){
-        sessionStorage.setItem('irc-auth','1');
-        sessionStorage.setItem('irc-session-id',data.id);
-        sessionStorage.setItem('irc-user-name',name);
-      }
+      sessionStorage.setItem('irc-auth','1');
+      sessionStorage.setItem('irc-user-name',name);
       unlock();
       loadHistory();
     } else {
@@ -1711,8 +1704,18 @@ function updateCertName(name){
 
 // ═══════════════════════════ SUPABASE TRACKING ═══════════════════════════
 async function recordQuizResult(module, score, maxScore) {
-  const sessionId = sessionStorage.getItem('irc-session-id');
-  if (!sessionId) return;
+  let sessionId = sessionStorage.getItem('irc-session-id');
+  if (!sessionId) {
+    const name = sessionStorage.getItem('irc-user-name');
+    if (!name) return;
+    const { data } = await _supa
+      .from('training_sessions')
+      .insert({ name, course: 'irc', total_score: 0, max_score: 800 })
+      .select().single();
+    if (!data) return;
+    sessionId = data.id;
+    sessionStorage.setItem('irc-session-id', sessionId);
+  }
   await _supa.from('quiz_results').insert({ session_id: sessionId, module, score, max_score: maxScore });
   await updateSessionScore();
 }

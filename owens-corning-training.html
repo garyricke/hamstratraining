@@ -336,9 +336,8 @@ const _supa = supabase.createClient(
     return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
   }
   // Restore existing session (same tab/window only)
-  if(sessionStorage.getItem('oc-auth')==='1' && sessionStorage.getItem('oc-session-id')){
+  if(sessionStorage.getItem('oc-auth')==='1'){
     unlock();
-    // defer history load until page JS is ready
     window.addEventListener('load', () => loadHistory());
   }
   window.unlockPage=async function(){
@@ -348,16 +347,8 @@ const _supa = supabase.createClient(
     if(!name){err.textContent='Please enter your full name.';return;}
     const h=await digest(val);
     if(h===HASH){
-      // Create a new session row in Supabase
-      const {data,error}=await _supa
-        .from('training_sessions')
-        .insert({name,course:'oc',total_score:0,max_score:700})
-        .select().single();
-      if(data){
-        sessionStorage.setItem('oc-auth','1');
-        sessionStorage.setItem('oc-session-id',data.id);
-        sessionStorage.setItem('oc-user-name',name);
-      }
+      sessionStorage.setItem('oc-auth','1');
+      sessionStorage.setItem('oc-user-name',name);
       unlock();
       loadHistory();
     } else {
@@ -1654,8 +1645,18 @@ function closeJQ() {
 
 // ═══ SUPABASE TRACKING ═══
 async function recordQuizResult(module, score, maxScore) {
-  const sessionId = sessionStorage.getItem('oc-session-id');
-  if (!sessionId) return;
+  let sessionId = sessionStorage.getItem('oc-session-id');
+  if (!sessionId) {
+    const name = sessionStorage.getItem('oc-user-name');
+    if (!name) return;
+    const { data } = await _supa
+      .from('training_sessions')
+      .insert({ name, course: 'oc', total_score: 0, max_score: 700 })
+      .select().single();
+    if (!data) return;
+    sessionId = data.id;
+    sessionStorage.setItem('oc-session-id', sessionId);
+  }
   await _supa.from('quiz_results').insert({ session_id: sessionId, module, score, max_score: maxScore });
   await updateSessionScore();
 }
