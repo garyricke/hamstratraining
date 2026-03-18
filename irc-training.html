@@ -41,7 +41,7 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .mnav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:16px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
 .mnav-btn:hover{color:var(--white)}
 .mnav-btn.done{color:var(--green)}
-.mnav-btn.done::before{content:'✓ '}
+.mnav-btn.done::before{content:''}
 .mnav-btn.active{color:var(--red);border-bottom-color:var(--red)}
 
 /* SECTIONS */
@@ -335,7 +335,7 @@ const _supa = supabase.createClient(
   <button class="mnav-btn" onclick="scrollTo('#m4')">4. Reroofing + IL</button>
   <button class="mnav-btn" onclick="scrollTo('#m5')">5. Exam Prep</button>
   <button class="mnav-btn" onclick="scrollTo('#m6')">6. Final Exam</button>
-  <button class="mnav-btn" onclick="scrollTo('#cert')">🏆 Certificate</button>
+  <button class="mnav-btn" onclick="scrollTo('#cert')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg> Certificate</button>
 </div>
 
 <!-- ═══ HERO ═══ -->
@@ -1195,7 +1195,7 @@ const _supa = supabase.createClient(
 
   <div class="exam-box" id="exam-box">
     <div id="exam-start-screen" style="text-align:center;padding:24px 0">
-      <div style="font-size:48px;margin-bottom:16px">⏱️</div>
+      <div style="margin-bottom:16px;color:var(--red)"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;margin-bottom:12px">Ready for the Final Exam?</h3>
       <p style="color:var(--gray);margin-bottom:8px">15 questions · 45 seconds each · 20 points per question · 300 points total</p>
       <p style="color:var(--gray);font-size:14px;margin-bottom:24px">Questions auto-advance when time runs out. No going back.</p>
@@ -1211,7 +1211,7 @@ const _supa = supabase.createClient(
       <div id="exam-questions"></div>
     </div>
     <div id="exam-done" style="display:none;text-align:center;padding:32px 0">
-      <div style="font-size:56px;margin-bottom:16px">🏆</div>
+      <div style="margin-bottom:16px;color:var(--gold)"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg></div>
       <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;margin-bottom:8px">Exam Complete!</h3>
       <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:64px;color:var(--gold);line-height:1;margin:16px 0" id="exam-final-score">0</div>
       <p style="color:var(--gray);margin-bottom:24px">/ 300 pts — <span id="exam-grade"></span></p>
@@ -1240,7 +1240,7 @@ const _supa = supabase.createClient(
       <img src="./generated_imgs/generated-2026-03-11T19-35-32-429Z-vbuhjd.png" alt="Certificate of Completion">
       <div class="cert-overlay-name" id="cert-overlay-name">Your Name Here</div>
     </div>
-    <button class="print-cert-btn" onclick="window.print()">🖨️ Print Certificate</button>
+    <button class="print-cert-btn" onclick="window.print()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print Certificate</button>
   </div>
 </div>
 
@@ -1263,7 +1263,7 @@ const _supa = supabase.createClient(
   <div class="j-header">
     <h2>🎰 ROOFING JEOPARDY</h2>
     <span class="j-score-display">Bonus: <span id="j-score-val">0</span> pts</span>
-    <button class="j-close" onclick="closeJeopardy()">✕ Close</button>
+    <button class="j-close" onclick="closeJeopardy()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Close</button>
   </div>
   <div class="j-board" id="j-board">
     <div class="j-cat-header">IRC History</div>
@@ -1291,13 +1291,21 @@ const _supa = supabase.createClient(
 <!-- POPUP MODAL -->
 <div id="popup-overlay" onclick="if(event.target===this)closePopup()">
   <div id="popup-box">
-    <button id="popup-close" onclick="closePopup()">✕</button>
+    <button id="popup-close" onclick="closePopup()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <h3 id="popup-title"></h3>
     <div id="popup-body"></div>
   </div>
 </div>
 
 <script>
+// ═══════════════════════════ SVG ICON CONSTANTS ═══════════════════════════
+const ICON_CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>';
+const ICON_X = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+const ICON_BOOK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+const ICON_TROPHY = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg>';
+const ICON_STAR = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+const ICON_FIRE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>';
+
 // ═══════════════════════════ STATE ═══════════════════════════
 const S = {
   score: 0,
@@ -1332,7 +1340,7 @@ function updateCertScore(){
   const gl = document.getElementById('cert-grade-label');
   if(gl){
     const pct = (S.score/S.maxScore)*100;
-    gl.textContent = pct >= 90 ? '🏆 Expert — Top of the Roof!' : pct >= 75 ? '⭐ Proficient — You Know Your Code' : pct >= 60 ? '✅ Certified — Keep Studying!' : '📚 Keep Going — You Can Get There';
+    gl.innerHTML = pct >= 90 ? ICON_TROPHY+'Expert — Top of the Roof!' : pct >= 75 ? ICON_STAR+'Proficient — You Know Your Code' : pct >= 60 ? ICON_CHECK+'Certified — Keep Studying!' : ICON_BOOK+'Keep Going — You Can Get There';
   }
 }
 
@@ -1361,7 +1369,7 @@ function answerTF(btn, qId, isCorrect, pts, explanation){
   const wasCorrect = (clickedTrue && isCorrect) || (!clickedTrue && !isCorrect);
   btn.classList.add(wasCorrect ? 'correct' : 'wrong');
   const fb = document.getElementById(qId + '-fb');
-  fb.innerHTML = (wasCorrect ? '✅ Correct! ' : '❌ Not quite. ') + explanation;
+  fb.innerHTML = (wasCorrect ? ICON_CHECK + 'Correct! ' : ICON_X + 'Not quite. ') + explanation;
   fb.className = 'q-feedback show ' + (wasCorrect ? 'good' : 'bad');
   if(wasCorrect){ addScore(pts); shoot(); }
   checkQuizComplete(qId);
@@ -1375,7 +1383,7 @@ function answerMC(el, qId, letter, isCorrect, pts, explanation){
   block.querySelectorAll('.mc-option').forEach(o => o.classList.add('disabled'));
   el.classList.add(isCorrect ? 'correct' : 'wrong');
   const fb = document.getElementById(qId + '-fb');
-  fb.innerHTML = (isCorrect ? '✅ Correct! ' : '❌ Not quite. ') + explanation;
+  fb.innerHTML = (isCorrect ? ICON_CHECK + 'Correct! ' : ICON_X + 'Not quite. ') + explanation;
   fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
   if(isCorrect){ addScore(pts); shoot(); }
   checkQuizComplete(qId);
@@ -1413,13 +1421,16 @@ function showQuizResult(id, earned, max){
   r.classList.add('show');
   document.getElementById(id+'-pts').textContent = earned;
   const pct = (earned/max)*100;
-  document.getElementById(id+'-msg').textContent = pct === 100 ? '🔥 Perfect score! You nailed it.' : pct >= 75 ? '⭐ Solid work! Review any misses.' : '📚 Keep studying — retake the module.';
+  document.getElementById(id+'-msg').innerHTML = pct === 100 ? ICON_FIRE + 'Perfect score! You nailed it.' : pct >= 75 ? ICON_STAR + 'Solid work! Review any misses.' : ICON_BOOK + 'Keep studying — retake the module.';
 }
 
 function markNavDone(key){
   const map = {q1:0,q2:1,q3:2,q4:3};
   const btns = document.querySelectorAll('.mnav-btn');
-  if(btns[map[key]]) btns[map[key]].classList.add('done');
+  if(btns[map[key]]){
+    btns[map[key]].classList.add('done');
+    btns[map[key]].innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle"><polyline points="20 6 9 17 4 12"/></svg>' + btns[map[key]].textContent;
+  }
 }
 
 // ═══════════════════════════ DRAG & DROP ═══════════════════════════
@@ -1573,13 +1584,13 @@ function checkJeopardy(){
   const isRight = ans.includes(correct) || correct.includes(ans.split(' ').filter(w=>w.length>2).join(' '));
   const rev = document.getElementById('jq-reveal');
   if(isRight){
-    rev.textContent = '✅ Correct! +'+q.pts+' bonus pts';
+    rev.innerHTML = ICON_CHECK + 'Correct! +'+q.pts+' bonus pts';
     rev.className = 'j-reveal show right';
     S.jScore += q.pts;
     addScore(q.pts > 300 ? 20 : q.pts > 200 ? 15 : q.pts > 100 ? 10 : 5);
     document.getElementById('j-score-val').textContent = S.jScore;
   } else {
-    rev.innerHTML = '❌ The answer was: <strong>'+q.a+'</strong>';
+    rev.innerHTML = ICON_X + 'The answer was: <strong>'+q.a+'</strong>';
     rev.className = 'j-reveal show oops';
   }
   J_USED.add(S.jActive.cellId);
@@ -1686,7 +1697,7 @@ function endExam(){
   document.getElementById('exam-done').style.display='block';
   document.getElementById('exam-final-score').textContent = S.examScore;
   const pct = (S.examScore/300)*100;
-  document.getElementById('exam-grade').textContent = pct>=90?'🏆 Outstanding':pct>=75?'⭐ Proficient':pct>=60?'✅ Passing':'📚 Keep Practicing';
+  document.getElementById('exam-grade').innerHTML = pct>=90?ICON_TROPHY+'Outstanding':pct>=75?ICON_STAR+'Proficient':pct>=60?ICON_CHECK+'Passing':ICON_BOOK+'Keep Practicing';
   document.querySelector('.mnav-btn:nth-child(6)').classList.add('done');
   const savedName = sessionStorage.getItem('irc-user-name');
   if(savedName){
