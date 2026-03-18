@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./brand/favicon-red.svg">
+<title>Owens Corning Shingle Installation — Hamstra Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#EB1A2C;--charcoal:#2F2F2F;--gray:#8A8A8A;--black:#111;--white:#fff;--off:#1a1a1a;--card:#222;--border:#333;--gold:#F5C518;--green:#27ae60;--rad:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);line-height:1.6;font-size:16px}
+
+/* NAV */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0d0d0d;border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-logo svg{height:32px;width:auto}
+.nav-logo-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-left:12px;border-left:1px solid #444}
+#progress-wrap{flex:1;max-width:400px;background:#333;height:8px;border-radius:4px;overflow:hidden}
+#progress-bar{height:100%;background:var(--red);width:0%;transition:width .4s ease;border-radius:4px}
+#score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--gold);white-space:nowrap}
+#score-display span{color:var(--gray);font-weight:400;font-size:13px}
+
+/* HERO */
+#hero{margin-top:56px;position:relative;height:520px;overflow:hidden;display:flex;align-items:flex-end}
+#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:48px 64px;max-width:800px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.hero-content h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(42px,6vw,72px);line-height:.95;margin-bottom:16px}
+.hero-content h1 em{color:var(--red);font-style:normal}
+.hero-content p{font-size:18px;font-weight:300;color:rgba(255,255,255,.75);max-width:520px;margin-bottom:24px}
+.hero-badges{display:flex;gap:16px;flex-wrap:wrap}
+.badge{background:rgba(235,26,44,.15);border:1px solid var(--red);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+
+/* MODULE NAV */
+#module-nav{background:#161616;border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;position:sticky;top:56px;z-index:100}
+.mnav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:16px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.mnav-btn:hover{color:var(--white)}
+.mnav-btn.done{color:var(--green)}
+.mnav-btn.done::before{content:'✓ '}
+.mnav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* SECTIONS */
+.training-section{padding:64px 0;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;padding-left:40px;padding-right:40px}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';width:24px;height:2px;background:var(--red)}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;margin-bottom:16px}
+.sec-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:40px;line-height:1.7}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin-bottom:12px}
+.acc-trigger{width:100%;background:var(--card);border:none;color:var(--white);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-align:left;transition:background .2s}
+.acc-trigger:hover{background:#2a2a2a}
+.acc-trigger .icon{width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:transform .3s}
+.acc-trigger[aria-expanded="true"] .icon{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body.open{max-height:2000px}
+.acc-inner{padding:24px;border-top:1px solid var(--border);background:#1d1d1d}
+.acc-inner p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner ul{padding-left:20px;margin:8px 0}
+.acc-inner li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:4px}
+.acc-inner strong{color:var(--white)}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px;border-top:3px solid var(--red)}
+.info-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--white);margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--gray);line-height:1.5}
+.info-card .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);line-height:1;margin-bottom:4px}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.data-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;text-align:left}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.data-table tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.data-table tr:hover td{background:rgba(235,26,44,.08)}
+
+/* QUIZ */
+.quiz-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.quiz-header{display:flex;align-items:center;gap:24px;margin-bottom:28px}
+.quiz-header img{width:120px;height:120px;object-fit:cover;border-radius:50%;box-shadow:0 0 24px rgba(235,26,44,.45),0 0 6px rgba(235,26,44,.3);flex-shrink:0}
+.quiz-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white)}
+.quiz-header p{font-size:13px;color:var(--gray)}
+.question-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.question-block:last-of-type{border-bottom:none}
+.question-block h4{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.5}
+.q-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* TRUE/FALSE */
+.tf-btns{display:flex;gap:12px}
+.tf-btn{padding:12px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;border:2px solid var(--border);background:transparent;color:var(--white);border-radius:var(--rad);cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--red);color:var(--red)}
+.tf-btn.correct{background:var(--green);border-color:var(--green);color:var(--white)}
+.tf-btn.wrong{background:var(--red);border-color:var(--red);color:var(--white)}
+.tf-btn:disabled{cursor:default;opacity:.7}
+
+/* MULTIPLE CHOICE */
+.mc-options{display:flex;flex-direction:column;gap:10px}
+.mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.mc-option:hover{border-color:rgba(235,26,44,.5)}
+.mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15)}
+.mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15)}
+.mc-option.disabled{cursor:default;pointer-events:none}
+
+/* FEEDBACK */
+.q-feedback{margin-top:12px;padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;display:none}
+.q-feedback.show{display:block}
+.q-feedback.good{background:rgba(39,174,96,.2);border-left:4px solid var(--green);color:#aaffcc}
+.q-feedback.bad{background:rgba(235,26,44,.15);border-left:4px solid var(--red);color:#ffaaaa}
+
+/* QUIZ SCORE */
+.quiz-result{display:none;margin-top:24px;padding:24px;background:rgba(235,26,44,.1);border:2px solid var(--red);border-radius:var(--rad);text-align:center}
+.quiz-result.show{display:block}
+.quiz-result h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--white);margin-bottom:4px}
+.quiz-result p{color:var(--gray);font-size:15px}
+.quiz-result .pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--gold);line-height:1}
+
+/* DRAG & DROP */
+.drag-arena{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0;align-items:start}
+.drag-chips{display:flex;flex-direction:column;gap:10px}
+.drag-chip{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;padding:12px 16px;border-radius:6px;cursor:grab;user-select:none;transition:opacity .2s}
+.drag-chip:active{cursor:grabbing;opacity:.7}
+.drag-chip.placed{opacity:.4;pointer-events:none}
+.drop-zones{display:flex;flex-direction:column;gap:10px}
+.drop-zone{background:var(--card);border:2px dashed var(--border);border-radius:6px;padding:14px 16px;min-height:52px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+.drop-zone.over{border-color:var(--red);background:rgba(235,26,44,.1)}
+.drop-zone.correct{border-color:var(--green)!important;background:rgba(39,174,96,.1)!important}
+.drop-zone.wrong{border-color:var(--red)!important;background:rgba(235,26,44,.1)!important;animation:shake .4s}
+.drop-zone-label{font-size:13px;color:var(--gray);flex:1}
+.drop-zone-label strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:2px}
+.drop-slot{min-width:120px;padding:8px 12px;background:#333;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--gray);text-align:center}
+.check-drag-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:opacity .2s}
+.check-drag-btn:hover{opacity:.85}
+
+/* AUDIO PLAYER */
+#audio-overview{background:linear-gradient(135deg,#EB1A2C 0%,#8b0f1a 50%,#2a0508 100%);border-bottom:1px solid var(--border)}
+#audio-player{max-width:1100px;margin:0 auto;padding:28px 40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+#audio-meta{display:flex;align-items:center;gap:16px;flex:1;min-width:240px}
+#audio-icon{width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#audio-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:2px}
+#audio-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--white)}
+#audio-controls{display:flex;align-items:center;gap:12px;flex:2;min-width:280px}
+.audio-btn{background:rgba(255,255,255,.15);border:none;color:var(--white);width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s;flex-shrink:0}
+.audio-btn:hover{background:rgba(255,255,255,.25)}
+#play-btn{width:48px;height:48px;background:var(--white);color:var(--red);font-size:18px}
+#play-btn:hover{background:rgba(255,255,255,.9)}
+#scrubber{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:rgba(255,255,255,.3);border-radius:2px;outline:none;cursor:pointer}
+#scrubber::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--white);cursor:pointer}
+#audio-time{font-family:'Barlow Condensed',sans-serif;font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap}
+#speed-btn{background:rgba(255,255,255,.15);border:none;color:var(--white);padding:6px 10px;border-radius:4px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;transition:background .2s;white-space:nowrap}
+#speed-btn:hover{background:rgba(255,255,255,.25)}
+#audio-waveform{display:flex;align-items:center;gap:3px;height:32px;flex-shrink:0}
+#audio-waveform span{display:block;width:3px;background:rgba(255,255,255,.4);border-radius:2px;height:8px;transition:height .15s}
+#audio-waveform.playing span{animation:wave .8s ease-in-out infinite}
+#audio-waveform span:nth-child(2){animation-delay:.1s}
+#audio-waveform span:nth-child(3){animation-delay:.2s}
+#audio-waveform span:nth-child(4){animation-delay:.3s}
+#audio-waveform span:nth-child(5){animation-delay:.4s}
+#audio-waveform span:nth-child(6){animation-delay:.5s}
+#audio-waveform span:nth-child(7){animation-delay:.15s}
+#audio-waveform span:nth-child(8){animation-delay:.25s}
+#audio-waveform span:nth-child(9){animation-delay:.35s}
+#audio-waveform span:nth-child(10){animation-delay:.45s}
+#audio-waveform span:nth-child(11){animation-delay:.05s}
+#audio-waveform span:nth-child(12){animation-delay:.55s}
+.audio-pending-banner{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:3px}
+
+/* JEOPARDY */
+#jeopardy-modal{display:none;position:fixed;inset:0;background:rgba(0,0,20,.95);z-index:600;overflow-y:auto;padding:40px 20px}
+#jeopardy-modal.open{display:block}
+.j-header{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto 24px}
+.j-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--gold)}
+.j-close{background:var(--red);color:var(--white);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px}
+.j-score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--gold)}
+.j-board{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:960px;margin:0 auto}
+.j-cat-header{background:#1a1a60;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;text-align:center;padding:16px 8px;border:2px solid #3333aa;letter-spacing:.06em;text-transform:uppercase}
+.j-cell{background:#1a1a99;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-align:center;padding:24px 8px;cursor:pointer;border:2px solid #3333cc;transition:all .2s}
+.j-cell:hover{background:#2222cc;transform:scale(1.02)}
+.j-cell.used{background:#111;color:#333;cursor:default;pointer-events:none}
+.j-q-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,20,.97);z-index:700;align-items:center;justify-content:center}
+.j-q-overlay.open{display:flex}
+.j-q-box{background:#1a1a60;border:3px solid var(--gold);border-radius:12px;padding:48px;max-width:600px;width:90%;text-align:center}
+.j-q-box .j-pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--gold);margin-bottom:16px}
+.j-q-box .j-question{font-size:20px;font-weight:600;color:var(--white);margin-bottom:32px;line-height:1.5}
+.j-answer-input{width:100%;padding:14px 18px;background:#111;border:2px solid #3333cc;border-radius:8px;color:var(--white);font-size:16px;font-family:'Barlow',sans-serif;margin-bottom:16px}
+.j-submit-btn{background:var(--gold);color:#111;border:none;padding:14px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;margin-right:8px}
+.j-skip-btn{background:transparent;color:var(--gray);border:1px solid var(--border);padding:14px 24px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;cursor:pointer}
+.j-reveal{margin-top:16px;padding:16px;border-radius:8px;font-size:15px;font-weight:600;display:none}
+.j-reveal.show{display:block}
+.j-reveal.right{background:rgba(39,174,96,.2);color:#aaffcc}
+.j-reveal.oops{background:rgba(235,26,44,.2);color:#ffaaaa}
+.launch-j-btn{display:block;width:100%;padding:20px;background:linear-gradient(135deg,#1a1a99,#3333cc);color:var(--gold);border:3px solid var(--gold);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:32px}
+.launch-j-btn:hover{opacity:.88}
+
+/* TIMED EXAM */
+.exam-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.exam-timer{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--red);text-align:center;margin:12px 0}
+.exam-timer.warn{color:var(--gold);animation:pulse 1s infinite}
+.exam-progress-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--gray);text-align:center;margin-bottom:24px}
+.exam-q{display:none}
+.exam-q.active{display:block}
+.start-exam-btn{display:block;width:100%;padding:18px;background:var(--red);color:var(--white);border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:24px}
+.start-exam-btn:hover{opacity:.88}
+.exam-mc-options{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.exam-mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.exam-mc-option:hover{border-color:rgba(235,26,44,.5)}
+.exam-mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.exam-mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15);pointer-events:none}
+.exam-mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15);pointer-events:none}
+.exam-next-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;display:none}
+
+/* CERTIFICATE */
+#cert-section{display:none;text-align:center;padding:80px 40px;max-width:900px;margin:0 auto}
+#cert-section.show{display:block}
+.cert-name-input{padding:14px 20px;background:var(--card);border:2px solid var(--border);border-radius:8px;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:22px;text-align:center;width:320px;margin:16px auto;display:block}
+.cert-name-input:focus{outline:none;border-color:var(--red)}
+.cert-img-wrap{position:relative;margin:32px auto;max-width:800px}
+.cert-img-wrap img{width:100%;border-radius:8px}
+.cert-overlay-name{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(18px,3vw,32px);color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.8);letter-spacing:.05em;white-space:nowrap}
+.print-cert-btn{margin-top:20px;padding:14px 40px;background:var(--gold);color:#111;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;letter-spacing:.05em}
+.final-score-box{background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:32px 48px;display:inline-block;margin-bottom:32px}
+.final-score-box .big-score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;color:var(--gold);line-height:1}
+.final-score-box p{color:var(--gray);font-size:16px}
+
+/* UTILITIES */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.callout{background:rgba(235,26,44,.08);border-left:4px solid var(--red);padding:16px 20px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;color:rgba(255,255,255,.8)}
+.callout strong{color:var(--red)}
+.fact-pill{display:inline-block;background:var(--card);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.7);margin:4px}
+.fact-pill strong{color:var(--red)}
+
+/* POPUP */
+#popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;align-items:center;justify-content:center}
+#popup-overlay.open{display:flex}
+#popup-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:40px;max-width:520px;width:90%;position:relative;max-height:90vh;overflow-y:auto}
+#popup-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--gray);font-size:24px;cursor:pointer;line-height:1}
+#popup-close:hover{color:var(--white)}
+#popup-box h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);margin-bottom:16px}
+#popup-box p{font-size:15px;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:10px}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes wave{0%,100%{height:8px}50%{height:24px}}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;z-index:999;animation:confetti-fall 2.5s ease-in forwards}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+@media(max-width:768px){
+  .two-col,.drag-arena{grid-template-columns:1fr}
+  .training-section{padding:40px 20px}
+  .hero-content{padding:32px 20px}
+  #topnav{padding:0 16px}
+  #progress-wrap{max-width:120px}
+  #audio-player{padding:20px}
+  .j-board{grid-template-columns:repeat(5,1fr)}
+  .j-cell{font-size:18px;padding:16px 4px}
+}
+@media print{
+  #topnav,#module-nav,.quiz-box,.exam-box,#jeopardy-modal,.print-cert-btn{display:none!important}
+  #cert-section{display:block!important}
+  body{background:white;color:black}
+}
+</style>
+<style>
+#lock-screen{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;align-items:center;justify-content:center}
+#lock-screen.hidden{display:none}
+.lock-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:48px 40px;max-width:400px;width:90%;text-align:center}
+.lock-box img{height:56px;width:auto;margin-bottom:24px}
+.lock-box h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:6px}
+.lock-box p{font-size:14px;color:var(--gray);margin-bottom:28px}
+#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;letter-spacing:.1em;box-sizing:border-box;outline:none;transition:border-color .2s}
+#pw-input:focus{border-color:var(--red)}
+#pw-input.shake{animation:shake .35s ease}
+#pw-btn{margin-top:14px;width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s}
+#pw-btn:hover{opacity:.85}
+#pw-error{margin-top:12px;font-size:13px;color:var(--red);min-height:18px}
+body.locked>*:not(#lock-screen){visibility:hidden}
+</style>
+</head>
+<body class="locked">
+
+<!-- LOCK SCREEN -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <img src="./brand/logo-horz-white-red-line-divider.svg" alt="Hamstra Roofing">
+    <h2>OC Installation Training</h2>
+    <p>Enter your access password to continue.</p>
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <button id="pw-btn" onclick="unlockPage()">Enter</button>
+    <div id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const HASH='aa52c01300cfb3a1603a480392b845d23ced0186befc058acaf54838014b10d0';
+  async function digest(str){
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  if(sessionStorage.getItem('oc-auth')==='1'){unlock();}
+  window.unlockPage=async function(){
+    const val=document.getElementById('pw-input').value;
+    const h=await digest(val);
+    if(h===HASH){sessionStorage.setItem('oc-auth','1');unlock();}
+    else{
+      const inp=document.getElementById('pw-input');
+      const err=document.getElementById('pw-error');
+      inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');
+      err.textContent='Incorrect password. Try again.';inp.value='';
+    }
+  };
+  function unlock(){
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+  }
+})();
+</script>
+
+<!-- NAV -->
+<nav id="topnav">
+  <div class="nav-logo">
+    <svg width="264" height="87" viewBox="0 0 264 87" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M92.7055 1.30418V43.5267C92.7055 44.1148 92.4114 44.4089 91.8234 44.4089H86.2287C85.6406 44.4089 85.3465 44.1148 85.3465 43.5267V25.5585H81.1982V43.5267C81.1982 44.1148 80.9041 44.4089 80.3161 44.4089H74.7214C74.1333 44.4089 73.8392 44.1148 73.8392 43.5267V1.30418C73.8392 0.716097 74.1333 0.422058 74.7214 0.422058H80.3161C80.9041 0.422058 81.1982 0.716097 81.1982 1.30418V18.2075H85.3465V1.30418C85.3465 0.716097 85.6406 0.422058 86.2287 0.422058H91.8234C92.4114 0.422058 92.7055 0.716097 92.7055 1.30418Z" fill="white"/><path d="M263.161 43.5267C263.249 44.1148 262.994 44.4089 262.406 44.4089H256.692C256.144 44.4089 255.834 44.1148 255.747 43.5267L255.246 36.74H251.352L250.851 43.5267C250.764 44.1148 250.454 44.4089 249.906 44.4089H244.192C243.604 44.4089 243.349 44.1148 243.437 43.5267L248.149 1.30418C248.237 0.716097 248.57 0.422058 249.151 0.422058H257.447C258.035 0.422058 258.369 0.716097 258.457 1.30418L263.161 43.5267ZM254.745 29.7069L253.553 12.6764H253.053L251.861 29.7069H254.745Z" fill="white"/><path d="M121.291 43.5267C121.378 44.1148 121.124 44.4089 120.536 44.4089H114.822C114.274 44.4089 113.964 44.1148 113.876 43.5267L113.376 36.74H109.482L108.981 43.5267C108.893 44.1148 108.584 44.4089 108.035 44.4089H102.321C101.733 44.4089 101.479 44.1148 101.566 43.5267L106.279 1.30418C106.366 0.716097 106.7 0.422058 107.28 0.422058H115.577C116.165 0.422058 116.499 0.716097 116.586 1.30418L121.291 43.5267ZM112.875 29.7069L111.683 12.6764H111.182L109.99 29.7069H112.875Z" fill="white"/><path d="M154.652 1.30418V43.5267C154.652 44.1148 154.358 44.4089 153.77 44.4089H147.739C147.15 44.4089 146.856 44.1148 146.856 43.5267V23.6751L142.708 39.887C142.621 40.0936 142.517 40.2049 142.39 40.2049C142.263 40.2049 142.16 40.1016 142.08 39.887L137.932 23.6751V43.5267C137.932 44.1148 137.638 44.4089 137.05 44.4089H131.018C130.43 44.4089 130.136 44.1148 130.136 43.5267V1.30418C130.136 0.716097 130.43 0.422058 131.018 0.422058H136.358C136.613 0.422058 136.827 0.517421 137.018 0.70815C137.209 0.898879 137.344 1.09755 137.423 1.30418L142.39 23.7943L147.357 1.30418C147.444 1.09755 147.58 0.898879 147.762 0.70815C147.953 0.517421 148.168 0.422058 148.422 0.422058H153.762C154.358 0.422058 154.652 0.716097 154.652 1.30418Z" fill="white"/><path d="M177.461 0.612773C178.422 1.03397 179.264 1.5982 179.972 2.30549C180.687 3.02072 181.251 3.85516 181.672 4.81675C182.094 5.77834 182.3 6.80351 182.3 7.89225V10.2764C182.3 10.8644 182.03 11.2379 181.482 11.4048L175.768 12.9148C175.219 13.0817 174.949 12.875 174.949 12.287V8.20218C174.949 7.78099 174.806 7.43132 174.512 7.13728C174.218 6.84324 173.861 6.70019 173.447 6.70019H172.947C172.525 6.70019 172.168 6.85119 171.882 7.13728C171.588 7.43132 171.445 7.78894 171.445 8.20218V13.9161C171.484 14.377 171.572 14.7744 171.699 15.1081C171.826 15.4419 172.057 15.7757 172.39 16.1174L180.623 22.2764C181.291 22.8644 181.72 23.4605 181.911 24.0644C182.102 24.6684 182.237 25.3519 182.316 26.1068V36.9148C182.316 38.0035 182.11 39.0287 181.688 39.9903C181.267 40.9519 180.703 41.7943 179.988 42.5015C179.272 43.2168 178.438 43.781 177.476 44.1943C176.515 44.6155 175.49 44.8221 174.401 44.8221H172.017C170.928 44.8221 169.903 44.6155 168.941 44.1943C167.98 43.7731 167.137 43.2088 166.43 42.5015C165.715 41.7863 165.151 40.9519 164.737 39.9903C164.316 39.0287 164.11 38.0035 164.11 36.9148V30.883C164.11 30.2949 164.38 29.9214 164.928 29.7545L170.642 28.2446C171.182 28.0777 171.461 28.2843 171.461 28.8724V36.5969C171.461 37.0181 171.604 37.3757 171.898 37.6618C172.192 37.9558 172.549 38.0989 172.963 38.0989H173.463C173.884 38.0989 174.234 37.9558 174.528 37.6618C174.822 37.3678 174.965 37.0102 174.965 36.5969V28.3241C174.925 27.7837 174.838 27.2989 174.711 26.8777C174.584 26.4565 174.337 26.083 173.956 25.7492L165.85 19.5267C165.222 18.9386 164.769 18.3585 164.499 17.7704C164.229 17.1823 164.094 16.4115 164.094 15.4499V7.90814C164.094 6.8194 164.3 5.79423 164.721 4.83264C165.143 3.87105 165.707 3.02867 166.414 2.32138C167.129 1.60615 167.964 1.04191 168.925 0.628666C169.887 0.207474 170.912 0.000851828 172.001 0.000851828H174.385C175.474 -0.0150422 176.499 0.191581 177.461 0.612773Z" fill="white"/><path d="M207.492 1.30413V6.89883C207.492 7.48691 207.198 7.78095 206.61 7.78095H202.152V43.5346C202.152 44.1227 201.858 44.4167 201.27 44.4167H195.675C195.468 44.4167 195.27 44.3293 195.079 44.1624C194.888 43.9956 194.793 43.7889 194.793 43.5346V7.77301H190.406C189.818 7.77301 189.524 7.47897 189.524 6.89089V1.29618C189.524 0.708101 189.818 0.414062 190.406 0.414062H206.618C207.198 0.42201 207.492 0.716049 207.492 1.30413Z" fill="white"/><path d="M236.086 43.5267C236.213 44.1148 235.998 44.4089 235.458 44.4089H229.744C229.49 44.4089 229.251 44.3214 229.021 44.1545C228.79 43.9877 228.631 43.781 228.552 43.5267L223.966 28.1333V44.4089L223.903 43.781C223.815 44.2022 223.545 44.4089 223.084 44.4089H217.49C216.902 44.4089 216.608 44.1148 216.608 43.5267V1.30418C216.608 0.716097 216.902 0.422058 217.49 0.422058H226.915C228.004 0.422058 229.029 0.62868 229.99 1.04987C230.952 1.47106 231.794 2.0353 232.502 2.75054C233.217 3.46577 233.781 4.30021 234.194 5.2618C234.616 6.22339 234.822 7.24855 234.822 8.3373V18.581C234.822 20.1307 234.425 21.5214 233.63 22.7612C232.835 24.0009 231.786 24.9466 230.491 25.6221L236.086 43.5267ZM223.959 19.7731H225.969C226.39 19.7731 226.74 19.63 227.034 19.336C227.328 19.0419 227.471 18.6843 227.471 18.2711V8.65518C227.471 8.23399 227.32 7.88432 227.034 7.59028C226.74 7.29624 226.382 7.15319 225.969 7.15319H223.959V19.7731Z" fill="white"/><path d="M77.6801 60.8857L83.9084 60.8704C84.5426 60.8688 85.0035 60.9515 85.2911 61.1183C85.5907 61.2851 85.7412 61.6557 85.7426 62.23L85.7436 62.6608C85.7448 63.1275 85.6319 63.4748 85.4051 63.7027C85.1903 63.9186 84.8136 64.0272 84.2751 64.0286L77.6878 64.0447L77.6801 60.8857ZM73.7193 70.6598L77.704 70.65L77.6957 67.2756L83.96 67.2602C84.5822 67.2587 85.0073 67.3893 85.2353 67.6519C85.4753 67.9146 85.5961 68.387 85.5978 69.069L85.6016 70.6306L89.5863 70.6208L89.5809 68.4131C89.5796 67.8746 89.5187 67.438 89.3982 67.1033C89.2897 66.7565 89.1334 66.4757 88.9295 66.2608C88.7375 66.0459 88.5097 65.8909 88.2462 65.7958C87.9827 65.6887 87.7013 65.6057 87.402 65.5466L87.4019 65.5107C87.8564 65.4019 88.227 65.2574 88.5137 65.0772C88.8124 64.885 89.0392 64.6571 89.1941 64.3934C89.361 64.1298 89.4739 63.8243 89.5329 63.4772C89.5919 63.13 89.6208 62.7411 89.6198 62.3103L89.6178 61.4846C89.6163 60.8983 89.5552 60.3719 89.4344 59.9055C89.3136 59.4272 89.1032 59.0209 88.8032 58.6865C88.5152 58.3522 88.1197 58.0959 87.6166 57.9176C87.1136 57.7274 86.4792 57.6332 85.7133 57.6351L73.6874 57.6646L73.7193 70.6598ZM94.0105 66.0509C94.0129 67.0082 94.1404 67.7916 94.3932 68.4013C94.658 68.999 95.0361 69.4767 95.5275 69.8345C96.031 70.1802 96.6358 70.4181 97.3422 70.548C98.0485 70.6779 98.8504 70.7417 99.7478 70.7395L106.138 70.7238C107.035 70.7216 107.837 70.6539 108.542 70.5205C109.248 70.3871 109.846 70.1463 110.336 69.7981C110.837 69.4379 111.213 68.9583 111.463 68.3594C111.725 67.7485 111.854 66.9644 111.852 66.0071L111.842 62.1301C111.84 61.1848 111.707 60.4073 111.442 59.7977C111.189 59.188 110.811 58.7103 110.308 58.3645C109.816 58.0068 109.217 57.7629 108.511 57.633C107.804 57.5031 107.003 57.4393 106.105 57.4415L99.7152 57.4572C98.8178 57.4594 98.0162 57.5272 97.3106 57.6605C96.6049 57.7939 96.0012 58.0407 95.4995 58.4009C95.0097 58.7491 94.634 59.2287 94.3722 59.8396C94.1224 60.4505 93.9987 61.2286 94.001 62.1739L94.0105 66.0509ZM98.0965 63.4023C98.0955 62.9955 98.1245 62.6364 98.1836 62.3252C98.2546 62.0019 98.3795 61.7264 98.5585 61.4986C98.7374 61.2708 98.9883 61.0967 99.311 60.9762C99.6338 60.8558 100.058 60.7949 100.585 60.7936L105.252 60.7821C105.778 60.7809 106.203 60.8396 106.527 60.9585C106.85 61.0774 107.102 61.2503 107.282 61.4772C107.462 61.7041 107.582 61.979 107.643 62.302C107.715 62.6129 107.752 62.9718 107.753 63.3786L107.757 64.7787C107.758 65.2453 107.729 65.6463 107.67 65.9815C107.611 66.3167 107.498 66.5862 107.331 66.79C107.164 66.9939 106.931 67.144 106.632 67.2405C106.333 67.3369 105.95 67.3857 105.483 67.3869L100.386 67.3994C99.9191 67.4005 99.5361 67.3536 99.2367 67.2586C98.9373 67.1636 98.7036 67.0146 98.5356 66.8116C98.3676 66.6086 98.2532 66.3396 98.1926 66.0047C98.1319 65.6698 98.101 65.269 98.0999 64.8024L98.0965 63.4023ZM115.95 65.9971C115.952 66.9544 116.08 67.7378 116.333 68.3475C116.597 68.9451 116.975 69.4229 117.467 69.7806C117.97 70.1264 118.575 70.3643 119.281 70.4941C119.988 70.624 120.79 70.6879 121.687 70.6857L128.077 70.67C128.974 70.6678 129.776 70.6 130.482 70.4667C131.187 70.3333 131.785 70.0925 132.275 69.7443C132.777 69.3841 133.152 68.9045 133.402 68.3056C133.664 67.6947 133.794 66.9106 133.791 65.9533L133.782 62.0763C133.779 61.131 133.646 60.3535 133.381 59.7439C133.128 59.1342 132.75 58.6565 132.247 58.3107C131.755 57.9529 131.156 57.7091 130.45 57.5792C129.744 57.4493 128.942 57.3855 128.044 57.3877L121.655 57.4033C120.757 57.4056 119.956 57.4733 119.25 57.6067C118.544 57.74 117.94 57.9868 117.439 58.3471C116.949 58.6953 116.573 59.1748 116.312 59.7858C116.062 60.3966 115.938 61.1747 115.94 62.1201L115.95 65.9971ZM120.036 63.3485C120.035 62.9417 120.064 62.5826 120.123 62.2713C120.194 61.9481 120.319 61.6726 120.498 61.4448C120.677 61.217 120.928 61.0428 121.25 60.9224C121.573 60.8019 121.998 60.7411 122.524 60.7398L127.191 60.7283C127.718 60.727 128.142 60.7858 128.466 60.9047C128.789 61.0236 129.041 61.1964 129.221 61.4234C129.401 61.6503 129.521 61.9252 129.582 62.2481C129.655 62.5591 129.691 62.918 129.692 63.3248L129.696 64.7249C129.697 65.1915 129.668 65.5925 129.609 65.9277C129.55 66.2629 129.437 66.5324 129.27 66.7362C129.103 66.94 128.87 67.0902 128.571 67.1867C128.272 67.2831 127.889 67.3319 127.423 67.3331L122.325 67.3456C121.858 67.3467 121.475 67.2998 121.176 67.2048C120.877 67.1098 120.643 66.9608 120.475 66.7578C120.307 66.5548 120.193 66.2858 120.132 65.9509C120.071 65.616 120.04 65.2152 120.039 64.7485L120.036 63.3485ZM138.187 70.5016L142.172 70.4918L142.161 66.0584L151.297 66.036L151.29 63.0205L142.154 63.043L142.148 60.6198L151.733 60.5963L151.725 57.4732L138.156 57.5065L138.187 70.5016ZM156.346 70.4571L160.33 70.4473L160.298 57.4521L156.314 57.4619L156.346 70.4571ZM165.221 70.4353L169.206 70.4255L169.183 60.9843L169.219 60.9842L176.727 70.4071L182.901 70.3919L182.869 57.3968L178.884 57.4065L178.908 66.8478L178.872 66.8479L171.364 57.425L165.189 57.4401L165.221 70.4353ZM187.265 65.8221C187.268 66.7794 187.395 67.5629 187.648 68.1725C187.913 68.7702 188.291 69.2479 188.782 69.6057C189.286 69.9515 189.891 70.1893 190.597 70.3192C191.303 70.4491 192.105 70.5129 193.003 70.5107L197.795 70.499C198.92 70.4962 199.883 70.4639 200.685 70.4021C201.498 70.3403 202.162 70.1831 202.676 69.9306C203.202 69.678 203.59 69.2882 203.84 68.761C204.09 68.2339 204.213 67.5037 204.211 66.5703L204.202 62.8728L195.263 62.8947L195.27 65.5871L200.224 65.5749L200.225 65.9519C200.226 66.263 200.166 66.5144 200.047 66.7062C199.928 66.8979 199.767 67.0419 199.564 67.1381C199.372 67.2343 199.151 67.3007 198.9 67.3372C198.661 67.3617 198.41 67.3743 198.146 67.375L193.892 67.3854C193.39 67.3866 192.971 67.3518 192.636 67.2808C192.312 67.2098 192.055 67.0728 191.863 66.8698C191.683 66.6669 191.551 66.392 191.466 66.0452C191.393 65.6983 191.356 65.2437 191.355 64.6813L191.351 63.0659C191.35 62.5154 191.384 62.0666 191.455 61.7194C191.538 61.3602 191.669 61.0787 191.848 60.8748C192.039 60.6709 192.296 60.5327 192.619 60.4601C192.954 60.3875 193.373 60.3506 193.875 60.3493L198.201 60.3387C198.524 60.3379 198.805 60.3552 199.045 60.3905C199.296 60.4138 199.505 60.4791 199.673 60.5864C199.853 60.6817 199.985 60.825 200.069 61.0162C200.165 61.2074 200.214 61.4646 200.215 61.7877L204.128 61.7781L204.127 61.3652C204.125 60.731 204.064 60.1568 203.943 59.6426C203.834 59.1283 203.599 58.6921 203.24 58.334C202.88 57.9759 202.359 57.702 201.676 57.5122C200.993 57.3104 200.09 57.2109 198.965 57.2137L192.97 57.2284C192.073 57.2306 191.271 57.2984 190.565 57.4317C189.86 57.5651 189.256 57.8119 188.754 58.1721C188.264 58.5203 187.889 58.9999 187.627 59.6108C187.377 60.2217 187.253 60.9998 187.256 61.9451L187.265 65.8221Z" fill="white"/><path d="M58.5303 0V69.1865H0V0H58.5303ZM34.832 25.248L32.9561 24.5488C32.0422 24.2071 31.3986 23.3882 31.2793 22.4268L30.9219 19.4619L5.43555 9.41699C6.04747 10.9428 6.40484 12.3659 6.60352 13.4785L27.29 22.0527L6.70703 14.1064C6.87255 15.1864 6.8817 15.8596 6.88184 15.8701L34.999 26.7256L35.1572 28.1006C35.075 28.0812 22.3117 25.0761 8.86914 28.4268C8.89376 28.4492 10.6191 30.0424 9.72754 35.9443L4.04492 66.7705C4.07491 66.7623 25.5591 60.9096 39.7188 65.4043C33.8936 61.415 26.5986 60.3574 26.5986 60.3574L26.4795 48.8262C23.6673 47.5307 20.902 47.343 20.8691 47.3408L20.3281 59.7139C15.1786 59.5868 11.2129 60.4209 11.2129 60.4209L15.6475 31.3906C17.9019 30.9872 21.5582 30.8276 21.5918 30.8262L21.1074 41.9443C23.6107 42.1828 26.416 43.2793 26.416 43.2793L26.2646 30.8027C26.2646 30.8027 30.9775 30.8106 35.7695 32.1377L32.249 32.0186L34.085 58.0371C34.1066 58.0502 37.1955 59.9132 40.458 60.1904L36.6201 27.3613L38.6943 28.1641C39.3219 28.4025 39.759 28.9588 39.8545 29.6182L40.252 32.4717L55.7012 38.7021C56.7402 35.9296 56.6139 34.6388 55.3037 32.7422L36.4453 25.8438L36.1035 22.8877L39.8145 23.9922L35.833 4.53027C34.1913 2.54066 33.8259 2.25108 33.4492 2.14551L35.0859 17.6738L32.2568 1.74805C32.039 1.21747 31.8599 1.05589 31.4619 0.954102L34.832 25.248Z" fill="white"/><line y1="84.8835" x2="263.519" y2="84.8835" stroke="#EB1A2C" stroke-width="2.53383"/></svg>
+    <span class="nav-logo-title">OC Installation</span>
+  </div>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+  <div id="score-display"><span>Score: </span><span id="score-val">0</span> / <span id="score-max">700</span> pts</div>
+</nav>
+
+<!-- MODULE NAV -->
+<div id="module-nav">
+  <button class="mnav-btn active" onclick="scrollTo('#m1')">1. Roof Deck</button>
+  <button class="mnav-btn" onclick="scrollTo('#m2')">2. Underlayment</button>
+  <button class="mnav-btn" onclick="scrollTo('#m3')">3. SureNail Tech</button>
+  <button class="mnav-btn" onclick="scrollTo('#m4')">4. Valleys &amp; Flashing</button>
+  <button class="mnav-btn" onclick="scrollTo('#m5')">5. Exam Prep</button>
+  <button class="mnav-btn" onclick="scrollTo('#m6')">6. Final Exam</button>
+  <button class="mnav-btn" onclick="scrollTo('#cert')">🏆 Certificate</button>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <img src="./generated_imgs/generated-2026-03-18T18-23-53-446Z-epg3xa.png" alt="Roofer installing architectural shingles">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hamstra Roofing Training Program</div>
+    <h1>OWENS CORNING<br><em>SHINGLE INSTALLATION</em></h1>
+    <p>From deck prep to ridge cap — master every step of the Total Protection Roofing System.</p>
+    <div class="hero-badges">
+      <span class="badge">6 Modules</span>
+      <span class="badge">4 Quiz Types</span>
+      <span class="badge">Jeopardy Challenge</span>
+      <span class="badge">Timed Final Exam</span>
+      <span class="badge">Certificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO OVERVIEW (PLACEHOLDER — swap src when audio is ready) -->
+<div id="audio-overview">
+  <audio id="overview-audio" src="" preload="metadata"></audio>
+  <div id="audio-player">
+    <div id="audio-meta">
+      <div id="audio-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="#EB1A2C"/></svg>
+      </div>
+      <div>
+        <div id="audio-label">Audio Overview <span class="audio-pending-banner">UPLOADING SOON</span></div>
+        <div id="audio-title">OC Shingle Installation Guide — Narration</div>
+      </div>
+      <div id="audio-waveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div id="audio-controls">
+      <button class="audio-btn" onclick="skip(-15)" title="−15s">⏮</button>
+      <button class="audio-btn" id="play-btn" onclick="togglePlay()" title="Play/Pause">▶</button>
+      <button class="audio-btn" onclick="skip(15)" title="+15s">⏭</button>
+      <input id="scrubber" type="range" min="0" max="100" value="0" oninput="seek(this.value)">
+      <span id="audio-time">0:00 / 0:00</span>
+      <button id="speed-btn" onclick="cycleSpeed()">1×</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODULE 1: ROOF DECK FUNDAMENTALS ═══ -->
+<section class="training-section" id="m1">
+  <div class="sec-label">Module 1</div>
+  <h2 class="sec-title">ROOF DECK<br>FUNDAMENTALS</h2>
+  <p class="sec-desc">The deck is the foundation of everything. Owens Corning sets strict tolerances on substrate materials, thickness, and surface condition — get this wrong and the whole system fails.</p>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">3/8"</div><h4>Plywood Min Thickness</h4><p>APA-rated plywood sheathing minimum — thinner panels lack fastener retention under wind uplift.</p></div>
+    <div class="info-card"><div class="val">7/16"</div><h4>OSB Min Thickness</h4><p>Oriented Strand Board requires this minimum. Thinner OSB delaminates and loses nail-holding power.</p></div>
+    <div class="info-card"><div class="val">1/8"–1/4"</div><h4>Panel Gap Range</h4><p>Minimum 1/8" gap required between panels to allow thermal expansion. Maximum 1/4" to maintain a continuous nailing surface.</p></div>
+    <div class="info-card"><div class="val">3/4"</div><h4>Solid Wood Min Thickness</h4><p>6-inch nominal width solid boards require 3/4" minimum thickness per local building codes.</p></div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Approved Decking Materials <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Owens Corning permits several wood-based sheathing types, provided they meet APA – The Engineered Wood Association standards. Solidly sheathed decks are required to prevent structural deflection and fastener withdrawal.</p>
+        <table class="data-table">
+          <thead><tr><th>Deck Material</th><th>Min Thickness</th><th>Max Gap</th><th>Standard</th></tr></thead>
+          <tbody>
+            <tr><td>Plywood Sheathing</td><td>3/8 inch</td><td>1/8" min / 1/4" max</td><td>APA Rated</td></tr>
+            <tr><td>Oriented Strand Board (OSB)</td><td>7/16 inch</td><td>1/8" min / 1/4" max</td><td>APA Rated</td></tr>
+            <tr><td>Solid Wood Boards</td><td>3/4 inch (6" nominal)</td><td>1/4" maximum</td><td>Local Building Code</td></tr>
+          </tbody>
+        </table>
+        <p>The 1/8-inch <strong>minimum</strong> gap is a critical engineering safeguard. Wood absorbs moisture and expands — without this gap, panels buckle and create ridges that telegraph through the shingles and compromise the secondary water barrier.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Surface Preparation & Prohibitions <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Before any roofing components are applied, the installer must inspect the deck for structural integrity. The deck must be <strong>clean, dry, and free from protrusions</strong> such as old nails or debris that could puncture the underlayment.</p>
+        <div class="callout"><strong>Critical Prohibition:</strong> Asphalt shingles must NEVER be installed over insulation boards of any type. These boards lack the density required to sustain fastener withdrawal resistance under wind loads — a direct warranty violation.</div>
+        <p>If the existing deck consists of spaced boards with gaps exceeding <strong>1/4 inch</strong>, those gaps must be repaired or the boards replaced to ensure a continuous nailable surface. Sheathing thickness and installation must also comply with local building codes, as these determine the ultimate nail-holding capacity of the assembly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 1 QUIZ: TRUE/FALSE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 1 Quiz</h3><p>True or False — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m1q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>Plywood sheathing must have a minimum thickness of 3/8 inch per Owens Corning specifications.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q1',true,true,'Correct! Plywood sheathing requires a minimum 3/8-inch thickness to provide adequate fastener retention.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q1',false,true,'Correct! Plywood sheathing requires a minimum 3/8-inch thickness to provide adequate fastener retention.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>If existing spaced boards have gaps exceeding 1/2 inch, they must be repaired before shingling.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q2',true,false,'Not quite. The threshold is 1/4 inch — gaps exceeding 1/4 inch (not 1/2 inch) must be repaired or boards replaced.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q2',false,false,'Correct! The real threshold is 1/4 inch — any gap over 1/4 inch between solid boards requires repair or replacement before shingling.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>Asphalt shingles may be installed over insulation boards if the boards are at least 3/4 inch thick.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q3',true,false,'Incorrect. Asphalt shingles are prohibited from being installed over ANY insulation boards, regardless of thickness. They cannot sustain fastener withdrawal resistance under wind loads.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q3',false,false,'Correct! Insulation boards are completely prohibited as a substrate for asphalt shingles — they cannot hold fasteners under wind uplift, regardless of thickness.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>The deck must be clean, dry, and free from protrusions before applying any roofing components.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q4',true,true,'Correct! The installer is responsible for ensuring the deck is clean, dry, and free from old nails or debris that could puncture the underlayment.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q4',false,true,'Incorrect. This IS required — the deck must be clean, dry, and free from protrusions before any roofing component is applied.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m1-result">
+      <p>Module 1 Score</p>
+      <div class="pts" id="m1-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 2: UNDERLAYMENT & MOISTURE DEFENSE ═══ -->
+<section class="training-section" id="m2">
+  <div class="sec-label">Module 2</div>
+  <h2 class="sec-title">UNDERLAYMENT &amp;<br>MOISTURE DEFENSE</h2>
+  <p class="sec-desc">Owens Corning uses a multi-layered defense strategy: self-adhered ice and water barriers at vulnerable zones, then high-performance synthetic underlayments across the field. Each layer has precise placement rules.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Self-Adhered Ice & Water Barriers <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>In regions prone to ice damming, Owens Corning requires a self-adhered ice and water barrier such as <strong>WeatherLock</strong> or <strong>Titanium PSU30</strong>. This barrier must start at the eave edge and extend upslope to a point at least <strong>24 inches beyond the interior wall line</strong>, measured horizontally.</p>
+        <div class="callout"><strong>Why 24 inches?</strong> This calculated distance covers the portion of the roof most susceptible to water backup when ice dams form at the gutter line. Standing water behind an ice dam can exert significant hydrostatic pressure on the shingle laps. The self-adhering membrane also seals around each nail penetration — critical when water is pooled rather than flowing.</div>
+        <p>These products meet <strong>ASTM D1970</strong> standards and are applied directly to the clean, dry deck surface before the field underlayment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Synthetic Underlayment by Slope <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>For slopes of <strong>4:12 and greater</strong>, Owens Corning recommends synthetic underlayments like <strong>RhinoRoof</strong> or <strong>ProArmor</strong>. These outperform traditional #15 felt in tear strength and UV stability, and must meet ASTM D226, D4869, or D8257 standards.</p>
+        <table class="data-table">
+          <thead><tr><th>Slope Category</th><th>Method</th><th>Horizontal Lap</th><th>End Lap Stagger</th></tr></thead>
+          <tbody>
+            <tr><td>Standard (≥ 4:12)</td><td>Single layer over eave drip edge</td><td>2 inches</td><td>6 feet</td></tr>
+            <tr><td>Low Slope (2:12 to &lt; 4:12)</td><td>Double layer or self-adhered</td><td>19 inches (½ width + 2")</td><td>6 feet</td></tr>
+          </tbody>
+        </table>
+        <p>On low slopes, water sheds more slowly, increasing moisture contact time. Underlayment must be installed with a <strong>19-inch overlap</strong> for a 36-inch wide roll — effectively creating a double layer of protection across the entire deck. Alternatively, a full layer of self-adhered ice and water barrier may be used.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">24"</div><h4>Ice Barrier Wall Extension</h4><p>How far beyond the interior wall line the ice/water barrier must reach, measured horizontally.</p></div>
+    <div class="info-card"><div class="val">2"</div><h4>Standard Slope Lap</h4><p>Horizontal lap for synthetic underlayment on slopes 4:12 and steeper.</p></div>
+    <div class="info-card"><div class="val">19"</div><h4>Low Slope Overlap</h4><p>Required overlap on a 36-inch roll for slopes 2:12 to less than 4:12, creating a full double layer.</p></div>
+    <div class="info-card"><div class="val">4:12</div><h4>Standard Slope Threshold</h4><p>At or above this pitch, single-layer synthetic underlayment is permitted.</p></div>
+  </div>
+
+  <!-- MODULE 2 QUIZ: DRAG AND DROP -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 2 Quiz</h3><p>Drag and drop — match each term to its definition. 4 pairs, 25 pts each.</p></div>
+    </div>
+
+    <div class="drag-arena">
+      <div class="drag-chips" id="m2-chips">
+        <div class="drag-chip" draggable="true" data-key="A" ondragstart="dragStart(event,'A')">2 inches</div>
+        <div class="drag-chip" draggable="true" data-key="B" ondragstart="dragStart(event,'B')">24 inches</div>
+        <div class="drag-chip" draggable="true" data-key="C" ondragstart="dragStart(event,'C')">Double Layer</div>
+        <div class="drag-chip" draggable="true" data-key="D" ondragstart="dragStart(event,'D')">WeatherLock / Titanium PSU30</div>
+      </div>
+      <div class="drop-zones">
+        <div class="drop-zone" data-answer="A" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-A">Drop here</div>
+          <div class="drop-zone-label"><strong>Standard Slope Horizontal Lap</strong>Required underlayment lap for slopes ≥4:12</div>
+        </div>
+        <div class="drop-zone" data-answer="B" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-B">Drop here</div>
+          <div class="drop-zone-label"><strong>Ice Barrier Wall Extension</strong>How far past interior wall line the barrier must reach</div>
+        </div>
+        <div class="drop-zone" data-answer="C" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-C">Drop here</div>
+          <div class="drop-zone-label"><strong>Low Slope Underlayment Method</strong>Required method for 2:12 to &lt;4:12 slopes</div>
+        </div>
+        <div class="drop-zone" data-answer="D" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-D">Drop here</div>
+          <div class="drop-zone-label"><strong>OC Ice & Water Barrier Products</strong>Two examples of self-adhered ice barriers</div>
+        </div>
+      </div>
+    </div>
+    <button class="check-drag-btn" onclick="checkDrag('m2')">Check Answers</button>
+    <div class="quiz-result" id="m2-result">
+      <p>Module 2 Score</p>
+      <div class="pts" id="m2-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 3: SURENAIL TECHNOLOGY ═══ -->
+<section class="training-section" id="m3">
+  <div class="sec-label">Module 3</div>
+  <h2 class="sec-title">SURENAIL<br><em>TECHNOLOGY</em></h2>
+  <p class="sec-desc">SureNail is Owens Corning's most significant engineering advancement in shingle design. It addresses the primary cause of shingle failure — wind uplift and nail pull-through — with patented triple-layer reinforcement.</p>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">130 mph</div><h4>4-Nail Wind Rating</h4><p>With SureNail, Duration shingles achieve 130 mph warranty with just 4 nails — what normally requires 6.</p></div>
+    <div class="info-card"><div class="val">12-ga</div><h4>Minimum Nail Shank</h4><p>Minimum gauge for all fasteners. Owens Corning also requires galvanized, stainless, or aluminum nails.</p></div>
+    <div class="info-card"><div class="val">3/8"</div><h4>Minimum Nail Head</h4><p>Nail head diameter minimum. Undersized heads increase pull-through risk in the fiberglass mat.</p></div>
+    <div class="info-card"><div class="val">6 nails</div><h4>Steep Slope Requirement</h4><p>Slopes exceeding 60° (21:12) require 6 nails per shingle plus hand-sealing with asphalt cement.</p></div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Triple Layer Protection Mechanics <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>SureNail Technology integrates a tough, <strong>woven engineered reinforcing fabric</strong> into the nailing area of the shingle. This fabric creates a "triple layer" of reinforcement where the fabric overlays the common bond — the area where the two layers of the laminated shingle are adhered together.</p>
+        <ul>
+          <li><strong>Fastener Holding Power:</strong> The woven fabric increases resistance to nail heads pulling through the shingle mat during high-wind events.</li>
+          <li><strong>Uplift Protection:</strong> In a standard 4-nail application, Duration shingles with SureNail are warranted for winds up to 130 mph — a performance level that typically requires 6 nails for standard shingles.</li>
+          <li><strong>Installation Consistency:</strong> The highly visible fabric strip provides a clear target for the installer, ensuring nails land precisely in the common bond area rather than in the single-layer headlap.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Fastener Specifications & Driving Protocols <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The performance of the SureNail zone is entirely dependent on correct fasteners and driving technique. Fasteners must be <strong>driven flush</strong> with the shingle surface:</p>
+        <ul>
+          <li><strong>Under-driven nails</strong> cause "tenting" — the shingle above bridges over the raised nail head, losing sealant contact with the course below.</li>
+          <li><strong>Over-driven nails</strong> fracture the fiberglass mat, negating the structural benefit of the SureNail fabric.</li>
+        </ul>
+        <div class="callout"><strong>Steep Slope Rule (slopes &gt; 60° / 21:12):</strong> 6 nails per shingle are required, plus hand-sealing with 1-inch diameter dabs of ASTM D4586-compliant asphalt cement. Apply dabs centered 2 inches up from the bottom edge of each tab to prevent wind from lifting the shingle before thermal sealant activates. Avoid excessive cement — it causes blistering.</div>
+        <p>For standard applications, the <strong>Duration and Oakridge</strong> series use a <strong>5 5/8-inch exposure</strong> with a recommended <strong>6 1/2-inch offset</strong> between courses. Variations of 4–8 inches are acceptable, provided end joints are no closer than 2 inches from a fastener in the shingle below.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Berkshire Collection: Vertical Racking <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The Berkshire collection (slate-profile shingles, 360 lbs/square) requires a fundamentally different installation method: the <strong>single-column vertical racking method</strong>. Unlike diagonal application used for standard laminates, Berkshire shingles are applied in vertical columns from eave to ridge.</p>
+        <ul>
+          <li><strong>Exposure:</strong> 8 3/8 inches</li>
+          <li><strong>Offset:</strong> 4 3/4 inches</li>
+          <li><strong>Chalk Lines:</strong> Both vertical and horizontal lines are essential for maintaining alignment.</li>
+          <li><strong>Right Edge Technique:</strong> In odd-numbered courses, the right edge of shingles is initially left unfastened, allowing the adjacent column's shingle to slide underneath. A single fastener then secures both shingles simultaneously.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 3 Quiz</h3><p>Multiple choice — 5 questions, 20 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m3q1">
+      <div class="q-num">Question 1 of 5</div>
+      <h4>What material does SureNail Technology embed in the shingle's nailing area?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'Not quite. Fiberglass is in the shingle mat itself — SureNail adds something on top of the common bond.')"><span class="letter">A</span>Fiberglass mesh</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,true,'Correct! SureNail embeds a woven engineered reinforcing fabric in the nailing area, creating triple-layer protection at the common bond.')"><span class="letter">B</span>Woven engineered reinforcing fabric</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'No — polymer film adds UV resistance but is not the SureNail technology.')"><span class="letter">C</span>Polymer film</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'No — asphalt sealant is in the factory sealant strip, not the SureNail nailing zone.')"><span class="letter">D</span>Asphalt sealant strip</div>
+      </div>
+      <div class="q-feedback" id="m3q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q2">
+      <div class="q-num">Question 2 of 5</div>
+      <h4>With a standard 4-nail application, Duration shingles with SureNail are warranted for winds up to:</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'90 mph is below the SureNail benchmark.')"><span class="letter">A</span>90 mph</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'110 mph is the typical 6-nail standard — SureNail beats this with only 4 nails.')"><span class="letter">B</span>110 mph</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'Close, but not quite — SureNail with 4 nails achieves a higher rating.')"><span class="letter">C</span>120 mph</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,true,'Correct! 130 mph with 4 nails — a performance level that normally requires 6 nails on standard shingles.')"><span class="letter">D</span>130 mph</div>
+      </div>
+      <div class="q-feedback" id="m3q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q3">
+      <div class="q-num">Question 3 of 5</div>
+      <h4>What is the minimum required nail shank gauge per Owens Corning specifications?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'10-gauge is thicker than required and not the specified minimum.')"><span class="letter">A</span>10-gauge</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,true,'Correct! A minimum 12-gauge shank is required for adequate pull-through resistance in the SureNail zone.')"><span class="letter">B</span>12-gauge</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'14-gauge is thinner than required — it would not provide adequate fastening performance.')"><span class="letter">C</span>14-gauge</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'16-gauge is too thin for proper fastener holding power under wind loads.')"><span class="letter">D</span>16-gauge</div>
+      </div>
+      <div class="q-feedback" id="m3q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q4">
+      <div class="q-num">Question 4 of 5</div>
+      <h4>What happens when nails are over-driven into shingles?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'Over-driving does not improve wind resistance — it damages the shingle.')"><span class="letter">A</span>It improves wind resistance by sinking the head deeper</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'Tenting is caused by under-driven (raised) nails, not over-driven ones.')"><span class="letter">B</span>It causes "tenting" of the shingle above</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,true,'Correct! Over-driven nails fracture the fiberglass mat, negating the benefits of the SureNail reinforcing fabric entirely.')"><span class="letter">C</span>It fractures the fiberglass mat, negating SureNail benefits</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'The sealant strip is separate from the nail zone — over-driving damages the mat, not primarily the sealant.')"><span class="letter">D</span>It activates the sealant strip prematurely</div>
+      </div>
+      <div class="q-feedback" id="m3q4-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q5">
+      <div class="q-num">Question 5 of 5</div>
+      <h4>For slopes exceeding 60 degrees (21:12), Owens Corning requires how many nails per shingle?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'4 nails is the standard application — steep slopes require more.')"><span class="letter">A</span>4 nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'5 nails is not a specified pattern — the steep slope requirement is higher.')"><span class="letter">B</span>5 nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,true,'Correct! Slopes greater than 60 degrees require 6 nails plus hand-sealing with ASTM D4586 asphalt cement dabs.')"><span class="letter">C</span>6 nails plus hand-sealing</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'8 nails is not a specified OC pattern for any slope application.')"><span class="letter">D</span>8 nails</div>
+      </div>
+      <div class="q-feedback" id="m3q5-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m3-result">
+      <p>Module 3 Score</p>
+      <div class="pts" id="m3-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 4: VALLEYS, EDGES & FLASHING ═══ -->
+<section class="training-section" id="m4">
+  <div class="sec-label">Module 4</div>
+  <h2 class="sec-title">VALLEYS, EDGES<br>&amp; FLASHING</h2>
+  <p class="sec-desc">Valleys are the most common failure points in residential roofing. Drip edges and starters protect the perimeter. Flashing seals every penetration. Precision here separates a lasting roof from a call-back.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Valley Construction Methods <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The <strong>closed-cut valley</strong> begins with a 36-inch wide valley liner centered in the valley. Shingles from the first plane are laid across the valley, extending at least <strong>12 inches past the centerline</strong>. These shingles are fastened only on their outer edges — <strong>no nails within 6 inches of the valley center</strong>.</p>
+        <p>Shingles from the second plane are trimmed <strong>2 inches back from the centerline</strong>. The upper corner of each trimmed shingle is clipped at a <strong>45-degree angle</strong> to divert water toward the valley center, and the end is embedded in a 3-to-4-inch wide bead of roofing cement.</p>
+        <table class="data-table">
+          <thead><tr><th>Valley Type</th><th>Best Use Case</th><th>Key Requirement</th></tr></thead>
+          <tbody>
+            <tr><td>Closed-Cut</td><td>Standard laminate shingles</td><td>2" offset from centerline on trimmed side</td></tr>
+            <tr><td>Woven</td><td>Three-tab shingles</td><td>Shingles must be flexible enough to weave</td></tr>
+            <tr><td>Open Metal</td><td>High-profile/thick shingles</td><td>24-gauge metal; tapered exposure top to bottom</td></tr>
+            <tr><td>California-Cut</td><td>High-wind regions</td><td>Side-laid shingle used as cutting guide</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Drip Edge Installation & Starter Shingles <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The IRC has required drip edges at eaves and rakes since 2009. The sequence differs at each location:</p>
+        <ul>
+          <li><strong>At eaves:</strong> Drip edge applied directly to deck → underlayment installed <em>over</em> drip edge → water flows off underlayment into gutter.</li>
+          <li><strong>At rakes:</strong> Underlayment applied first → drip edge installed <em>over</em> underlayment → prevents wind-driven rain from entering the edge of the underlayment.</li>
+        </ul>
+        <p><strong>Starter shingles</strong> (OC Starter Strip Plus) must be trimmed <strong>6 to 6.5 inches at the rake</strong> to prevent end joint alignment with the first course. They should overhang the drip edge by <strong>1/4 to 3/4 inch</strong> (or 1/2 to 1 inch if no drip edge is present). Fasteners go 2 to 3 inches from the eave edge.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Step Flashing & Chimney Systems <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><strong>Step flashing</strong> is installed with each course of shingles where a roof plane meets a vertical sidewall. Units are typically 10 inches long × 7 inches wide (for 5-inch exposure). The flashing is nailed to the <strong>roof deck only — never to the wall</strong>. This allows independent movement during thermal expansion or seismic activity.</p>
+        <p>Chimney flashing requires a four-part system:</p>
+        <table class="data-table">
+          <thead><tr><th>Component</th><th>Location</th><th>Critical Detail</th></tr></thead>
+          <tbody>
+            <tr><td>Base Flashing</td><td>Front of chimney, over shingles</td><td>Extend 3" past chimney ends; notch and bend</td></tr>
+            <tr><td>Step Flashing</td><td>Sides of chimney, under shingles</td><td>Overlap 2"; seal each piece with roof cement</td></tr>
+            <tr><td>Top Flashing</td><td>Back of chimney, under shingles</td><td>Nail to roof deck only; notch and bend tabs</td></tr>
+            <tr><td>Counter-Flashing</td><td>Vertical coverage / masonry</td><td>Cut into reglet or seal with heavy bead of cement</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>Cricket Required:</strong> For chimneys wider than 30 inches, a cricket (saddle) is often required by code to divert water from the rear of the chimney and prevent debris accumulation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 4 Quiz</h3><p>Multiple choice — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m4q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>In a closed-cut valley, shingles from the first roof plane must extend at least how far past the valley centerline?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'6 inches is the no-nailing zone, not the minimum extension distance.')"><span class="letter">A</span>6 inches</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,true,'Correct! First-plane shingles must extend at least 12 inches past the centerline. No fasteners within 6 inches of center.')"><span class="letter">B</span>12 inches</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'18 inches exceeds the requirement — 12 inches is the specified minimum.')"><span class="letter">C</span>18 inches</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'24 inches is the ice barrier wall extension — not the valley shingle overlap.')"><span class="letter">D</span>24 inches</div>
+      </div>
+      <div class="q-feedback" id="m4q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>At the rakes, what is the correct drip edge installation sequence?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'This is the eave sequence — at rakes, the order is reversed.')"><span class="letter">A</span>Drip edge directly on deck, then underlayment over it</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,true,'Correct! At rakes: underlayment first, then drip edge on top. This prevents wind-driven rain from entering the edge of the underlayment.')"><span class="letter">B</span>Underlayment first, then drip edge installed over it</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'No specific IRC standard requires simultaneous installation — the sequence matters.')"><span class="letter">C</span>Both installed simultaneously at the same time</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'Drip edge has been required at rakes by the IRC since 2009.')"><span class="letter">D</span>No drip edge is required at rakes</div>
+      </div>
+      <div class="q-feedback" id="m4q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>Starter shingles should overhang the drip edge by how much?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'No overhang would leave the drip edge edge exposed and allow water wicking into the fascia.')"><span class="letter">A</span>No overhang — flush with drip edge</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,true,'Correct! Starter shingles should overhang the drip edge 1/4 to 3/4 inch (or 1/2 to 1 inch if no drip edge is present).')"><span class="letter">B</span>1/4 to 3/4 inch</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'1 to 2 inches is excessive — it would leave the starter shingle unsupported and prone to wind damage.')"><span class="letter">C</span>1 to 2 inches</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'2 to 3 inches far exceeds the specification and would create a wind-catch point.')"><span class="letter">D</span>2 to 3 inches</div>
+      </div>
+      <div class="q-feedback" id="m4q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>For chimneys wider than 30 inches, what is often required by code at the rear of the chimney?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'Counter-flashing covers the vertical face — it does not divert water from behind a wide chimney.')"><span class="letter">A</span>Counter-flashing only</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'Open metal valley construction is for roof-plane intersections, not chimney water diversion.')"><span class="letter">B</span>Open metal valley</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,true,'Correct! A cricket (saddle) is required behind chimneys wider than 30 inches to divert water and prevent debris accumulation.')"><span class="letter">C</span>A cricket (saddle)</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'A step flashing array alone cannot handle the water shed from behind a chimney wider than 30 inches.')"><span class="letter">D</span>Additional step flashing only</div>
+      </div>
+      <div class="q-feedback" id="m4q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m4-result">
+      <p>Module 4 Score</p>
+      <div class="pts" id="m4-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 5: EXAM PREP — VENTILATION & CODE (JEOPARDY) ═══ -->
+<section class="training-section" id="m5">
+  <div class="sec-label">Module 5</div>
+  <h2 class="sec-title">VENTILATION, COLD WEATHER<br>&amp; <em>CODE COMPLIANCE</em></h2>
+  <p class="sec-desc">Attic ventilation is a thermodynamic necessity. Cold weather changes everything about how shingles behave. And local code adds another layer of requirements every contractor must know.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Ventilation: The 1/150 Rule & Ridge Vents <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The <strong>1/150 rule</strong> dictates that there should be 1 square foot of Net Free Area (NFA) for every 150 square feet of attic floor space. For a balanced system, <strong>no more than 50% of the NFA</strong> should be at the ridge (exhaust); 50% or more must be at the eaves or soffits (intake).</p>
+        <p><strong>VentSure ridge vents</strong> are installed by cutting a slot in the roof sheathing:</p>
+        <ul>
+          <li><strong>Ridge board roof:</strong> 1-inch slot on each side of the board.</li>
+          <li><strong>Engineered truss roof:</strong> Single 2-inch slot centered over the ridge.</li>
+          <li>Slots must stop at least <strong>6 inches from rake edges</strong> to prevent leaks.</li>
+          <li>Apply ASTM D4586-compliant asphalt cement to "picture frame" the slot opening before installing the vent — this fills gaps created by the texture of architectural shingles.</li>
+          <li>For VentSure 4-foot strip, leave a <strong>1/8-inch gap between sections</strong> for thermal expansion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Cold Weather Installation (&lt; 40°F) <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Asphalt shingles become brittle below 40°F and the factory sealant strip may not thermally activate immediately. When temperatures drop below this threshold:</p>
+        <ul>
+          <li><strong>Hand-Seal:</strong> Each shingle must be hand-sealed with four 1-inch diameter dabs of asphalt cement placed evenly across the shingle, approximately 1 inch from the leading edge.</li>
+          <li><strong>Thermal Gapping:</strong> Install shingles with a <strong>1/16 to 1/8-inch gap</strong> at end/butt joints to allow for expansion when temperatures rise.</li>
+          <li><strong>Hip & Ridge Caps:</strong> These must be bent over the ridge peak and are especially prone to cracking in cold. Store them in a warm environment until just before installation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Regulatory Compliance & Warranty <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>In many jurisdictions — including Illinois — a <strong>building permit is required</strong> for any re-roofing or roof recovery project. Contractors must be licensed and provide proof of project valuation. Inspections are required after permit approval to verify code-mandated elements: ice/water shield, flashing, and ventilation.</p>
+        <p>Owens Corning's <strong>Total Protection warranty</strong> requires use of OC shingles, underlayment, starter shingles, and hip/ridge shingles as a system. Additional warranty conditions:</p>
+        <ul>
+          <li>New flashing must be installed unless existing flashing is in <strong>like-new condition</strong> and meets proper gauge requirements.</li>
+          <li>Shingles from different lot numbers should not be mixed — shade variations may become visible across the roof plane.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">1/150</div><h4>Ventilation Rule</h4><p>1 sq ft of NFA per 150 sq ft of attic floor space. Balance: ≤50% at ridge, ≥50% at soffits.</p></div>
+    <div class="info-card"><div class="val">6"</div><h4>Ridge Vent Rake Clearance</h4><p>VentSure slots must stop at least 6 inches from rake edges to prevent wind-driven rain infiltration.</p></div>
+    <div class="info-card"><div class="val">&lt; 40°F</div><h4>Cold Weather Threshold</h4><p>Below this temperature, hand-sealing is mandatory and thermal gapping (1/16–1/8") is required at joints.</p></div>
+    <div class="info-card"><div class="val">30"</div><h4>Cricket Trigger Width</h4><p>Chimneys wider than 30 inches typically require a cricket (saddle) by code to manage water diversion.</p></div>
+  </div>
+
+  <button class="launch-j-btn" onclick="openJeopardy()">🎯 Launch Jeopardy Review — Up to 200 Bonus Pts</button>
+</section>
+
+<!-- ═══ MODULE 6: FINAL TIMED EXAM ═══ -->
+<section class="training-section" id="m6">
+  <div class="sec-label">Module 6</div>
+  <h2 class="sec-title">FINAL<br><em>TIMED EXAM</em></h2>
+  <p class="sec-desc">15 questions covering all modules. 45 seconds per question. Points are awarded for correct answers — the timer keeps you honest. Complete the exam to unlock your certificate.</p>
+
+  <div class="exam-box" id="exam-box">
+    <div id="exam-start-screen">
+      <p style="font-size:16px;color:var(--gray);text-align:center;margin-bottom:8px">All 6 modules covered · 45 seconds per question · 20 pts each · 300 pts total</p>
+      <button class="start-exam-btn" onclick="startExam()">START FINAL EXAM</button>
+    </div>
+
+    <div id="exam-active" style="display:none">
+      <div class="exam-timer" id="exam-timer">45</div>
+      <div class="exam-progress-text" id="exam-progress">Question 1 of 15</div>
+
+      <!-- Q1 -->
+      <div class="exam-q" id="eq1">
+        <div class="q-num">Question 1 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What is the minimum thickness for OSB sheathing per Owens Corning specifications?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The minimum for OSB is 7/16 inch — 1/4 inch is far too thin.')"><span class="letter">A</span>1/4 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3/8 inch is the minimum for plywood, not OSB.')"><span class="letter">B</span>3/8 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! OSB requires a minimum 7/16-inch thickness.')"><span class="letter">C</span>7/16 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/2 inch exceeds the minimum — 7/16 inch is the specified floor.')"><span class="letter">D</span>1/2 inch</div>
+        </div>
+        <div class="q-feedback" id="eq1-fb"></div>
+        <button class="exam-next-btn" id="eq1-next" onclick="nextExamQ(1)">Next Question →</button>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exam-q" id="eq2">
+        <div class="q-num">Question 2 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What is the maximum allowable gap between plywood panels?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/16 inch is below the minimum gap, not the maximum.')"><span class="letter">A</span>1/16 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/8 inch is the minimum gap required — panels need at least this much space.')"><span class="letter">B</span>1/8 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3/16 inch is between the min and max — but not the stated maximum.')"><span class="letter">C</span>3/16 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 1/4 inch is the maximum allowable gap between plywood panels.')"><span class="letter">D</span>1/4 inch</div>
+        </div>
+        <div class="q-feedback" id="eq2-fb"></div>
+        <button class="exam-next-btn" id="eq2-next" onclick="nextExamQ(2)">Next Question →</button>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exam-q" id="eq3">
+        <div class="q-num">Question 3 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The ice and water barrier must extend at least how far beyond the interior wall line?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'12 inches falls short of the required protection zone.')"><span class="letter">A</span>12 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'18 inches is not the specified distance for ice barrier coverage.')"><span class="letter">B</span>18 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! The barrier must extend 24 inches beyond the interior wall line, measured horizontally.')"><span class="letter">C</span>24 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'36 inches exceeds the specified requirement.')"><span class="letter">D</span>36 inches</div>
+        </div>
+        <div class="q-feedback" id="eq3-fb"></div>
+        <button class="exam-next-btn" id="eq3-next" onclick="nextExamQ(3)">Next Question →</button>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exam-q" id="eq4">
+        <div class="q-num">Question 4 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Which Owens Corning shingle line features the patented SureNail Technology?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Oakridge does not feature SureNail technology.')"><span class="letter">A</span>Oakridge</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Supreme is a three-tab shingle without SureNail.')"><span class="letter">B</span>Supreme</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! The Duration series features SureNail Technology with its woven engineered fabric nailing zone.')"><span class="letter">C</span>Duration</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Berkshire uses a unique installation method but does not feature SureNail.')"><span class="letter">D</span>Berkshire</div>
+        </div>
+        <div class="q-feedback" id="eq4-fb"></div>
+        <button class="exam-next-btn" id="eq4-next" onclick="nextExamQ(4)">Next Question →</button>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exam-q" id="eq5">
+        <div class="q-num">Question 5 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">SureNail triple-layer protection occurs at what specific location on the shingle?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The butt edge is the exposed bottom — not the reinforced nailing zone.')"><span class="letter">A</span>The butt edge</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Tab cutouts are the notches in standard shingles — not the SureNail zone.')"><span class="letter">B</span>Tab cutouts</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The headlap is covered by the course above — SureNail reinforces the nailing zone specifically.')"><span class="letter">C</span>The headlap only</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! The SureNail fabric is integrated at the common bond nailing area, creating triple-layer reinforcement exactly where the nail penetrates.')"><span class="letter">D</span>The common bond nailing area</div>
+        </div>
+        <div class="q-feedback" id="eq5-fb"></div>
+        <button class="exam-next-btn" id="eq5-next" onclick="nextExamQ(5)">Next Question →</button>
+      </div>
+
+      <!-- Q6 -->
+      <div class="exam-q" id="eq6">
+        <div class="q-num">Question 6 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Duration shingles with SureNail and 4 nails are warranted for winds up to:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'90 mph is well below the SureNail performance rating.')"><span class="letter">A</span>90 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'110 mph is the typical 6-nail standard for conventional shingles — SureNail achieves more with fewer nails.')"><span class="letter">B</span>110 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Close but not quite — the SureNail 4-nail warranty reaches higher than 120 mph.')"><span class="letter">C</span>120 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 130 mph with 4 nails — matching the performance that normally requires 6 nails on standard shingles.')"><span class="letter">D</span>130 mph</div>
+        </div>
+        <div class="q-feedback" id="eq6-fb"></div>
+        <button class="exam-next-btn" id="eq6-next" onclick="nextExamQ(6)">Next Question →</button>
+      </div>
+
+      <!-- Q7 -->
+      <div class="exam-q" id="eq7">
+        <div class="q-num">Question 7 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The Duration/Oakridge series uses what shingle exposure?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'4 inches is not a standard OC exposure for Duration or Oakridge.')"><span class="letter">A</span>4 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Duration and Oakridge shingles have a 5 5/8-inch exposure with a recommended 6 1/2-inch offset.')"><span class="letter">B</span>5 5/8 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'6 1/2 inches is the recommended offset, not the exposure.')"><span class="letter">C</span>6 1/2 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'8 3/8 inches is the exposure for the Berkshire collection, not Duration/Oakridge.')"><span class="letter">D</span>8 3/8 inches</div>
+        </div>
+        <div class="q-feedback" id="eq7-fb"></div>
+        <button class="exam-next-btn" id="eq7-next" onclick="nextExamQ(7)">Next Question →</button>
+      </div>
+
+      <!-- Q8 -->
+      <div class="exam-q" id="eq8">
+        <div class="q-num">Question 8 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The Berkshire Collection requires which unique installation method?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Standard diagonal application is for Duration/Oakridge — Berkshire requires a different method.')"><span class="letter">A</span>Standard diagonal application</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Woven valleys are a valley installation method — not a shingle layout method.')"><span class="letter">B</span>Woven installation</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Berkshire shingles must be installed using the single-column vertical racking method, applied in vertical columns from eave to ridge.')"><span class="letter">C</span>Single-column vertical racking</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'California-cut refers to valley construction, not a field shingle layout method.')"><span class="letter">D</span>California-cut method</div>
+        </div>
+        <div class="q-feedback" id="eq8-fb"></div>
+        <button class="exam-next-btn" id="eq8-next" onclick="nextExamQ(8)">Next Question →</button>
+      </div>
+
+      <!-- Q9 -->
+      <div class="exam-q" id="eq9">
+        <div class="q-num">Question 9 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">In a closed-cut valley, fasteners must be placed no closer than __ from the valley centerline.</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3 inches is too close to the valley center for proper water management.')"><span class="letter">A</span>3 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! No fasteners within 6 inches of the valley centerline on the first-plane shingles.')"><span class="letter">B</span>6 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'9 inches exceeds the specified no-nail zone.')"><span class="letter">C</span>9 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'12 inches is the minimum extension past centerline — not the no-nail zone distance.')"><span class="letter">D</span>12 inches</div>
+        </div>
+        <div class="q-feedback" id="eq9-fb"></div>
+        <button class="exam-next-btn" id="eq9-next" onclick="nextExamQ(9)">Next Question →</button>
+      </div>
+
+      <!-- Q10 -->
+      <div class="exam-q" id="eq10">
+        <div class="q-num">Question 10 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">At the eaves, which layer goes directly on the deck first?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! At eaves: drip edge goes on the deck first, then underlayment is installed over it so water flows off the underlayment into the gutter.')"><span class="letter">A</span>Drip edge (underlayment goes over it)</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'At rakes, underlayment goes first. At eaves, drip edge is installed on the deck first.')"><span class="letter">B</span>Underlayment (drip edge goes over it)</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Starter shingles go on after both underlayment and drip edge are in place.')"><span class="letter">C</span>Starter shingles</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Ice barrier goes over the drip edge at eaves, not directly on the deck first.')"><span class="letter">D</span>Ice and water barrier</div>
+        </div>
+        <div class="q-feedback" id="eq10-fb"></div>
+        <button class="exam-next-btn" id="eq10-next" onclick="nextExamQ(10)">Next Question →</button>
+      </div>
+
+      <!-- Q11 -->
+      <div class="exam-q" id="eq11">
+        <div class="q-num">Question 11 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Per the 1/150 rule, how much NFA is needed for a 1,500 sq ft attic?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1 sq ft is far too little — 1500 ÷ 150 = 10 sq ft required.')"><span class="letter">A</span>1 sq ft</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5 sq ft is half the required amount.')"><span class="letter">B</span>5 sq ft</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 1,500 ÷ 150 = 10 sq ft of total NFA required.')"><span class="letter">C</span>10 sq ft</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'15 sq ft would be needed for a 2,250 sq ft attic, not 1,500 sq ft.')"><span class="letter">D</span>15 sq ft</div>
+        </div>
+        <div class="q-feedback" id="eq11-fb"></div>
+        <button class="exam-next-btn" id="eq11-next" onclick="nextExamQ(11)">Next Question →</button>
+      </div>
+
+      <!-- Q12 -->
+      <div class="exam-q" id="eq12">
+        <div class="q-num">Question 12 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">For cold weather installation below 40°F, end/butt joint gaps should be:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'No gap in cold weather would cause buckling when shingles expand in warmer weather.')"><span class="letter">A</span>No gap required in cold weather</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! A 1/16 to 1/8-inch gap at end/butt joints ensures shingles have room to expand as temperatures rise.')"><span class="letter">B</span>1/16 to 1/8 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/4 to 1/2 inch is too wide — it would create water infiltration channels.')"><span class="letter">C</span>1/4 to 1/2 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/2 to 3/4 inch far exceeds the specified thermal gapping allowance.')"><span class="letter">D</span>1/2 to 3/4 inch</div>
+        </div>
+        <div class="q-feedback" id="eq12-fb"></div>
+        <button class="exam-next-btn" id="eq12-next" onclick="nextExamQ(12)">Next Question →</button>
+      </div>
+
+      <!-- Q13 -->
+      <div class="exam-q" id="eq13">
+        <div class="q-num">Question 13 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">VentSure ridge vent slots must stop at least how far from the rake edges?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3 inches is insufficient clearance at the rake — wind-driven rain could penetrate.')"><span class="letter">A</span>3 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Slots must stop at least 6 inches from rake edges to prevent leaks at this vulnerable location.')"><span class="letter">B</span>6 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'9 inches exceeds the specified minimum clearance.')"><span class="letter">C</span>9 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'12 inches is excessive and would reduce the effective ventilation length of the ridge vent.')"><span class="letter">D</span>12 inches</div>
+        </div>
+        <div class="q-feedback" id="eq13-fb"></div>
+        <button class="exam-next-btn" id="eq13-next" onclick="nextExamQ(13)">Next Question →</button>
+      </div>
+
+      <!-- Q14 -->
+      <div class="exam-q" id="eq14">
+        <div class="q-num">Question 14 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Step flashing at sidewalls is nailed to which structural element — and specifically NOT to the wall?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Step flashing is NOT nailed to the wall — independent movement between the roof and structure must be maintained.')"><span class="letter">A</span>The sidewall only</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Step flashing is nailed only to the roof deck, never the wall, to allow for independent thermal and seismic movement.')"><span class="letter">B</span>The roof deck only</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Nailing to both would prevent the independent movement that protects the flashing from tearing.')"><span class="letter">C</span>Both the roof deck and the wall</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Step flashing must be fastened — unsealed flashing would shift and allow water infiltration.')"><span class="letter">D</span>Neither — it is only held by roof cement</div>
+        </div>
+        <div class="q-feedback" id="eq14-fb"></div>
+        <button class="exam-next-btn" id="eq14-next" onclick="nextExamQ(14)">Next Question →</button>
+      </div>
+
+      <!-- Q15 -->
+      <div class="exam-q" id="eq15">
+        <div class="q-num">Question 15 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">For the OC Total Protection warranty to remain valid, what must be in like-new condition or replaced new?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Underlayment is required as part of the system — but the warranty condition specifically calls out flashing.')"><span class="letter">A</span>Underlayment only</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Shingles are always new in a re-roof — but this question is about what else must meet a condition.')"><span class="letter">B</span>New shingles only</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Flashing must be new or in like-new condition meeting proper gauge requirements. Reusing substandard flashing voids the warranty.')"><span class="letter">C</span>Flashing</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Deck sheathing replacement is not specified in the OC warranty terms for this condition.')"><span class="letter">D</span>All deck sheathing</div>
+        </div>
+        <div class="q-feedback" id="eq15-fb"></div>
+        <button class="exam-next-btn" id="eq15-next" onclick="finishExam()">See Results →</button>
+      </div>
+
+      <div class="quiz-result" id="exam-result" style="display:none">
+        <p>Final Exam Score</p>
+        <div class="pts" id="exam-pts">0</div>
+        <h3>/ 300 pts</h3>
+        <p id="exam-msg" style="margin-top:8px"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATE ═══ -->
+<section id="cert" style="border-bottom:1px solid var(--border)">
+  <div id="cert-section">
+    <div class="sec-label" style="justify-content:center">Course Complete</div>
+    <h2 class="sec-title" style="font-size:clamp(36px,5vw,64px)">YOUR CERTIFICATE</h2>
+    <div class="final-score-box">
+      <div class="big-score" id="cert-final-score">0</div>
+      <p>Total Points Earned</p>
+    </div>
+    <p style="color:var(--gray);margin-bottom:24px">Enter your name to generate your certificate of completion.</p>
+    <input class="cert-name-input" id="cert-name" type="text" placeholder="Your Full Name" oninput="updateCertName()">
+    <div class="cert-img-wrap">
+      <img src="./generated_imgs/generated-2026-03-11T19-35-52-633Z-kpa3bq.png" alt="Certificate background">
+      <div class="cert-overlay-name" id="cert-name-overlay">Your Name</div>
+    </div>
+    <button class="print-cert-btn" onclick="window.print()">Print Certificate</button>
+  </div>
+</section>
+
+<!-- JEOPARDY MODAL -->
+<div id="jeopardy-modal">
+  <div class="j-header">
+    <h2>OC INSTALLATION JEOPARDY</h2>
+    <div class="j-score-display">Bonus: <span id="j-score">0</span> pts</div>
+    <button class="j-close" onclick="closeJeopardy()">Close Board</button>
+  </div>
+  <div class="j-board">
+    <!-- Category headers -->
+    <div class="j-cat-header">Roof Deck</div>
+    <div class="j-cat-header">Underlayment</div>
+    <div class="j-cat-header">SureNail &amp; Fastening</div>
+    <div class="j-cat-header">Valleys &amp; Flashing</div>
+    <div class="j-cat-header">Ventilation &amp; Code</div>
+
+    <!-- $100 row -->
+    <div class="j-cell" onclick="openJQ(0,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(1,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(2,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(3,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(4,0)">$100</div>
+    <!-- $200 row -->
+    <div class="j-cell" onclick="openJQ(0,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(1,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(2,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(3,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(4,1)">$200</div>
+    <!-- $300 row -->
+    <div class="j-cell" onclick="openJQ(0,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(1,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(2,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(3,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(4,2)">$300</div>
+    <!-- $400 row -->
+    <div class="j-cell" onclick="openJQ(0,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(1,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(2,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(3,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(4,3)">$400</div>
+  </div>
+</div>
+
+<!-- JEOPARDY QUESTION OVERLAY -->
+<div class="j-q-overlay" id="j-q-overlay">
+  <div class="j-q-box">
+    <div class="j-pts" id="j-pts-display"></div>
+    <div class="j-question" id="j-q-text"></div>
+    <input class="j-answer-input" id="j-answer" type="text" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')submitJAnswer()">
+    <div>
+      <button class="j-submit-btn" onclick="submitJAnswer()">Submit</button>
+      <button class="j-skip-btn" onclick="skipJAnswer()">Skip</button>
+    </div>
+    <div class="j-reveal" id="j-reveal"></div>
+    <button class="j-skip-btn" id="j-next-btn" onclick="closeJQ()" style="margin-top:12px;display:none">Back to Board</button>
+  </div>
+</div>
+
+<script>
+// ═══ SCORE SYSTEM ═══
+const S = {
+  score: 0,
+  maxScore: 700,
+  quizDone: { m1: false, m2: false, m3: false, m4: false },
+  examDone: false,
+  add(pts, modKey) {
+    this.score += pts;
+    document.getElementById('score-val').textContent = this.score;
+    document.getElementById('progress-bar').style.width = Math.min(100, (this.score / this.maxScore) * 100) + '%';
+    if (modKey && !this.quizDone[modKey]) {
+      this.quizDone[modKey] = true;
+      const idx = parseInt(modKey.replace('m', ''));
+      const btns = document.querySelectorAll('.mnav-btn');
+      if (btns[idx - 1]) btns[idx - 1].classList.add('done');
+    }
+    if (this.examDone) {
+      document.getElementById('cert-section').classList.add('show');
+      document.getElementById('cert-final-score').textContent = this.score;
+      document.querySelectorAll('.mnav-btn')[5]?.classList.add('done');
+      launchConfetti();
+    }
+  }
+};
+
+// ═══ NAV SCROLL ═══
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ═══ MODULE NAV ACTIVE STATE ═══
+const sections = document.querySelectorAll('.training-section, #cert');
+const mnavBtns = document.querySelectorAll('.mnav-btn');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      mnavBtns.forEach((b, i) => {
+        const ids = ['m1','m2','m3','m4','m5','m6','cert'];
+        if (ids[i] === id) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// ═══ ACCORDION ═══
+document.querySelectorAll('.acc-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  });
+});
+
+// ═══ AUDIO PLAYER ═══
+const audio = document.getElementById('overview-audio');
+let speeds = [1, 1.25, 1.5, 2];
+let speedIdx = 0;
+function togglePlay() {
+  if (!audio.src || audio.src === window.location.href) return;
+  if (audio.paused) {
+    audio.play();
+    document.getElementById('play-btn').textContent = '⏸';
+    document.getElementById('audio-waveform').classList.add('playing');
+  } else {
+    audio.pause();
+    document.getElementById('play-btn').textContent = '▶';
+    document.getElementById('audio-waveform').classList.remove('playing');
+  }
+}
+function skip(s) {
+  if (!audio.src || audio.src === window.location.href) return;
+  audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + s));
+}
+function seek(v) {
+  if (!audio.src || audio.src === window.location.href) return;
+  audio.currentTime = (v / 100) * (audio.duration || 0);
+}
+function cycleSpeed() {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  audio.playbackRate = speeds[speedIdx];
+  document.getElementById('speed-btn').textContent = speeds[speedIdx] + '×';
+}
+function fmt(s) {
+  if (!s || !isFinite(s)) return '0:00';
+  return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+}
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) {
+    document.getElementById('scrubber').value = (audio.currentTime / audio.duration) * 100;
+    document.getElementById('audio-time').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  }
+});
+audio.addEventListener('ended', () => {
+  document.getElementById('play-btn').textContent = '▶';
+  document.getElementById('audio-waveform').classList.remove('playing');
+});
+
+// ═══ MODULE 1: TRUE/FALSE ═══
+const m1Scores = { m1q1: 0, m1q2: 0, m1q3: 0, m1q4: 0 };
+let m1Answered = 0;
+function tfAnswer(qId, choice, correctIsTrue, msg) {
+  if (document.getElementById(qId).querySelector('.tf-btn.correct, .tf-btn.wrong')) return;
+  const isCorrect = (choice === correctIsTrue);
+  const btns = document.getElementById(qId).querySelectorAll('.tf-btn');
+  btns.forEach(b => b.disabled = true);
+  const clicked = event.target;
+  clicked.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) m1Scores[qId] = 25;
+  m1Answered++;
+  if (m1Answered === 4) {
+    const total = Object.values(m1Scores).reduce((a,b) => a+b, 0);
+    document.getElementById('m1-pts').textContent = total;
+    document.getElementById('m1-result').classList.add('show');
+    S.add(total, 'm1');
+  }
+}
+
+// ═══ MODULE 2: DRAG & DROP ═══
+let dragKey = null;
+const m2Slots = {};
+function dragStart(e, key) { dragKey = key; e.dataTransfer.effectAllowed = 'move'; }
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function dragLeave(e) { e.currentTarget.classList.remove('over'); }
+function dropChip(e, zone) {
+  e.preventDefault();
+  zone.classList.remove('over');
+  if (!dragKey) return;
+  const slot = zone.querySelector('.drop-slot');
+  const chip = document.querySelector(`.drag-chip[data-key="${dragKey}"]`);
+  if (!chip || chip.classList.contains('placed')) return;
+  // Remove previous chip in this zone
+  const prevKey = zone.dataset.filled;
+  if (prevKey) {
+    const prevChip = document.querySelector(`.drag-chip[data-key="${prevKey}"]`);
+    if (prevChip) prevChip.classList.remove('placed');
+  }
+  slot.textContent = chip.textContent;
+  slot.style.color = 'var(--white)';
+  zone.dataset.filled = dragKey;
+  m2Slots[zone.dataset.answer] = dragKey;
+  chip.classList.add('placed');
+  dragKey = null;
+}
+let m2Done = false;
+function checkDrag(mod) {
+  if (m2Done) return;
+  m2Done = true;
+  let pts = 0;
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    const ans = zone.dataset.answer;
+    const filled = zone.dataset.filled;
+    if (filled === ans) { zone.classList.add('correct'); pts += 25; }
+    else { zone.classList.add('wrong'); }
+  });
+  document.getElementById('m2-pts').textContent = pts;
+  document.getElementById('m2-result').classList.add('show');
+  S.add(pts, 'm2');
+}
+
+// ═══ MODULES 3 & 4: MULTIPLE CHOICE ═══
+const mcScores = {};
+const mcCounts = { m3: 0, m4: 0 };
+const mcTotals = { m3: 5, m4: 4 };
+const mcPts = { m3: 20, m4: 25 };
+const mcEarned = { m3: 0, m4: 0 };
+function mcAnswer(qId, el, isCorrect, msg) {
+  const block = document.getElementById(qId);
+  if (block.querySelector('.correct, .wrong')) return;
+  block.querySelectorAll('.mc-option').forEach(o => o.classList.add('disabled'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  const mod = qId.startsWith('m3') ? 'm3' : 'm4';
+  if (isCorrect) mcEarned[mod] += mcPts[mod];
+  mcCounts[mod]++;
+  if (mcCounts[mod] === mcTotals[mod]) {
+    const total = mcEarned[mod];
+    document.getElementById(mod + '-pts').textContent = total;
+    document.getElementById(mod + '-result').classList.add('show');
+    S.add(total, mod);
+  }
+}
+
+// ═══ MODULE 6: FINAL EXAM ═══
+let examIdx = 0;
+let examScore = 0;
+let examTimer = null;
+let examTimeLeft = 45;
+let examLocked = false;
+
+function startExam() {
+  document.getElementById('exam-start-screen').style.display = 'none';
+  document.getElementById('exam-active').style.display = 'block';
+  loadExamQ(1);
+}
+
+function loadExamQ(n) {
+  examIdx = n;
+  examLocked = false;
+  examTimeLeft = 45;
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  const qEl = document.getElementById('eq' + n);
+  if (qEl) qEl.classList.add('active');
+  document.getElementById('exam-progress').textContent = 'Question ' + n + ' of 15';
+  const timerEl = document.getElementById('exam-timer');
+  timerEl.textContent = examTimeLeft;
+  timerEl.className = 'exam-timer';
+  if (examTimer) clearInterval(examTimer);
+  examTimer = setInterval(() => {
+    examTimeLeft--;
+    timerEl.textContent = examTimeLeft;
+    if (examTimeLeft <= 10) timerEl.className = 'exam-timer warn';
+    if (examTimeLeft <= 0) {
+      clearInterval(examTimer);
+      if (!examLocked) {
+        examLocked = true;
+        const qEl = document.getElementById('eq' + examIdx);
+        qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+        const fb = document.getElementById('eq' + examIdx + '-fb');
+        fb.textContent = "Time's up! Moving on...";
+        fb.className = 'q-feedback show bad';
+        const nextBtn = document.getElementById('eq' + examIdx + '-next');
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+      }
+    }
+  }, 1000);
+}
+
+function examAnswer(el, isCorrect, msg) {
+  if (examLocked) return;
+  examLocked = true;
+  clearInterval(examTimer);
+  const qEl = document.getElementById('eq' + examIdx);
+  qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById('eq' + examIdx + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) examScore += 20;
+  const nextBtn = document.getElementById('eq' + examIdx + '-next');
+  if (nextBtn) nextBtn.style.display = 'inline-block';
+}
+
+function nextExamQ(n) {
+  if (n < 15) loadExamQ(n + 1);
+}
+
+function finishExam() {
+  clearInterval(examTimer);
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  document.getElementById('exam-pts').textContent = examScore;
+  const resultEl = document.getElementById('exam-result');
+  resultEl.style.display = 'block';
+  const pct = Math.round((examScore / 300) * 100);
+  document.getElementById('exam-msg').textContent = pct >= 80 ? 'Outstanding performance!' : pct >= 60 ? 'Good work — review any missed topics.' : 'Keep studying — you\'ve got this!';
+  document.getElementById('exam-timer').style.display = 'none';
+  document.getElementById('exam-progress').style.display = 'none';
+  S.examDone = true;
+  S.add(examScore, null);
+}
+
+// ═══ CERTIFICATE ═══
+function updateCertName() {
+  const name = document.getElementById('cert-name').value || 'Your Name';
+  document.getElementById('cert-name-overlay').textContent = name;
+}
+
+// ═══ JEOPARDY ═══
+const jData = [
+  // Roof Deck
+  [
+    { pts: 100, clue: 'This panel material requires a minimum thickness of 7/16 inch per OC specifications.', answer: 'osb' },
+    { pts: 200, clue: 'This is the minimum gap required between plywood panels to allow for thermal expansion.', answer: '1/8' },
+    { pts: 300, clue: 'Asphalt shingles are prohibited from being installed over these, as they cannot hold fasteners under wind loads.', answer: 'insulation boards' },
+    { pts: 400, clue: 'Gaps between existing solid boards exceeding this measurement require repair or replacement before shingling.', answer: '1/4' }
+  ],
+  // Underlayment
+  [
+    { pts: 100, clue: 'This Owens Corning brand is an example of a self-adhered ice and water barrier.', answer: 'weatherlock' },
+    { pts: 200, clue: 'The horizontal lap for synthetic underlayment on standard slopes (4:12 and steeper).', answer: '2 inches' },
+    { pts: 300, clue: 'The ice and water barrier must extend this far beyond the interior wall line, measured horizontally.', answer: '24 inches' },
+    { pts: 400, clue: 'For a 36-inch wide roll on a low-slope roof, the underlayment must overlap by this many inches to achieve a double layer.', answer: '19' }
+  ],
+  // SureNail & Fastening
+  [
+    { pts: 100, clue: 'The material embedded in SureNail\'s reinforced nailing zone.', answer: 'woven' },
+    { pts: 200, clue: 'Wind speed at which Duration shingles with SureNail are warranted using only 4 nails.', answer: '130' },
+    { pts: 300, clue: 'The minimum shank gauge required for all fasteners by Owens Corning.', answer: '12' },
+    { pts: 400, clue: 'On slopes exceeding 60 degrees, this is the required number of nails per shingle, plus hand-sealing.', answer: '6' }
+  ],
+  // Valleys & Flashing
+  [
+    { pts: 100, clue: 'In a closed-cut valley, the trimmed side must be cut this far from the valley centerline.', answer: '2 inches' },
+    { pts: 200, clue: 'This valley type uses a shingle laid sideways along the centerline as a cutting guide.', answer: 'california' },
+    { pts: 300, clue: 'Step flashing is nailed only to this structural element — never to the wall.', answer: 'roof deck' },
+    { pts: 400, clue: 'Required by code behind chimneys wider than 30 inches to divert water and prevent debris.', answer: 'cricket' }
+  ],
+  // Ventilation & Code
+  [
+    { pts: 100, clue: 'Per the 1/150 rule, this many square feet of attic floor space require 1 sq ft of Net Free Area.', answer: '150' },
+    { pts: 200, clue: 'VentSure ridge vent slots must stop at least this far from rake edges to prevent leaks.', answer: '6 inches' },
+    { pts: 300, clue: 'The maximum percentage of total NFA that should be located at the ridge for a balanced system.', answer: '50' },
+    { pts: 400, clue: 'In Illinois, this document must be obtained before any re-roofing or roof recovery project begins.', answer: 'building permit' }
+  ]
+];
+
+let jScore = 0;
+let currentJCat = 0;
+let currentJRow = 0;
+const jUsed = Array.from({ length: 5 }, () => [false, false, false, false]);
+
+function openJeopardy() {
+  document.getElementById('jeopardy-modal').classList.add('open');
+}
+function closeJeopardy() {
+  document.getElementById('jeopardy-modal').classList.remove('open');
+}
+function openJQ(cat, row) {
+  if (jUsed[cat][row]) return;
+  currentJCat = cat;
+  currentJRow = row;
+  const q = jData[cat][row];
+  document.getElementById('j-pts-display').textContent = '$' + q.pts;
+  document.getElementById('j-q-text').textContent = q.clue;
+  document.getElementById('j-answer').value = '';
+  document.getElementById('j-reveal').className = 'j-reveal';
+  document.getElementById('j-reveal').textContent = '';
+  document.getElementById('j-next-btn').style.display = 'none';
+  document.getElementById('j-q-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('j-answer').focus(), 100);
+}
+function submitJAnswer() {
+  const val = document.getElementById('j-answer').value.toLowerCase().trim();
+  const q = jData[currentJCat][currentJRow];
+  const correct = q.answer.toLowerCase();
+  const isRight = val.includes(correct) || correct.includes(val.replace(/[^a-z0-9]/g,''));
+  const rev = document.getElementById('j-reveal');
+  if (isRight) {
+    jScore += q.pts;
+    document.getElementById('j-score').textContent = jScore;
+    rev.textContent = '✓ Correct! +$' + q.pts + ' — Full answer: ' + q.answer;
+    rev.className = 'j-reveal show right';
+    S.add(q.pts, null);
+    document.getElementById('score-val').textContent = S.score;
+  } else {
+    rev.textContent = '✗ Not quite. The answer was: ' + q.answer;
+    rev.className = 'j-reveal show oops';
+  }
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function skipJAnswer() {
+  const q = jData[currentJCat][currentJRow];
+  const rev = document.getElementById('j-reveal');
+  rev.textContent = 'Skipped — Answer: ' + q.answer;
+  rev.className = 'j-reveal show oops';
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function markJUsed() {
+  jUsed[currentJCat][currentJRow] = true;
+  const cells = document.querySelectorAll('.j-cell');
+  const idx = currentJRow * 5 + currentJCat;
+  if (cells[idx]) cells[idx].classList.add('used');
+}
+function closeJQ() {
+  document.getElementById('j-q-overlay').classList.remove('open');
+  document.getElementById('j-answer').disabled = false;
+}
+
+// ═══ CONFETTI ═══
+function launchConfetti() {
+  const colors = ['#EB1A2C','#F5C518','#ffffff','#27ae60'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>
