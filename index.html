@@ -65,7 +65,7 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 
 /* ── COURSE CARDS ── */
 #courses{background:var(--black);padding-bottom:100px}
-.courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.courses-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
 
 .course-card{position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block;height:580px}
 .course-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
@@ -118,7 +118,7 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .courses-grid{grid-template-columns:1fr}
+  .courses-grid{grid-template-columns:1fr;}
   .course-card{height:480px}
   .features-inner{grid-template-columns:1fr 1fr;gap:28px}
   .formats-grid{grid-template-columns:1fr 1fr}
@@ -159,7 +159,7 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
       <span>Hamstra Roofing — Professional Development</span>
     </div>
     <h1>KNOW YOUR<br><em>CRAFT.</em><br>OWN THE ROOF.</h1>
-    <p class="hero-sub">Two expert-level training courses built for Hamstra crews. Learn the code, master the product, earn your certificate.</p>
+    <p class="hero-sub">Three expert-level training courses built for Hamstra crews. Learn the code, master the product, operate the lift — earn your certificate.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#courses">Browse Courses</a>
       <a class="btn-ghost" href="#quiz-formats">How It Works</a>
@@ -177,14 +177,14 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
     <div class="stat-item">
       <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
       <div>
-        <div class="stat-val">2</div>
+        <div class="stat-val">3</div>
         <div class="stat-label">Training Courses</div>
       </div>
     </div>
     <div class="stat-item">
       <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
       <div>
-        <div class="stat-val">12</div>
+        <div class="stat-val">18</div>
         <div class="stat-label">Total Modules</div>
       </div>
     </div>
@@ -198,7 +198,7 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
     <div class="stat-item">
       <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg></div>
       <div>
-        <div class="stat-val">2</div>
+        <div class="stat-val">3</div>
         <div class="stat-label">Certificates</div>
       </div>
     </div>
@@ -256,6 +256,27 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
           <span class="meta-tag">Multiple Choice</span>
           <span class="meta-tag">Jeopardy</span>
           <span class="meta-tag">Timed Exam</span>
+        </div>
+        <div class="course-cta">
+          Start Course <span class="course-cta-arrow">→</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD 3: Lift Operation -->
+    <a class="course-card" href="./lift-training.html">
+      <img class="course-card-img" src="./generated_imgs/generated-2026-03-18T18-54-38-076Z-hmdi27.png" alt="Lift Operation Training">
+      <div class="course-card-overlay"></div>
+      <div class="card-watermark">03</div>
+      <div class="course-card-body">
+        <div class="course-number">Course 03</div>
+        <h3><span style="color:var(--blue)">LIFT OPERATION</span><br><em>CERTIFIED</em></h3>
+        <p class="course-desc">From trailer to sky — master safe unloading, power systems, remote controls, aerial operation, maintenance, and on-the-spot troubleshooting for the Hamstra aerial lift.</p>
+        <div class="course-meta">
+          <span class="meta-tag">4 Modules</span>
+          <span class="meta-tag">11 Videos</span>
+          <span class="meta-tag">Jeopardy</span>
+          <span class="meta-tag highlight">Timed Exam</span>
         </div>
         <div class="course-cta">
           Start Course <span class="course-cta-arrow">→</span>
@@ -344,6 +365,7 @@ footer{background:#080808;border-top:1px solid var(--border);padding:48px 64px}
     <div class="footer-links">
       <a href="./irc-training.html">IRC Training</a>
       <a href="./owens-corning-training.html">OC Installation</a>
+      <a href="./lift-training.html">Lift Operation</a>
       <a href="./brand-guide.html">Brand Guide</a>
     </div>
   </div>
