@@ -1450,18 +1450,18 @@ function setLang(lang) {
   });
 
   // Swap videos for Spanish (iframe embed) vs English (native video)
-  document.querySelectorAll('video[data-vimeo-es]').forEach(video => {
-    const wrap = video.parentElement;
-    const esId = video.getAttribute('data-vimeo-es');
-    const isVert = wrap.classList.contains('video-wrap-vert');
-    if (lang === 'es') {
+  if (lang === 'es') {
+    document.querySelectorAll('video[data-vimeo-es]').forEach(video => {
+      const wrap = video.parentElement;
+      const esId = video.getAttribute('data-vimeo-es');
       if (!wrap.getAttribute('data-en-html')) wrap.setAttribute('data-en-html', wrap.innerHTML);
       wrap.innerHTML = `<iframe src="https://player.vimeo.com/video/${esId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>`;
-    } else {
-      const enHtml = wrap.getAttribute('data-en-html');
-      if (enHtml) wrap.innerHTML = enHtml;
-    }
-  });
+    });
+  } else {
+    document.querySelectorAll('[data-en-html]').forEach(wrap => {
+      wrap.innerHTML = wrap.getAttribute('data-en-html');
+    });
+  }
 }
 
 function toggleLang() {
