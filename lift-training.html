@@ -73,6 +73,8 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .video-wrap video{position:absolute;inset:0;width:100%;height:100%;display:block}
 .video-wrap-vert{max-width:340px;margin:0 auto;background:#000}
 .video-wrap-vert video{width:100%;display:block}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%}
+.video-wrap-vert iframe{width:100%;aspect-ratio:9/16;display:block}
 .video-caption{background:var(--card);padding:14px 20px;font-size:13px;color:var(--gray);font-style:italic;display:flex;align-items:center;gap:8px}
 .video-caption strong{color:rgba(255,255,255,.6);font-style:normal;font-weight:600}
 .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0}
@@ -382,7 +384,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 1 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1161938629" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1154433927/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=f40d6f078b4b00ecee361e26c4eead346bccb2da1c026c96516b988f52b15972" type="video/mp4">
       </video>
     </div>
@@ -410,7 +412,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 2 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165200318" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165237067/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=55a0951f5e94064466de4ec1350836eb52ebc4c8cb2f5fd53caae3ffa3047943" type="video/mp4">
       </video>
     </div>
@@ -432,7 +434,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 3 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1161934270" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1154425592/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=0a77cd89e050b26978521e1cc40a43559b7f3f39871f2b05b1de78958f9a5740" type="video/mp4">
       </video>
     </div>
@@ -462,7 +464,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 4 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1161926524" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1154429721/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=ed0ad9bf184a21e2f775e5c091238714d89c56e241cf8eb4b5479e241bcf8772" type="video/mp4">
       </video>
     </div>
@@ -554,7 +556,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 5 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165199250" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165235930/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=8a37ad51a164dfe52c8d14a97e366e1bee029bbd1a96bae6568ea7f00286d4bc" type="video/mp4">
       </video>
     </div>
@@ -582,7 +584,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 6 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1161931813" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1136392173/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=d0c630b096770824ddb5693cce896f2c3e818798867264d467361ac7c1b28bfb" type="video/mp4">
       </video>
     </div>
@@ -671,7 +673,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 7 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165196121" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165238173/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=af1341e84ce40dcec03a812d92d660f7a889f6a3a458a3096d4ffdec147cc071" type="video/mp4">
       </video>
     </div>
@@ -698,7 +700,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 8: 9:16 vertical -->
   <div class="video-card">
     <div class="video-wrap-vert">
-      <video controls playsinline preload="metadata" style="width:100%;display:block">
+      <video controls data-vimeo-es="1165193174" playsinline preload="metadata" style="width:100%;display:block">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165237567/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=98ae1d136125f38a67d6551873e8a4c07f5b2a964bf239d568230a620ce01f75" type="video/mp4">
       </video>
     </div>
@@ -801,7 +803,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 9 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165228181" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165233660/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=c272695d98357b81f426b4668d6d477b93cff29331f52d35baeb647b8f806140" type="video/mp4">
       </video>
     </div>
@@ -822,7 +824,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 10 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165229684" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165232870/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=efd164d7f8c228d273c2b9776b5dba522008e74f9482ace98a7101a71fcaecba" type="video/mp4">
       </video>
     </div>
@@ -848,7 +850,7 @@ const _supa = supabase.createClient(
   <!-- VIDEO 11 -->
   <div class="video-card">
     <div class="video-wrap">
-      <video controls playsinline preload="metadata">
+      <video controls data-vimeo-es="1165198185" playsinline preload="metadata">
         <source src="https://player.vimeo.com/progressive_redirect/playback/1165234581/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=eb3a160d0a900c57d84529773d13adaa937a986ee71d1051728cb4c9b75b595f" type="video/mp4">
       </video>
     </div>
@@ -1444,6 +1446,20 @@ function setLang(lang) {
     } else {
       const orig = el.getAttribute('data-orig-html');
       if (orig) el.innerHTML = orig;
+    }
+  });
+
+  // Swap videos for Spanish (iframe embed) vs English (native video)
+  document.querySelectorAll('video[data-vimeo-es]').forEach(video => {
+    const wrap = video.parentElement;
+    const esId = video.getAttribute('data-vimeo-es');
+    const isVert = wrap.classList.contains('video-wrap-vert');
+    if (lang === 'es') {
+      if (!wrap.getAttribute('data-en-html')) wrap.setAttribute('data-en-html', wrap.innerHTML);
+      wrap.innerHTML = `<iframe src="https://player.vimeo.com/video/${esId}?badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>`;
+    } else {
+      const enHtml = wrap.getAttribute('data-en-html');
+      if (enHtml) wrap.innerHTML = enHtml;
     }
   });
 }
