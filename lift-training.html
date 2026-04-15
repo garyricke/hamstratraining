@@ -50,25 +50,20 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;margin-bottom:16px}
 .sec-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:40px;line-height:1.7}
 
-/* ACCORDION */
-.accordion{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin-bottom:12px}
-.acc-trigger{width:100%;background:var(--card);border:none;color:var(--white);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-align:left;transition:background .2s}
-.acc-trigger:hover{background:#2a2a2a}
-.acc-trigger .icon{width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:transform .3s}
-.acc-trigger[aria-expanded="true"] .icon{transform:rotate(45deg)}
-.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.acc-body.open{max-height:3000px}
-.acc-inner{padding:24px;border-top:1px solid var(--border);background:#1d1d1d}
-.acc-inner p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
-.acc-inner p:last-child{margin-bottom:0}
-.acc-inner ul{padding-left:20px;margin:8px 0}
-.acc-inner li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:4px}
-.acc-inner strong{color:var(--white)}
-.acc-inner ol{padding-left:20px;margin:8px 0}
-.acc-inner ol li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:6px}
+/* VIDEO CARD BODY */
+.video-body{padding:28px 28px 28px;border-top:1px solid var(--border);background:#1d1d1d}
+.video-body-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(22px,2.5vw,30px);color:var(--white);margin-bottom:20px;letter-spacing:.02em;line-height:1.1}
+.video-body p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
+.video-body p:last-child{margin-bottom:0}
+.video-body ul{padding-left:20px;margin:8px 0 12px}
+.video-body li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:4px}
+.video-body ol{padding-left:20px;margin:8px 0 12px}
+.video-body ol li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:6px}
+.video-body strong{color:var(--white)}
+.video-body p>strong:first-child{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(18px,2vw,24px);color:var(--white);margin-bottom:3px;letter-spacing:.01em;line-height:1.15}
 
 /* VIDEO EMBED */
-.video-card{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin:28px 0}
+.video-card{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin:56px 0}
 .video-wrap{position:relative;padding-top:56.25%;background:#000}
 .video-wrap video{position:absolute;inset:0;width:100%;height:100%;display:block}
 .video-wrap-vert{max-width:340px;margin:0 auto;background:#000}
@@ -389,25 +384,22 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v1_cap"><strong>Video 1 of 4 —</strong> Getting the Machine Off the Trailer</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_unload">Unloading Procedure — Step by Step</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <ol>
-          <li><strong>Open and latch trailer doors fully.</strong> If unlatched, they can dig into the ground when the trailer tilts.</li>
-          <li><strong>Start the machine</strong> and remove all five security straps (four inside, one exterior).</li>
-          <li><strong>Pull the locking pin</strong> to unlock the trailer — the pin may be bent if previous operators forgot this step before tilting.</li>
-          <li><strong>Lift the trailer</strong> until the rear hits the ground. Place 2×6 boards between the white guide line and the end of the tread.</li>
-          <li><strong>Connect the radio remote.</strong> Handle with extreme care — it costs $7,000. Keep it in its case when not in use.</li>
-          <li><strong>Raise the jib to its highest position.</strong> Use enable button + start button + joystick simultaneously. The jib <em>must</em> clear the trailer before backing out.</li>
-          <li><strong>Set the remote to Turtle Mode (slow speed)</strong> for all loading and unloading. No exceptions.</li>
-          <li><strong>Back the machine out.</strong> Pull both drive levers back. Keep a few inches between tracks and the white guide lines. If the machine shuts off due to the tilt angle, simply restart and continue.</li>
-        </ol>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_unload">Unloading Procedure — Step by Step</h3>
+    <div data-i18n-html="acc_unload_body">
+      <ol>
+        <li><strong>Open and latch trailer doors fully.</strong> If unlatched, they can dig into the ground when the trailer tilts.</li>
+        <li><strong>Start the machine</strong> and remove all five security straps (four inside, one exterior).</li>
+        <li><strong>Pull the locking pin</strong> to unlock the trailer — the pin may be bent if previous operators forgot this step before tilting.</li>
+        <li><strong>Lift the trailer</strong> until the rear hits the ground. Place 2×6 boards between the white guide line and the end of the tread.</li>
+        <li><strong>Connect the radio remote.</strong> Handle with extreme care — it costs $7,000. Keep it in its case when not in use.</li>
+        <li><strong>Raise the jib to its highest position.</strong> Use enable button + start button + joystick simultaneously. The jib <em>must</em> clear the trailer before backing out.</li>
+        <li><strong>Set the remote to Turtle Mode (slow speed)</strong> for all loading and unloading. No exceptions.</li>
+        <li><strong>Back the machine out.</strong> Pull both drive levers back. Keep a few inches between tracks and the white guide lines. If the machine shuts off due to the tilt angle, simply restart and continue.</li>
+      </ol>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 2 -->
   <div class="video-card">
@@ -417,19 +409,16 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v2_cap"><strong>Video 2 of 4 —</strong> Types of Power (Diesel / Electric / Emergency)</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_power">Three Power Sources Explained</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>1. Diesel Engine</strong> — The primary power source for all normal outdoor operations. This is the default.</p>
-        <p><strong>2. Electric (110V Outlet)</strong> — Used inside buildings (churches, warehouses) where diesel exhaust is prohibited. All machine functions work identically on electric. You must use at least a 12-gauge extension cord — smaller cords cannot power the machine on.</p>
-        <p><strong>3. Emergency Electro-Pump</strong> — Runs off the machine's own battery. This is <em>not</em> a substitute for diesel or electric — it is for emergency use only to safely lower a worker who is stuck in the air if the diesel fails or fuel runs out. Do not use it for extended operation.</p>
-        <div class="callout"><strong>Critical:</strong> The emergency electro-pump is a rescue tool, not a convenience. Using it routinely drains the machine battery and leaves you without a safety net.</div>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_power">Three Power Sources Explained</h3>
+    <div data-i18n-html="acc_power_body">
+      <p><strong>1. Diesel Engine</strong> — The primary power source for all normal outdoor operations. This is the default.</p>
+      <p><strong>2. Electric (110V Outlet)</strong> — Used inside buildings (churches, warehouses) where diesel exhaust is prohibited. All machine functions work identically on electric. You must use at least a 12-gauge extension cord — smaller cords cannot power the machine on.</p>
+      <p><strong>3. Emergency Electro-Pump</strong> — Runs off the machine's own battery. This is <em>not</em> a substitute for diesel or electric — it is for emergency use only to safely lower a worker who is stuck in the air if the diesel fails or fuel runs out. Do not use it for extended operation.</p>
+      <div class="callout"><strong>Critical:</strong> The emergency electro-pump is a rescue tool, not a convenience. Using it routinely drains the machine battery and leaves you without a safety net.</div>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 3 -->
   <div class="video-card">
@@ -439,27 +428,24 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v3_cap"><strong>Video 3 of 4 —</strong> Starting Instructions, Outrigger Setup &amp; Machine Anatomy</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_startup">Startup Sequence &amp; Outrigger Setup</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>Two-Key System:</strong> Key #1 selects the control mode — radio (ground) or basket. Key #2 powers the machine. For a cold start, turn Key #2 to the next stage to engage the glow plugs and wait for the orange light to turn off before starting the engine.</p>
-        <p><strong>Connecting the Radio:</strong> Turn on the remote and look for the blinking light. Press the green button to connect. A fully lit display confirms you are connected to the machine.</p>
-        <p><strong>Track Width:</strong> Keep the tracks in the extended (out) position at all times for stability, unless you are navigating through a narrow gate.</p>
-        <p><strong>Traveling on Slopes:</strong> On hilly job sites, keep outriggers partially extended while traveling. If the machine tips, it lands on the outriggers — not on the booms.</p>
-        <p><strong>Outrigger Stages:</strong></p>
-        <ul>
-          <li><strong>Position One:</strong> Tight to the machine — for narrow areas, but limits turret rotation and reach.</li>
-          <li><strong>Position Two (Default):</strong> Fully extended. Ensure locking pins are pushed all the way down every time.</li>
-          <li><strong>Stages 1–3:</strong> Pressing the outrigger switch repeatedly lifts the machine. Stage 3 is maximum height while maintaining the auto-level feature.</li>
-          <li><strong>Beyond Stage 3:</strong> One more press fully extends outriggers regardless of whether the machine is level — use with caution.</li>
-        </ul>
-        <p><strong>Machine Anatomy:</strong> The basket attaches to the jib (extra reach). The upper boom lifts and telescopes. The lower boom (lower pantograph) has two sections that operate simultaneously for vertical lift.</p>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_startup">Startup Sequence &amp; Outrigger Setup</h3>
+    <div data-i18n-html="acc_startup_body">
+      <p><strong>Two-Key System:</strong> Key #1 selects the control mode — radio (ground) or basket. Key #2 powers the machine. For a cold start, turn Key #2 to the next stage to engage the glow plugs and wait for the orange light to turn off before starting the engine.</p>
+      <p><strong>Connecting the Radio:</strong> Turn on the remote and look for the blinking light. Press the green button to connect. A fully lit display confirms you are connected to the machine.</p>
+      <p><strong>Track Width:</strong> Keep the tracks in the extended (out) position at all times for stability, unless you are navigating through a narrow gate.</p>
+      <p><strong>Traveling on Slopes:</strong> On hilly job sites, keep outriggers partially extended while traveling. If the machine tips, it lands on the outriggers — not on the booms.</p>
+      <p><strong>Outrigger Stages:</strong></p>
+      <ul>
+        <li><strong>Position One:</strong> Tight to the machine — for narrow areas, but limits turret rotation and reach.</li>
+        <li><strong>Position Two (Default):</strong> Fully extended. Ensure locking pins are pushed all the way down every time.</li>
+        <li><strong>Stages 1–3:</strong> Pressing the outrigger switch repeatedly lifts the machine. Stage 3 is maximum height while maintaining the auto-level feature.</li>
+        <li><strong>Beyond Stage 3:</strong> One more press fully extends outriggers regardless of whether the machine is level — use with caution.</li>
+      </ul>
+      <p><strong>Machine Anatomy:</strong> The basket attaches to the jib (extra reach). The upper boom lifts and telescopes. The lower boom (lower pantograph) has two sections that operate simultaneously for vertical lift.</p>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 4 -->
   <div class="video-card">
@@ -469,28 +455,25 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v4_cap"><strong>Video 4 of 4 —</strong> Radio Remote Functions &amp; Color-Coded Controls</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_remote">Color-Coded Remote Reference</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <table class="data-table">
-          <thead><tr><th>Icon Color</th><th>Function Category</th><th>Active When</th></tr></thead>
-          <tbody>
-            <tr><td><strong style="color:#f97316">Orange</strong></td><td>Ground Controls — driving, tracks in/out</td><td>Outriggers in up position</td></tr>
-            <tr><td><strong style="color:#eab308">Yellow</strong></td><td>Aerial Functions — boom &amp; basket movements</td><td>Outriggers deployed (disabled when up)</td></tr>
-            <tr><td><strong>White</strong></td><td>Leveling / Swivel — tilt and level basket</td><td>Any position</td></tr>
-          </tbody>
-        </table>
-        <p><strong>Enable Buttons:</strong> Either the left or right enable button must be held to perform most operations.</p>
-        <p><strong>Aerial Override:</strong> To operate aerial functions like the jib while outriggers are still up, press both the enable button and the park button simultaneously.</p>
-        <p><strong>Speed Modes:</strong> High, Medium, and Turtle (slow). Always use Turtle for loading/unloading.</p>
-        <p><strong>Start/Stop:</strong> One toggle shuts off or starts the engine. The red emergency stop is for emergencies only — not for routine shutdown.</p>
-        <p><strong>Ground vs. Basket Remote Difference:</strong> The basket remote has one additional white icon for swiveling the basket side to side. Otherwise they are nearly identical.</p>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_remote">Color-Coded Remote Reference</h3>
+    <div data-i18n-html="acc_remote_body">
+      <table class="data-table">
+        <thead><tr><th>Icon Color</th><th>Function Category</th><th>Active When</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#f97316">Orange</strong></td><td>Ground Controls — driving, tracks in/out</td><td>Outriggers in up position</td></tr>
+          <tr><td><strong style="color:#eab308">Yellow</strong></td><td>Aerial Functions — boom &amp; basket movements</td><td>Outriggers deployed (disabled when up)</td></tr>
+          <tr><td><strong>White</strong></td><td>Leveling / Swivel — tilt and level basket</td><td>Any position</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Enable Buttons:</strong> Either the left or right enable button must be held to perform most operations.</p>
+      <p><strong>Aerial Override:</strong> To operate aerial functions like the jib while outriggers are still up, press both the enable button and the park button simultaneously.</p>
+      <p><strong>Speed Modes:</strong> High, Medium, and Turtle (slow). Always use Turtle for loading/unloading.</p>
+      <p><strong>Start/Stop:</strong> One toggle shuts off or starts the engine. The red emergency stop is for emergencies only — not for routine shutdown.</p>
+      <p><strong>Ground vs. Basket Remote Difference:</strong> The basket remote has one additional white icon for swiveling the basket side to side. Otherwise they are nearly identical.</p>
     </div>
   </div>
+</div>
 
   <!-- MODULE 1 QUIZ: TRUE/FALSE -->
   <div class="quiz-box">
@@ -589,31 +572,28 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v6_cap"><strong>Video 6 of 11 —</strong> Aerial Functions — Flying from the Basket</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_basket_op">Basket Operation Sequence</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>Entering Basket Mode:</strong> Set Key #1 to "basket mode." Turn on the basket remote and press the green button — all lights illuminate when connected. Put on your safety lanyards before any movement. Activate functions using either the dead man foot switch (blue toe button) or the upper enable button.</p>
-        <p><strong>Before You Go Up:</strong></p>
-        <ul>
-          <li>Manually pull the step up and stow it. Leaving it down will cause it to bend during operation.</li>
-          <li>Raise the lower boom first. If the lower boom isn't high enough, the turret's rotation range is limited.</li>
-        </ul>
-        <p><strong>Flying the Machine:</strong> Use the joysticks to operate the upper boom and telescope outward to reach your target. Once clear of obstacles, rotate the turret as needed. Note: the lower boom may move more slowly as it approaches its lifting capacity limit.</p>
-        <p><strong>Returning to Stow:</strong></p>
-        <ol>
-          <li>Retract the telescope</li>
-          <li>Lower the upper boom</li>
-          <li>Lower the lower boom</li>
-          <li>Center the turret — align the white paint strips on the turret for perfect centering</li>
-          <li>Lower the jib last — keep the step in its upright position throughout</li>
-        </ol>
-        <div class="callout-blue"><strong>Note:</strong> While the machine has an auto-home feature to collapse automatically, manual operation is safer — the auto-home can't see trees, chimneys, or other obstacles.</div>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_basket_op">Basket Operation Sequence</h3>
+    <div data-i18n-html="acc_basket_op_body">
+      <p><strong>Entering Basket Mode:</strong> Set Key #1 to "basket mode." Turn on the basket remote and press the green button — all lights illuminate when connected. Put on your safety lanyards before any movement. Activate functions using either the dead man foot switch (blue toe button) or the upper enable button.</p>
+      <p><strong>Before You Go Up:</strong></p>
+      <ul>
+        <li>Manually pull the step up and stow it. Leaving it down will cause it to bend during operation.</li>
+        <li>Raise the lower boom first. If the lower boom isn't high enough, the turret's rotation range is limited.</li>
+      </ul>
+      <p><strong>Flying the Machine:</strong> Use the joysticks to operate the upper boom and telescope outward to reach your target. Once clear of obstacles, rotate the turret as needed. Note: the lower boom may move more slowly as it approaches its lifting capacity limit.</p>
+      <p><strong>Returning to Stow:</strong></p>
+      <ol>
+        <li>Retract the telescope</li>
+        <li>Lower the upper boom</li>
+        <li>Lower the lower boom</li>
+        <li>Center the turret — align the white paint strips on the turret for perfect centering</li>
+        <li>Lower the jib last — keep the step in its upright position throughout</li>
+      </ol>
+      <div class="callout-blue"><strong>Note:</strong> While the machine has an auto-home feature to collapse automatically, manual operation is safer — the auto-home can't see trees, chimneys, or other obstacles.</div>
     </div>
   </div>
+</div>
 
   <!-- MODULE 2 QUIZ: DRAG & DROP -->
   <div class="quiz-box">
@@ -636,19 +616,19 @@ const _supa = supabase.createClient(
         <p style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:12px" data-i18n="drop_label">→ Drop into the correct description</p>
         <div class="drop-zones">
           <div class="drop-zone" data-answer="radio" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropChip(event,this)">
-            <div class="drop-zone-label"><strong>Ground-level operation</strong>Standard method — internal battery powered; can be tethered to machine power if both batteries fail</div>
+            <div class="drop-zone-label" data-i18n-html="dz_radio"><strong>Ground-level operation</strong>Standard method — internal battery powered; can be tethered to machine power if both batteries fail</div>
             <div class="drop-slot">Drop here</div>
           </div>
           <div class="drop-zone" data-answer="basket" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropChip(event,this)">
-            <div class="drop-zone-label"><strong>In-basket operation</strong>Located inside the basket; activating it disconnects the ground radio</div>
+            <div class="drop-zone-label" data-i18n-html="dz_basket"><strong>In-basket operation</strong>Located inside the basket; activating it disconnects the ground radio</div>
             <div class="drop-slot">Drop here</div>
           </div>
           <div class="drop-zone" data-answer="ground" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropChip(event,this)">
-            <div class="drop-zone-label"><strong>Electronic bypass</strong>Allows a ground operator to manually push valves and operate functions individually, bypassing all electronics</div>
+            <div class="drop-zone-label" data-i18n-html="dz_ground"><strong>Electronic bypass</strong>Allows a ground operator to manually push valves and operate functions individually, bypassing all electronics</div>
             <div class="drop-slot">Drop here</div>
           </div>
           <div class="drop-zone" data-answer="pump" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropChip(event,this)">
-            <div class="drop-zone-label"><strong>Emergency rescue only</strong>Runs off machine battery; intended solely to safely lower a worker stuck in the air</div>
+            <div class="drop-zone-label" data-i18n-html="dz_pump"><strong>Emergency rescue only</strong>Runs off machine battery; intended solely to safely lower a worker stuck in the air</div>
             <div class="drop-slot">Drop here</div>
           </div>
         </div>
@@ -678,24 +658,21 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v7_cap"><strong>Video 7 of 11 —</strong> Air, Water &amp; Power in the Basket</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_basket_power">Basket Power &amp; Air/Water System Details</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>Power in the Basket:</strong> The machine uses a power-in-the-basket system — an extension cord runs through the boom rather than requiring a separate power source. To supply power to the basket, place a generator on the custom platform on the opposite side of the machine and plug it into this cord. The generator travels with the machine.</p>
-        <p><strong>Air or Water Supply:</strong> The boom is plumbed with a high-pressure hydraulic line that can carry air or water:</p>
-        <ul>
-          <li>Connect an air compressor for pneumatic tools</li>
-          <li>Connect a pressure washer via the built-in quick-connect</li>
-          <li>Both ends have valves for controlling flow</li>
-          <li>There is a connection for a short airline inside the basket</li>
-        </ul>
-        <div class="callout"><strong>End-of-Day Rule:</strong> If liquid was used in the boom's plumbing, open the valves at BOTH the top and bottom ends to drain the line before shutting down. Failing to drain leaves liquid in the line — the next time the air system is used, that liquid travels through the system and can cause damage.</div>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_basket_power">Basket Power &amp; Air/Water System Details</h3>
+    <div data-i18n-html="acc_basket_power_body">
+      <p><strong>Power in the Basket:</strong> The machine uses a power-in-the-basket system — an extension cord runs through the boom rather than requiring a separate power source. To supply power to the basket, place a generator on the custom platform on the opposite side of the machine and plug it into this cord. The generator travels with the machine.</p>
+      <p><strong>Air or Water Supply:</strong> The boom is plumbed with a high-pressure hydraulic line that can carry air or water:</p>
+      <ul>
+        <li>Connect an air compressor for pneumatic tools</li>
+        <li>Connect a pressure washer via the built-in quick-connect</li>
+        <li>Both ends have valves for controlling flow</li>
+        <li>There is a connection for a short airline inside the basket</li>
+      </ul>
+      <div class="callout"><strong>End-of-Day Rule:</strong> If liquid was used in the boom's plumbing, open the valves at BOTH the top and bottom ends to drain the line before shutting down. Failing to drain leaves liquid in the line — the next time the air system is used, that liquid travels through the system and can cause damage.</div>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 8: 9:16 vertical -->
   <div class="video-card">
@@ -705,19 +682,16 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v8_cap"><strong>Video 8 of 11 —</strong> Maintenance: Greasing the Turret</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_grease">Turret Greasing Procedure</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>Frequency:</strong> The turret needs to be greased often — this is a frequent maintenance task, not a seasonal one.</p>
-        <p><strong>Positioning:</strong> To access the turret grease circuit, the boom must be twisted at a 90-degree angle. This exposes the base of the turret.</p>
-        <p><strong>Accessing the Circuit:</strong> The grease fitting is at the base of the turret. Move the wire loom and hoses out of the way to reach it with the grease gun.</p>
-        <div class="callout"><strong>Critical Amount:</strong> Apply only two or three squirts of grease. Applying too much will blow out the internal seal — this is an expensive repair that is easily avoided.</div>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_grease">Turret Greasing Procedure</h3>
+    <div data-i18n-html="acc_grease_body">
+      <p><strong>Frequency:</strong> The turret needs to be greased often — this is a frequent maintenance task, not a seasonal one.</p>
+      <p><strong>Positioning:</strong> To access the turret grease circuit, the boom must be twisted at a 90-degree angle. This exposes the base of the turret.</p>
+      <p><strong>Accessing the Circuit:</strong> The grease fitting is at the base of the turret. Move the wire loom and hoses out of the way to reach it with the grease gun.</p>
+      <div class="callout"><strong>Critical Amount:</strong> Apply only two or three squirts of grease. Applying too much will blow out the internal seal — this is an expensive repair that is easily avoided.</div>
     </div>
   </div>
+</div>
 
   <!-- MODULE 3 QUIZ: MULTIPLE CHOICE -->
   <div class="quiz-box">
@@ -730,10 +704,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_1of5">Question 1 of 5</div>
       <h4 data-i18n="m3q1_q">What powers the basket in the power-in-the-basket system?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_A')"><span class="letter">A</span><span data-i18n="m3q1_A">The diesel engine directly</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q1',true,'m3q1_B')"><span class="letter">B</span><span data-i18n="m3q1_B">An extension cord running through the boom</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_C')"><span class="letter">C</span><span data-i18n="m3q1_C">A separate battery stored in the basket</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_D')"><span class="letter">D</span><span data-i18n="m3q1_D">The outrigger hydraulic system</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_A')"><span class="letter">A</span><span data-i18n="m3q1_A_opt">The diesel engine directly</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q1',true,'m3q1_B')"><span class="letter">B</span><span data-i18n="m3q1_B_opt">An extension cord running through the boom</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_C')"><span class="letter">C</span><span data-i18n="m3q1_C_opt">A separate battery stored in the basket</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q1',false,'m3q1_D')"><span class="letter">D</span><span data-i18n="m3q1_D_opt">The outrigger hydraulic system</span></div>
       </div>
       <div class="q-feedback" id="m3q1-fb"></div>
     </div>
@@ -742,10 +716,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_2of5">Question 2 of 5</div>
       <h4 data-i18n="m3q2_q">Where can a generator be placed so that it travels with the machine while powering the basket?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_A')"><span class="letter">A</span><span data-i18n="m3q2_A">On the boom arm</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_B')"><span class="letter">B</span><span data-i18n="m3q2_B">On the trailer hitch</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q2',true,'m3q2_C')"><span class="letter">C</span><span data-i18n="m3q2_C">On the custom platform on the opposite side of the machine</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_D')"><span class="letter">D</span><span data-i18n="m3q2_D">Inside the basket alongside the worker</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_A')"><span class="letter">A</span><span data-i18n="m3q2_A_opt">On the boom arm</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_B')"><span class="letter">B</span><span data-i18n="m3q2_B_opt">On the trailer hitch</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q2',true,'m3q2_C')"><span class="letter">C</span><span data-i18n="m3q2_C_opt">On the custom platform on the opposite side of the machine</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q2',false,'m3q2_D')"><span class="letter">D</span><span data-i18n="m3q2_D_opt">Inside the basket alongside the worker</span></div>
       </div>
       <div class="q-feedback" id="m3q2-fb"></div>
     </div>
@@ -754,10 +728,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_3of5">Question 3 of 5</div>
       <h4 data-i18n="m3q3_q">If liquid was used in the boom’s air/water system, what must be done at the end of the day?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_A')"><span class="letter">A</span><span data-i18n="m3q3_A">Add more fluid to maintain pressure in the line</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q3',true,'m3q3_B')"><span class="letter">B</span><span data-i18n="m3q3_B">Open the valves at both top and bottom to drain the line</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_C')"><span class="letter">C</span><span data-i18n="m3q3_C">Seal all connections tightly</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_D')"><span class="letter">D</span><span data-i18n="m3q3_D">Flush with compressed air only</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_A')"><span class="letter">A</span><span data-i18n="m3q3_A_opt">Add more fluid to maintain pressure in the line</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q3',true,'m3q3_B')"><span class="letter">B</span><span data-i18n="m3q3_B_opt">Open the valves at both top and bottom to drain the line</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_C')"><span class="letter">C</span><span data-i18n="m3q3_C_opt">Seal all connections tightly</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q3',false,'m3q3_D')"><span class="letter">D</span><span data-i18n="m3q3_D_opt">Flush with compressed air only</span></div>
       </div>
       <div class="q-feedback" id="m3q3-fb"></div>
     </div>
@@ -766,10 +740,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_4of5">Question 4 of 5</div>
       <h4 data-i18n="m3q4_q">When greasing the turret, how much grease should be applied at each service?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_A')"><span class="letter">A</span><span data-i18n="m3q4_A">Fill completely until you feel resistance</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_B')"><span class="letter">B</span><span data-i18n="m3q4_B">10 to 15 squirts for full coverage</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q4',true,'m3q4_C')"><span class="letter">C</span><span data-i18n="m3q4_C">Only two or three squirts</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_D')"><span class="letter">D</span><span data-i18n="m3q4_D">Grease is only needed once per season</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_A')"><span class="letter">A</span><span data-i18n="m3q4_A_opt">Fill completely until you feel resistance</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_B')"><span class="letter">B</span><span data-i18n="m3q4_B_opt">10 to 15 squirts for full coverage</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q4',true,'m3q4_C')"><span class="letter">C</span><span data-i18n="m3q4_C_opt">Only two or three squirts</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q4',false,'m3q4_D')"><span class="letter">D</span><span data-i18n="m3q4_D_opt">Grease is only needed once per season</span></div>
       </div>
       <div class="q-feedback" id="m3q4-fb"></div>
     </div>
@@ -778,10 +752,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_5of5">Question 5 of 5</div>
       <h4 data-i18n="m3q5_q">What boom position is needed to access the turret grease circuit?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_A')"><span class="letter">A</span><span data-i18n="m3q5_A">When the boom is fully extended</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q5',true,'m3q5_B')"><span class="letter">B</span><span data-i18n="m3q5_B">When the boom is twisted at a 90-degree angle</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_C')"><span class="letter">C</span><span data-i18n="m3q5_C">Only when the machine is completely powered off</span></div>
-        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_D')"><span class="letter">D</span><span data-i18n="m3q5_D">After lowering the boom to the home position</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_A')"><span class="letter">A</span><span data-i18n="m3q5_A_opt">When the boom is fully extended</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q5',true,'m3q5_B')"><span class="letter">B</span><span data-i18n="m3q5_B_opt">When the boom is twisted at a 90-degree angle</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_C')"><span class="letter">C</span><span data-i18n="m3q5_C_opt">Only when the machine is completely powered off</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m3q5',false,'m3q5_D')"><span class="letter">D</span><span data-i18n="m3q5_D_opt">After lowering the boom to the home position</span></div>
       </div>
       <div class="q-feedback" id="m3q5-fb"></div>
     </div>
@@ -808,18 +782,15 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v9_cap"><strong>Video 9 of 11 —</strong> Quick Fix: Machine Won't Start</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_start_fix">Machine Won't Start — Three Things to Check</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>1. Battery Cutoff Switch</strong> — If there is absolutely no battery power, the battery cutoff switch is the most likely cause. This switch is used when leaving the machine on a job site overnight. Make sure it is set to the "ready to run" position rather than "shut off."</p>
-        <p><strong>2. Emergency Shutoff Switches</strong> — The machine has multiple kill switches on the main unit and inside the basket. If any are pushed in, the machine will not start. These switches look like they've popped back out, but they usually require a <strong>twist</strong> to fully reset and release. Check every emergency shutoff switch on the machine.</p>
-        <p><strong>3. Remote Control Issues</strong> — If the controls are in the start position but the remote has no battery power, the machine will not receive the start signal. Check that the remote batteries are charged or that the unit is properly powered.</p>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_start_fix">Machine Won't Start — Three Things to Check</h3>
+    <div data-i18n-html="acc_start_fix_body">
+      <p><strong>1. Battery Cutoff Switch</strong> — If there is absolutely no battery power, the battery cutoff switch is the most likely cause. This switch is used when leaving the machine on a job site overnight. Make sure it is set to the "ready to run" position rather than "shut off."</p>
+      <p><strong>2. Emergency Shutoff Switches</strong> — The machine has multiple kill switches on the main unit and inside the basket. If any are pushed in, the machine will not start. These switches look like they've popped back out, but they usually require a <strong>twist</strong> to fully reset and release. Check every emergency shutoff switch on the machine.</p>
+      <p><strong>3. Remote Control Issues</strong> — If the controls are in the start position but the remote has no battery power, the machine will not receive the start signal. Check that the remote batteries are charged or that the unit is properly powered.</p>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 10 -->
   <div class="video-card">
@@ -829,23 +800,20 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v10_cap"><strong>Video 10 of 11 —</strong> Quick Fix: Outrigger Pressure Error</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_outrigger">Outrigger Pressure Error — How to Reset</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p>If the machine suddenly stops functioning and feels like it's "quitting" on you, check for an outrigger pressure warning. An LED light on one of the outriggers indicates the machine no longer detects pressure on that specific leg — it may think you've broken through frost or soft mud.</p>
-        <p><strong>How to Fix It:</strong></p>
-        <ol>
-          <li>Use the <strong>Allen kit</strong> (included with the remote) to remove the Allen bolts on the affected outrigger housing.</li>
-          <li>Under the cover, locate the <strong>spring-loaded switch.</strong></li>
-          <li>Manually work the spring-loaded switch a few times.</li>
-          <li>Replace the cover. The warning lights should clear and full machine functionality should return.</li>
-        </ol>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_outrigger">Outrigger Pressure Error — How to Reset</h3>
+    <div data-i18n-html="acc_outrigger_body">
+      <p>If the machine suddenly stops functioning and feels like it's "quitting" on you, check for an outrigger pressure warning. An LED light on one of the outriggers indicates the machine no longer detects pressure on that specific leg — it may think you've broken through frost or soft mud.</p>
+      <p><strong>How to Fix It:</strong></p>
+      <ol>
+        <li>Use the <strong>Allen kit</strong> (included with the remote) to remove the Allen bolts on the affected outrigger housing.</li>
+        <li>Under the cover, locate the <strong>spring-loaded switch.</strong></li>
+        <li>Manually work the spring-loaded switch a few times.</li>
+        <li>Replace the cover. The warning lights should clear and full machine functionality should return.</li>
+      </ol>
     </div>
   </div>
+</div>
 
   <!-- VIDEO 11 -->
   <div class="video-card">
@@ -855,17 +823,14 @@ const _supa = supabase.createClient(
       </video>
     </div>
     <div class="video-caption" data-i18n-html="v11_cap"><strong>Video 11 of 11 —</strong> Quick Fix: Boom Won't Lift</div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-trigger" aria-expanded="false"><span data-i18n="acc_boom">Boom Won't Lift — Two Common Causes</span> <span class="icon">+</span></button>
-    <div class="acc-body">
-      <div class="acc-inner">
-        <p><strong>1. Locking Pins Not Fully Seated</strong> — The boom will not move if the outrigger locking pins are not fully locked into place. Although the status may show on the display, the indicator lights can be misleading. Physically check that all pins are completely down — every single time you set up.</p>
-        <p><strong>2. Basket Out of Level</strong> — After performing multiple functions, the basket can work its way out of level. Check the display for the specific LED light that indicates this condition. Leveling the basket should restore full boom operation.</p>
-      </div>
+  <div class="video-body">
+    <h3 class="video-body-title" data-i18n="acc_boom">Boom Won't Lift — Two Common Causes</h3>
+    <div data-i18n-html="acc_boom_body">
+      <p><strong>1. Locking Pins Not Fully Seated</strong> — The boom will not move if the outrigger locking pins are not fully locked into place. Although the status may show on the display, the indicator lights can be misleading. Physically check that all pins are completely down — every single time you set up.</p>
+      <p><strong>2. Basket Out of Level</strong> — After performing multiple functions, the basket can work its way out of level. Check the display for the specific LED light that indicates this condition. Leveling the basket should restore full boom operation.</p>
     </div>
   </div>
+</div>
 
   <!-- MODULE 4 QUIZ: MULTIPLE CHOICE -->
   <div class="quiz-box">
@@ -878,10 +843,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_1of4">Question 1 of 4</div>
       <h4 data-i18n="m4q1_q">If the machine shows absolutely no battery power and will not start, what is the most likely cause?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_A')"><span class="letter">A</span>The diesel engine has failed</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q1',true,'m4q1_B')"><span class="letter">B</span>The battery cutoff switch is in the "shut off" position</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_C')"><span class="letter">C</span>The remote control has failed completely</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_D')"><span class="letter">D</span>A blown outrigger fuse</div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_A')"><span class="letter">A</span><span data-i18n="m4q1_A_opt">The diesel engine has failed</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q1',true,'m4q1_B')"><span class="letter">B</span><span data-i18n="m4q1_B_opt">The battery cutoff switch is in the "shut off" position</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_C')"><span class="letter">C</span><span data-i18n="m4q1_C_opt">The remote control has failed completely</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q1',false,'m4q1_D')"><span class="letter">D</span><span data-i18n="m4q1_D_opt">A blown outrigger fuse</span></div>
       </div>
       <div class="q-feedback" id="m4q1-fb"></div>
     </div>
@@ -890,10 +855,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_2of4">Question 2 of 4</div>
       <h4 data-i18n="m4q2_q">Emergency kill switches on the machine require what specific action to fully reset them after being pushed in?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_A')"><span class="letter">A</span>Hold the switch for 3 seconds</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_B')"><span class="letter">B</span>Press the switch twice rapidly</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q2',true,'m4q2_C')"><span class="letter">C</span>A twist to physically release the latch</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_D')"><span class="letter">D</span>Replace the switch entirely</div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_A')"><span class="letter">A</span><span data-i18n="m4q2_A_opt">Hold the switch for 3 seconds</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_B')"><span class="letter">B</span><span data-i18n="m4q2_B_opt">Press the switch twice rapidly</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q2',true,'m4q2_C')"><span class="letter">C</span><span data-i18n="m4q2_C_opt">A twist to physically release the latch</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q2',false,'m4q2_D')"><span class="letter">D</span><span data-i18n="m4q2_D_opt">Replace the switch entirely</span></div>
       </div>
       <div class="q-feedback" id="m4q2-fb"></div>
     </div>
@@ -902,10 +867,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_3of4">Question 3 of 4</div>
       <h4 data-i18n="m4q3_q">After performing multiple operations, the boom stops functioning. What display indicator should you check?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_A')"><span class="letter">A</span>The fuel level gauge</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_B')"><span class="letter">B</span>The track width setting</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q3',true,'m4q3_C')"><span class="letter">C</span>The basket leveling LED indicator</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_D')"><span class="letter">D</span>The radio remote battery indicator</div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_A')"><span class="letter">A</span><span data-i18n="m4q3_A_opt">The fuel level gauge</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_B')"><span class="letter">B</span><span data-i18n="m4q3_B_opt">The track width setting</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q3',true,'m4q3_C')"><span class="letter">C</span><span data-i18n="m4q3_C_opt">The basket leveling LED indicator</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q3',false,'m4q3_D')"><span class="letter">D</span><span data-i18n="m4q3_D_opt">The radio remote battery indicator</span></div>
       </div>
       <div class="q-feedback" id="m4q3-fb"></div>
     </div>
@@ -914,10 +879,10 @@ const _supa = supabase.createClient(
       <div class="q-num" data-i18n="q_4of4">Question 4 of 4</div>
       <h4 data-i18n="m4q4_q">To clear an outrigger pressure sensor error, you remove Allen bolts to access and manually work what component?</h4>
       <div class="mc-options">
-        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_A')"><span class="letter">A</span>A hydraulic valve</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_B')"><span class="letter">B</span>A pressure gauge</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q4',true,'m4q4_C')"><span class="letter">C</span>A spring-loaded switch</div>
-        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_D')"><span class="letter">D</span>The LED indicator housing</div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_A')"><span class="letter">A</span><span data-i18n="m4q4_A_opt">A hydraulic valve</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_B')"><span class="letter">B</span><span data-i18n="m4q4_B_opt">A pressure gauge</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q4',true,'m4q4_C')"><span class="letter">C</span><span data-i18n="m4q4_C_opt">A spring-loaded switch</span></div>
+        <div class="mc-option" onclick="mcAnswer(this,'m4q4',false,'m4q4_D')"><span class="letter">D</span><span data-i18n="m4q4_D_opt">The LED indicator housing</span></div>
       </div>
       <div class="q-feedback" id="m4q4-fb"></div>
     </div>
@@ -970,10 +935,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 1 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq1_q">What speed setting MUST always be used when loading or unloading the machine from the trailer?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_A')"><span class="letter">A</span>Rabbit (fast)</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_B')"><span class="letter">B</span>Medium</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq1_C')"><span class="letter">C</span>Turtle (slow)</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_D')"><span class="letter">D</span>Any speed works fine</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_A')"><span class="letter">A</span><span data-i18n="eq1_A_opt">Rabbit (fast)</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_B')"><span class="letter">B</span><span data-i18n="eq1_B_opt">Medium</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq1_C')"><span class="letter">C</span><span data-i18n="eq1_C_opt">Turtle (slow)</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq1_D')"><span class="letter">D</span><span data-i18n="eq1_D_opt">Any speed works fine</span></div>
         </div>
         <div class="q-feedback" id="eq1-fb"></div>
         <button class="exam-next-btn" id="eq1-next" onclick="nextExamQ(1)"><span data-i18n="next_q">Next Question →</span></button>
@@ -984,10 +949,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 2 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq2_q">How many security straps hold the machine on the trailer?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_A')"><span class="letter">A</span>Three</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_B')"><span class="letter">B</span>Four</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq2_C')"><span class="letter">C</span>Five</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_D')"><span class="letter">D</span>Six</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_A')"><span class="letter">A</span><span data-i18n="eq2_A_opt">Three</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_B')"><span class="letter">B</span><span data-i18n="eq2_B_opt">Four</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq2_C')"><span class="letter">C</span><span data-i18n="eq2_C_opt">Five</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq2_D')"><span class="letter">D</span><span data-i18n="eq2_D_opt">Six</span></div>
         </div>
         <div class="q-feedback" id="eq2-fb"></div>
         <button class="exam-next-btn" id="eq2-next" onclick="nextExamQ(2)"><span data-i18n="next_q">Next Question →</span></button>
@@ -998,10 +963,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 3 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq3_q">What happens if the trailer doors are not fully latched before tilting?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_A')"><span class="letter">A</span>Nothing — they just swing freely</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_B')"><span class="letter">B</span>They fly off the trailer</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq3_C')"><span class="letter">C</span>They dig into the ground as the trailer tilts</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_D')"><span class="letter">D</span>They lock the machine from moving</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_A')"><span class="letter">A</span><span data-i18n="eq3_A_opt">Nothing — they just swing freely</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_B')"><span class="letter">B</span><span data-i18n="eq3_B_opt">They fly off the trailer</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq3_C')"><span class="letter">C</span><span data-i18n="eq3_C_opt">They dig into the ground as the trailer tilts</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq3_D')"><span class="letter">D</span><span data-i18n="eq3_D_opt">They lock the machine from moving</span></div>
         </div>
         <div class="q-feedback" id="eq3-fb"></div>
         <button class="exam-next-btn" id="eq3-next" onclick="nextExamQ(3)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1012,10 +977,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 4 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq4_q">What is the minimum wire gauge required for the extension cord when running the machine on 110V electric power?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_A')"><span class="letter">A</span>10-gauge</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq4_B')"><span class="letter">B</span>12-gauge</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_C')"><span class="letter">C</span>14-gauge</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_D')"><span class="letter">D</span>16-gauge</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_A')"><span class="letter">A</span><span data-i18n="eq4_A_opt">10-gauge</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq4_B')"><span class="letter">B</span><span data-i18n="eq4_B_opt">12-gauge</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_C')"><span class="letter">C</span><span data-i18n="eq4_C_opt">14-gauge</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq4_D')"><span class="letter">D</span><span data-i18n="eq4_D_opt">16-gauge</span></div>
         </div>
         <div class="q-feedback" id="eq4-fb"></div>
         <button class="exam-next-btn" id="eq4-next" onclick="nextExamQ(4)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1026,10 +991,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 5 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq5_q">The emergency electro-pump is specifically designed for:</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_A')"><span class="letter">A</span>Indoor daily use when diesel is unavailable</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_B')"><span class="letter">B</span>Long-term operation during power outages</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq5_C')"><span class="letter">C</span>Safely lowering a worker who is stranded in the air</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_D')"><span class="letter">D</span>Charging the radio remote batteries</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_A')"><span class="letter">A</span><span data-i18n="eq5_A_opt">Indoor daily use when diesel is unavailable</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_B')"><span class="letter">B</span><span data-i18n="eq5_B_opt">Long-term operation during power outages</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq5_C')"><span class="letter">C</span><span data-i18n="eq5_C_opt">Safely lowering a worker who is stranded in the air</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq5_D')"><span class="letter">D</span><span data-i18n="eq5_D_opt">Charging the radio remote batteries</span></div>
         </div>
         <div class="q-feedback" id="eq5-fb"></div>
         <button class="exam-next-btn" id="eq5-next" onclick="nextExamQ(5)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1040,10 +1005,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 6 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq6_q">What color are the remote control icons that represent aerial boom and basket movement functions?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_A')"><span class="letter">A</span>Orange</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_B')"><span class="letter">B</span>Green</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_C')"><span class="letter">C</span>White</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq6_D')"><span class="letter">D</span>Yellow</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_A')"><span class="letter">A</span><span data-i18n="eq6_A_opt">Orange</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_B')"><span class="letter">B</span><span data-i18n="eq6_B_opt">Green</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq6_C')"><span class="letter">C</span><span data-i18n="eq6_C_opt">White</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq6_D')"><span class="letter">D</span><span data-i18n="eq6_D_opt">Yellow</span></div>
         </div>
         <div class="q-feedback" id="eq6-fb"></div>
         <button class="exam-next-btn" id="eq6-next" onclick="nextExamQ(6)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1054,10 +1019,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 7 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq7_q">Before backing the machine out of the trailer, the jib must be in what position?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_A')"><span class="letter">A</span>Lowered all the way down</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq7_B')"><span class="letter">B</span>Raised to its highest position</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_C')"><span class="letter">C</span>Removed from the machine</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_D')"><span class="letter">D</span>At a 90-degree angle</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_A')"><span class="letter">A</span><span data-i18n="eq7_A_opt">Lowered all the way down</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq7_B')"><span class="letter">B</span><span data-i18n="eq7_B_opt">Raised to its highest position</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_C')"><span class="letter">C</span><span data-i18n="eq7_C_opt">Removed from the machine</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq7_D')"><span class="letter">D</span><span data-i18n="eq7_D_opt">At a 90-degree angle</span></div>
         </div>
         <div class="q-feedback" id="eq7-fb"></div>
         <button class="exam-next-btn" id="eq7-next" onclick="nextExamQ(7)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1068,10 +1033,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 8 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq8_q">Before raising the jib in basket mode, what must you do with the step?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_A')"><span class="letter">A</span>Lower it fully</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_B')"><span class="letter">B</span>Leave it as-is</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq8_C')"><span class="letter">C</span>Manually pull it up and put it away</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_D')"><span class="letter">D</span>Lock it at a 45-degree angle</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_A')"><span class="letter">A</span><span data-i18n="eq8_A_opt">Lower it fully</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_B')"><span class="letter">B</span><span data-i18n="eq8_B_opt">Leave it as-is</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq8_C')"><span class="letter">C</span><span data-i18n="eq8_C_opt">Manually pull it up and put it away</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq8_D')"><span class="letter">D</span><span data-i18n="eq8_D_opt">Lock it at a 45-degree angle</span></div>
         </div>
         <div class="q-feedback" id="eq8-fb"></div>
         <button class="exam-next-btn" id="eq8-next" onclick="nextExamQ(8)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1082,10 +1047,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 9 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq9_q">Track width should remain in what position during normal machine operation?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_A')"><span class="letter">A</span>Retracted (in)</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_B')"><span class="letter">B</span>Half-extended</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq9_C')"><span class="letter">C</span>Extended (out)</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_D')"><span class="letter">D</span>Automatically adjusts as needed</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_A')"><span class="letter">A</span><span data-i18n="eq9_A_opt">Retracted (in)</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_B')"><span class="letter">B</span><span data-i18n="eq9_B_opt">Half-extended</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq9_C')"><span class="letter">C</span><span data-i18n="eq9_C_opt">Extended (out)</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq9_D')"><span class="letter">D</span><span data-i18n="eq9_D_opt">Automatically adjusts as needed</span></div>
         </div>
         <div class="q-feedback" id="eq9-fb"></div>
         <button class="exam-next-btn" id="eq9-next" onclick="nextExamQ(9)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1096,10 +1061,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 10 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq10_q">What is notable about Stage 3 outrigger extension compared to pressing the switch one more time beyond it?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_A')"><span class="letter">A</span>Stage 3 is the maximum possible extension</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq10_B')"><span class="letter">B</span>Stage 3 maintains auto-level; beyond Stage 3 extends regardless of level</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_C')"><span class="letter">C</span>Stage 3 disables the boom for safety</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_D')"><span class="letter">D</span>They are identical — no difference</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_A')"><span class="letter">A</span><span data-i18n="eq10_A_opt">Stage 3 is the maximum possible extension</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq10_B')"><span class="letter">B</span><span data-i18n="eq10_B_opt">Stage 3 maintains auto-level; beyond Stage 3 extends regardless of level</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_C')"><span class="letter">C</span><span data-i18n="eq10_C_opt">Stage 3 disables the boom for safety</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq10_D')"><span class="letter">D</span><span data-i18n="eq10_D_opt">They are identical — no difference</span></div>
         </div>
         <div class="q-feedback" id="eq10-fb"></div>
         <button class="exam-next-btn" id="eq10-next" onclick="nextExamQ(10)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1110,10 +1075,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 11 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq11_q">Why must the lower boom be raised before rotating the turret?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_A')"><span class="letter">A</span>A safety interlock prevents it electronically</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq11_B')"><span class="letter">B</span>If not raised enough, the lower boom limits the turret rotation range</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_C')"><span class="letter">C</span>It is a hydraulic pressure requirement</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_D')"><span class="letter">D</span>Auto-level requires a raised lower boom to function</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_A')"><span class="letter">A</span><span data-i18n="eq11_A_opt">A safety interlock prevents it electronically</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq11_B')"><span class="letter">B</span><span data-i18n="eq11_B_opt">If not raised enough, the lower boom limits the turret rotation range</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_C')"><span class="letter">C</span><span data-i18n="eq11_C_opt">It is a hydraulic pressure requirement</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq11_D')"><span class="letter">D</span><span data-i18n="eq11_D_opt">Auto-level requires a raised lower boom to function</span></div>
         </div>
         <div class="q-feedback" id="eq11-fb"></div>
         <button class="exam-next-btn" id="eq11-next" onclick="nextExamQ(11)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1124,10 +1089,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 12 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq12_q">How many squirts of grease should be applied to the turret at each service?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_A')"><span class="letter">A</span>Five to ten squirts</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_B')"><span class="letter">B</span>Until you feel resistance</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_C')"><span class="letter">C</span>One squirt only</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq12_D')"><span class="letter">D</span>Two or three squirts</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_A')"><span class="letter">A</span><span data-i18n="eq12_A_opt">Five to ten squirts</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_B')"><span class="letter">B</span><span data-i18n="eq12_B_opt">Until you feel resistance</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq12_C')"><span class="letter">C</span><span data-i18n="eq12_C_opt">One squirt only</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq12_D')"><span class="letter">D</span><span data-i18n="eq12_D_opt">Two or three squirts</span></div>
         </div>
         <div class="q-feedback" id="eq12-fb"></div>
         <button class="exam-next-btn" id="eq12-next" onclick="nextExamQ(12)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1138,10 +1103,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 13 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq13_q">An outrigger pressure LED warning that causes the machine to quit can sometimes be caused by what mechanical issue?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_A')"><span class="letter">A</span>Low fuel level</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq13_B')"><span class="letter">B</span>A failed spring-loaded switch in the outrigger housing</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_C')"><span class="letter">C</span>Turret misalignment</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_D')"><span class="letter">D</span>Dead remote battery</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_A')"><span class="letter">A</span><span data-i18n="eq13_A_opt">Low fuel level</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq13_B')"><span class="letter">B</span><span data-i18n="eq13_B_opt">A failed spring-loaded switch in the outrigger housing</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_C')"><span class="letter">C</span><span data-i18n="eq13_C_opt">Turret misalignment</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq13_D')"><span class="letter">D</span><span data-i18n="eq13_D_opt">Dead remote battery</span></div>
         </div>
         <div class="q-feedback" id="eq13-fb"></div>
         <button class="exam-next-btn" id="eq13-next" onclick="nextExamQ(13)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1152,10 +1117,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 14 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq14_q">An emergency shutoff switch appears to have popped back out. What is required to fully reset it?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_A')"><span class="letter">A</span>Press it again firmly</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_B')"><span class="letter">B</span>Replace the fuse</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq14_C')"><span class="letter">C</span>A twist to release the latching mechanism</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_D')"><span class="letter">D</span>Power cycle the machine</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_A')"><span class="letter">A</span><span data-i18n="eq14_A_opt">Press it again firmly</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_B')"><span class="letter">B</span><span data-i18n="eq14_B_opt">Replace the fuse</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq14_C')"><span class="letter">C</span><span data-i18n="eq14_C_opt">A twist to release the latching mechanism</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq14_D')"><span class="letter">D</span><span data-i18n="eq14_D_opt">Power cycle the machine</span></div>
         </div>
         <div class="q-feedback" id="eq14-fb"></div>
         <button class="exam-next-btn" id="eq14-next" onclick="nextExamQ(14)"><span data-i18n="next_q">Next Question →</span></button>
@@ -1166,10 +1131,10 @@ const _supa = supabase.createClient(
         <div class="q-num">Question 15 of 15</div>
         <h4 style="font-size:17px;color:var(--white);margin-bottom:4px" data-i18n="eq15_q">When returning the boom to its stowed position, what is the LAST step in the correct sequence?</h4>
         <div class="exam-mc-options">
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_A')"><span class="letter">A</span>Retract the telescope</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_B')"><span class="letter">B</span>Lower the upper boom</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_C')"><span class="letter">C</span>Lower the lower boom</div>
-          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq15_D')"><span class="letter">D</span>Lower the jib</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_A')"><span class="letter">A</span><span data-i18n="eq15_A_opt">Retract the telescope</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_B')"><span class="letter">B</span><span data-i18n="eq15_B_opt">Lower the upper boom</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'eq15_C')"><span class="letter">C</span><span data-i18n="eq15_C_opt">Lower the lower boom</span></div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'eq15_D')"><span class="letter">D</span><span data-i18n="eq15_D_opt">Lower the jib</span></div>
         </div>
         <div class="q-feedback" id="eq15-fb"></div>
         <button class="exam-next-btn" id="eq15-next" onclick="finishExam()"><span data-i18n="see_results">See Results →</span></button>
@@ -1254,7 +1219,7 @@ const _supa = supabase.createClient(
 </div>
 
 <!-- JEOPARDY QUESTION OVERLAY -->
-<div class="j-q-overlay" id="j-q-overlay">
+<div class="j-q-overlay" id="j-q-overlay" onclick="if(event.target===this){document.getElementById('j-q-overlay').classList.remove('open');document.getElementById('j-answer').disabled=false;}">
   <div class="j-q-box">
     <div class="j-pts" id="j-pts-display"></div>
     <div class="j-question" id="j-q-text"></div>
@@ -1268,7 +1233,7 @@ const _supa = supabase.createClient(
   </div>
 </div>
 
-<script src="./translations-es.js"></script>
+<script src="./translations-es.js?v=3"></script>
 
 <script>
 
@@ -1409,9 +1374,8 @@ const SECTION_TITLES_EN = {
 function setLang(lang) {
   CLANG = lang;
 
-  // Update plain-text [data-i18n] elements (skip option spans inside mc-options)
+  // Update plain-text [data-i18n] elements
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    if (el.closest('.mc-options, .exam-mc-options')) return;
     const key = el.getAttribute('data-i18n');
     if (lang === 'es') {
       const val = T_ES[key];
@@ -1446,6 +1410,13 @@ function setLang(lang) {
     } else {
       const orig = el.getAttribute('data-orig-html');
       if (orig) el.innerHTML = orig;
+    }
+  });
+
+  // Swap "Drop here" placeholder text for unfilled drop slots
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    if (!zone.dataset.filled) {
+      zone.querySelector('.drop-slot').textContent = lang === 'es' ? 'Soltar aquí' : 'Drop here';
     }
   });
 
@@ -1535,16 +1506,6 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-30% 0px -60% 0px' });
 sections.forEach(s => observer.observe(s));
-
-// ═══ ACCORDION ═══
-document.querySelectorAll('.acc-trigger').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const body = btn.nextElementSibling;
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', !isOpen);
-    body.classList.toggle('open', !isOpen);
-  });
-});
 
 // ═══ MODULE 1: TRUE/FALSE ═══
 const m1Scores = { m1q1: 0, m1q2: 0, m1q3: 0, m1q4: 0 };
