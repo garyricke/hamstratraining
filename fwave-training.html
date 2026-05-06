@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./brand/favicon-blue.svg">
+<title>F-Wave REVIA Synthetic Shingle Installation — Hamstra Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#EB1A2C;--blue:#3B82F6;--charcoal:#2F2F2F;--gray:#8A8A8A;--black:#111;--white:#fff;--off:#1a1a1a;--card:#222;--border:#333;--gold:#F5C518;--green:#27ae60;--rad:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);line-height:1.6;font-size:16px}
+
+/* NAV */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0d0d0d;border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-logo svg{height:32px;width:auto}
+.nav-logo-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-left:12px;border-left:1px solid #444}
+#progress-wrap{flex:1;max-width:400px;background:#333;height:8px;border-radius:4px;overflow:hidden}
+#progress-bar{height:100%;background:var(--red);width:0%;transition:width .4s ease;border-radius:4px}
+#score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--gold);white-space:nowrap}
+#score-display span{color:var(--gray);font-weight:400;font-size:13px}
+
+/* HERO */
+#hero{margin-top:56px;position:relative;height:520px;overflow:hidden;display:flex;align-items:flex-end}
+#hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:48px 64px;max-width:800px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.hero-content h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(42px,6vw,72px);line-height:.95;margin-bottom:16px}
+.hero-content h1 em{color:var(--red);font-style:normal}
+.hero-content p{font-size:18px;font-weight:300;color:rgba(255,255,255,.75);max-width:520px;margin-bottom:24px}
+.hero-badges{display:flex;gap:16px;flex-wrap:wrap}
+.badge{background:rgba(235,26,44,.15);border:1px solid var(--red);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+
+/* MODULE NAV */
+#module-nav{background:#161616;border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;position:sticky;top:56px;z-index:100}
+.mnav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:16px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.mnav-btn:hover{color:var(--white)}
+.mnav-btn.done{color:var(--green)}
+.mnav-btn.done::before{content:''}
+.mnav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* SECTIONS */
+.training-section{padding:64px 0;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;padding-left:40px;padding-right:40px}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';width:24px;height:2px;background:var(--red)}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;margin-bottom:16px}
+.sec-title em{color:var(--red);font-style:normal}
+.sec-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:40px;line-height:1.7}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin-bottom:12px;transition:border-color .2s}
+.accordion.has-image{border-color:rgba(59,130,246,.45);border-left-width:3px;box-shadow:0 0 0 1px rgba(59,130,246,.15) inset}
+.accordion.has-image .acc-trigger{background:linear-gradient(90deg,rgba(59,130,246,.10) 0%,rgba(59,130,246,.04) 35%,var(--card) 70%)}
+.accordion.has-image .acc-trigger:hover{background:linear-gradient(90deg,rgba(59,130,246,.16) 0%,rgba(59,130,246,.06) 35%,#2a2a2a 70%)}
+.accordion.has-image:hover{border-color:var(--blue)}
+.acc-trigger{width:100%;background:var(--card);border:none;color:var(--white);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-align:left;transition:background .2s}
+.acc-trigger:hover{background:#2a2a2a}
+.acc-trigger .icon{width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:transform .3s}
+.acc-trigger[aria-expanded="true"] .icon{transform:rotate(45deg)}
+.acc-title{display:inline-flex;align-items:center;gap:10px}
+.acc-img-flag{flex-shrink:0;color:var(--blue);opacity:.9}
+.acc-trigger:hover .acc-img-flag{opacity:1}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body.open{max-height:2400px}
+.acc-inner{padding:24px;border-top:1px solid var(--border);background:#1d1d1d}
+.acc-inner p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner ul{padding-left:20px;margin:8px 0}
+.acc-inner li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:4px}
+.acc-inner strong{color:var(--white)}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px;border-top:3px solid var(--red)}
+.info-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--white);margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--gray);line-height:1.5}
+.info-card .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);line-height:1;margin-bottom:4px}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.data-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;text-align:left}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.data-table tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.data-table tr:hover td{background:rgba(235,26,44,.08)}
+
+/* QUIZ */
+.quiz-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.quiz-header{display:flex;align-items:center;gap:24px;margin-bottom:28px}
+.quiz-header img{width:120px;height:120px;object-fit:cover;border-radius:50%;box-shadow:0 0 24px rgba(235,26,44,.45),0 0 6px rgba(235,26,44,.3);flex-shrink:0}
+.quiz-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white)}
+.quiz-header p{font-size:13px;color:var(--gray)}
+.question-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.question-block:last-of-type{border-bottom:none}
+.question-block h4{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.5}
+.q-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* TRUE/FALSE */
+.tf-btns{display:flex;gap:12px}
+.tf-btn{padding:12px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;border:2px solid var(--border);background:transparent;color:var(--white);border-radius:var(--rad);cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--red);color:var(--red)}
+.tf-btn.correct{background:var(--green);border-color:var(--green);color:var(--white)}
+.tf-btn.wrong{background:var(--red);border-color:var(--red);color:var(--white)}
+.tf-btn:disabled{cursor:default;opacity:.7}
+
+/* MULTIPLE CHOICE */
+.mc-options{display:flex;flex-direction:column;gap:10px}
+.mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.mc-option:hover{border-color:rgba(235,26,44,.5)}
+.mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15)}
+.mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15)}
+.mc-option.disabled{cursor:default;pointer-events:none}
+
+/* FEEDBACK */
+.q-feedback{margin-top:12px;padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;display:none}
+.q-feedback.show{display:block}
+.q-feedback.good{background:rgba(39,174,96,.2);border-left:4px solid var(--green);color:#aaffcc}
+.q-feedback.bad{background:rgba(235,26,44,.15);border-left:4px solid var(--red);color:#ffaaaa}
+
+/* QUIZ SCORE */
+.quiz-result{display:none;margin-top:24px;padding:24px;background:rgba(235,26,44,.1);border:2px solid var(--red);border-radius:var(--rad);text-align:center}
+.quiz-result.show{display:block}
+.quiz-result h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--white);margin-bottom:4px}
+.quiz-result p{color:var(--gray);font-size:15px}
+.quiz-result .pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--gold);line-height:1}
+
+/* DRAG & DROP */
+.drag-arena{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0;align-items:start}
+.drag-chips{display:flex;flex-direction:column;gap:10px}
+.drag-chip{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;padding:12px 16px;border-radius:6px;cursor:grab;user-select:none;transition:opacity .2s}
+.drag-chip:active{cursor:grabbing;opacity:.7}
+.drag-chip.placed{opacity:.4;pointer-events:none}
+.drop-zones{display:flex;flex-direction:column;gap:10px}
+.drop-zone{background:var(--card);border:2px dashed var(--border);border-radius:6px;padding:14px 16px;min-height:52px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+.drop-zone.over{border-color:var(--red);background:rgba(235,26,44,.1)}
+.drop-zone.correct{border-color:var(--green)!important;background:rgba(39,174,96,.1)!important}
+.drop-zone.wrong{border-color:var(--red)!important;background:rgba(235,26,44,.1)!important;animation:shake .4s}
+.drop-zone-label{font-size:13px;color:var(--gray);flex:1}
+.drop-zone-label strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:2px}
+.drop-slot{min-width:140px;padding:8px 12px;background:#333;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--gray);text-align:center}
+.check-drag-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:opacity .2s}
+.check-drag-btn:hover{opacity:.85}
+
+/* AUDIO PLAYER */
+#audio-overview{background:linear-gradient(135deg,#EB1A2C 0%,#8b0f1a 50%,#2a0508 100%);border-bottom:1px solid var(--border)}
+#audio-player{max-width:1100px;margin:0 auto;padding:28px 40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+#audio-meta{display:flex;align-items:center;gap:16px;flex:1;min-width:240px}
+#audio-icon{width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#audio-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:2px}
+#audio-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--white)}
+#audio-controls{display:flex;align-items:center;gap:12px;flex:2;min-width:280px}
+.audio-btn{background:rgba(255,255,255,.15);border:none;color:var(--white);width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s;flex-shrink:0}
+.audio-btn:hover{background:rgba(255,255,255,.25)}
+#play-btn{width:48px;height:48px;background:var(--white);color:var(--red);font-size:18px}
+#play-btn:hover{background:rgba(255,255,255,.9)}
+#scrubber{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:rgba(255,255,255,.3);border-radius:2px;outline:none;cursor:pointer}
+#scrubber::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--white);cursor:pointer}
+#audio-time{font-family:'Barlow Condensed',sans-serif;font-size:13px;color:rgba(255,255,255,.7);white-space:nowrap}
+#speed-btn{background:rgba(255,255,255,.15);border:none;color:var(--white);padding:6px 10px;border-radius:4px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;transition:background .2s;white-space:nowrap}
+#speed-btn:hover{background:rgba(255,255,255,.25)}
+#audio-waveform{display:flex;align-items:center;gap:3px;height:32px;flex-shrink:0}
+#audio-waveform span{display:block;width:3px;background:rgba(255,255,255,.4);border-radius:2px;height:8px;transition:height .15s}
+#audio-waveform.playing span{animation:wave .8s ease-in-out infinite}
+#audio-waveform span:nth-child(2){animation-delay:.1s}
+#audio-waveform span:nth-child(3){animation-delay:.2s}
+#audio-waveform span:nth-child(4){animation-delay:.3s}
+#audio-waveform span:nth-child(5){animation-delay:.4s}
+#audio-waveform span:nth-child(6){animation-delay:.5s}
+#audio-waveform span:nth-child(7){animation-delay:.15s}
+#audio-waveform span:nth-child(8){animation-delay:.25s}
+#audio-waveform span:nth-child(9){animation-delay:.35s}
+#audio-waveform span:nth-child(10){animation-delay:.45s}
+#audio-waveform span:nth-child(11){animation-delay:.05s}
+#audio-waveform span:nth-child(12){animation-delay:.55s}
+
+/* JEOPARDY */
+#jeopardy-modal{display:none;position:fixed;inset:0;background:rgba(0,0,20,.95);z-index:600;overflow-y:auto;padding:40px 20px}
+#jeopardy-modal.open{display:block}
+.j-header{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto 24px}
+.j-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--gold)}
+.j-close{background:var(--red);color:var(--white);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px}
+.j-score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--gold)}
+.j-board{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:960px;margin:0 auto}
+.j-cat-header{background:#1a1a60;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;text-align:center;padding:16px 8px;border:2px solid #3333aa;letter-spacing:.06em;text-transform:uppercase}
+.j-cell{background:#1a1a99;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-align:center;padding:24px 8px;cursor:pointer;border:2px solid #3333cc;transition:all .2s}
+.j-cell:hover{background:#2222cc;transform:scale(1.02)}
+.j-cell.used{background:#111;color:#333;cursor:default;pointer-events:none}
+.j-q-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,20,.97);z-index:700;align-items:center;justify-content:center}
+.j-q-overlay.open{display:flex}
+.j-q-box{background:#1a1a60;border:3px solid var(--gold);border-radius:12px;padding:48px;max-width:600px;width:90%;text-align:center}
+.j-q-box .j-pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--gold);margin-bottom:16px}
+.j-q-box .j-question{font-size:20px;font-weight:600;color:var(--white);margin-bottom:32px;line-height:1.5}
+.j-answer-input{width:100%;padding:14px 18px;background:#111;border:2px solid #3333cc;border-radius:8px;color:var(--white);font-size:16px;font-family:'Barlow',sans-serif;margin-bottom:16px}
+.j-submit-btn{background:var(--gold);color:#111;border:none;padding:14px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;margin-right:8px}
+.j-skip-btn{background:transparent;color:var(--gray);border:1px solid var(--border);padding:14px 24px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;cursor:pointer}
+.j-reveal{margin-top:16px;padding:16px;border-radius:8px;font-size:15px;font-weight:600;display:none}
+.j-reveal.show{display:block}
+.j-reveal.right{background:rgba(39,174,96,.2);color:#aaffcc}
+.j-reveal.oops{background:rgba(235,26,44,.2);color:#ffaaaa}
+.launch-j-btn{display:block;width:100%;padding:20px;background:linear-gradient(135deg,#1a1a99,#3333cc);color:var(--gold);border:3px solid var(--gold);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:32px}
+.launch-j-btn:hover{opacity:.88}
+
+/* TIMED EXAM */
+.exam-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.exam-timer{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--red);text-align:center;margin:12px 0}
+.exam-timer.warn{color:var(--gold);animation:pulse 1s infinite}
+.exam-progress-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--gray);text-align:center;margin-bottom:24px}
+.exam-q{display:none}
+.exam-q.active{display:block}
+.start-exam-btn{display:block;width:100%;padding:18px;background:var(--red);color:var(--white);border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:24px}
+.start-exam-btn:hover{opacity:.88}
+.exam-mc-options{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.exam-mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.exam-mc-option:hover{border-color:rgba(235,26,44,.5)}
+.exam-mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.exam-mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15);pointer-events:none}
+.exam-mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15);pointer-events:none}
+.exam-next-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;display:none}
+
+/* CERTIFICATE */
+#cert-section{display:none;text-align:center;padding:80px 40px;max-width:900px;margin:0 auto}
+#cert-section.show{display:block}
+.cert-name-input{padding:14px 20px;background:var(--card);border:2px solid var(--border);border-radius:8px;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:22px;text-align:center;width:320px;margin:16px auto;display:block}
+.cert-name-input:focus{outline:none;border-color:var(--red)}
+.cert-img-wrap{position:relative;margin:32px auto;max-width:800px}
+.cert-img-wrap img{width:100%;border-radius:8px}
+.cert-overlay-name{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(18px,3vw,32px);color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.8);letter-spacing:.05em;white-space:nowrap}
+.print-cert-btn{margin-top:20px;padding:14px 40px;background:var(--gold);color:#111;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;letter-spacing:.05em}
+.final-score-box{background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:32px 48px;display:inline-block;margin-bottom:32px}
+.final-score-box .big-score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;color:var(--gold);line-height:1}
+.final-score-box p{color:var(--gray);font-size:16px}
+
+/* UTILITIES */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.callout{background:rgba(235,26,44,.08);border-left:4px solid var(--red);padding:16px 20px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;color:rgba(255,255,255,.8)}
+.figure-illustration{margin:20px auto;max-width:720px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:#0a0a0a}
+.figure-illustration img{width:100%;display:block}
+.figure-illustration figcaption{padding:10px 14px;font-size:13px;color:var(--gray);text-align:center;font-style:italic;background:#0d0d0d}
+.callout strong{color:var(--red)}
+.fact-pill{display:inline-block;background:var(--card);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.7);margin:4px}
+.fact-pill strong{color:var(--red)}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes wave{0%,100%{height:8px}50%{height:24px}}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;z-index:999;animation:confetti-fall 2.5s ease-in forwards}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+@media(max-width:768px){
+  .two-col,.drag-arena{grid-template-columns:1fr}
+  .training-section{padding:40px 20px}
+  .hero-content{padding:32px 20px}
+  #topnav{padding:0 16px}
+  #progress-wrap{max-width:120px}
+  #audio-player{padding:20px}
+  .j-board{grid-template-columns:repeat(5,1fr)}
+  .j-cell{font-size:18px;padding:16px 4px}
+}
+@media print{
+  #topnav,#module-nav,.quiz-box,.exam-box,#jeopardy-modal,.print-cert-btn{display:none!important}
+  #cert-section{display:block!important}
+  body{background:white;color:black}
+}
+</style>
+<style>
+#lock-screen{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;align-items:center;justify-content:center}
+#lock-screen.hidden{display:none}
+.lock-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:48px 40px;max-width:400px;width:90%;text-align:center}
+.lock-box img{height:56px;width:auto;margin-bottom:24px}
+.lock-box h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:6px}
+.lock-box p{font-size:14px;color:var(--gray);margin-bottom:28px}
+#name-input,#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;box-sizing:border-box;outline:none;transition:border-color .2s;margin-bottom:10px}
+#name-input:focus,#pw-input:focus{border-color:var(--red)}
+#pw-input{letter-spacing:.1em}
+
+/* HISTORY */
+#history-section{padding:72px 0;border-top:2px solid var(--border)}
+.history-wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+.history-session{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:16px;border-left:4px solid var(--red)}
+.admin-table-wrap{overflow-x:auto}
+.admin-table{width:100%;border-collapse:collapse;font-size:14px}
+.admin-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;text-align:left;white-space:nowrap}
+.admin-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.admin-table tr:hover td{background:rgba(235,26,44,.06)}
+#pw-input.shake{animation:shake .35s ease}
+#pw-btn{margin-top:14px;width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s}
+#pw-btn:hover{opacity:.85}
+#pw-error{margin-top:12px;font-size:13px;color:var(--red);min-height:18px}
+body.locked>*:not(#lock-screen){visibility:hidden}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="locked">
+
+<!-- LOCK SCREEN -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <img src="./brand/logo-horz-white-red-line-divider.svg" alt="Hamstra Roofing">
+    <h2>F-Wave REVIA Training</h2>
+    <p>Enter your name and password to begin.</p>
+    <input id="name-input" type="text" placeholder="Your Full Name" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <button id="pw-btn" onclick="unlockPage()">Enter</button>
+    <div id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+// ── SUPABASE CLIENT ──
+const _supa = supabase.createClient(
+  'https://jdxmzazrijmeodonwvor.supabase.co',
+  'sb_publishable_vmB_mq1HLDoxRiIddW7okw_pgJPb3S9'
+);
+
+// ── LOCK SCREEN ──
+(function(){
+  const HASH='aa52c01300cfb3a1603a480392b845d23ced0186befc058acaf54838014b10d0';
+  async function digest(str){
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  if(sessionStorage.getItem('fwave-auth')==='1'){
+    unlock();
+    window.addEventListener('load', () => loadHistory());
+  }
+  window.unlockPage=async function(){
+    const name=document.getElementById('name-input').value.trim();
+    const val=document.getElementById('pw-input').value;
+    const err=document.getElementById('pw-error');
+    if(!name){err.textContent='Please enter your full name.';return;}
+    const h=await digest(val);
+    if(h===HASH){
+      sessionStorage.setItem('fwave-auth','1');
+      sessionStorage.setItem('fwave-user-name',name);
+      unlock();
+      loadHistory();
+    } else {
+      const inp=document.getElementById('pw-input');
+      inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');
+      err.textContent='Incorrect password. Try again.';inp.value='';
+    }
+  };
+  function unlock(){
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+  }
+})();
+</script>
+
+<!-- NAV -->
+<nav id="topnav">
+  <a class="nav-logo" href="./index.html" style="text-decoration:none">
+    <svg width="264" height="87" viewBox="0 0 264 87" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M92.7055 1.30418V43.5267C92.7055 44.1148 92.4114 44.4089 91.8234 44.4089H86.2287C85.6406 44.4089 85.3465 44.1148 85.3465 43.5267V25.5585H81.1982V43.5267C81.1982 44.1148 80.9041 44.4089 80.3161 44.4089H74.7214C74.1333 44.4089 73.8392 44.1148 73.8392 43.5267V1.30418C73.8392 0.716097 74.1333 0.422058 74.7214 0.422058H80.3161C80.9041 0.422058 81.1982 0.716097 81.1982 1.30418V18.2075H85.3465V1.30418C85.3465 0.716097 85.6406 0.422058 86.2287 0.422058H91.8234C92.4114 0.422058 92.7055 0.716097 92.7055 1.30418Z" fill="white"/><path d="M58.5303 0V69.1865H0V0H58.5303Z" fill="white"/><line y1="84.8835" x2="263.519" y2="84.8835" stroke="#EB1A2C" stroke-width="2.53383"/></svg>
+    <span class="nav-logo-title">F-Wave Installation</span>
+  </a>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+  <div id="score-display"><span>Score: </span><span id="score-val">0</span> / <span id="score-max">700</span> pts</div>
+</nav>
+
+<!-- MODULE NAV -->
+<div id="module-nav">
+  <button class="mnav-btn active" onclick="scrollTo('#m1')">1. Substrate</button>
+  <button class="mnav-btn" onclick="scrollTo('#m2')">2. Underlayment</button>
+  <button class="mnav-btn" onclick="scrollTo('#m3')">3. Fastening</button>
+  <button class="mnav-btn" onclick="scrollTo('#m4')">4. Layout &amp; Flashings</button>
+  <button class="mnav-btn" onclick="scrollTo('#m5')">5. Thermal &amp; Code</button>
+  <button class="mnav-btn" onclick="scrollTo('#m6')">6. Final Exam</button>
+  <button class="mnav-btn" onclick="scrollTo('#cert')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg> Certificate</button>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1800/hamstra-training/fwave-hero" alt="Roofer installing F-Wave REVIA synthetic slate shingles at golden hour">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hamstra Roofing Training Program</div>
+    <h1>F-WAVE REVIA<br><em>SYNTHETIC SHINGLES</em></h1>
+    <p>Single-piece thermoplastic polymer shingles with a 50-year service life. Master substrate prep, the six-nail pattern, thermal sealing windows, FORTIFIED standards, and Illinois compliance.</p>
+    <div class="hero-badges">
+      <span class="badge">6 Modules</span>
+      <span class="badge">4 Quiz Types</span>
+      <span class="badge">Jeopardy Challenge</span>
+      <span class="badge">Timed Final Exam</span>
+      <span class="badge">Certificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO OVERVIEW -->
+<div id="audio-overview">
+  <audio id="overview-audio" src="https://res.cloudinary.com/dsbllwpbh/video/upload/v1778097547/F-Wave_installation_demands_absolute_precision_zdcq2z.mp4" preload="metadata"></audio>
+  <div id="audio-player">
+    <div id="audio-meta">
+      <div id="audio-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z" fill="#EB1A2C"/></svg>
+      </div>
+      <div>
+        <div id="audio-label">Audio Overview</div>
+        <div id="audio-title">Why F-Wave Installation Demands Absolute Precision</div>
+      </div>
+      <div id="audio-waveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div id="audio-controls">
+      <button class="audio-btn" onclick="skip(-15)" title="−15s" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700">−15</button>
+      <button class="audio-btn" id="play-btn" onclick="togglePlay()" title="Play/Pause"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+      <button class="audio-btn" onclick="skip(15)" title="+15s" style="font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700">+15</button>
+      <input id="scrubber" type="range" min="0" max="100" value="0" oninput="seek(this.value)">
+      <span id="audio-time">0:00 / 0:00</span>
+      <button id="speed-btn" onclick="cycleSpeed()">1×</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODULE 1: SUBSTRATE & MATERIAL ═══ -->
+<section class="training-section" id="m1">
+  <div class="sec-label">Module 1</div>
+  <h2 class="sec-title">SUBSTRATE &amp;<br><em>MATERIAL SCIENCE</em></h2>
+  <p class="sec-desc">REVIA shingles are single-piece thermoplastic polymer — fundamentally different from laminated asphalt. Their longevity depends on a flat, clean, properly-attached deck. Imperfections telegraph through synthetic material and can break the thermal seal.</p>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">15/32"</div><h4>Plywood Min Thickness</h4><p>12mm minimum well-seasoned plywood. Thinner panels lack the density required for fastener pull-out resistance.</p></div>
+    <div class="info-card"><div class="val">7/16"</div><h4>OSB Min Thickness</h4><p>11mm minimum for Oriented Strand Board. Must be properly attached to rafters to prevent sagging.</p></div>
+    <div class="info-card"><div class="val">Class 4</div><h4>UL 2218 Impact Rating</h4><p>Withstands 2-inch hail without fracturing — the highest UL impact rating available.</p></div>
+    <div class="info-card"><div class="val">2.5×</div><h4>Tear Strength vs Asphalt</h4><p>Single-piece polymer construction yields tear and nail-pull resistance roughly 2.5× greater than leading asphalt products.</p></div>
+  </div>
+
+  <div class="accordion has-image">
+    <button class="acc-trigger" aria-expanded="false" title="Contains diagram — click to view"><span class="acc-title"><svg class="acc-img-flag" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Why Synthetic — The Polymer Difference</span> <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <figure class="figure-illustration">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1400/hamstra-training/fwave-polymer-vs-asphalt" alt="Cross-section comparison: traditional laminated asphalt shingle (with granules, fiberglass mat, and adhesive seam) versus single-piece F-Wave REVIA synthetic polymer with color throughout">
+          <figcaption>Cross-section comparison — laminated asphalt vs. single-piece thermoplastic polymer. Color runs through the full thickness; nothing to shed, no seam to delaminate.</figcaption>
+        </figure>
+        <p>Traditional architectural shingles are laminated — two layers bonded with an adhesive that thermally degrades over a 20-year cycle, leading to delamination and granule shed. F-Wave REVIA shingles are <strong>commercial-grade thermoplastic polymer</strong> manufactured as a single, monolithic piece. Color and UV stability are integrated <strong>throughout the entire material thickness</strong>, eliminating the granule-shed failure mode and producing a "generational" 50-year service life.</p>
+        <table class="data-table">
+          <thead><tr><th>Performance Category</th><th>Testing Standard</th><th>Metric / Rating</th></tr></thead>
+          <tbody>
+            <tr><td>Impact Resistance</td><td>UL 2218</td><td>Class 4</td></tr>
+            <tr><td>Wind Uplift</td><td>ASTM D3161 / D7158</td><td>Class F / Class H</td></tr>
+            <tr><td>External Fire Exposure</td><td>UL 790 / ASTM E108</td><td>Class A</td></tr>
+            <tr><td>Wind Warranty</td><td>Standard / XTM</td><td>130 mph / 150 mph</td></tr>
+            <tr><td>Weight per Square</td><td>Manufacturer Spec</td><td>185–200 lbs</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Approved Decking &amp; Tear-Off Protocol <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Approved substrates are well-seasoned <strong>plywood (≥ 15/32" / 12mm)</strong> or <strong>OSB (≥ 7/16" / 11mm)</strong>. The deck must be smooth, flat, dry, and properly attached to the rafters — sagging or shifting will cause tabs to lift or fail to seal.</p>
+        <div class="callout"><strong>Bare-Deck Mandate:</strong> Re-roofing over existing asphalt, wood shake, slate, tile, or any other roofing material is <strong>strictly prohibited</strong> under the F-Wave WeatherForce Advantage warranty. All previous shingles, underlayments, nails, and staples must come off down to the bare wood.</div>
+        <p>Any rotted, water-soaked, or structurally unsound decking must be replaced. Where transitions between OSB or plywood sheets are uneven, they must be planed or corrected — imperfections "telegraph" through the synthetic material, creating both an unprofessional appearance and potential wind-entry points.</p>
+        <p>F-Wave does <strong>not approve</strong> radiant barrier products as an underlayment when used with REVIA shingles, and does not allow installation on any slope below <strong>2:12</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 1 QUIZ: TRUE/FALSE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 1 Quiz</h3><p>True or False — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m1q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>F-Wave REVIA shingles can be installed over a single layer of existing asphalt shingles, provided the existing roof is flat and in good condition.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q1',true,false,'Incorrect. Re-roofing over existing roofing materials is strictly prohibited — the WeatherForce Advantage warranty requires installation over a clean, bare deck.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q1',false,false,'Correct! Re-roofing over existing shingles voids the warranty. All previous roofing components must be removed down to the bare deck.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>The minimum acceptable OSB thickness for an F-Wave REVIA installation is 7/16 inch (11mm).</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q2',true,true,'Correct! OSB decking must be at least 7/16 inch (11mm) thick. Plywood requires a minimum of 15/32 inch (12mm).')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q2',false,true,'Not quite — 7/16 inch (11mm) IS the OSB minimum. Plywood requires 15/32 inch (12mm).')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>Imperfections at OSB or plywood seams will telegraph through F-Wave synthetic shingles and may compromise the seal.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q3',true,true,'Correct! Because the synthetic polymer is thinner and more flexible than natural slate, deck imperfections show through the material and create wind-entry points. Uneven seams must be planed flat.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q3',false,true,'Incorrect. Deck imperfections DO telegraph through the synthetic shingle — uneven panel transitions must be planed flat before installation.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>F-Wave permits installation of REVIA shingles on any roof slope, including those below 2:12, as long as a self-adhered membrane is used.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q4',true,false,'Incorrect. Installations on slopes below 2:12 are NOT permitted under any circumstances — there is no underlayment workaround.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q4',false,false,'Correct! 2:12 is the absolute minimum. Slopes below 2:12 lack the pitch needed to drain, and hydrostatic pressure can force water under the tabs.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m1-result">
+      <p>Module 1 Score</p>
+      <div class="pts" id="m1-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 2: UNDERLAYMENT & WATERPROOFING ═══ -->
+<section class="training-section" id="m2">
+  <div class="sec-label">Module 2</div>
+  <h2 class="sec-title">UNDERLAYMENT &amp;<br><em>WATERPROOFING</em></h2>
+  <p class="sec-desc">The synthetic shingle is the primary water shed; the underlayment is your secondary barrier. F-Wave specifies precise ASTM standards by location — and on low slopes, the underlayment becomes the actual primary water barrier.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Synthetic Underlayment Standards <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>F-Wave requires synthetic underlayment compliant with one of three ASTM standards: <strong>ASTM D226 Type I or II</strong>, <strong>ASTM D4869 Type I or II</strong>, or <strong>ASTM D6757</strong>. Underlayment must be applied flat and unwrinkled directly to the deck — and shingles should be installed as soon as possible after underlayment is set, before UV degradation begins.</p>
+        <div class="callout"><strong>Asphalt-Based Products: NOT COMPATIBLE.</strong> Do not use asphalt-based underlayments, adhesives, or sealants. They are not chemically compatible with REVIA synthetic shingles and will <strong>void the WeatherForce Advantage Limited Product Warranty</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Self-Adhering Waterproofing Membrane (ASTM D1970) <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>In high-stress areas, F-Wave requires a <strong>smooth-surface, non-granulated, self-adhering waterproofing membrane</strong> compliant with <strong>ASTM D1970</strong>. This membrane provides an airtight, watertight seal at the most vulnerable junctions of the roof.</p>
+        <p>F-Wave recommends D1970 membrane at: <strong>valleys, eaves, ridges, hips, pipe penetrations, dormers, slope changes, skylights,</strong> and <strong>chimneys</strong>.</p>
+        <p>For ice-dam protection in climates like Batavia, IL, the D1970 membrane must be applied at the eaves and extend at least <strong>24 inches (610mm)</strong> up the deck from the interior side of the exterior walls.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Slope Categories &amp; Low-Slope Rules <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <table class="data-table">
+          <thead><tr><th>Slope Range</th><th>Classification</th><th>Underlayment Requirement</th></tr></thead>
+          <tbody>
+            <tr><td>&lt; 2:12</td><td>Not Allowed</td><td>F-Wave installation is prohibited</td></tr>
+            <tr><td>2:12 to &lt; 4:12</td><td>Low-Slope (Ornamental)</td><td>One layer of self-adhering OR two layers of synthetic across entire low-slope surface</td></tr>
+            <tr><td>≥ 4:12</td><td>Standard Slope</td><td>Single layer of synthetic underlayment</td></tr>
+            <tr><td>&gt; 21:12</td><td>Steep Slope</td><td>Standard underlayment + mandatory hand-sealing of all tabs</td></tr>
+          </tbody>
+        </table>
+        <p>On low slopes the shingles are considered <strong>"ornamental"</strong> — the underlayment is the primary water barrier because reduced pitch keeps water on the surface longer, and hydrostatic pressure can force water under the tabs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion has-image">
+    <button class="acc-trigger" aria-expanded="false" title="Contains diagram — click to view"><span class="acc-title"><svg class="acc-img-flag" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Drip Edge: Eaves vs Rakes</span> <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <figure class="figure-illustration">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1400/hamstra-training/fwave-drip-edge-comparison" alt="Cross-sections of D-style eave drip edge (underlayment over metal) and T-style rake drip edge (metal over underlayment)">
+          <figcaption>Eave vs. rake — same metal family, opposite stacking order. Underlayment goes <em>over</em> the eave drip edge, but <em>under</em> the rake drip edge.</figcaption>
+        </figure>
+        <p>Stock metal: <strong>6 inches wide, at least 0.019 inches thick</strong>, corrosion-resistant.</p>
+        <ul>
+          <li><strong>Eaves:</strong> F-Wave recommends a <strong>D-style</strong> drip edge that extends ≥ 2" (51mm) back from the roof edge and bends down over the fascia. Underlayment is installed <strong>over</strong> the drip edge metal so water sheds into the gutter.</li>
+          <li><strong>Rakes:</strong> F-Wave recommends a <strong>T-style modified</strong> drip edge that covers the cut edge of the REVIA shingles. Underlayment is installed <strong>under</strong> the drip edge; shingles are trimmed flush with the metal.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">D1970</div><h4>Waterproofing Standard</h4><p>ASTM D1970 self-adhering, smooth-surface, non-granulated membrane is required at every critical junction.</p></div>
+    <div class="info-card"><div class="val">24"</div><h4>Ice-Dam Wall Extension</h4><p>D1970 membrane must extend 24 inches (610mm) past the interior wall line in cold climates.</p></div>
+    <div class="info-card"><div class="val">2:12</div><h4>Lowest Allowed Slope</h4><p>F-Wave installations are prohibited below 2:12. Between 2:12 and 4:12 the shingle is ornamental and the underlayment is the primary barrier.</p></div>
+    <div class="info-card"><div class="val">D-Style</div><h4>Recommended Eave Drip Edge</h4><p>D-style at the eaves with underlayment applied over the metal. T-style modified at the rakes, with metal over the underlayment.</p></div>
+  </div>
+
+  <!-- MODULE 2 QUIZ: DRAG AND DROP -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 2 Quiz</h3><p>Drag and drop — match each spec to its requirement. 4 pairs, 25 pts each.</p></div>
+    </div>
+
+    <div class="drag-arena">
+      <div class="drag-chips" id="m2-chips">
+        <div class="drag-chip" draggable="true" data-key="A" ondragstart="dragStart(event,'A')">ASTM D1970</div>
+        <div class="drag-chip" draggable="true" data-key="B" ondragstart="dragStart(event,'B')">24 inches</div>
+        <div class="drag-chip" draggable="true" data-key="C" ondragstart="dragStart(event,'C')">Two Layers Synthetic</div>
+        <div class="drag-chip" draggable="true" data-key="D" ondragstart="dragStart(event,'D')">D-Style Drip Edge</div>
+      </div>
+      <div class="drop-zones">
+        <div class="drop-zone" data-answer="A" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-A">Drop here</div>
+          <div class="drop-zone-label"><strong>Self-Adhering Waterproofing Spec</strong>The ASTM standard for valley, eave, ridge, hip and penetration membranes</div>
+        </div>
+        <div class="drop-zone" data-answer="B" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-B">Drop here</div>
+          <div class="drop-zone-label"><strong>Ice-Dam Wall Extension</strong>How far past the interior wall line the waterproofing membrane must extend at the eaves</div>
+        </div>
+        <div class="drop-zone" data-answer="C" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-C">Drop here</div>
+          <div class="drop-zone-label"><strong>Low-Slope Underlayment Alternative</strong>Required across the entire low-slope surface (2:12–4:12) when not using a single layer of self-adhering membrane</div>
+        </div>
+        <div class="drop-zone" data-answer="D" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-D">Drop here</div>
+          <div class="drop-zone-label"><strong>Recommended Eave Drip Edge</strong>The drip-edge profile F-Wave recommends at the eaves; underlayment is installed over it</div>
+        </div>
+      </div>
+    </div>
+    <button class="check-drag-btn" onclick="checkDrag('m2')">Check Answers</button>
+    <div class="quiz-result" id="m2-result">
+      <p>Module 2 Score</p>
+      <div class="pts" id="m2-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 3: MECHANICAL FASTENING ═══ -->
+<section class="training-section" id="m3">
+  <div class="sec-label">Module 3</div>
+  <h2 class="sec-title">MECHANICAL FASTENING<br>&amp; <em>THE SIX-NAIL RULE</em></h2>
+  <p class="sec-desc">Polymer shingles have a high coefficient of thermal expansion and superior tear strength — fastener placement and type are what unlock the wind warranty. F-Wave specifies fastener gauge, head, length, pattern, and a six-nail minimum for ALL applications.</p>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">6</div><h4>Fasteners per Shingle</h4><p>Required for ALL applications, regardless of slope or wind speed. No exceptions.</p></div>
+    <div class="info-card"><div class="val">11–12 ga</div><h4>Approved Nail Gauge</h4><p>Corrosion-resistant 11- or 12-gauge roofing nails. Ring-shank highly recommended for withdrawal resistance.</p></div>
+    <div class="info-card"><div class="val">3/8"</div><h4>Min Nail Head Diameter</h4><p>9.5mm minimum head diameter to resist pull-through under wind uplift.</p></div>
+    <div class="info-card"><div class="val">3/4"</div><h4>Min Deck Penetration</h4><p>19mm minimum into the deck — or at least 1/8" (3.2mm) through if the deck is less than 3/4" thick.</p></div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Approved Fasteners <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <ul>
+          <li><strong>Gauge:</strong> 11- or 12-gauge corrosion-resistant roofing nails.</li>
+          <li><strong>Head:</strong> Minimum 3/8" (9.5mm) diameter.</li>
+          <li><strong>Length (field):</strong> Minimum 1 1/4" (32mm).</li>
+          <li><strong>Length (hip &amp; ridge cap):</strong> Minimum 1 3/4" (44mm) to penetrate the thickened cap material into the deck.</li>
+          <li><strong>Shank:</strong> Ring-shank highly recommended; <strong>required</strong> for FORTIFIED Home installations.</li>
+          <li><strong>Penetration:</strong> ≥ 3/4" (19mm) into the deck. If deck is less than 3/4" thick, the nail must extend at least 1/8" (3.2mm) <strong>through</strong> the deck.</li>
+        </ul>
+        <div class="callout"><strong>Staples are NOT an approved fastening method</strong> for F-Wave REVIA shingles under any condition.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion has-image">
+    <button class="acc-trigger" aria-expanded="false" title="Contains diagram — click to view"><span class="acc-title"><svg class="acc-img-flag" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>The Six-Nail Pattern</span> <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <figure class="figure-illustration">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1400/hamstra-training/fwave-six-nail-pattern" alt="F-Wave six-nail pattern: nails at 1 inch, 7 inches, and 15 inches from each end of the shingle">
+          <figcaption>Six fasteners per shingle — nails at 1″, 7″, and 15″ from each end, 1″ down from the top of exposure.</figcaption>
+        </figure>
+        <p>Each shingle measures <strong>39 3/8" (1000mm)</strong> wide. Six fasteners are placed within the wide nailing zone, <strong>1 inch (25mm)</strong> from the top of the exposure:</p>
+        <table class="data-table">
+          <thead><tr><th>Fastener Position</th><th>Distance from Shingle Edge</th><th>Rationale</th></tr></thead>
+          <tbody>
+            <tr><td>End Nails (×2)</td><td>1" (25mm) from each end</td><td>Prevents corner lift and ensures end-lap seal</td></tr>
+            <tr><td>Intermediate Nails (×2)</td><td>7" (178mm) from each end</td><td>Provides lateral stability across the shingle width</td></tr>
+            <tr><td>Center Nails (×2)</td><td>15" (380mm) from each end</td><td>Anchors the midpoint against wind uplift</td></tr>
+            <tr><td>Vertical Position</td><td>1" from top of exposure</td><td>Hidden but inside the reinforced nailing zone</td></tr>
+          </tbody>
+        </table>
+        <p>All nails must be driven <strong>straight</strong>, with heads <strong>flush</strong> to the shingle surface. Never cut into the shingle. Never leave a nail <strong>"proud"</strong> (undriven) — it interferes with the seal of the course above. Fasteners must never be exposed on the finished roof.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 3 Quiz</h3><p>Multiple choice — 5 questions, 20 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m3q1">
+      <div class="q-num">Question 1 of 5</div>
+      <h4>How many fasteners are required per F-Wave REVIA shingle in ALL applications?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'Four nails is below the F-Wave minimum. Six fasteners are required in every application.')"><span class="letter">A</span>4 nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'Five is not a specified pattern. The required minimum is six.')"><span class="letter">B</span>5 nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,true,'Correct! Six fasteners per shingle is required for ALL applications, regardless of slope or wind speed.')"><span class="letter">C</span>6 nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'Eight nails is not specified — the required pattern is six.')"><span class="letter">D</span>8 nails</div>
+      </div>
+      <div class="q-feedback" id="m3q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q2">
+      <div class="q-num">Question 2 of 5</div>
+      <h4>What is the minimum length of an approved roofing nail for F-Wave field shingles?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'1 inch is below the minimum field-shingle nail length.')"><span class="letter">A</span>1 inch (25mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,true,'Correct! Field-shingle nails must be a minimum of 1 1/4 inches (32mm) long. Hip and ridge cap nails require 1 3/4".')"><span class="letter">B</span>1 1/4 inches (32mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'1 3/4 inches is the minimum for hip and ridge cap nails — field shingles only require 1 1/4 inches.')"><span class="letter">C</span>1 3/4 inches (44mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'2 inches exceeds the field-shingle minimum and is not the specified length.')"><span class="letter">D</span>2 inches (51mm)</div>
+      </div>
+      <div class="q-feedback" id="m3q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q3">
+      <div class="q-num">Question 3 of 5</div>
+      <h4>Which fastening method is strictly prohibited for F-Wave REVIA shingles?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'Ring-shank nails are recommended — and required for FORTIFIED installations.')"><span class="letter">A</span>Ring-shank nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'12-gauge corrosion-resistant nails are an approved F-Wave fastener.')"><span class="letter">B</span>12-gauge corrosion-resistant nails</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,true,'Correct! Staples are not an approved fastening method for F-Wave shingles under any condition.')"><span class="letter">C</span>Staples</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'11-gauge corrosion-resistant nails are approved.')"><span class="letter">D</span>11-gauge corrosion-resistant nails</div>
+      </div>
+      <div class="q-feedback" id="m3q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q4">
+      <div class="q-num">Question 4 of 5</div>
+      <h4>F-Wave nails must penetrate at least how deep into the roof deck (or how far through it if the deck is thinner than 3/4")?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'1/4 inch is far below the required depth — the deck cannot retain the nail head against uplift.')"><span class="letter">A</span>1/4 inch into the deck</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'1/2 inch is short of the F-Wave minimum.')"><span class="letter">B</span>1/2 inch into the deck</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,true,'Correct! Nails must penetrate at least 3/4" (19mm) into the deck. If the deck is less than 3/4" thick, the nail must extend at least 1/8" through it.')"><span class="letter">C</span>3/4 inch into the deck (or 1/8" through if deck &lt; 3/4")</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'1 1/2 inches exceeds the specified penetration requirement.')"><span class="letter">D</span>1 1/2 inches into the deck</div>
+      </div>
+      <div class="q-feedback" id="m3q4-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q5">
+      <div class="q-num">Question 5 of 5</div>
+      <h4>In the six-nail pattern, end nails are placed how far from each end of the shingle?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,true,'Correct! End nails are placed 1 inch (25mm) from each shingle end. The intermediate nails go at 7 inches and the center nails at 15 inches.')"><span class="letter">A</span>1 inch (25mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'7 inches is the position of the intermediate nails — not the end nails.')"><span class="letter">B</span>7 inches (178mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'15 inches is the position of the center nails — not the end nails.')"><span class="letter">C</span>15 inches (380mm)</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'There is no 19-inch position in the F-Wave nailing pattern.')"><span class="letter">D</span>19 inches (483mm)</div>
+      </div>
+      <div class="q-feedback" id="m3q5-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m3-result">
+      <p>Module 3 Score</p>
+      <div class="pts" id="m3-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 4: LAYOUT, VALLEYS & FLASHINGS ═══ -->
+<section class="training-section" id="m4">
+  <div class="sec-label">Module 4</div>
+  <h2 class="sec-title">LAYOUT, VALLEYS<br>&amp; <em>FLASHINGS</em></h2>
+  <p class="sec-desc">A 1 1/2-tab diagonal offset is non-negotiable. Open W-style valleys are preferred. Step flashing is fastened to the deck — never the wall. And every metal-to-shingle transition needs a 1/2-inch thermal-expansion gap.</p>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Field Application Pattern <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>F-Wave REVIA shingles must be installed in a <strong>diagonal pattern with a 1 1/2-tab offset</strong>. The standard horizontal exposure is <strong>6 inches (152mm)</strong>. F-Wave is not responsible for roof integrity if these methods are not followed.</p>
+        <p>Two acceptable layout methods:</p>
+        <ul>
+          <li><strong>Repeating ("1-2-3") pattern:</strong> Course 1 = full shingle. Each subsequent course skips a tab and is placed on alignment marks 1, 2, then 3 in sequence. Course 5 = full shingle, then repeat.</li>
+          <li><strong>Random pattern:</strong> Shingles offset diagonally at any random distance, provided the edge is kept at least <strong>1.5 inches (38mm) from the cutout</strong> of the shingle below. F-Wave generally prefers this for the most realistic look.</li>
+        </ul>
+        <div class="callout"><strong>Chalk Lines:</strong> Apply a chalk line every 4 to 6 feet up the surface to keep courses straight and exposures consistent. <strong>Use BLUE chalk only</strong> — red chalk leaves permanent stains on the polymer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Starter Course &amp; Course Progression <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>F-Wave requires the use of <strong>F-Wave REVIA Starter Shingles</strong> only. Cut 6 1/2 inches (165mm) off the length of the first starter strip (Estate Series), or 4 inches (Classic Slate). The starter course should overhang the eaves by <strong>1/4 to 3/8 inch (6–10mm)</strong>, or be flush with a D-style drip edge. Six fasteners are placed 1 inch (25mm) up from the eave edge.</p>
+        <table class="data-table">
+          <thead><tr><th>Course</th><th>Trim</th><th>Resulting Length</th></tr></thead>
+          <tbody>
+            <tr><td>Course 1</td><td>Full shingle</td><td>39 3/8" (1000mm)</td></tr>
+            <tr><td>Course 2</td><td>Trim 1 1/2 tabs off left</td><td>27 1/5" (700mm)</td></tr>
+            <tr><td>Course 3</td><td>Trim 3 tabs off left</td><td>15 3/4" (400mm)</td></tr>
+            <tr><td>Course 4</td><td>Trim 4 1/2 tabs off left</td><td>4" (100mm)</td></tr>
+            <tr><td>Course 5</td><td>Full shingle — repeat pattern</td><td>39 3/8" (1000mm)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion has-image">
+    <button class="acc-trigger" aria-expanded="false" title="Contains photo — click to view"><span class="acc-title"><svg class="acc-img-flag" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Valleys, Walls &amp; Hips</span> <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <figure class="figure-illustration">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1400/hamstra-training/fwave-open-valley" alt="Open valley with W-style metal flashing centered, self-adhered membrane below, and slate-look REVIA shingles laid up to the valley with 45-degree corner cuts">
+          <figcaption>Open W-style valley — self-adhered membrane &amp; W-metal centered; entering shingles cut at a 1″ 45° angle to redirect water to the valley center.</figcaption>
+        </figure>
+        <p><strong>Valleys</strong> — F-Wave prefers the open valley method using "W" style metal. (Closed-cut and woven methods are <strong>NOT allowed</strong>; a closed-valley alternative using "W" style metal is acceptable.) Sequence:</p>
+        <ul>
+          <li>Apply a minimum <strong>36-inch (915mm) wide self-adhering waterproofing membrane</strong> directly to the deck.</li>
+          <li>Lap the underlayment over the membrane by at least <strong>6 inches (152mm)</strong>.</li>
+          <li>Install "W" style valley metal over the underlayment, fastened <strong>1 inch from the edge</strong> of the valley. Minimum 4-inch overlap on metal joints, sealed with approved adhesive.</li>
+          <li>Cut the top corner of each shingle entering the valley at a <strong>1-inch (25mm), 45° angle</strong> to redirect water toward the center of the valley.</li>
+          <li>Apply two parallel 1-inch wide beads of approved sealant to the underside of the cut valley shingle. Shingle nails extend no more than 3 inches from the edge of the valley metal.</li>
+        </ul>
+        <p><strong>Roof-to-Sidewalls</strong> — Use <strong>8" × 8" step flashing</strong> (Estate Series) or 10" × 8" (Classic Slate). Step flashing must extend at least 4 inches up the sidewall and at least 4 inches over underlapping shingles. Overlap pieces by <strong>2 inches</strong>. <strong>Fasten step flashing to the roof deck only — never to the wall.</strong> Use F-Wave approved sealant under the shingle to bond it to the metal step flashing.</p>
+        <p><strong>Roof-to-Headwalls</strong> — Apron flashing extends at least <strong>5" (127mm) up the headwall</strong> and at least 4" down the roof. Nail apron to the roof deck only; use siding/counter-flashing on top.</p>
+        <p><strong>Hips &amp; Ridges</strong> — Use F-Wave REVIA Hip &amp; Ridge shingles. Two fasteners (minimum 1 3/4" length), 1" from the edge at the "Nail Here" mark. Begin at the bottom of the hip. At the ridge, start hip-and-ridge from the <strong>opposite direction of the prevailing winds</strong>. On slopes 10:12 or greater, F-Wave requires self-adhered underlayment along the hips and ridges.</p>
+        <div class="callout"><strong>Thermal-Expansion Gap:</strong> Maintain a <strong>1/2-inch (12.7mm) gap</strong> between shingles and any metal flashing or rake metal edge to allow the polymer to expand without buckling, and to facilitate drainage.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 4 Quiz</h3><p>Multiple choice — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m4q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>F-Wave REVIA field shingles must be installed in a diagonal pattern with what tab offset?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'A 1/2-tab offset is too small — vertical joints would line up too closely and create water-entry paths.')"><span class="letter">A</span>1/2-tab offset</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'A 1-tab offset is not the F-Wave specification.')"><span class="letter">B</span>1-tab offset</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,true,'Correct! REVIA shingles require a 1 1/2-tab offset between courses. F-Wave is not responsible for roof integrity if this is not followed.')"><span class="letter">C</span>1 1/2-tab offset</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'A 2-tab offset exceeds the F-Wave specification and would create the wrong visual rhythm.')"><span class="letter">D</span>2-tab offset</div>
+      </div>
+      <div class="q-feedback" id="m4q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>How is the top corner of a shingle cut where it enters a valley, to redirect water toward the valley center?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'A square 90° cut would not divert water; in fact, it would allow water to migrate up under the shingle.')"><span class="letter">A</span>1-inch square (90°) cut</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'A 30° angle is not the F-Wave specification.')"><span class="letter">B</span>1-inch cut at 30°</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,true,'Correct! Cut a 1-inch (25mm) diagonal at 45° on the top corner of each valley shingle to redirect water toward the center of the valley.')"><span class="letter">C</span>1-inch cut at 45°</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'A 2-inch cut exceeds the specification and weakens the shingle head-lap unnecessarily.')"><span class="letter">D</span>2-inch cut at 45°</div>
+      </div>
+      <div class="q-feedback" id="m4q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>When installing step flashing at a roof-to-sidewall transition, F-Wave requires the flashing be fastened to:</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'Nailing only to the wall would prevent independent thermal movement and lead to flashing tear-out.')"><span class="letter">A</span>The wall only</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,true,'Correct! Step flashing is fastened to the roof deck only — never to the wall. This allows independent thermal and seismic movement between roof and structure.')"><span class="letter">B</span>The roof deck only</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'Fastening to both rigidly couples the wall and roof, defeating the purpose of step flashing.')"><span class="letter">C</span>Both the deck and the wall</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'Step flashing must be mechanically fastened — sealant alone is insufficient to hold it in place.')"><span class="letter">D</span>Neither — sealed in place only</div>
+      </div>
+      <div class="q-feedback" id="m4q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>What gap must be maintained between F-Wave shingles and metal flashing or a rake drip edge for thermal expansion?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'No gap means polymer thermal expansion has nowhere to go — the shingles will buckle.')"><span class="letter">A</span>No gap — shingles flush against the metal</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'1/8 inch is below the F-Wave specification and would not accommodate full thermal movement.')"><span class="letter">B</span>1/8 inch</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,true,'Correct! Maintain a 1/2-inch (12.7mm) gap between shingles and any metal flashing or rake edge to allow polymer thermal expansion and drainage.')"><span class="letter">C</span>1/2 inch</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'1 inch exceeds the specification and would leave a visible gap at the rake.')"><span class="letter">D</span>1 inch</div>
+      </div>
+      <div class="q-feedback" id="m4q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m4-result">
+      <p>Module 4 Score</p>
+      <div class="pts" id="m4-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 5: THERMAL SEALING, FORTIFIED & CODE (JEOPARDY) ═══ -->
+<section class="training-section" id="m5">
+  <div class="sec-label">Module 5</div>
+  <h2 class="sec-title">THERMAL SEALING,<br>FORTIFIED &amp; <em>CODE</em></h2>
+  <p class="sec-desc">REVIA's adhesive needs solar heat to activate. Cold weather, steep slopes, and high winds change the rules — and FORTIFIED standards plus Illinois code add a final layer of compliance every roofer must know.</p>
+
+  <div class="accordion has-image">
+    <button class="acc-trigger" aria-expanded="false" title="Contains diagram — click to view"><span class="acc-title"><svg class="acc-img-flag" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Thermal Window &amp; Hand-Sealing</span> <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>REVIA shingles rely on the sun to activate the factory adhesive strips that bond the courses together. F-Wave requires:</p>
+        <ul>
+          <li>Air temperature of <strong>50°F (10°C) and rising</strong> at installation.</li>
+          <li>Rooftop surface temperature exceeding <strong>74°F (23°C)</strong> for the adhesive to soften and bond effectively.</li>
+        </ul>
+        <p><strong>Hand-sealing is required</strong> in any of the following conditions:</p>
+        <ul>
+          <li>Cold-weather installs where the surface won't reach 74°F in the days following installation.</li>
+          <li>High-wind zones — F-Wave defines high winds as <strong>131 mph or higher</strong>.</li>
+          <li>Steep slopes — slopes greater than <strong>21:12</strong>, including mansards.</li>
+        </ul>
+        <p><strong>Hand-Seal Procedure:</strong> Apply <strong>five 1-inch diameter spots</strong> of approved sealant — one spot behind every tab (5 spots total per shingle) — near the bottom of the shingle. Press the shingle down into the sealant. Sealant should approach the edge of the shingle but never be visible.</p>
+        <figure class="figure-illustration">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1400/hamstra-training/fwave-hand-seal" alt="Underside of an F-Wave shingle showing five 1-inch sealant dabs, one centered behind each tab near the leading edge">
+          <figcaption>Five 1″ sealant spots on the shingle underside — one behind every tab, near the leading edge.</figcaption>
+        </figure>
+        <div class="callout"><strong>Approved Sealants:</strong> NPC #900 Solar Seal · R.M. Lucas Co. #6600 Universal Terpolymer · OSI Quad® · Mulehide SEBS1 (JTS1 is <strong>NOT</strong> approved). <strong>Asphalt-based products are NOT compatible</strong> and will void the WeatherForce Advantage warranty.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">FORTIFIED Home Standards <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>For structures requiring enhanced storm resilience, REVIA shingles are eligible for the <strong>FORTIFIED Home</strong> designation developed by the IBHS. The standard upgrades the base install in three ways:</p>
+        <ul>
+          <li><strong>Edge Strengthening:</strong> Use a wider drip edge plus a <strong>fully adhered starter strip</strong> to lock down the perimeter and prevent the wind "zipper" effect.</li>
+          <li><strong>Sealed Deck:</strong> Apply a <strong>4-inch wide seam tape</strong> (e.g., Huber ZIP System Flashing Tape) over <strong>all joints in the decking</strong>, creating a continuous water barrier even if the shingles are removed by wind.</li>
+          <li><strong>Enhanced Fastening:</strong> <strong>Ring-shank nails</strong> are mandated (vs recommended) — doubling the deck holding power.</li>
+        </ul>
+        <p>In hail-prone regions, REVIA's Class 4 impact rating already meets the IBHS Hail Supplement for 2-inch hail.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Tooling &amp; Material Handling <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <table class="data-table">
+          <thead><tr><th>Tool</th><th>Application</th><th>Notable Features</th></tr></thead>
+          <tbody>
+            <tr><td>AJC Super Shear</td><td>Rakes &amp; long runs</td><td>21" blade, built-in fence and pitch gauge</td></tr>
+            <tr><td>Tie Down Shingle Shaper</td><td>Valleys &amp; hip cuts</td><td>Lightweight aluminum, built-in angle meter</td></tr>
+            <tr><td>Malco Power Shear</td><td>Complex shapes / outlets</td><td>Drill-attachment with beveled lead-in tip</td></tr>
+            <tr><td>Roof Snake</td><td>Repairs / nailing under existing</td><td>Allows nailing under existing shingles without damage</td></tr>
+            <tr><td>Hook-Blade Utility Knife</td><td>Repair work, fitting penetrations</td><td>Standard tool — best for small cuts</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Storage:</strong> Pallets must <strong>never be double-stacked</strong> — the polymer will deform under load. Store on a flat, weather-protected surface. In cold climates, keep material in a heated space until needed on the roof so the polymer is pliable.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Illinois &amp; Batavia Code Compliance <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p><strong>Statewide (IL Public Act 103-0510):</strong> Effective January 1, 2025, Illinois has a statewide baseline for building codes. All new residential roofing must meet the IRC minimums regardless of municipality, and roofing work must be performed by a <strong>state-licensed contractor</strong>.</p>
+        <p><strong>City of Batavia:</strong> Has adopted the IRC for residential (Chapter 9) and IBC for commercial (Chapter 15). The Building Division <strong>requires a building permit</strong> for any re-roofing or roof recover. Re-roofing is prohibited when:</p>
+        <ul>
+          <li>Two or more layers of roofing are already in place.</li>
+          <li>The existing roof is wood shake, slate, or tile.</li>
+          <li>The deck is water-soaked or otherwise deteriorated.</li>
+        </ul>
+        <p>Contractors must submit their <strong>Illinois Roofing Contractor License</strong> with the permit application. Properties in the Historic District also require a <strong>Certificate of Appropriateness</strong> from the Historic Preservation Commission. Inspections are typically required after tear-off (deck condition) and at completion.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">50°F</div><h4>Min Air Temp at Install</h4><p>10°C and rising. Below this, the polymer is stiff and the adhesive won't seal naturally.</p></div>
+    <div class="info-card"><div class="val">74°F</div><h4>Min Surface Temp to Seal</h4><p>23°C — the rooftop temperature at which the factory adhesive softens and bonds.</p></div>
+    <div class="info-card"><div class="val">131 mph</div><h4>High-Wind Threshold</h4><p>F-Wave's definition of "high wind" — triggers mandatory hand-sealing of all tabs.</p></div>
+    <div class="info-card"><div class="val">5 spots</div><h4>Hand-Seal Pattern</h4><p>Five 1-inch diameter spots of approved sealant — one behind every tab — near the shingle bottom.</p></div>
+  </div>
+
+  <button class="launch-j-btn" onclick="openJeopardy()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Launch Jeopardy Review — Up to 200 Bonus Pts</button>
+</section>
+
+<!-- ═══ MODULE 6: FINAL TIMED EXAM ═══ -->
+<section class="training-section" id="m6">
+  <div class="sec-label">Module 6</div>
+  <h2 class="sec-title">FINAL<br><em>TIMED EXAM</em></h2>
+  <p class="sec-desc">15 questions covering all five modules. 45 seconds per question. 20 points each. Complete the exam to unlock your certificate.</p>
+
+  <div class="exam-box" id="exam-box">
+    <div id="exam-start-screen">
+      <p style="font-size:16px;color:var(--gray);text-align:center;margin-bottom:8px">All 5 modules covered · 45 seconds per question · 20 pts each · 300 pts total</p>
+      <button class="start-exam-btn" onclick="startExam()">START FINAL EXAM</button>
+    </div>
+
+    <div id="exam-active" style="display:none">
+      <div class="exam-timer" id="exam-timer">45</div>
+      <div class="exam-progress-text" id="exam-progress">Question 1 of 15</div>
+
+      <!-- Q1 -->
+      <div class="exam-q" id="eq1">
+        <div class="q-num">Question 1 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What is the minimum required plywood thickness for an F-Wave REVIA installation?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'7/16 inch is the OSB minimum, not plywood.')"><span class="letter">A</span>7/16 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 15/32 inch (12mm) is the minimum plywood thickness.')"><span class="letter">B</span>15/32 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5/8 inch exceeds the F-Wave minimum requirement.')"><span class="letter">C</span>5/8 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3/4 inch is well above the specified minimum.')"><span class="letter">D</span>3/4 inch</div>
+        </div>
+        <div class="q-feedback" id="eq1-fb"></div>
+        <button class="exam-next-btn" id="eq1-next" onclick="nextExamQ(1)">Next Question →</button>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exam-q" id="eq2">
+        <div class="q-num">Question 2 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">F-Wave does NOT permit installation on slopes below:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1:12 is well below F-Wave\'s lowest allowed slope.')"><span class="letter">A</span>1:12</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Installations below 2:12 are not allowed under any circumstances.')"><span class="letter">B</span>2:12</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'4:12 is the threshold between low-slope and standard-slope, not the prohibition.')"><span class="letter">C</span>4:12</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'6:12 is well within the standard-slope range.')"><span class="letter">D</span>6:12</div>
+        </div>
+        <div class="q-feedback" id="eq2-fb"></div>
+        <button class="exam-next-btn" id="eq2-next" onclick="nextExamQ(2)">Next Question →</button>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exam-q" id="eq3">
+        <div class="q-num">Question 3 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">In cold climates, the ASTM D1970 waterproofing membrane must extend at least how far past the interior wall line at the eaves?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'12 inches is well short of the requirement.')"><span class="letter">A</span>12 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'18 inches is below the F-Wave-required extension.')"><span class="letter">B</span>18 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 24 inches (610mm) past the interior wall line is required.')"><span class="letter">C</span>24 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'36 inches exceeds the specification.')"><span class="letter">D</span>36 inches</div>
+        </div>
+        <div class="q-feedback" id="eq3-fb"></div>
+        <button class="exam-next-btn" id="eq3-next" onclick="nextExamQ(3)">Next Question →</button>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exam-q" id="eq4">
+        <div class="q-num">Question 4 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">How many fasteners are required per shingle for ALL F-Wave REVIA applications?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'4 nails is below the F-Wave minimum.')"><span class="letter">A</span>4</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5 is not a specified pattern.')"><span class="letter">B</span>5</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Six fasteners per shingle for ALL applications.')"><span class="letter">C</span>6</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'8 nails exceeds the specified pattern.')"><span class="letter">D</span>8</div>
+        </div>
+        <div class="q-feedback" id="eq4-fb"></div>
+        <button class="exam-next-btn" id="eq4-next" onclick="nextExamQ(4)">Next Question →</button>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exam-q" id="eq5">
+        <div class="q-num">Question 5 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Which fastening method is strictly prohibited?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Ring-shank nails are recommended and required for FORTIFIED.')"><span class="letter">A</span>Ring-shank nails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'12-gauge corrosion-resistant nails are approved.')"><span class="letter">B</span>12-gauge nails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Staples are not an approved fastening method for F-Wave.')"><span class="letter">C</span>Staples</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Coil nails of approved gauge and head are acceptable.')"><span class="letter">D</span>Coil roofing nails (11-gauge, 3/8" head)</div>
+        </div>
+        <div class="q-feedback" id="eq5-fb"></div>
+        <button class="exam-next-btn" id="eq5-next" onclick="nextExamQ(5)">Next Question →</button>
+      </div>
+
+      <!-- Q6 -->
+      <div class="exam-q" id="eq6">
+        <div class="q-num">Question 6 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The minimum nail head diameter for an approved F-Wave fastener is:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/4 inch is below the F-Wave specification.')"><span class="letter">A</span>1/4 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5/16 inch is below the F-Wave minimum.')"><span class="letter">B</span>5/16 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 3/8 inch (9.5mm) minimum head diameter.')"><span class="letter">C</span>3/8 inch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/2 inch exceeds the specification.')"><span class="letter">D</span>1/2 inch</div>
+        </div>
+        <div class="q-feedback" id="eq6-fb"></div>
+        <button class="exam-next-btn" id="eq6-next" onclick="nextExamQ(6)">Next Question →</button>
+      </div>
+
+      <!-- Q7 -->
+      <div class="exam-q" id="eq7">
+        <div class="q-num">Question 7 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">F-Wave REVIA field shingles must be installed in a diagonal pattern with what offset between courses?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1/2-tab offset is too small for proper joint stagger.')"><span class="letter">A</span>1/2-tab offset</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'1-tab offset is not the F-Wave specification.')"><span class="letter">B</span>1-tab offset</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 1 1/2-tab offset is required.')"><span class="letter">C</span>1 1/2-tab offset</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'2-tab offset is greater than the F-Wave specification.')"><span class="letter">D</span>2-tab offset</div>
+        </div>
+        <div class="q-feedback" id="eq7-fb"></div>
+        <button class="exam-next-btn" id="eq7-next" onclick="nextExamQ(7)">Next Question →</button>
+      </div>
+
+      <!-- Q8 -->
+      <div class="exam-q" id="eq8">
+        <div class="q-num">Question 8 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The standard horizontal exposure for F-Wave REVIA shingles is:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5 inches is below the F-Wave specification.')"><span class="letter">A</span>5 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5 5/8 inches is the OC Duration exposure — not F-Wave.')"><span class="letter">B</span>5 5/8 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 6 inches (152mm) horizontal exposure.')"><span class="letter">C</span>6 inches</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'7 inches exceeds the F-Wave standard exposure.')"><span class="letter">D</span>7 inches</div>
+        </div>
+        <div class="q-feedback" id="eq8-fb"></div>
+        <button class="exam-next-btn" id="eq8-next" onclick="nextExamQ(8)">Next Question →</button>
+      </div>
+
+      <!-- Q9 -->
+      <div class="exam-q" id="eq9">
+        <div class="q-num">Question 9 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">F-Wave requires shingles be installed at this minimum air temperature, "and rising":</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'32°F is below freezing — well below the F-Wave installation window.')"><span class="letter">A</span>32°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'40°F is below the F-Wave minimum.')"><span class="letter">B</span>40°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 50°F (10°C) and rising is the F-Wave minimum installation temperature.')"><span class="letter">C</span>50°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'60°F exceeds the F-Wave minimum, but the spec is 50°F and rising.')"><span class="letter">D</span>60°F</div>
+        </div>
+        <div class="q-feedback" id="eq9-fb"></div>
+        <button class="exam-next-btn" id="eq9-next" onclick="nextExamQ(9)">Next Question →</button>
+      </div>
+
+      <!-- Q10 -->
+      <div class="exam-q" id="eq10">
+        <div class="q-num">Question 10 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The rooftop surface temperature must exceed what for the factory adhesive to bond effectively?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'50°F is the air-temp minimum — surface temp must reach higher.')"><span class="letter">A</span>50°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'65°F is below the F-Wave surface-temperature requirement.')"><span class="letter">B</span>65°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 74°F (23°C) rooftop surface temperature is required for the adhesive to soften and bond.')"><span class="letter">C</span>74°F</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'90°F exceeds the F-Wave specification.')"><span class="letter">D</span>90°F</div>
+        </div>
+        <div class="q-feedback" id="eq10-fb"></div>
+        <button class="exam-next-btn" id="eq10-next" onclick="nextExamQ(10)">Next Question →</button>
+      </div>
+
+      <!-- Q11 -->
+      <div class="exam-q" id="eq11">
+        <div class="q-num">Question 11 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">When hand-sealing is required, how many 1-inch diameter sealant spots are placed behind each shingle?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'2 spots is below the F-Wave specification.')"><span class="letter">A</span>2 spots</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3 spots is below the F-Wave specification.')"><span class="letter">B</span>3 spots</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Five 1-inch diameter spots — one behind every tab.')"><span class="letter">C</span>5 spots</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'7 spots exceeds the F-Wave specification.')"><span class="letter">D</span>7 spots</div>
+        </div>
+        <div class="q-feedback" id="eq11-fb"></div>
+        <button class="exam-next-btn" id="eq11-next" onclick="nextExamQ(11)">Next Question →</button>
+      </div>
+
+      <!-- Q12 -->
+      <div class="exam-q" id="eq12">
+        <div class="q-num">Question 12 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">F-Wave defines "high winds" — triggering mandatory hand-sealing — as winds at or above:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'90 mph is below the F-Wave high-wind threshold.')"><span class="letter">A</span>90 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'110 mph is still below F-Wave\'s high-wind definition.')"><span class="letter">B</span>110 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 131 mph or higher triggers mandatory hand-sealing.')"><span class="letter">C</span>131 mph</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'175 mph far exceeds the threshold — the requirement begins at 131 mph.')"><span class="letter">D</span>175 mph</div>
+        </div>
+        <div class="q-feedback" id="eq12-fb"></div>
+        <button class="exam-next-btn" id="eq12-next" onclick="nextExamQ(12)">Next Question →</button>
+      </div>
+
+      <!-- Q13 -->
+      <div class="exam-q" id="eq13">
+        <div class="q-num">Question 13 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">At a valley, the top corner of each entering shingle must be cut to redirect water toward the center. The cut is:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'A square cut would not divert water — and could let water travel up the head-lap.')"><span class="letter">A</span>1 inch square (90°)</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! A 1-inch (25mm) diagonal at 45° on the top corner.')"><span class="letter">B</span>1 inch at 45°</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'2 inches at 45° exceeds the specification.')"><span class="letter">C</span>2 inches at 45°</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'A 30° angle is not the F-Wave specification.')"><span class="letter">D</span>3 inches at 30°</div>
+        </div>
+        <div class="q-feedback" id="eq13-fb"></div>
+        <button class="exam-next-btn" id="eq13-next" onclick="nextExamQ(13)">Next Question →</button>
+      </div>
+
+      <!-- Q14 -->
+      <div class="exam-q" id="eq14">
+        <div class="q-num">Question 14 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Step flashing at a roof-to-sidewall transition is fastened only to:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Nailing only to the wall would prevent thermal independence and lead to flashing failure.')"><span class="letter">A</span>The wall</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Step flashing is fastened to the roof deck only — never to the wall.')"><span class="letter">B</span>The roof deck</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Fastening to both negates the purpose of step flashing as a sliding-joint.')"><span class="letter">C</span>Both deck and wall</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Step flashing must be mechanically fastened — sealant alone is not sufficient.')"><span class="letter">D</span>Neither — sealed only</div>
+        </div>
+        <div class="q-feedback" id="eq14-fb"></div>
+        <button class="exam-next-btn" id="eq14-next" onclick="nextExamQ(14)">Next Question →</button>
+      </div>
+
+      <!-- Q15 -->
+      <div class="exam-q" id="eq15">
+        <div class="q-num">Question 15 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">To meet the FORTIFIED Home standard, what nail type is mandated to roughly double the deck holding power?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Smooth-shank nails do not provide the enhanced withdrawal resistance FORTIFIED requires.')"><span class="letter">A</span>Smooth-shank nails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Galvanized common nails are not the FORTIFIED-mandated style.')"><span class="letter">B</span>Galvanized common nails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Ring-shank nails are mandated by FORTIFIED to roughly double the holding power vs smooth-shank.')"><span class="letter">C</span>Ring-shank nails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Spiral-shank nails are not the FORTIFIED specification.')"><span class="letter">D</span>Spiral-shank nails</div>
+        </div>
+        <div class="q-feedback" id="eq15-fb"></div>
+        <button class="exam-next-btn" id="eq15-next" onclick="finishExam()">See Results →</button>
+      </div>
+
+      <div class="quiz-result" id="exam-result" style="display:none">
+        <p>Final Exam Score</p>
+        <div class="pts" id="exam-pts">0</div>
+        <h3>/ 300 pts</h3>
+        <p id="exam-msg" style="margin-top:8px"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATE ═══ -->
+<section id="cert" style="border-bottom:1px solid var(--border)">
+  <div id="cert-section">
+    <div class="sec-label" style="justify-content:center">Course Complete</div>
+    <h2 class="sec-title" style="font-size:clamp(36px,5vw,64px)">YOUR CERTIFICATE</h2>
+    <div class="final-score-box">
+      <div class="big-score" id="cert-final-score">0</div>
+      <p>Total Points Earned</p>
+    </div>
+    <p style="color:var(--gray);margin-bottom:24px">Enter your name to generate your certificate of completion.</p>
+    <input class="cert-name-input" id="cert-name" type="text" placeholder="Your Full Name" oninput="updateCertName()">
+    <div class="cert-img-wrap">
+      <img src="./generated_imgs/generated-2026-03-11T19-35-52-633Z-kpa3bq.png" alt="Certificate background">
+      <div class="cert-overlay-name" id="cert-name-overlay">Your Name</div>
+    </div>
+    <button class="print-cert-btn" onclick="window.print()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print Certificate</button>
+  </div>
+</section>
+
+<!-- ═══ HISTORY ═══ -->
+<div id="history-section">
+  <div class="history-wrap">
+    <div class="sec-label">Your Progress</div>
+    <h2 class="sec-title" style="margin-bottom:8px">SESSION HISTORY</h2>
+    <p style="color:var(--gray);font-size:15px;margin-bottom:32px">Your training sessions are saved automatically. Log in again to start a new session.</p>
+    <div id="history-content">
+      <p style="color:var(--gray);font-size:15px">Complete the password gate to view your history.</p>
+    </div>
+  </div>
+</div>
+
+<!-- JEOPARDY MODAL -->
+<div id="jeopardy-modal">
+  <div class="j-header">
+    <h2>F-WAVE INSTALLATION JEOPARDY</h2>
+    <div class="j-score-display">Bonus: <span id="j-score">0</span> pts</div>
+    <button class="j-close" onclick="closeJeopardy()">Close Board</button>
+  </div>
+  <div class="j-board">
+    <div class="j-cat-header">Substrate</div>
+    <div class="j-cat-header">Fastening</div>
+    <div class="j-cat-header">Layout</div>
+    <div class="j-cat-header">Thermal Sealing</div>
+    <div class="j-cat-header">IL &amp; Code</div>
+
+    <div class="j-cell" onclick="openJQ(0,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(1,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(2,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(3,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(4,0)">$100</div>
+
+    <div class="j-cell" onclick="openJQ(0,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(1,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(2,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(3,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(4,1)">$200</div>
+
+    <div class="j-cell" onclick="openJQ(0,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(1,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(2,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(3,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(4,2)">$300</div>
+
+    <div class="j-cell" onclick="openJQ(0,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(1,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(2,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(3,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(4,3)">$400</div>
+  </div>
+</div>
+
+<!-- JEOPARDY QUESTION OVERLAY -->
+<div class="j-q-overlay" id="j-q-overlay">
+  <div class="j-q-box">
+    <div class="j-pts" id="j-pts-display"></div>
+    <div class="j-question" id="j-q-text"></div>
+    <input class="j-answer-input" id="j-answer" type="text" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')submitJAnswer()">
+    <div>
+      <button class="j-submit-btn" onclick="submitJAnswer()">Submit</button>
+      <button class="j-skip-btn" onclick="skipJAnswer()">Skip</button>
+    </div>
+    <div class="j-reveal" id="j-reveal"></div>
+    <button class="j-skip-btn" id="j-next-btn" onclick="closeJQ()" style="margin-top:12px;display:none">Back to Board</button>
+  </div>
+</div>
+
+<script>
+// ═══ AUDIO PLAYER ═══
+const audio = document.getElementById('overview-audio');
+let speeds = [1, 1.25, 1.5, 2];
+let speedIdx = 0;
+function togglePlay() {
+  if (!audio.src || audio.src === window.location.href) return;
+  if (audio.paused) {
+    audio.play();
+    document.getElementById('play-btn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    document.getElementById('audio-waveform').classList.add('playing');
+  } else {
+    audio.pause();
+    document.getElementById('play-btn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+    document.getElementById('audio-waveform').classList.remove('playing');
+  }
+}
+function skip(s) {
+  if (!audio.src || audio.src === window.location.href) return;
+  audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + s));
+}
+function seek(v) {
+  if (!audio.src || audio.src === window.location.href) return;
+  audio.currentTime = (v / 100) * (audio.duration || 0);
+}
+function cycleSpeed() {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  audio.playbackRate = speeds[speedIdx];
+  document.getElementById('speed-btn').textContent = speeds[speedIdx] + '×';
+}
+function fmt(s) {
+  if (!s || !isFinite(s)) return '0:00';
+  return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+}
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) {
+    document.getElementById('scrubber').value = (audio.currentTime / audio.duration) * 100;
+    document.getElementById('audio-time').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  }
+});
+audio.addEventListener('ended', () => {
+  document.getElementById('play-btn').innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>';
+  document.getElementById('audio-waveform').classList.remove('playing');
+});
+
+// ═══ SCORE SYSTEM ═══
+const S = {
+  score: 0,
+  maxScore: 700,
+  quizDone: { m1: false, m2: false, m3: false, m4: false },
+  examDone: false,
+  add(pts, modKey) {
+    this.score += pts;
+    document.getElementById('score-val').textContent = this.score;
+    document.getElementById('progress-bar').style.width = Math.min(100, (this.score / this.maxScore) * 100) + '%';
+    if (modKey && !this.quizDone[modKey]) {
+      this.quizDone[modKey] = true;
+      const idx = parseInt(modKey.replace('m', ''));
+      const btns = document.querySelectorAll('.mnav-btn');
+      if (btns[idx - 1]) {
+        btns[idx - 1].classList.add('done');
+        btns[idx - 1].innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle"><polyline points="20 6 9 17 4 12"/></svg>' + btns[idx - 1].textContent;
+      }
+      const maxMap = { m1: 100, m2: 100, m3: 100, m4: 100 };
+      recordQuizResult(modKey, pts, maxMap[modKey] || 100);
+    }
+    if (this.examDone) {
+      document.getElementById('cert-section').classList.add('show');
+      document.getElementById('cert-final-score').textContent = this.score;
+      const examNavBtn = document.querySelectorAll('.mnav-btn')[5];
+      if (examNavBtn) { examNavBtn.classList.add('done'); examNavBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle"><polyline points="20 6 9 17 4 12"/></svg>' + examNavBtn.textContent; }
+      const savedName = sessionStorage.getItem('fwave-user-name');
+      if (savedName) {
+        document.getElementById('cert-name').value = savedName;
+        document.getElementById('cert-name-overlay').textContent = savedName;
+      }
+      launchConfetti();
+    }
+  }
+};
+
+// ═══ NAV SCROLL ═══
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ═══ MODULE NAV ACTIVE STATE ═══
+const sections = document.querySelectorAll('.training-section, #cert');
+const mnavBtns = document.querySelectorAll('.mnav-btn');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      mnavBtns.forEach((b, i) => {
+        const ids = ['m1','m2','m3','m4','m5','m6','cert'];
+        if (ids[i] === id) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// ═══ ACCORDION ═══
+document.querySelectorAll('.acc-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  });
+});
+
+// ═══ MODULE 1: TRUE/FALSE ═══
+const m1Scores = { m1q1: 0, m1q2: 0, m1q3: 0, m1q4: 0 };
+let m1Answered = 0;
+function tfAnswer(qId, choice, correctIsTrue, msg) {
+  if (document.getElementById(qId).querySelector('.tf-btn.correct, .tf-btn.wrong')) return;
+  const isCorrect = (choice === correctIsTrue);
+  const btns = document.getElementById(qId).querySelectorAll('.tf-btn');
+  btns.forEach(b => b.disabled = true);
+  const clicked = event.target;
+  clicked.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) m1Scores[qId] = 25;
+  m1Answered++;
+  if (m1Answered === 4) {
+    const total = Object.values(m1Scores).reduce((a,b) => a+b, 0);
+    document.getElementById('m1-pts').textContent = total;
+    document.getElementById('m1-result').classList.add('show');
+    S.add(total, 'm1');
+  }
+}
+
+// ═══ MODULE 2: DRAG & DROP ═══
+let dragKey = null;
+const m2Slots = {};
+function dragStart(e, key) { dragKey = key; e.dataTransfer.effectAllowed = 'move'; }
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function dragLeave(e) { e.currentTarget.classList.remove('over'); }
+function dropChip(e, zone) {
+  e.preventDefault();
+  zone.classList.remove('over');
+  if (!dragKey) return;
+  const slot = zone.querySelector('.drop-slot');
+  const chip = document.querySelector(`.drag-chip[data-key="${dragKey}"]`);
+  if (!chip || chip.classList.contains('placed')) return;
+  const prevKey = zone.dataset.filled;
+  if (prevKey) {
+    const prevChip = document.querySelector(`.drag-chip[data-key="${prevKey}"]`);
+    if (prevChip) prevChip.classList.remove('placed');
+  }
+  slot.textContent = chip.textContent;
+  slot.style.color = 'var(--white)';
+  zone.dataset.filled = dragKey;
+  m2Slots[zone.dataset.answer] = dragKey;
+  chip.classList.add('placed');
+  dragKey = null;
+}
+let m2Done = false;
+function checkDrag(mod) {
+  if (m2Done) return;
+  m2Done = true;
+  let pts = 0;
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    const ans = zone.dataset.answer;
+    const filled = zone.dataset.filled;
+    if (filled === ans) { zone.classList.add('correct'); pts += 25; }
+    else { zone.classList.add('wrong'); }
+  });
+  document.getElementById('m2-pts').textContent = pts;
+  document.getElementById('m2-result').classList.add('show');
+  S.add(pts, 'm2');
+}
+
+// ═══ MODULES 3 & 4: MULTIPLE CHOICE ═══
+const mcCounts = { m3: 0, m4: 0 };
+const mcTotals = { m3: 5, m4: 4 };
+const mcPts = { m3: 20, m4: 25 };
+const mcEarned = { m3: 0, m4: 0 };
+function mcAnswer(qId, el, isCorrect, msg) {
+  const block = document.getElementById(qId);
+  if (block.querySelector('.correct, .wrong')) return;
+  block.querySelectorAll('.mc-option').forEach(o => o.classList.add('disabled'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  const mod = qId.startsWith('m3') ? 'm3' : 'm4';
+  if (isCorrect) mcEarned[mod] += mcPts[mod];
+  mcCounts[mod]++;
+  if (mcCounts[mod] === mcTotals[mod]) {
+    const total = mcEarned[mod];
+    document.getElementById(mod + '-pts').textContent = total;
+    document.getElementById(mod + '-result').classList.add('show');
+    S.add(total, mod);
+  }
+}
+
+// ═══ MODULE 6: FINAL EXAM ═══
+let examIdx = 0;
+let examScore = 0;
+let examTimer = null;
+let examTimeLeft = 45;
+let examLocked = false;
+
+function startExam() {
+  document.getElementById('exam-start-screen').style.display = 'none';
+  document.getElementById('exam-active').style.display = 'block';
+  loadExamQ(1);
+}
+
+function loadExamQ(n) {
+  examIdx = n;
+  examLocked = false;
+  examTimeLeft = 45;
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  const qEl = document.getElementById('eq' + n);
+  if (qEl) qEl.classList.add('active');
+  document.getElementById('exam-progress').textContent = 'Question ' + n + ' of 15';
+  const timerEl = document.getElementById('exam-timer');
+  timerEl.textContent = examTimeLeft;
+  timerEl.className = 'exam-timer';
+  if (examTimer) clearInterval(examTimer);
+  examTimer = setInterval(() => {
+    examTimeLeft--;
+    timerEl.textContent = examTimeLeft;
+    if (examTimeLeft <= 10) timerEl.className = 'exam-timer warn';
+    if (examTimeLeft <= 0) {
+      clearInterval(examTimer);
+      if (!examLocked) {
+        examLocked = true;
+        const qEl = document.getElementById('eq' + examIdx);
+        qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+        const fb = document.getElementById('eq' + examIdx + '-fb');
+        fb.textContent = "Time's up! Moving on...";
+        fb.className = 'q-feedback show bad';
+        const nextBtn = document.getElementById('eq' + examIdx + '-next');
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+      }
+    }
+  }, 1000);
+}
+
+function examAnswer(el, isCorrect, msg) {
+  if (examLocked) return;
+  examLocked = true;
+  clearInterval(examTimer);
+  const qEl = document.getElementById('eq' + examIdx);
+  qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById('eq' + examIdx + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) examScore += 20;
+  const nextBtn = document.getElementById('eq' + examIdx + '-next');
+  if (nextBtn) nextBtn.style.display = 'inline-block';
+}
+
+function nextExamQ(n) {
+  if (n < 15) loadExamQ(n + 1);
+}
+
+function finishExam() {
+  clearInterval(examTimer);
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  document.getElementById('exam-pts').textContent = examScore;
+  const resultEl = document.getElementById('exam-result');
+  resultEl.style.display = 'block';
+  const pct = Math.round((examScore / 300) * 100);
+  document.getElementById('exam-msg').textContent = pct >= 80 ? 'Outstanding performance!' : pct >= 60 ? 'Good work — review any missed topics.' : 'Keep studying — you\'ve got this!';
+  document.getElementById('exam-timer').style.display = 'none';
+  document.getElementById('exam-progress').style.display = 'none';
+  S.examDone = true;
+  S.add(examScore, null);
+  recordQuizResult('exam', examScore, 300);
+}
+
+// ═══ CERTIFICATE ═══
+function updateCertName() {
+  const name = document.getElementById('cert-name').value || 'Your Name';
+  document.getElementById('cert-name-overlay').textContent = name;
+}
+
+// ═══ JEOPARDY ═══
+const jData = [
+  // Substrate
+  [
+    { pts: 100, clue: 'This is the minimum thickness required for OSB sheathing under F-Wave REVIA shingles.', answer: '7/16' },
+    { pts: 200, clue: 'This minimum plywood thickness is required for an approved F-Wave installation.', answer: '15/32' },
+    { pts: 300, clue: 'Imperfections in the deck do this through synthetic shingles — a key reason the deck must be flat.', answer: 'telegraph' },
+    { pts: 400, clue: 'F-Wave does NOT approve this radiant material as an underlayment for REVIA shingles.', answer: 'radiant barrier' }
+  ],
+  // Fastening
+  [
+    { pts: 100, clue: 'The required number of fasteners per F-Wave REVIA shingle in ALL applications.', answer: '6' },
+    { pts: 200, clue: 'This fastening method is strictly prohibited by F-Wave.', answer: 'staples' },
+    { pts: 300, clue: 'This nail shank type is recommended for standard F-Wave installs and required for FORTIFIED.', answer: 'ring-shank' },
+    { pts: 400, clue: 'Hip & ridge cap fasteners must be at least this length to penetrate the thicker cap material.', answer: '1 3/4' }
+  ],
+  // Layout
+  [
+    { pts: 100, clue: 'This is the standard horizontal exposure between F-Wave REVIA courses.', answer: '6' },
+    { pts: 200, clue: 'The required tab offset between courses to keep vertical joints from aligning.', answer: '1.5' },
+    { pts: 300, clue: 'Only this color of chalk should be used to mark F-Wave REVIA shingles — the other will permanently stain.', answer: 'blue' },
+    { pts: 400, clue: 'The thermal-expansion gap maintained between shingles and any rake metal edge.', answer: '1/2' }
+  ],
+  // Thermal Sealing
+  [
+    { pts: 100, clue: 'This minimum ambient temperature is required at installation, "and rising".', answer: '50' },
+    { pts: 200, clue: 'This rooftop surface temperature must be exceeded for the factory adhesive to bond.', answer: '74' },
+    { pts: 300, clue: 'Hand-sealing requires applying this many spots of approved sealant behind each shingle.', answer: '5' },
+    { pts: 400, clue: 'This wind speed defines a "high wind" zone and triggers mandatory hand-sealing.', answer: '131' }
+  ],
+  // IL & Code
+  [
+    { pts: 100, clue: 'This Illinois Public Act, effective January 1 2025, established a statewide IRC baseline for residential roofing.', answer: '103-0510' },
+    { pts: 200, clue: 'Batavia code prohibits re-roofing when this many or more existing layers are already in place.', answer: '2' },
+    { pts: 300, clue: 'In the Batavia Historic District, contractors must obtain this document from the Historic Preservation Commission.', answer: 'certificate of appropriateness' },
+    { pts: 400, clue: 'This standard, developed by IBHS, allows REVIA shingles to qualify for enhanced storm-resistance designation.', answer: 'fortified' }
+  ]
+];
+
+let jScore = 0;
+let jScoreLogged = 0;
+let currentJCat = 0;
+let currentJRow = 0;
+const jUsed = Array.from({ length: 5 }, () => [false, false, false, false]);
+
+function openJeopardy() {
+  document.getElementById('jeopardy-modal').classList.add('open');
+}
+function closeJeopardy() {
+  document.getElementById('jeopardy-modal').classList.remove('open');
+  if (jScore > jScoreLogged) {
+    recordQuizResult('m5', jScore, 200);
+    jScoreLogged = jScore;
+  }
+}
+function openJQ(cat, row) {
+  if (jUsed[cat][row]) return;
+  currentJCat = cat;
+  currentJRow = row;
+  const q = jData[cat][row];
+  document.getElementById('j-pts-display').textContent = '$' + q.pts;
+  document.getElementById('j-q-text').textContent = q.clue;
+  document.getElementById('j-answer').value = '';
+  document.getElementById('j-answer').disabled = false;
+  document.getElementById('j-reveal').className = 'j-reveal';
+  document.getElementById('j-reveal').textContent = '';
+  document.getElementById('j-next-btn').style.display = 'none';
+  document.getElementById('j-q-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('j-answer').focus(), 100);
+}
+function submitJAnswer() {
+  const val = document.getElementById('j-answer').value.toLowerCase().trim();
+  const q = jData[currentJCat][currentJRow];
+  const correct = q.answer.toLowerCase();
+  const isRight = val.includes(correct) || (val.length > 1 && correct.includes(val.replace(/[^a-z0-9]/g,'')));
+  const rev = document.getElementById('j-reveal');
+  if (isRight) {
+    jScore += q.pts;
+    document.getElementById('j-score').textContent = jScore;
+    rev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>Correct! +$' + q.pts + ' — Full answer: ' + q.answer;
+    rev.className = 'j-reveal show right';
+    S.add(q.pts, null);
+    document.getElementById('score-val').textContent = S.score;
+  } else {
+    rev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Not quite. The answer was: ' + q.answer;
+    rev.className = 'j-reveal show oops';
+  }
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function skipJAnswer() {
+  const q = jData[currentJCat][currentJRow];
+  const rev = document.getElementById('j-reveal');
+  rev.textContent = 'Skipped — Answer: ' + q.answer;
+  rev.className = 'j-reveal show oops';
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function markJUsed() {
+  jUsed[currentJCat][currentJRow] = true;
+  const cells = document.querySelectorAll('.j-cell');
+  const idx = currentJRow * 5 + currentJCat;
+  if (cells[idx]) cells[idx].classList.add('used');
+}
+function closeJQ() {
+  document.getElementById('j-q-overlay').classList.remove('open');
+  document.getElementById('j-answer').disabled = false;
+}
+
+// ═══ SUPABASE TRACKING ═══
+async function recordQuizResult(module, score, maxScore) {
+  let sessionId = sessionStorage.getItem('fwave-session-id');
+  if (!sessionId) {
+    const name = sessionStorage.getItem('fwave-user-name');
+    if (!name) return;
+    const { data } = await _supa
+      .from('training_sessions')
+      .insert({ name, course: 'fwave', total_score: 0, max_score: 700 })
+      .select().single();
+    if (!data) return;
+    sessionId = data.id;
+    sessionStorage.setItem('fwave-session-id', sessionId);
+  }
+  await _supa.from('quiz_results').insert({ session_id: sessionId, module, score, max_score: maxScore });
+  await updateSessionScore();
+}
+
+async function updateSessionScore() {
+  const sessionId = sessionStorage.getItem('fwave-session-id');
+  if (!sessionId) return;
+  await _supa.from('training_sessions').update({ total_score: S.score }).eq('id', sessionId);
+}
+
+async function loadHistory() {
+  const name = sessionStorage.getItem('fwave-user-name');
+  const container = document.getElementById('history-content');
+  if (!container || !name) return;
+  const isAdmin = name === 'Joe Hamstra';
+  const modLabels = { m1:'Substrate', m2:'Underlayment', m3:'Fastening', m4:'Layout & Flashings', m5:'Jeopardy Bonus', exam:'Final Exam' };
+
+  if (isAdmin) {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, name, started_at, total_score, max_score, quiz_results(module, score, max_score, completed_at)')
+      .eq('course', 'fwave')
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No sessions recorded yet.</p>';
+      return;
+    }
+    let html = `<p style="color:var(--gray);margin-bottom:24px">Admin view — all ${sessions.length} session(s)</p>
+    <div class="admin-table-wrap"><table class="admin-table">
+      <thead><tr><th>Name</th><th>Date</th><th>Score</th><th>Max</th><th>%</th><th>Modules</th></tr></thead><tbody>`;
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const mods = (s.quiz_results || []).map(q => `${modLabels[q.module] || q.module}: ${q.score}`).join(', ') || '—';
+      html += `<tr><td>${s.name}</td><td>${date}</td><td>${s.total_score}</td><td>${s.max_score}</td><td>${pct}%</td><td style="font-size:12px;color:var(--gray)">${mods}</td></tr>`;
+    }
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  } else {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, started_at, total_score, max_score, quiz_results(module, score, max_score)')
+      .eq('course', 'fwave')
+      .eq('name', name)
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No previous sessions found — complete a quiz to save your progress.</p>';
+      return;
+    }
+    let html = '';
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const quizRows = (s.quiz_results || []).map(q => {
+        const qPct = q.max_score ? Math.round((q.score / q.max_score) * 100) : 0;
+        return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px">
+          <span style="color:rgba(255,255,255,.7)">${modLabels[q.module] || q.module}</span>
+          <span style="color:var(--gold);font-weight:600">${q.score} / ${q.max_score} pts &nbsp;(${qPct}%)</span>
+        </div>`;
+      }).join('') || '<p style="color:var(--gray);font-size:13px;padding:8px 0">No quiz results yet — quiz scores save when you complete each module.</p>';
+      html += `<div class="history-session">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px">${date}</div>
+            <div style="color:var(--gray);font-size:13px">F-Wave REVIA Synthetic Shingle Training</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--gold)">${s.total_score} pts</div>
+            <div style="font-size:12px;color:var(--gray)">${pct}% of ${s.max_score} max</div>
+          </div>
+        </div>
+        ${quizRows}
+      </div>`;
+    }
+    container.innerHTML = html;
+  }
+}
+
+// ═══ CONFETTI ═══
+function launchConfetti() {
+  const colors = ['#EB1A2C','#F5C518','#ffffff','#27ae60'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+
+window.addEventListener('pagehide', () => {
+  sessionStorage.removeItem('fwave-auth');
+  sessionStorage.removeItem('fwave-session-id');
+  sessionStorage.removeItem('fwave-user-name');
+});
+</script>
+</body>
+</html>
