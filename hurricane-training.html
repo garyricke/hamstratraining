@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="./brand/favicon-blue.svg">
+<title>Hurricane 828 Roof Vacuum Operation — Hamstra Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#EB1A2C;--blue:#3B82F6;--charcoal:#2F2F2F;--gray:#8A8A8A;--black:#111;--white:#fff;--off:#1a1a1a;--card:#222;--border:#333;--gold:#F5C518;--green:#27ae60;--rad:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);line-height:1.6;font-size:16px}
+
+/* NAV */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:200;background:#0d0d0d;border-bottom:2px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-logo svg{height:32px;width:auto}
+.nav-logo-title{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding-left:12px;border-left:1px solid #444}
+#progress-wrap{flex:1;max-width:400px;background:#333;height:8px;border-radius:4px;overflow:hidden}
+#progress-bar{height:100%;background:var(--red);width:0%;transition:width .4s ease;border-radius:4px}
+#score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--gold);white-space:nowrap}
+#score-display span{color:var(--gray);font-weight:400;font-size:13px}
+
+/* HERO */
+#hero{margin-top:56px;position:relative;height:520px;overflow:hidden;display:flex;align-items:flex-end}
+#hero img,#hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}
+#hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.4) 60%,transparent 100%)}
+.hero-content{position:relative;z-index:2;padding:48px 64px;max-width:800px}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+.hero-content h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(42px,6vw,72px);line-height:.95;margin-bottom:16px}
+.hero-content h1 em{color:var(--red);font-style:normal}
+.hero-content p{font-size:18px;font-weight:300;color:rgba(255,255,255,.75);max-width:520px;margin-bottom:24px}
+.hero-badges{display:flex;gap:16px;flex-wrap:wrap}
+.badge{background:rgba(235,26,44,.15);border:1px solid var(--red);padding:6px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+
+/* FEATURED VIDEO */
+#video-feature{background:linear-gradient(135deg,#2a0508 0%,#161616 65%);border-bottom:1px solid var(--border);padding:60px 40px}
+.vf-inner{max-width:1100px;margin:0 auto;text-align:center}
+.vf-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.vf-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(28px,4vw,46px);line-height:1.02;margin-bottom:14px}
+.vf-title em{color:var(--red);font-style:normal}
+.vf-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.7);max-width:620px;margin:0 auto 12px;line-height:1.7}
+.vf-meta{display:inline-flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.video-vert{max-width:410px;margin:26px auto 0;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 50px rgba(0,0,0,.65)}
+.video-vert video{width:100%;aspect-ratio:9/16;display:block;background:#000}
+.vf-stage{display:flex;gap:28px;justify-content:center;align-items:stretch;margin-top:26px;flex-wrap:wrap;text-align:left}
+.vf-stage .video-vert{margin:0;flex-shrink:0}
+.vf-chapters{flex:1;min-width:280px;max-width:440px;background:rgba(0,0,0,.32);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.vf-chapters-head{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--border);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:rgba(235,26,44,.08)}
+.vf-chapters-head svg{color:var(--red)}
+.vf-chapters-list{overflow-y:auto;max-height:640px}
+.chapter{display:flex;gap:14px;align-items:baseline;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--border);color:var(--white);padding:13px 18px;cursor:pointer;font-family:'Barlow',sans-serif;transition:background .15s}
+.chapter:last-child{border-bottom:none}
+.chapter:hover{background:rgba(235,26,44,.10)}
+.chapter.active{background:rgba(235,26,44,.18);box-shadow:inset 3px 0 0 var(--red)}
+.ch-time{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--red);font-size:14px;min-width:42px;flex-shrink:0}
+.ch-title{font-size:14.5px;font-weight:500;color:rgba(255,255,255,.85);line-height:1.35}
+.chapter.active .ch-title{color:var(--white)}
+
+/* INLINE MODULE VIDEO */
+.module-video{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:18px;margin:0 0 40px;display:flex;gap:24px;align-items:stretch;flex-wrap:wrap}
+.module-video .video-vert{max-width:240px;margin:0;flex-shrink:0}
+.mv-side{flex:1;min-width:250px;display:flex;flex-direction:column}
+.mv-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.mv-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:var(--white);margin-bottom:12px;line-height:1.1}
+.mv-chapters{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.mv-hint{font-size:12.5px;color:var(--gray);margin-top:12px;line-height:1.5}
+
+/* MODULE NAV */
+#module-nav{background:#161616;border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto;position:sticky;top:56px;z-index:100}
+.mnav-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);padding:16px 20px;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s}
+.mnav-btn:hover{color:var(--white)}
+.mnav-btn.done{color:var(--green)}
+.mnav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+
+/* SECTIONS */
+.training-section{padding:64px 0;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;padding-left:40px;padding-right:40px}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.sec-label::after{content:'';width:24px;height:2px;background:var(--red)}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;margin-bottom:16px}
+.sec-title em{color:var(--red);font-style:normal}
+.sec-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.65);max-width:680px;margin-bottom:40px;line-height:1.7}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;margin-bottom:12px;transition:border-color .2s}
+.acc-trigger{width:100%;background:var(--card);border:none;color:var(--white);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.02em;text-align:left;transition:background .2s}
+.acc-trigger:hover{background:#2a2a2a}
+.acc-trigger .icon{width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:transform .3s}
+.acc-trigger[aria-expanded="true"] .icon{transform:rotate(45deg)}
+.acc-title{display:inline-flex;align-items:center;gap:10px}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body.open{max-height:2400px}
+.acc-inner{padding:24px;border-top:1px solid var(--border);background:#1d1d1d}
+.acc-inner p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.75;margin-bottom:12px}
+.acc-inner p:last-child{margin-bottom:0}
+.acc-inner ul,.acc-inner ol{padding-left:20px;margin:8px 0}
+.acc-inner li{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:6px}
+.acc-inner strong{color:var(--white)}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rad);padding:20px;border-top:3px solid var(--red)}
+.info-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--white);margin-bottom:6px}
+.info-card p{font-size:13px;color:var(--gray);line-height:1.5}
+.info-card .val{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--red);line-height:1;margin-bottom:4px}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}
+.data-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;text-align:left}
+.data-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.data-table tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.data-table tr:hover td{background:rgba(235,26,44,.08)}
+
+/* QUIZ */
+.quiz-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.quiz-header{display:flex;align-items:center;gap:24px;margin-bottom:28px}
+.quiz-header img{width:120px;height:120px;object-fit:cover;border-radius:50%;box-shadow:0 0 24px rgba(235,26,44,.45),0 0 6px rgba(235,26,44,.3);flex-shrink:0}
+.quiz-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white)}
+.quiz-header p{font-size:13px;color:var(--gray)}
+.question-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.question-block:last-of-type{border-bottom:none}
+.question-block h4{font-size:16px;font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.5}
+.q-num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* TRUE/FALSE */
+.tf-btns{display:flex;gap:12px}
+.tf-btn{padding:12px 32px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;border:2px solid var(--border);background:transparent;color:var(--white);border-radius:var(--rad);cursor:pointer;transition:all .2s}
+.tf-btn:hover{border-color:var(--red);color:var(--red)}
+.tf-btn.correct{background:var(--green);border-color:var(--green);color:var(--white)}
+.tf-btn.wrong{background:var(--red);border-color:var(--red);color:var(--white)}
+.tf-btn:disabled{cursor:default;opacity:.7}
+
+/* MULTIPLE CHOICE */
+.mc-options{display:flex;flex-direction:column;gap:10px}
+.mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.mc-option:hover{border-color:rgba(235,26,44,.5)}
+.mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15)}
+.mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15)}
+.mc-option.disabled{cursor:default;pointer-events:none}
+
+/* FEEDBACK */
+.q-feedback{margin-top:12px;padding:12px 16px;border-radius:6px;font-size:14px;font-weight:500;display:none}
+.q-feedback.show{display:block}
+.q-feedback.good{background:rgba(39,174,96,.2);border-left:4px solid var(--green);color:#aaffcc}
+.q-feedback.bad{background:rgba(235,26,44,.15);border-left:4px solid var(--red);color:#ffaaaa}
+
+/* QUIZ SCORE */
+.quiz-result{display:none;margin-top:24px;padding:24px;background:rgba(235,26,44,.1);border:2px solid var(--red);border-radius:var(--rad);text-align:center}
+.quiz-result.show{display:block}
+.quiz-result h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--white);margin-bottom:4px}
+.quiz-result p{color:var(--gray);font-size:15px}
+.quiz-result .pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:56px;color:var(--gold);line-height:1}
+
+/* DRAG & DROP */
+.drag-arena{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0;align-items:start}
+.drag-chips{display:flex;flex-direction:column;gap:10px}
+.drag-chip{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;padding:12px 16px;border-radius:6px;cursor:grab;user-select:none;transition:opacity .2s}
+.drag-chip:active{cursor:grabbing;opacity:.7}
+.drag-chip.placed{opacity:.4;pointer-events:none}
+.drop-zones{display:flex;flex-direction:column;gap:10px}
+.drop-zone{background:var(--card);border:2px dashed var(--border);border-radius:6px;padding:14px 16px;min-height:52px;display:flex;align-items:center;gap:12px;transition:border-color .2s}
+.drop-zone.over{border-color:var(--red);background:rgba(235,26,44,.1)}
+.drop-zone.correct{border-color:var(--green)!important;background:rgba(39,174,96,.1)!important}
+.drop-zone.wrong{border-color:var(--red)!important;background:rgba(235,26,44,.1)!important;animation:shake .4s}
+.drop-zone-label{font-size:13px;color:var(--gray);flex:1}
+.drop-zone-label strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--white);margin-bottom:2px}
+.drop-slot{min-width:140px;padding:8px 12px;background:#333;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--gray);text-align:center}
+.check-drag-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:opacity .2s}
+.check-drag-btn:hover{opacity:.85}
+
+/* JEOPARDY */
+#jeopardy-modal{display:none;position:fixed;inset:0;background:rgba(0,0,20,.95);z-index:600;overflow-y:auto;padding:40px 20px}
+#jeopardy-modal.open{display:block}
+.j-header{display:flex;align-items:center;justify-content:space-between;max-width:960px;margin:0 auto 24px}
+.j-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:36px;color:var(--gold)}
+.j-close{background:var(--red);color:var(--white);border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px}
+.j-score-display{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:var(--gold)}
+.j-board{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:960px;margin:0 auto}
+.j-cat-header{background:#1a1a60;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;text-align:center;padding:16px 8px;border:2px solid #3333aa;letter-spacing:.06em;text-transform:uppercase}
+.j-cell{background:#1a1a99;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;text-align:center;padding:24px 8px;cursor:pointer;border:2px solid #3333cc;transition:all .2s}
+.j-cell:hover{background:#2222cc;transform:scale(1.02)}
+.j-cell.used{background:#111;color:#333;cursor:default;pointer-events:none}
+.j-q-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,20,.97);z-index:700;align-items:center;justify-content:center}
+.j-q-overlay.open{display:flex}
+.j-q-box{background:#1a1a60;border:3px solid var(--gold);border-radius:12px;padding:48px;max-width:600px;width:90%;text-align:center}
+.j-q-box .j-pts{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--gold);margin-bottom:16px}
+.j-q-box .j-question{font-size:20px;font-weight:600;color:var(--white);margin-bottom:32px;line-height:1.5}
+.j-answer-input{width:100%;padding:14px 18px;background:#111;border:2px solid #3333cc;border-radius:8px;color:var(--white);font-size:16px;font-family:'Barlow',sans-serif;margin-bottom:16px}
+.j-submit-btn{background:var(--gold);color:#111;border:none;padding:14px 40px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;margin-right:8px}
+.j-skip-btn{background:transparent;color:var(--gray);border:1px solid var(--border);padding:14px 24px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;cursor:pointer}
+.j-reveal{margin-top:16px;padding:16px;border-radius:8px;font-size:15px;font-weight:600;display:none}
+.j-reveal.show{display:block}
+.j-reveal.right{background:rgba(39,174,96,.2);color:#aaffcc}
+.j-reveal.oops{background:rgba(235,26,44,.2);color:#ffaaaa}
+.launch-j-btn{display:block;width:100%;padding:20px;background:linear-gradient(135deg,#1a1a99,#3333cc);color:var(--gold);border:3px solid var(--gold);border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:32px}
+.launch-j-btn:hover{opacity:.88}
+
+/* TIMED EXAM */
+.exam-box{background:var(--off);border:2px solid var(--border);border-radius:var(--rad);padding:32px;margin-top:48px}
+.exam-timer{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:48px;color:var(--red);text-align:center;margin:12px 0}
+.exam-timer.warn{color:var(--gold);animation:pulse 1s infinite}
+.exam-progress-text{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--gray);text-align:center;margin-bottom:24px}
+.exam-q{display:none}
+.exam-q.active{display:block}
+.start-exam-btn{display:block;width:100%;padding:18px;background:var(--red);color:var(--white);border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;transition:opacity .2s;margin-top:24px}
+.start-exam-btn:hover{opacity:.88}
+.exam-mc-options{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.exam-mc-option{display:flex;align-items:center;gap:14px;background:var(--card);border:2px solid var(--border);border-radius:var(--rad);padding:14px 18px;cursor:pointer;transition:all .2s;font-size:15px;color:var(--white)}
+.exam-mc-option:hover{border-color:rgba(235,26,44,.5)}
+.exam-mc-option .letter{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--red);width:28px;flex-shrink:0}
+.exam-mc-option.correct{border-color:var(--green);background:rgba(39,174,96,.15);pointer-events:none}
+.exam-mc-option.wrong{border-color:var(--red);background:rgba(235,26,44,.15);pointer-events:none}
+.exam-next-btn{margin-top:16px;padding:12px 28px;background:var(--red);color:var(--white);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;cursor:pointer;display:none}
+
+/* CERTIFICATE */
+#cert-section{display:none;text-align:center;padding:80px 40px;max-width:900px;margin:0 auto}
+#cert-section.show{display:block}
+.cert-name-input{padding:14px 20px;background:var(--card);border:2px solid var(--border);border-radius:8px;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:22px;text-align:center;width:320px;margin:16px auto;display:block}
+.cert-name-input:focus{outline:none;border-color:var(--red)}
+.cert-img-wrap{position:relative;margin:32px auto;max-width:800px}
+.cert-img-wrap img{width:100%;border-radius:8px}
+.cert-overlay-name{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(18px,3vw,32px);color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.8);letter-spacing:.05em;white-space:nowrap}
+.print-cert-btn{margin-top:20px;padding:14px 40px;background:var(--gold);color:#111;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;cursor:pointer;letter-spacing:.05em}
+.final-score-box{background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:32px 48px;display:inline-block;margin-bottom:32px}
+.final-score-box .big-score{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;color:var(--gold);line-height:1}
+.final-score-box p{color:var(--gray);font-size:16px}
+
+/* UTILITIES */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.callout{background:rgba(235,26,44,.08);border-left:4px solid var(--red);padding:16px 20px;border-radius:0 8px 8px 0;margin:16px 0;font-size:14px;color:rgba(255,255,255,.8)}
+.callout strong{color:var(--red)}
+.fact-pill{display:inline-block;background:var(--card);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:13px;color:rgba(255,255,255,.7);margin:4px}
+.fact-pill strong{color:var(--red)}
+
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;z-index:999;animation:confetti-fall 2.5s ease-in forwards}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--red)}
+
+@media(max-width:768px){
+  .two-col,.drag-arena{grid-template-columns:1fr}
+  .training-section{padding:40px 20px}
+  .hero-content{padding:32px 20px}
+  #topnav{padding:0 16px}
+  #progress-wrap{max-width:120px}
+  #video-feature{padding:40px 20px}
+  .j-board{grid-template-columns:repeat(5,1fr)}
+  .j-cell{font-size:18px;padding:16px 4px}
+}
+@media print{
+  #topnav,#module-nav,#video-feature,.quiz-box,.exam-box,#jeopardy-modal,.print-cert-btn{display:none!important}
+  #cert-section{display:block!important}
+  body{background:white;color:black}
+}
+</style>
+<style>
+#lock-screen{position:fixed;inset:0;z-index:9999;background:#0d0d0d;display:flex;align-items:center;justify-content:center}
+#lock-screen.hidden{display:none}
+.lock-box{background:#1a1a1a;border:2px solid var(--red);border-radius:12px;padding:48px 40px;max-width:400px;width:90%;text-align:center}
+.lock-box img{height:56px;width:auto;margin-bottom:24px}
+.lock-box h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;color:var(--white);margin-bottom:6px}
+.lock-box p{font-size:14px;color:var(--gray);margin-bottom:28px}
+#name-input,#pw-input{width:100%;background:#111;border:1px solid #444;border-radius:6px;padding:12px 16px;font-size:16px;color:var(--white);text-align:center;box-sizing:border-box;outline:none;transition:border-color .2s;margin-bottom:10px}
+#name-input:focus,#pw-input:focus{border-color:var(--red)}
+#pw-input{letter-spacing:.1em}
+
+/* HISTORY */
+#history-section{padding:72px 0;border-top:2px solid var(--border)}
+.history-wrap{max-width:1100px;margin:0 auto;padding:0 40px}
+.history-session{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:16px;border-left:4px solid var(--red)}
+.admin-table-wrap{overflow-x:auto}
+.admin-table{width:100%;border-collapse:collapse;font-size:14px}
+.admin-table th{background:var(--red);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;text-align:left;white-space:nowrap}
+.admin-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:rgba(255,255,255,.8)}
+.admin-table tr:hover td{background:rgba(235,26,44,.06)}
+#pw-input.shake{animation:shake .35s ease}
+#pw-btn{margin-top:14px;width:100%;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.06em;cursor:pointer;transition:opacity .2s}
+#pw-btn:hover{opacity:.85}
+#pw-error{margin-top:12px;font-size:13px;color:var(--red);min-height:18px}
+body.locked>*:not(#lock-screen){visibility:hidden}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="locked">
+
+<!-- LOCK SCREEN -->
+<div id="lock-screen">
+  <div class="lock-box">
+    <img src="./brand/logo-horz-white-red-line-divider.svg" alt="Hamstra Roofing">
+    <h2>Hurricane 828 Vacuum Training</h2>
+    <p>Enter your name and password to begin.</p>
+    <input id="name-input" type="text" placeholder="Your Full Name" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <input id="pw-input" type="password" placeholder="Password" autocomplete="off" onkeydown="if(event.key==='Enter')unlockPage()">
+    <button id="pw-btn" onclick="unlockPage()">Enter</button>
+    <div id="pw-error"></div>
+  </div>
+</div>
+
+<script>
+// ── SUPABASE CLIENT ──
+const _supa = supabase.createClient(
+  'https://jdxmzazrijmeodonwvor.supabase.co',
+  'sb_publishable_vmB_mq1HLDoxRiIddW7okw_pgJPb3S9'
+);
+
+// ── LOCK SCREEN ──
+(function(){
+  const HASH='aa52c01300cfb3a1603a480392b845d23ced0186befc058acaf54838014b10d0';
+  async function digest(str){
+    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  if(sessionStorage.getItem('hurricane-auth')==='1'){
+    unlock();
+    window.addEventListener('load', () => loadHistory());
+  }
+  window.unlockPage=async function(){
+    const name=document.getElementById('name-input').value.trim();
+    const val=document.getElementById('pw-input').value;
+    const err=document.getElementById('pw-error');
+    if(!name){err.textContent='Please enter your full name.';return;}
+    const h=await digest(val);
+    if(h===HASH){
+      sessionStorage.setItem('hurricane-auth','1');
+      sessionStorage.setItem('hurricane-user-name',name);
+      unlock();
+      loadHistory();
+    } else {
+      const inp=document.getElementById('pw-input');
+      inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake');
+      err.textContent='Incorrect password. Try again.';inp.value='';
+    }
+  };
+  function unlock(){
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+  }
+})();
+</script>
+
+<!-- NAV -->
+<nav id="topnav">
+  <a class="nav-logo" href="./index.html" style="text-decoration:none">
+    <svg width="264" height="87" viewBox="0 0 264 87" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M92.7055 1.30418V43.5267C92.7055 44.1148 92.4114 44.4089 91.8234 44.4089H86.2287C85.6406 44.4089 85.3465 44.1148 85.3465 43.5267V25.5585H81.1982V43.5267C81.1982 44.1148 80.9041 44.4089 80.3161 44.4089H74.7214C74.1333 44.4089 73.8392 44.1148 73.8392 43.5267V1.30418C73.8392 0.716097 74.1333 0.422058 74.7214 0.422058H80.3161C80.9041 0.422058 81.1982 0.716097 81.1982 1.30418V18.2075H85.3465V1.30418C85.3465 0.716097 85.6406 0.422058 86.2287 0.422058H91.8234C92.4114 0.422058 92.7055 0.716097 92.7055 1.30418Z" fill="white"/><path d="M58.5303 0V69.1865H0V0H58.5303Z" fill="white"/><line y1="84.8835" x2="263.519" y2="84.8835" stroke="#EB1A2C" stroke-width="2.53383"/></svg>
+    <span class="nav-logo-title">Hurricane 828 Vacuum</span>
+  </a>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+  <div id="score-display"><span>Score: </span><span id="score-val">0</span> / <span id="score-max">700</span> pts</div>
+</nav>
+
+<!-- MODULE NAV -->
+<div id="module-nav">
+  <button class="mnav-btn active" onclick="scrollTo('#m1')">1. The Machine</button>
+  <button class="mnav-btn" onclick="scrollTo('#m2')">2. Startup</button>
+  <button class="mnav-btn" onclick="scrollTo('#m3')">3. Setup &amp; Leveling</button>
+  <button class="mnav-btn" onclick="scrollTo('#m4')">4. Operating</button>
+  <button class="mnav-btn" onclick="scrollTo('#m5')">5. Review</button>
+  <button class="mnav-btn" onclick="scrollTo('#m6')">6. Final Exam</button>
+  <button class="mnav-btn" onclick="scrollTo('#cert')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><path d="M6 9H4a2 2 0 0 1-2-2V5h4"/><path d="M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M6 9a6 6 0 0 0 12 0"/><line x1="12" y1="15" x2="12" y2="19"/><polyline points="8 19 16 19"/></svg> Certificate</button>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <video autoplay muted loop playsinline preload="auto" poster="./generated_imgs/hurricane-hero.jpg" aria-label="Hurricane 828 roof vacuum in operation">
+    <source src="https://player.vimeo.com/progressive_redirect/playback/1198179453/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=faf4c8b84b58854ce282a81031948000210b51a080ad0c1bbb9d5d91b9e1e19d" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Hamstra Roofing Training Program</div>
+    <h1>HURRICANE 828<br><em>ROOF VACUUM</em></h1>
+    <p>The fastest way to strip gravel ballast off a built-up roof — when it's set up and started in the right order. Master hose securement, the startup and pressurization sequence, outrigger leveling, and the suction cycle.</p>
+    <div class="hero-badges">
+      <span class="badge">6 Modules</span>
+      <span class="badge">8-Min Video</span>
+      <span class="badge">4 Quiz Types</span>
+      <span class="badge">Jeopardy</span>
+      <span class="badge">Timed Exam</span>
+      <span class="badge">Certificate</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED VIDEO -->
+<section id="video-feature">
+  <div class="vf-inner">
+    <div class="vf-label">Watch First</div>
+    <h2 class="vf-title">Operating the Hurricane 828 — <em>Full Procedure</em></h2>
+    <p class="vf-desc">Jimmy from Hamstra Roofing walks through the entire startup, setup, and operation of the Hurricane 828 vacuum — step by step, in the order it's actually done on the roof.</p>
+    <div class="vf-meta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      About 8 minutes · Tap a chapter to watch just that section
+    </div>
+    <div class="vf-stage video-block" data-start="0" data-end="inf">
+      <div class="video-vert">
+        <video id="hurricane-video" controls playsinline preload="metadata" poster="./generated_imgs/hurricane-thumb-feature.jpg">
+          <source src="https://player.vimeo.com/progressive_redirect/playback/1198164727/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=a1262fbf2724cff04f16bb64795a4a13932bd7a432c7ed9820e9dc627058f157" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="vf-chapters">
+        <div class="vf-chapters-head">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Chapters
+        </div>
+        <div class="vf-chapters-list" id="chapter-list">
+          <button class="chapter" data-start="0"   data-end="21"><span class="ch-time">0:00</span><span class="ch-title">Meet the Hurricane 828</span></button>
+          <button class="chapter" data-start="21"  data-end="111"><span class="ch-time">0:21</span><span class="ch-title">Hooking Up the Hose &amp; Backup Rope</span></button>
+          <button class="chapter" data-start="111" data-end="132"><span class="ch-time">1:51</span><span class="ch-title">Checking the Oil — Sight Glass</span></button>
+          <button class="chapter" data-start="132" data-end="177"><span class="ch-time">2:12</span><span class="ch-title">Key Sequence &amp; Building Pressure</span></button>
+          <button class="chapter" data-start="177" data-end="222"><span class="ch-time">2:57</span><span class="ch-title">Lifting the Chamber &amp; Safety Blocks</span></button>
+          <button class="chapter" data-start="222" data-end="248"><span class="ch-time">3:42</span><span class="ch-title">Backing Over the Trailer</span></button>
+          <button class="chapter" data-start="248" data-end="301"><span class="ch-time">4:08</span><span class="ch-title">Pads &amp; Setting the Outriggers</span></button>
+          <button class="chapter" data-start="301" data-end="343"><span class="ch-time">5:01</span><span class="ch-title">Leveling with the Hydraulics</span></button>
+          <button class="chapter" data-start="343" data-end="398"><span class="ch-time">5:43</span><span class="ch-title">Manual Outriggers — Crank to the Ground</span></button>
+          <button class="chapter" data-start="398" data-end="426"><span class="ch-time">6:38</span><span class="ch-title">Starting the Vacuum — Clutch &amp; Controls</span></button>
+          <button class="chapter" data-start="426" data-end="inf"><span class="ch-time">7:06</span><span class="ch-title">The Suction Cycle — 8 Min &amp; 30 Sec</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 1: THE MACHINE & HOSE SETUP ═══ -->
+<section class="training-section" id="m1">
+  <div class="sec-label">Module 1</div>
+  <h2 class="sec-title">THE MACHINE<br><em>&amp; HOSE SETUP</em></h2>
+  <p class="sec-desc">The Hurricane 828 is a high-suction rock vacuum — jokingly, "the Porsche of vacuums" — built to strip gravel ballast off built-up roofs. Everything starts with securing the hose to the chamber, and the suction is strong enough that securement is a safety issue, not a convenience.</p>
+
+  <div class="module-video video-block" data-start="0" data-end="111">
+    <div class="video-vert">
+      <video controls playsinline preload="metadata" poster="./generated_imgs/hurricane-thumb-m1.jpg">
+        <source src="https://player.vimeo.com/progressive_redirect/playback/1198164727/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=a1262fbf2724cff04f16bb64795a4a13932bd7a432c7ed9820e9dc627058f157" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mv-side">
+      <div class="mv-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Watch · Module 1 Clips</div>
+      <div class="mv-title">The Machine &amp; Hose Setup</div>
+      <div class="mv-chapters">
+        <button class="chapter" data-start="0"  data-end="21"><span class="ch-time">0:00</span><span class="ch-title">Meet the Hurricane 828</span></button>
+        <button class="chapter" data-start="21" data-end="111"><span class="ch-time">0:21</span><span class="ch-title">Hooking Up the Hose &amp; Backup Rope</span></button>
+      </div>
+      <p class="mv-hint">Press play to watch this module straight through, or tap a clip to jump to just that step. Playback pauses at the end of the section.</p>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">828</div><h4>Hurricane Model</h4><p>The roof vacuum unit featured in this training.</p></div>
+    <div class="info-card"><div class="val">Rock</div><h4>What It Removes</h4><p>Vacuums loose gravel ballast off the roof and into its chamber.</p></div>
+    <div class="info-card"><div class="val">Chamber</div><h4>Where Rock Collects</h4><p>The hose feeds rock into the chamber, which later releases its load.</p></div>
+    <div class="info-card"><div class="val">2</div><h4>Hose Securements</h4><p>A clamp PLUS a backup rope — because the suction is so strong.</p></div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Out of Order, On Purpose <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>There is a set procedure to turning this machine on. On this job the crew runs a few steps <strong>out of the normal order — for safety reasons</strong> — because the trailer the rock is dumped into sits up high.</p>
+        <p>The very first action is to <strong>attach the hose to the chamber</strong> and get the plug connected, before the machine is positioned or started. Doing the hookup first keeps the rest of the sequence controlled and predictable.</p>
+        <div class="callout"><strong>Rule of thumb:</strong> connect the hose to the chamber first, then adjust the order of the remaining steps to fit the site so nothing goes wrong.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Securing the Hose — Clamp + Backup Rope <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Attach the hose to the chamber and <strong>clamp it in</strong>. Then add a <strong>rope as a second securement</strong>. The machine pulls a lot of suction — if a clamp were ever to fail, the rope <strong>catches the hose</strong> instead of letting it fly off and hurt someone or damage equipment.</p>
+        <ul>
+          <li>Primary connection: the <strong>clamp</strong> locks the hose to the chamber.</li>
+          <li>Secondary connection: the <strong>backup rope</strong> is a fail-safe against the high suction.</li>
+        </ul>
+        <div class="callout"><strong>Safety, not convenience:</strong> the rope is there specifically because of the suction force. Never run the hose on the clamp alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 1 QUIZ: TRUE/FALSE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 1 Quiz</h3><p>True or False — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m1q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>The job of the Hurricane 828 is to vacuum loose rock and gravel ballast off the roof.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q1',true,true,'Correct! The Hurricane 828 sucks all the rock off the roof and collects it in its chamber.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q1',false,true,'Incorrect. The machine is a rock vacuum — its whole purpose is to suck the gravel ballast off the roof.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>The very first step in the procedure is to attach the hose to the chamber.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q2',true,true,'Correct! The hose is attached and clamped to the chamber first, before positioning or starting the machine.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q2',false,true,'Not quite — connecting the hose to the chamber is the first thing done, before anything else.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>The backup rope tied to the hose is just for convenience and is not a safety item.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q3',true,false,'Incorrect. The rope is a safety device — it catches the hose if a clamp fails under the strong suction.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q3',false,false,'Correct! The rope is a safety backup. If a clamp fails under the heavy suction, the rope keeps the hose from flying off and injuring someone.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m1q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>Because the suction is so strong, a failed clamp could send the hose flying — which is exactly why a backup rope is used.</h4>
+      <div class="tf-btns">
+        <button class="tf-btn" onclick="tfAnswer('m1q4',true,true,'Correct! The high suction is the reason for the second securement. The rope catches the hose so it cannot fly off and hurt someone.')">True</button>
+        <button class="tf-btn" onclick="tfAnswer('m1q4',false,true,'Incorrect. The strong suction is precisely why a backup rope is added — to catch the hose if a clamp lets go.')">False</button>
+      </div>
+      <div class="q-feedback" id="m1q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m1-result">
+      <p>Module 1 Score</p>
+      <div class="pts" id="m1-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 2: STARTUP & PRESSURIZATION ═══ -->
+<section class="training-section" id="m2">
+  <div class="sec-label">Module 2</div>
+  <h2 class="sec-title">STARTUP &amp;<br><em>PRESSURIZATION</em></h2>
+  <p class="sec-desc">Before the machine does any work it has to be checked, woken up, and pressurized — in that order. Skip the cycle time or move before the air pressure is up and you risk damaging the machine.</p>
+
+  <div class="module-video video-block" data-start="111" data-end="177">
+    <div class="video-vert">
+      <video controls playsinline preload="metadata" poster="./generated_imgs/hurricane-thumb-m2.jpg">
+        <source src="https://player.vimeo.com/progressive_redirect/playback/1198164727/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=a1262fbf2724cff04f16bb64795a4a13932bd7a432c7ed9820e9dc627058f157" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mv-side">
+      <div class="mv-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Watch · Module 2 Clips</div>
+      <div class="mv-title">Startup &amp; Pressurization</div>
+      <div class="mv-chapters">
+        <button class="chapter" data-start="111" data-end="132"><span class="ch-time">1:51</span><span class="ch-title">Checking the Oil — Sight Glass</span></button>
+        <button class="chapter" data-start="132" data-end="177"><span class="ch-time">2:12</span><span class="ch-title">Key Sequence &amp; Building Pressure</span></button>
+      </div>
+      <p class="mv-hint">Press play to watch this module straight through, or tap a clip to jump to just that step. Playback pauses at the end of the section.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Check the Oil Through the Sight Glass <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Before getting the machine running, check the <strong>oil level through the sight glass</strong>. The oil should read <strong>between half and three-quarters full</strong> to be good to turn on.</p>
+        <div class="callout">If the oil is below half, top it off before starting. Running low on oil can damage the pump.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Key Sequence — On, Cycle, Start <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <ol>
+          <li>Put the key in and turn it to <strong>ON — not all the way to start.</strong></li>
+          <li>Let the machine <strong>cycle for 15 to 30 seconds.</strong></li>
+          <li>Once it has cycled through, turn the key to <strong>START.</strong></li>
+        </ol>
+        <p>The cycle gives the system time to prime before it has to crank.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Build Pressure — Wait for 90 PSI <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>After the machine starts, <strong>do not do anything else until the gauge climbs above 90 PSI.</strong> Wait for the pressure to build before moving on to lifting the chamber, repositioning, or any other step.</p>
+        <div class="callout"><strong>90 PSI is the go/no-go line.</strong> Acting before the machine is pressurized is how things go wrong.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">½–¾</div><h4>Oil Sight-Glass Range</h4><p>Oil should read between half and three-quarters full before turning on.</p></div>
+    <div class="info-card"><div class="val">15–30s</div><h4>Cycle Time at "On"</h4><p>Let the machine cycle in the ON position before turning the key to start.</p></div>
+    <div class="info-card"><div class="val">90 PSI</div><h4>Minimum Before Proceeding</h4><p>Do nothing else until the pressure gauge climbs above 90 PSI.</p></div>
+    <div class="info-card"><div class="val">Sight glass</div><h4>Where to Read Oil</h4><p>The oil level is checked through the sight glass on the machine.</p></div>
+  </div>
+
+  <!-- MODULE 2 QUIZ: DRAG AND DROP -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 2 Quiz</h3><p>Drag and drop — match each value to its meaning. 4 pairs, 25 pts each.</p></div>
+    </div>
+
+    <div class="drag-arena">
+      <div class="drag-chips" id="m2-chips">
+        <div class="drag-chip" draggable="true" data-key="A" ondragstart="dragStart(event,'A')">Half to 3/4 full</div>
+        <div class="drag-chip" draggable="true" data-key="B" ondragstart="dragStart(event,'B')">15–30 seconds</div>
+        <div class="drag-chip" draggable="true" data-key="C" ondragstart="dragStart(event,'C')">Above 90 PSI</div>
+        <div class="drag-chip" draggable="true" data-key="D" ondragstart="dragStart(event,'D')">Sight glass</div>
+      </div>
+      <div class="drop-zones">
+        <div class="drop-zone" data-answer="A" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-A">Drop here</div>
+          <div class="drop-zone-label"><strong>Acceptable Oil Level</strong>What the oil should read before the machine is turned on</div>
+        </div>
+        <div class="drop-zone" data-answer="B" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-B">Drop here</div>
+          <div class="drop-zone-label"><strong>Cycle Time at "On"</strong>How long to let the machine cycle with the key on before turning it to start</div>
+        </div>
+        <div class="drop-zone" data-answer="C" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-C">Drop here</div>
+          <div class="drop-zone-label"><strong>Pressure Before Proceeding</strong>The gauge must reach this before you do anything else</div>
+        </div>
+        <div class="drop-zone" data-answer="D" ondragover="dragOver(event)" ondrop="dropChip(event,this)" ondragleave="dragLeave(event)">
+          <div class="drop-slot" id="slot-D">Drop here</div>
+          <div class="drop-zone-label"><strong>Where You Check Oil</strong>The component you read the oil level through</div>
+        </div>
+      </div>
+    </div>
+    <button class="check-drag-btn" onclick="checkDrag('m2')">Check Answers</button>
+    <div class="quiz-result" id="m2-result">
+      <p>Module 2 Score</p>
+      <div class="pts" id="m2-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 3: POSITIONING, OUTRIGGERS & LEVELING ═══ -->
+<section class="training-section" id="m3">
+  <div class="sec-label">Module 3</div>
+  <h2 class="sec-title">POSITIONING, OUTRIGGERS<br>&amp; <em>LEVELING</em></h2>
+  <p class="sec-desc">A tall trailer changes the order of operations. Lift the chamber, drop the safety blocks, back in with a spotter, protect the roof, then level the machine on its outriggers before it can run.</p>
+
+  <div class="module-video video-block" data-start="177" data-end="398">
+    <div class="video-vert">
+      <video controls playsinline preload="metadata" poster="./generated_imgs/hurricane-thumb-m3.jpg">
+        <source src="https://player.vimeo.com/progressive_redirect/playback/1198164727/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=a1262fbf2724cff04f16bb64795a4a13932bd7a432c7ed9820e9dc627058f157" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mv-side">
+      <div class="mv-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Watch · Module 3 Clips</div>
+      <div class="mv-title">Positioning, Outriggers &amp; Leveling</div>
+      <div class="mv-chapters">
+        <button class="chapter" data-start="177" data-end="222"><span class="ch-time">2:57</span><span class="ch-title">Lifting the Chamber &amp; Safety Blocks</span></button>
+        <button class="chapter" data-start="222" data-end="248"><span class="ch-time">3:42</span><span class="ch-title">Backing Over the Trailer</span></button>
+        <button class="chapter" data-start="248" data-end="301"><span class="ch-time">4:08</span><span class="ch-title">Pads &amp; Setting the Outriggers</span></button>
+        <button class="chapter" data-start="301" data-end="343"><span class="ch-time">5:01</span><span class="ch-title">Leveling with the Hydraulics</span></button>
+        <button class="chapter" data-start="343" data-end="398"><span class="ch-time">5:43</span><span class="ch-title">Manual Outriggers — Crank to the Ground</span></button>
+      </div>
+      <p class="mv-hint">Press play to watch this module straight through, or tap a clip to jump to just that step. Playback pauses at the end of the section.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Lift the Chamber First <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>There are <strong>two levers</strong> on the machine:</p>
+        <ul>
+          <li>One lever <strong>lifts the chamber up</strong>.</li>
+          <li>The other lever puts down the <strong>hydraulic legs</strong> that help balance and level the machine (used later).</li>
+        </ul>
+        <p>Normally you'd back over the trailer first — but because this trailer sits up high, the crew <strong>lifts the chamber up first</strong>, then slowly backs it up. Reordering this step keeps the chamber clear of the tall trailer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Lower the Red Safety Blocks <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Once the chamber is raised, move the <strong>red safety blocks down as low as they will go</strong>. This is an extra precaution: if the hydraulics were ever to let out, the blocks <strong>keep the chamber from falling</strong>.</p>
+        <div class="callout"><strong>Always block a raised chamber.</strong> Never rely on hydraulics alone to hold a lifted load.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Backing Over the Trailer <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>With the chamber blocked off, back the unit over the trailer. Because the <strong>hose is connected</strong>, double-check every clearance so you don't back into anything.</p>
+        <ul>
+          <li>Use a <strong>spotter</strong> — they keep an eye on it and call out.</li>
+          <li>Keep the <strong>window open</strong> so you can hear the spotter stop you.</li>
+          <li><strong>Stop immediately</strong> if you're getting close to anything.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Pads, Outriggers &amp; Leveling <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Once the machine is backed into place:</p>
+        <ol>
+          <li>Put <strong>pads down</strong> under where the legs will sit — this protects the asphalt roof from the outriggers.</li>
+          <li>Lower the outriggers, <strong>back side first</strong>, as low as they'll go, and <strong>lock them into place</strong>.</li>
+          <li>Match the <strong>same exact height on both sides</strong> — read the hole number on one side (e.g., the third hole) and set the other side to match, then lock it in.</li>
+          <li>Use the <strong>hydraulic legs</strong> to lift the machine until it is level.</li>
+          <li>Pull out the <strong>manual outriggers</strong>, set them down, lock them, and crank each one until it <strong>"kisses the ground."</strong></li>
+          <li>Once the manual outriggers are holding, <strong>lift the hydraulics back up</strong> so the outriggers carry the load. All outriggers down = good to go.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">Chamber</div><h4>Lift This First</h4><p>Because the trailer is tall, raise the chamber before backing over it.</p></div>
+    <div class="info-card"><div class="val">Red</div><h4>Safety-Block Color</h4><p>Lower the red blocks all the way as a fail-safe under the raised chamber.</p></div>
+    <div class="info-card"><div class="val">Pads</div><h4>Protect the Asphalt</h4><p>Placed under the outriggers so the legs don't damage the roof.</p></div>
+    <div class="info-card"><div class="val">Same height</div><h4>Outrigger Rule</h4><p>Both sides must be set to the exact same height before leveling.</p></div>
+  </div>
+
+  <!-- MODULE 3 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 3 Quiz</h3><p>Multiple choice — 5 questions, 20 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m3q1">
+      <div class="q-num">Question 1 of 5</div>
+      <h4>Because this trailer sits up high, what step is done out of the normal order?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'The outriggers go down after the machine is positioned — not first.')"><span class="letter">A</span>Lower all the outriggers before moving the machine</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,true,'Correct! The chamber is lifted up first, then the unit is slowly backed over the tall trailer.')"><span class="letter">B</span>Lift the chamber up before backing over the trailer</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'The hose is connected first regardless of trailer height — that is not the reordered step.')"><span class="letter">C</span>Connect the hose only after backing in</div>
+        <div class="mc-option" onclick="mcAnswer('m3q1',this,false,'The machine must be pressurized before this, not skipped.')"><span class="letter">D</span>Start vacuuming before leveling</div>
+      </div>
+      <div class="q-feedback" id="m3q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q2">
+      <div class="q-num">Question 2 of 5</div>
+      <h4>Why are the red safety blocks lowered as far as they will go?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'They are not about leveling — that is the outriggers and hydraulics.')"><span class="letter">A</span>To help level the machine</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,true,'Correct! They are a fail-safe — if the hydraulics let out, the blocks keep the chamber from falling.')"><span class="letter">B</span>So the chamber can&rsquo;t fall if the hydraulics let out</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'They have nothing to do with hose suction.')"><span class="letter">C</span>To increase suction at the hose</div>
+        <div class="mc-option" onclick="mcAnswer('m3q2',this,false,'They protect the chamber, not the roof surface — pads protect the roof.')"><span class="letter">D</span>To protect the asphalt roof</div>
+      </div>
+      <div class="q-feedback" id="m3q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q3">
+      <div class="q-num">Question 3 of 5</div>
+      <h4>When lowering the outriggers, what is critical to get right on both sides?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'Color is irrelevant — the safety blocks are red, not the outriggers.')"><span class="letter">A</span>That they are painted the same color</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,true,'Correct! Both sides must reach the same exact height — match the hole number on one side to the other.')"><span class="letter">B</span>That both sides are set to the same exact height</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'The front does not have to go first — the back side is lowered first.')"><span class="letter">C</span>That the front side is always lowered first</div>
+        <div class="mc-option" onclick="mcAnswer('m3q3',this,false,'They are never left loose — they are locked into place.')"><span class="letter">D</span>That they are left unlocked for adjustment</div>
+      </div>
+      <div class="q-feedback" id="m3q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q4">
+      <div class="q-num">Question 4 of 5</div>
+      <h4>Why are pads placed under the outriggers?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,true,'Correct! The pads protect the asphalt roof surface where the legs hold the machine up.')"><span class="letter">A</span>To protect the asphalt roof from the legs</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'Pads do not change the machine\'s suction.')"><span class="letter">B</span>To boost the vacuum pressure</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'The oil is checked through the sight glass, not affected by pads.')"><span class="letter">C</span>To keep the oil from leaking</div>
+        <div class="mc-option" onclick="mcAnswer('m3q4',this,false,'The chamber is held by the safety blocks, not pads.')"><span class="letter">D</span>To hold the chamber up</div>
+      </div>
+      <div class="q-feedback" id="m3q4-fb"></div>
+    </div>
+
+    <div class="question-block" id="m3q5">
+      <div class="q-num">Question 5 of 5</div>
+      <h4>The manual outriggers are cranked down until they do what, after which the hydraulics are raised?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'You don\'t crank until the tires lift — you crank until the leg meets the ground.')"><span class="letter">A</span>Until the trailer tires lift off the ground</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,true,'Correct! Crank each manual outrigger until it "kisses the ground," then raise the hydraulics so the outriggers carry the load.')"><span class="letter">B</span>Until they "kiss the ground"</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'The safety blocks are lowered separately — that is not the cranking step.')"><span class="letter">C</span>Until the red safety blocks drop</div>
+        <div class="mc-option" onclick="mcAnswer('m3q5',this,false,'You do not crank until the gauge reads 90 PSI — that is the startup pressure step.')"><span class="letter">D</span>Until the gauge reaches 90 PSI</div>
+      </div>
+      <div class="q-feedback" id="m3q5-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m3-result">
+      <p>Module 3 Score</p>
+      <div class="pts" id="m3-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 4: OPERATING THE VACUUM CYCLE ═══ -->
+<section class="training-section" id="m4">
+  <div class="sec-label">Module 4</div>
+  <h2 class="sec-title">OPERATING THE<br><em>VACUUM CYCLE</em></h2>
+  <p class="sec-desc">With the machine level and pressurized, the restart is the same key sequence — then the clutch and start order, and finally the two timers that define the suck-and-release cycle.</p>
+
+  <div class="module-video video-block" data-start="398" data-end="inf">
+    <div class="video-vert">
+      <video controls playsinline preload="metadata" poster="./generated_imgs/hurricane-thumb-m4.jpg">
+        <source src="https://player.vimeo.com/progressive_redirect/playback/1198164727/rendition/1080p/file.mp4%20%281080p%29.mp4?loc=external&log_user=0&signature=a1262fbf2724cff04f16bb64795a4a13932bd7a432c7ed9820e9dc627058f157" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="mv-side">
+      <div class="mv-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Watch · Module 4 Clips</div>
+      <div class="mv-title">Operating the Vacuum Cycle</div>
+      <div class="mv-chapters">
+        <button class="chapter" data-start="398" data-end="426"><span class="ch-time">6:38</span><span class="ch-title">Starting the Vacuum — Clutch &amp; Controls</span></button>
+        <button class="chapter" data-start="426" data-end="inf"><span class="ch-time">7:06</span><span class="ch-title">The Suction Cycle — 8 Min &amp; 30 Sec</span></button>
+      </div>
+      <p class="mv-hint">Press play to watch this module straight through, or tap a clip to jump to just that step. Playback pauses at the end of the section.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">Restart &amp; Start Order <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>Once all the outriggers are down, you're ready to get the machine working. The restart repeats the same key sequence used at first: <strong>key to on, let it cycle 15–20 seconds, then start.</strong> From there:</p>
+        <ol>
+          <li><strong>Pull the clutch first.</strong></li>
+          <li>Then start the controls <strong>from top to bottom — one, two, three.</strong></li>
+          <li>The machine is now on and running.</li>
+        </ol>
+        <p>When the loud noise calms down, you'll hear it <strong>start sucking rock in</strong> through the hose.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button class="acc-trigger" aria-expanded="false">The Two Timers — 8 Minutes &amp; 30 Seconds <span class="icon">+</span></button>
+    <div class="acc-body">
+      <div class="acc-inner">
+        <p>The machine runs on <strong>two timers</strong> that together make up its cycle:</p>
+        <table class="data-table">
+          <thead><tr><th>Timer</th><th>Setting</th><th>What Happens</th></tr></thead>
+          <tbody>
+            <tr><td>Long timer</td><td>8 minutes</td><td>The hose sucks rock into the chamber for eight minutes.</td></tr>
+            <tr><td>Short timer</td><td>30 seconds</td><td>After the 8 minutes, the chamber releases (dumps) for 30 seconds.</td></tr>
+          </tbody>
+        </table>
+        <p>That suck-then-release pattern is essentially the cycle the machine repeats as it strips the roof.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card"><div class="val">Clutch</div><h4>Pull This First</h4><p>Pull the clutch before flipping the start controls.</p></div>
+    <div class="info-card"><div class="val">Top→Bottom</div><h4>Start Order</h4><p>Operate the start controls from top to bottom — one, two, three.</p></div>
+    <div class="info-card"><div class="val">8 min</div><h4>Suction Phase</h4><p>The long timer sucks rock into the chamber for eight minutes.</p></div>
+    <div class="info-card"><div class="val">30 sec</div><h4>Release Phase</h4><p>The short timer releases the chamber for thirty seconds.</p></div>
+  </div>
+
+  <!-- MODULE 4 QUIZ: MULTIPLE CHOICE -->
+  <div class="quiz-box">
+    <div class="quiz-header">
+      <img src="./generated_imgs/generated-2026-03-11T19-33-35-339Z-4omp2t.png" alt="Quiz badge">
+      <div><h3>Module 4 Quiz</h3><p>Multiple choice — 4 questions, 25 pts each</p></div>
+    </div>
+
+    <div class="question-block" id="m4q1">
+      <div class="q-num">Question 1 of 4</div>
+      <h4>After the machine is restarted and ready to vacuum, what do you pull first?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,true,'Correct! Pull the clutch first, then start the controls from top to bottom.')"><span class="letter">A</span>The clutch</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'The hose is connected long before this, at the very start.')"><span class="letter">B</span>The hose off the chamber</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'The safety blocks are lowered earlier, during chamber lift.')"><span class="letter">C</span>The red safety blocks</div>
+        <div class="mc-option" onclick="mcAnswer('m4q1',this,false,'The key sequence comes before the clutch — but the clutch is what you pull first to operate.')"><span class="letter">D</span>The outrigger lock pins</div>
+      </div>
+      <div class="q-feedback" id="m4q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q2">
+      <div class="q-num">Question 2 of 4</div>
+      <h4>In what order are the start controls operated?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'It is not bottom to top.')"><span class="letter">A</span>Bottom to top</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,true,'Correct! Start from top to bottom — one, two, three.')"><span class="letter">B</span>Top to bottom — one, two, three</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'There is a defined order — it is not random.')"><span class="letter">C</span>In any order</div>
+        <div class="mc-option" onclick="mcAnswer('m4q2',this,false,'Left to right is not the sequence taught.')"><span class="letter">D</span>Left to right</div>
+      </div>
+      <div class="q-feedback" id="m4q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q3">
+      <div class="q-num">Question 3 of 4</div>
+      <h4>The long timer — the suction phase that pulls rock into the chamber — is set to:</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'30 seconds is the release timer, not the suction phase.')"><span class="letter">A</span>30 seconds</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'5 minutes is not the setting used.')"><span class="letter">B</span>5 minutes</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,true,'Correct! The long timer is set to 8 minutes of sucking rock into the chamber.')"><span class="letter">C</span>8 minutes</div>
+        <div class="mc-option" onclick="mcAnswer('m4q3',this,false,'15 minutes is longer than the setting used.')"><span class="letter">D</span>15 minutes</div>
+      </div>
+      <div class="q-feedback" id="m4q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="m4q4">
+      <div class="q-num">Question 4 of 4</div>
+      <h4>What does the 30-second timer control?</h4>
+      <div class="mc-options">
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'The cycle time at "on" during startup is separate from this timer.')"><span class="letter">A</span>How long the key cycles before starting</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,true,'Correct! After the 8 minutes of suction, the chamber releases (dumps) for 30 seconds.')"><span class="letter">B</span>How long the chamber releases its load</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'The pressure target is 90 PSI, unrelated to this timer.')"><span class="letter">C</span>How long to wait for 90 PSI</div>
+        <div class="mc-option" onclick="mcAnswer('m4q4',this,false,'The suction phase is the 8-minute timer, not this one.')"><span class="letter">D</span>How long the hose sucks rock in</div>
+      </div>
+      <div class="q-feedback" id="m4q4-fb"></div>
+    </div>
+
+    <div class="quiz-result" id="m4-result">
+      <p>Module 4 Score</p>
+      <div class="pts" id="m4-pts">0</div>
+      <h3>/ 100 pts</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULE 5: PROCEDURE REVIEW (JEOPARDY) ═══ -->
+<section class="training-section" id="m5">
+  <div class="sec-label">Module 5</div>
+  <h2 class="sec-title">PROCEDURE<br><em>REVIEW</em></h2>
+  <p class="sec-desc">Five categories pulled straight from the walkthrough — the machine, startup, setup and leveling, safety, and the cycle. Earn up to 200 bonus points before the final exam.</p>
+
+  <div class="info-grid">
+    <div class="fact-pill"><strong>Connect the hose to the chamber first</strong></div>
+    <div class="fact-pill"><strong>Oil: half to 3/4 in the sight glass</strong></div>
+    <div class="fact-pill"><strong>Key on → cycle 15–30s → start</strong></div>
+    <div class="fact-pill"><strong>Wait for the gauge above 90 PSI</strong></div>
+    <div class="fact-pill"><strong>Lift the chamber first on a tall trailer</strong></div>
+    <div class="fact-pill"><strong>Drop the red safety blocks</strong></div>
+    <div class="fact-pill"><strong>Pads under the outriggers</strong></div>
+    <div class="fact-pill"><strong>Match the same exact height both sides</strong></div>
+    <div class="fact-pill"><strong>Crank until it "kisses the ground"</strong></div>
+    <div class="fact-pill"><strong>Pull the clutch, then top to bottom</strong></div>
+    <div class="fact-pill"><strong>8 min suction · 30 sec release</strong></div>
+  </div>
+
+  <button class="launch-j-btn" onclick="openJeopardy()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Launch Jeopardy Review — Up to 200 Bonus Pts</button>
+</section>
+
+<!-- ═══ MODULE 6: FINAL TIMED EXAM ═══ -->
+<section class="training-section" id="m6">
+  <div class="sec-label">Module 6</div>
+  <h2 class="sec-title">FINAL<br><em>TIMED EXAM</em></h2>
+  <p class="sec-desc">15 questions covering the whole procedure. 45 seconds per question. 20 points each. Complete the exam to unlock your certificate.</p>
+
+  <div class="exam-box" id="exam-box">
+    <div id="exam-start-screen">
+      <p style="font-size:16px;color:var(--gray);text-align:center;margin-bottom:8px">All modules covered · 45 seconds per question · 20 pts each · 300 pts total</p>
+      <button class="start-exam-btn" onclick="startExam()">START FINAL EXAM</button>
+    </div>
+
+    <div id="exam-active" style="display:none">
+      <div class="exam-timer" id="exam-timer">45</div>
+      <div class="exam-progress-text" id="exam-progress">Question 1 of 15</div>
+
+      <!-- Q1 -->
+      <div class="exam-q" id="eq1">
+        <div class="q-num">Question 1 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What does the Hurricane 828 remove from the roof?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! It vacuums loose rock / gravel ballast off the roof.')"><span class="letter">A</span>Loose rock / gravel ballast</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'It is a rock vacuum, not a water pump.')"><span class="letter">B</span>Standing water</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'It removes the ballast, not the membrane.')"><span class="letter">C</span>The roofing membrane</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Snow is not what this machine is for.')"><span class="letter">D</span>Snow and ice</div>
+        </div>
+        <div class="q-feedback" id="eq1-fb"></div>
+        <button class="exam-next-btn" id="eq1-next" onclick="nextExamQ(1)">Next Question →</button>
+      </div>
+
+      <!-- Q2 -->
+      <div class="exam-q" id="eq2">
+        <div class="q-num">Question 2 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What is the first step in the procedure?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'You start the machine later, after the hose is attached.')"><span class="letter">A</span>Turn the key to start</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Attach the hose to the chamber first.')"><span class="letter">B</span>Attach the hose to the chamber</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The outriggers go down much later.')"><span class="letter">C</span>Lower the outriggers</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'You back over the trailer after the hose is connected and the chamber lifted.')"><span class="letter">D</span>Back over the trailer</div>
+        </div>
+        <div class="q-feedback" id="eq2-fb"></div>
+        <button class="exam-next-btn" id="eq2-next" onclick="nextExamQ(2)">Next Question →</button>
+      </div>
+
+      <!-- Q3 -->
+      <div class="exam-q" id="eq3">
+        <div class="q-num">Question 3 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The backup rope on the hose is there to:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The rope does not affect suction.')"><span class="letter">A</span>Increase suction</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! It catches the hose if a clamp fails under the strong suction.')"><span class="letter">B</span>Catch the hose if a clamp fails</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'It is not for marking the work zone.')"><span class="letter">C</span>Mark off the work zone</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Leveling is done with outriggers and hydraulics.')"><span class="letter">D</span>Help level the machine</div>
+        </div>
+        <div class="q-feedback" id="eq3-fb"></div>
+        <button class="exam-next-btn" id="eq3-next" onclick="nextExamQ(3)">Next Question →</button>
+      </div>
+
+      <!-- Q4 -->
+      <div class="exam-q" id="eq4">
+        <div class="q-num">Question 4 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Oil in the sight glass should read between:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Empty to a quarter is too low.')"><span class="letter">A</span>Empty and 1/4 full</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Between half and three-quarters full is good to turn on.')"><span class="letter">B</span>Half and 3/4 full</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Completely full is more than required.')"><span class="letter">C</span>3/4 and completely full</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The oil level matters — it is not ignored.')"><span class="letter">D</span>It does not matter</div>
+        </div>
+        <div class="q-feedback" id="eq4-fb"></div>
+        <button class="exam-next-btn" id="eq4-next" onclick="nextExamQ(4)">Next Question →</button>
+      </div>
+
+      <!-- Q5 -->
+      <div class="exam-q" id="eq5">
+        <div class="q-num">Question 5 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">After inserting the key, you first turn it to:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'You do not go straight to start — let it cycle on first.')"><span class="letter">A</span>Start</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Turn it to ON and let it cycle 15–30 seconds before starting.')"><span class="letter">B</span>On (not all the way to start)</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Off does nothing useful here.')"><span class="letter">C</span>Off</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'There is no "accessory only" step in this procedure.')"><span class="letter">D</span>Accessory only</div>
+        </div>
+        <div class="q-feedback" id="eq5-fb"></div>
+        <button class="exam-next-btn" id="eq5-next" onclick="nextExamQ(5)">Next Question →</button>
+      </div>
+
+      <!-- Q6 -->
+      <div class="exam-q" id="eq6">
+        <div class="q-num">Question 6 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">How long do you let the machine cycle in the "on" position before starting?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'5 seconds is too short.')"><span class="letter">A</span>About 5 seconds</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Let it cycle 15 to 30 seconds.')"><span class="letter">B</span>15 to 30 seconds</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'A couple of minutes is longer than needed.')"><span class="letter">C</span>2 to 3 minutes</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'There is a cycle step — you do not start instantly.')"><span class="letter">D</span>No wait — start immediately</div>
+        </div>
+        <div class="q-feedback" id="eq6-fb"></div>
+        <button class="exam-next-btn" id="eq6-next" onclick="nextExamQ(6)">Next Question →</button>
+      </div>
+
+      <!-- Q7 -->
+      <div class="exam-q" id="eq7">
+        <div class="q-num">Question 7 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">You must not do anything else until the gauge climbs above:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'30 PSI is well below the go line.')"><span class="letter">A</span>30 PSI</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'60 PSI is still below the threshold.')"><span class="letter">B</span>60 PSI</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Wait until the gauge is above 90 PSI.')"><span class="letter">C</span>90 PSI</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'120 PSI is higher than the stated threshold.')"><span class="letter">D</span>120 PSI</div>
+        </div>
+        <div class="q-feedback" id="eq7-fb"></div>
+        <button class="exam-next-btn" id="eq7-next" onclick="nextExamQ(7)">Next Question →</button>
+      </div>
+
+      <!-- Q8 -->
+      <div class="exam-q" id="eq8">
+        <div class="q-num">Question 8 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Because the trailer is tall, what is lifted before backing over it?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The outriggers are lowered, not lifted, and later.')"><span class="letter">A</span>The outriggers</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Lift the chamber up first, then slowly back over the trailer.')"><span class="letter">B</span>The chamber</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The hose is attached, not lifted.')"><span class="letter">C</span>The hose</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The safety blocks are lowered, not lifted.')"><span class="letter">D</span>The red safety blocks</div>
+        </div>
+        <div class="q-feedback" id="eq8-fb"></div>
+        <button class="exam-next-btn" id="eq8-next" onclick="nextExamQ(8)">Next Question →</button>
+      </div>
+
+      <!-- Q9 -->
+      <div class="exam-q" id="eq9">
+        <div class="q-num">Question 9 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The red safety blocks are lowered as far as possible to:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'They are not a suction component.')"><span class="letter">A</span>Boost suction</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! They keep the chamber from falling if the hydraulics let out.')"><span class="letter">B</span>Keep the chamber from falling if the hydraulics let out</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Pads protect the roof — not the blocks.')"><span class="letter">C</span>Protect the roof surface</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Leveling is done with outriggers and hydraulics.')"><span class="letter">D</span>Level the machine</div>
+        </div>
+        <div class="q-feedback" id="eq9-fb"></div>
+        <button class="exam-next-btn" id="eq9-next" onclick="nextExamQ(9)">Next Question →</button>
+      </div>
+
+      <!-- Q10 -->
+      <div class="exam-q" id="eq10">
+        <div class="q-num">Question 10 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">What is placed under the outriggers to protect the roof?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Plywood is not what the crew uses here.')"><span class="letter">A</span>Sheets of plywood</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Pads are set under the legs to protect the asphalt.')"><span class="letter">B</span>Pads</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The rope is on the hose, not under the legs.')"><span class="letter">C</span>The backup rope</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Nothing is the wrong answer — pads protect the asphalt.')"><span class="letter">D</span>Nothing</div>
+        </div>
+        <div class="q-feedback" id="eq10-fb"></div>
+        <button class="exam-next-btn" id="eq10-next" onclick="nextExamQ(10)">Next Question →</button>
+      </div>
+
+      <!-- Q11 -->
+      <div class="exam-q" id="eq11">
+        <div class="q-num">Question 11 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">When setting the outriggers on both sides, you must match the:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Color is not the factor — height is.')"><span class="letter">A</span>Color</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Both sides must be set to the same exact height — match the hole number.')"><span class="letter">B</span>Same exact height</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'PSI is a startup target, not an outrigger setting.')"><span class="letter">C</span>PSI reading</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'Oil level is unrelated to the outriggers.')"><span class="letter">D</span>Oil level</div>
+        </div>
+        <div class="q-feedback" id="eq11-fb"></div>
+        <button class="exam-next-btn" id="eq11-next" onclick="nextExamQ(11)">Next Question →</button>
+      </div>
+
+      <!-- Q12 -->
+      <div class="exam-q" id="eq12">
+        <div class="q-num">Question 12 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The manual outriggers are cranked until they:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'You do not crank until the tires lift.')"><span class="letter">A</span>Lift the trailer tires off the ground</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Crank each one until it "kisses the ground."')"><span class="letter">B</span>"Kiss the ground"</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The gauge target is a startup step, not the crank step.')"><span class="letter">C</span>Reach 90 PSI</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The safety blocks are handled separately.')"><span class="letter">D</span>Drop the red safety blocks</div>
+        </div>
+        <div class="q-feedback" id="eq12-fb"></div>
+        <button class="exam-next-btn" id="eq12-next" onclick="nextExamQ(12)">Next Question →</button>
+      </div>
+
+      <!-- Q13 -->
+      <div class="exam-q" id="eq13">
+        <div class="q-num">Question 13 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">Just before starting the vacuum, you first pull the:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The hose was connected at the very start.')"><span class="letter">A</span>Hose</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! Pull the clutch first, then start from top to bottom.')"><span class="letter">B</span>Clutch</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The safety blocks are lowered earlier.')"><span class="letter">C</span>Safety blocks</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'The key sequence is done, then you pull the clutch.')"><span class="letter">D</span>Key out</div>
+        </div>
+        <div class="q-feedback" id="eq13-fb"></div>
+        <button class="exam-next-btn" id="eq13-next" onclick="nextExamQ(13)">Next Question →</button>
+      </div>
+
+      <!-- Q14 -->
+      <div class="exam-q" id="eq14">
+        <div class="q-num">Question 14 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">The long timer is set for how much suction time?</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'30 seconds is the release timer.')"><span class="letter">A</span>30 seconds</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'3 minutes is not the setting.')"><span class="letter">B</span>3 minutes</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! 8 minutes of sucking rock into the chamber.')"><span class="letter">C</span>8 minutes</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'20 minutes is longer than the setting.')"><span class="letter">D</span>20 minutes</div>
+        </div>
+        <div class="q-feedback" id="eq14-fb"></div>
+        <button class="exam-next-btn" id="eq14-next" onclick="nextExamQ(14)">Next Question →</button>
+      </div>
+
+      <!-- Q15 -->
+      <div class="exam-q" id="eq15">
+        <div class="q-num">Question 15 of 15</div>
+        <h4 style="font-size:17px;color:var(--white);margin-bottom:4px">After the 8 minutes of suction, the chamber releases for:</h4>
+        <div class="exam-mc-options">
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'10 seconds is too short.')"><span class="letter">A</span>10 seconds</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,true,'Correct! The chamber releases for 30 seconds — the short timer.')"><span class="letter">B</span>30 seconds</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'2 minutes is longer than the release timer.')"><span class="letter">C</span>2 minutes</div>
+          <div class="exam-mc-option" onclick="examAnswer(this,false,'8 minutes is the suction phase, not the release.')"><span class="letter">D</span>8 minutes</div>
+        </div>
+        <div class="q-feedback" id="eq15-fb"></div>
+        <button class="exam-next-btn" id="eq15-next" onclick="finishExam()">See Results →</button>
+      </div>
+
+      <div class="quiz-result" id="exam-result" style="display:none">
+        <p>Final Exam Score</p>
+        <div class="pts" id="exam-pts">0</div>
+        <h3>/ 300 pts</h3>
+        <p id="exam-msg" style="margin-top:8px"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATE ═══ -->
+<section id="cert" style="border-bottom:1px solid var(--border)">
+  <div id="cert-section">
+    <div class="sec-label" style="justify-content:center">Course Complete</div>
+    <h2 class="sec-title" style="font-size:clamp(36px,5vw,64px)">YOUR CERTIFICATE</h2>
+    <div class="final-score-box">
+      <div class="big-score" id="cert-final-score">0</div>
+      <p>Total Points Earned</p>
+    </div>
+    <p style="color:var(--gray);margin-bottom:24px">Enter your name to generate your certificate of completion.</p>
+    <input class="cert-name-input" id="cert-name" type="text" placeholder="Your Full Name" oninput="updateCertName()">
+    <div class="cert-img-wrap">
+      <img src="./generated_imgs/generated-2026-03-11T19-35-52-633Z-kpa3bq.png" alt="Certificate background">
+      <div class="cert-overlay-name" id="cert-name-overlay">Your Name</div>
+    </div>
+    <button class="print-cert-btn" onclick="window.print()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print Certificate</button>
+  </div>
+</section>
+
+<!-- ═══ HISTORY ═══ -->
+<div id="history-section">
+  <div class="history-wrap">
+    <div class="sec-label">Your Progress</div>
+    <h2 class="sec-title" style="margin-bottom:8px">SESSION HISTORY</h2>
+    <p style="color:var(--gray);font-size:15px;margin-bottom:32px">Your training sessions are saved automatically. Log in again to start a new session.</p>
+    <div id="history-content">
+      <p style="color:var(--gray);font-size:15px">Complete the password gate to view your history.</p>
+    </div>
+  </div>
+</div>
+
+<!-- JEOPARDY MODAL -->
+<div id="jeopardy-modal">
+  <div class="j-header">
+    <h2>HURRICANE 828 JEOPARDY</h2>
+    <div class="j-score-display">Bonus: <span id="j-score">0</span> pts</div>
+    <button class="j-close" onclick="closeJeopardy()">Close Board</button>
+  </div>
+  <div class="j-board">
+    <div class="j-cat-header">The Machine</div>
+    <div class="j-cat-header">Startup</div>
+    <div class="j-cat-header">Setup &amp; Leveling</div>
+    <div class="j-cat-header">Safety</div>
+    <div class="j-cat-header">The Cycle</div>
+
+    <div class="j-cell" onclick="openJQ(0,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(1,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(2,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(3,0)">$100</div>
+    <div class="j-cell" onclick="openJQ(4,0)">$100</div>
+
+    <div class="j-cell" onclick="openJQ(0,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(1,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(2,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(3,1)">$200</div>
+    <div class="j-cell" onclick="openJQ(4,1)">$200</div>
+
+    <div class="j-cell" onclick="openJQ(0,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(1,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(2,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(3,2)">$300</div>
+    <div class="j-cell" onclick="openJQ(4,2)">$300</div>
+
+    <div class="j-cell" onclick="openJQ(0,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(1,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(2,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(3,3)">$400</div>
+    <div class="j-cell" onclick="openJQ(4,3)">$400</div>
+  </div>
+</div>
+
+<!-- JEOPARDY QUESTION OVERLAY -->
+<div class="j-q-overlay" id="j-q-overlay">
+  <div class="j-q-box">
+    <div class="j-pts" id="j-pts-display"></div>
+    <div class="j-question" id="j-q-text"></div>
+    <input class="j-answer-input" id="j-answer" type="text" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')submitJAnswer()">
+    <div>
+      <button class="j-submit-btn" onclick="submitJAnswer()">Submit</button>
+      <button class="j-skip-btn" onclick="skipJAnswer()">Skip</button>
+    </div>
+    <div class="j-reveal" id="j-reveal"></div>
+    <button class="j-skip-btn" id="j-next-btn" onclick="closeJQ()" style="margin-top:12px;display:none">Back to Board</button>
+  </div>
+</div>
+
+<script>
+// ═══ SCORE SYSTEM ═══
+const S = {
+  score: 0,
+  maxScore: 700,
+  quizDone: { m1: false, m2: false, m3: false, m4: false },
+  examDone: false,
+  add(pts, modKey) {
+    this.score += pts;
+    document.getElementById('score-val').textContent = this.score;
+    document.getElementById('progress-bar').style.width = Math.min(100, (this.score / this.maxScore) * 100) + '%';
+    if (modKey && !this.quizDone[modKey]) {
+      this.quizDone[modKey] = true;
+      const idx = parseInt(modKey.replace('m', ''));
+      const btns = document.querySelectorAll('.mnav-btn');
+      if (btns[idx - 1]) {
+        btns[idx - 1].classList.add('done');
+        btns[idx - 1].innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle"><polyline points="20 6 9 17 4 12"/></svg>' + btns[idx - 1].textContent;
+      }
+      const maxMap = { m1: 100, m2: 100, m3: 100, m4: 100 };
+      recordQuizResult(modKey, pts, maxMap[modKey] || 100);
+    }
+    if (this.examDone) {
+      document.getElementById('cert-section').classList.add('show');
+      document.getElementById('cert-final-score').textContent = this.score;
+      const examNavBtn = document.querySelectorAll('.mnav-btn')[5];
+      if (examNavBtn) { examNavBtn.classList.add('done'); examNavBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px;vertical-align:middle"><polyline points="20 6 9 17 4 12"/></svg>' + examNavBtn.textContent; }
+      const savedName = sessionStorage.getItem('hurricane-user-name');
+      if (savedName) {
+        document.getElementById('cert-name').value = savedName;
+        document.getElementById('cert-name-overlay').textContent = savedName;
+      }
+      launchConfetti();
+    }
+  }
+};
+
+// ═══ NAV SCROLL ═══
+function scrollTo(id) {
+  const el = document.querySelector(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ═══ MODULE NAV ACTIVE STATE ═══
+const sections = document.querySelectorAll('.training-section, #cert');
+const mnavBtns = document.querySelectorAll('.mnav-btn');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      mnavBtns.forEach((b, i) => {
+        const ids = ['m1','m2','m3','m4','m5','m6','cert'];
+        if (ids[i] === id) b.classList.add('active');
+        else b.classList.remove('active');
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// ═══ ACCORDION ═══
+document.querySelectorAll('.acc-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  });
+});
+
+// ═══ VIDEO CHAPTERS (featured player + each inline module player) ═══
+function initVideoBlock(root){
+  const vid = root.querySelector('video');
+  if (!vid) return;
+  const chapters = Array.from(root.querySelectorAll('.chapter'));
+  const blockStart = parseFloat(root.dataset.start || '0');
+  const blockEnd = (root.dataset.end === 'inf' || root.dataset.end == null) ? null : parseFloat(root.dataset.end);
+  let chapterEnd = blockEnd;   // default: stop at the end of this block's span
+  let internalSeek = false;    // true when WE move the playhead (vs. a user scrub)
+
+  function seekTo(t){ internalSeek = true; try { vid.currentTime = t; } catch(e){} }
+
+  // Cue the inline players to the start of their module's span
+  const cue = () => { if (blockStart > 0) seekTo(blockStart); };
+  if (vid.readyState >= 1) cue();
+  else vid.addEventListener('loadedmetadata', cue, { once:true });
+
+  chapters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const start = parseFloat(btn.dataset.start);
+      chapterEnd = btn.dataset.end === 'inf' ? null : parseFloat(btn.dataset.end);
+      chapters.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const begin = () => { seekTo(start); vid.play(); };
+      if (vid.readyState >= 1) begin();
+      else vid.addEventListener('loadedmetadata', begin, { once:true });
+    });
+  });
+
+  // Stop at the end of the active chapter / module span, and highlight what's playing
+  vid.addEventListener('timeupdate', () => {
+    if (chapterEnd != null && vid.currentTime >= chapterEnd){
+      vid.pause();
+      chapterEnd = null;   // clear so pressing play continues past the boundary
+    }
+    const t = vid.currentTime;
+    let activeBtn = null;
+    chapters.forEach(c => {
+      const s = parseFloat(c.dataset.start);
+      const e = c.dataset.end === 'inf' ? Infinity : parseFloat(c.dataset.end);
+      if (t >= s && t < e) activeBtn = c;
+    });
+    chapters.forEach(c => c.classList.toggle('active', c === activeBtn));
+  });
+
+  // A manual scrub drops the auto-pause limit; ignore our own programmatic seeks.
+  vid.addEventListener('seeking', () => {
+    if (internalSeek){ internalSeek = false; return; }
+    chapterEnd = null;
+  });
+}
+document.querySelectorAll('.video-block').forEach(initVideoBlock);
+
+// ═══ MODULE 1: TRUE/FALSE ═══
+const m1Scores = { m1q1: 0, m1q2: 0, m1q3: 0, m1q4: 0 };
+let m1Answered = 0;
+function tfAnswer(qId, choice, correctIsTrue, msg) {
+  if (document.getElementById(qId).querySelector('.tf-btn.correct, .tf-btn.wrong')) return;
+  const isCorrect = (choice === correctIsTrue);
+  const btns = document.getElementById(qId).querySelectorAll('.tf-btn');
+  btns.forEach(b => b.disabled = true);
+  const clicked = event.target;
+  clicked.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) m1Scores[qId] = 25;
+  m1Answered++;
+  if (m1Answered === 4) {
+    const total = Object.values(m1Scores).reduce((a,b) => a+b, 0);
+    document.getElementById('m1-pts').textContent = total;
+    document.getElementById('m1-result').classList.add('show');
+    S.add(total, 'm1');
+  }
+}
+
+// ═══ MODULE 2: DRAG & DROP ═══
+let dragKey = null;
+const m2Slots = {};
+function dragStart(e, key) { dragKey = key; e.dataTransfer.effectAllowed = 'move'; }
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('over'); }
+function dragLeave(e) { e.currentTarget.classList.remove('over'); }
+function dropChip(e, zone) {
+  e.preventDefault();
+  zone.classList.remove('over');
+  if (!dragKey) return;
+  const slot = zone.querySelector('.drop-slot');
+  const chip = document.querySelector(`.drag-chip[data-key="${dragKey}"]`);
+  if (!chip || chip.classList.contains('placed')) return;
+  const prevKey = zone.dataset.filled;
+  if (prevKey) {
+    const prevChip = document.querySelector(`.drag-chip[data-key="${prevKey}"]`);
+    if (prevChip) prevChip.classList.remove('placed');
+  }
+  slot.textContent = chip.textContent;
+  slot.style.color = 'var(--white)';
+  zone.dataset.filled = dragKey;
+  m2Slots[zone.dataset.answer] = dragKey;
+  chip.classList.add('placed');
+  dragKey = null;
+}
+let m2Done = false;
+function checkDrag(mod) {
+  if (m2Done) return;
+  m2Done = true;
+  let pts = 0;
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    const ans = zone.dataset.answer;
+    const filled = zone.dataset.filled;
+    if (filled === ans) { zone.classList.add('correct'); pts += 25; }
+    else { zone.classList.add('wrong'); }
+  });
+  document.getElementById('m2-pts').textContent = pts;
+  document.getElementById('m2-result').classList.add('show');
+  S.add(pts, 'm2');
+}
+
+// ═══ MODULES 3 & 4: MULTIPLE CHOICE ═══
+const mcCounts = { m3: 0, m4: 0 };
+const mcTotals = { m3: 5, m4: 4 };
+const mcPts = { m3: 20, m4: 25 };
+const mcEarned = { m3: 0, m4: 0 };
+function mcAnswer(qId, el, isCorrect, msg) {
+  const block = document.getElementById(qId);
+  if (block.querySelector('.correct, .wrong')) return;
+  block.querySelectorAll('.mc-option').forEach(o => o.classList.add('disabled'));
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById(qId + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  const mod = qId.startsWith('m3') ? 'm3' : 'm4';
+  if (isCorrect) mcEarned[mod] += mcPts[mod];
+  mcCounts[mod]++;
+  if (mcCounts[mod] === mcTotals[mod]) {
+    const total = mcEarned[mod];
+    document.getElementById(mod + '-pts').textContent = total;
+    document.getElementById(mod + '-result').classList.add('show');
+    S.add(total, mod);
+  }
+}
+
+// ═══ MODULE 6: FINAL EXAM ═══
+let examIdx = 0;
+let examScore = 0;
+let examTimer = null;
+let examTimeLeft = 45;
+let examLocked = false;
+
+function startExam() {
+  document.getElementById('exam-start-screen').style.display = 'none';
+  document.getElementById('exam-active').style.display = 'block';
+  loadExamQ(1);
+}
+
+function loadExamQ(n) {
+  examIdx = n;
+  examLocked = false;
+  examTimeLeft = 45;
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  const qEl = document.getElementById('eq' + n);
+  if (qEl) qEl.classList.add('active');
+  document.getElementById('exam-progress').textContent = 'Question ' + n + ' of 15';
+  const timerEl = document.getElementById('exam-timer');
+  timerEl.textContent = examTimeLeft;
+  timerEl.className = 'exam-timer';
+  if (examTimer) clearInterval(examTimer);
+  examTimer = setInterval(() => {
+    examTimeLeft--;
+    timerEl.textContent = examTimeLeft;
+    if (examTimeLeft <= 10) timerEl.className = 'exam-timer warn';
+    if (examTimeLeft <= 0) {
+      clearInterval(examTimer);
+      if (!examLocked) {
+        examLocked = true;
+        const qEl = document.getElementById('eq' + examIdx);
+        qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+        const fb = document.getElementById('eq' + examIdx + '-fb');
+        fb.textContent = "Time's up! Moving on...";
+        fb.className = 'q-feedback show bad';
+        const nextBtn = document.getElementById('eq' + examIdx + '-next');
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+      }
+    }
+  }, 1000);
+}
+
+function examAnswer(el, isCorrect, msg) {
+  if (examLocked) return;
+  examLocked = true;
+  clearInterval(examTimer);
+  const qEl = document.getElementById('eq' + examIdx);
+  qEl.querySelectorAll('.exam-mc-option').forEach(o => o.style.pointerEvents = 'none');
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById('eq' + examIdx + '-fb');
+  fb.textContent = msg;
+  fb.className = 'q-feedback show ' + (isCorrect ? 'good' : 'bad');
+  if (isCorrect) examScore += 20;
+  const nextBtn = document.getElementById('eq' + examIdx + '-next');
+  if (nextBtn) nextBtn.style.display = 'inline-block';
+}
+
+function nextExamQ(n) {
+  if (n < 15) loadExamQ(n + 1);
+}
+
+function finishExam() {
+  clearInterval(examTimer);
+  document.querySelectorAll('.exam-q').forEach(q => q.classList.remove('active'));
+  document.getElementById('exam-pts').textContent = examScore;
+  const resultEl = document.getElementById('exam-result');
+  resultEl.style.display = 'block';
+  const pct = Math.round((examScore / 300) * 100);
+  document.getElementById('exam-msg').textContent = pct >= 80 ? 'Outstanding performance!' : pct >= 60 ? 'Good work — review any missed topics.' : 'Keep studying — you\'ve got this!';
+  document.getElementById('exam-timer').style.display = 'none';
+  document.getElementById('exam-progress').style.display = 'none';
+  S.examDone = true;
+  S.add(examScore, null);
+  recordQuizResult('exam', examScore, 300);
+}
+
+// ═══ CERTIFICATE ═══
+function updateCertName() {
+  const name = document.getElementById('cert-name').value || 'Your Name';
+  document.getElementById('cert-name-overlay').textContent = name;
+}
+
+// ═══ JEOPARDY ═══
+const jData = [
+  // The Machine
+  [
+    { pts: 100, clue: 'The model number of the roof vacuum featured in this training.', answer: '828' },
+    { pts: 200, clue: 'This is the loose material the Hurricane vacuums off the roof.', answer: 'rock' },
+    { pts: 300, clue: 'Jokingly, the Hurricane 828 is called the "Porsche" of these.', answer: 'vacuums' },
+    { pts: 400, clue: 'The vacuumed rock collects here before being released.', answer: 'chamber' }
+  ],
+  // Startup
+  [
+    { pts: 100, clue: 'Turn the key to this position first — not all the way to start.', answer: 'on' },
+    { pts: 200, clue: 'You check the oil level through this glass component.', answer: 'sight glass' },
+    { pts: 300, clue: 'Let the machine cycle this many seconds in the on position before starting (give the range).', answer: '15' },
+    { pts: 400, clue: 'Do nothing else until the gauge climbs above this pressure.', answer: '90' }
+  ],
+  // Setup & Leveling
+  [
+    { pts: 100, clue: 'On a tall trailer, you lift this up first before backing in.', answer: 'chamber' },
+    { pts: 200, clue: 'Lower this colored set of blocks as a fail-safe under the raised chamber.', answer: 'red' },
+    { pts: 300, clue: 'Place these under the outriggers to protect the asphalt roof.', answer: 'pads' },
+    { pts: 400, clue: 'Crank the manual outriggers until they do this to the ground.', answer: 'kiss' }
+  ],
+  // Safety
+  [
+    { pts: 100, clue: 'Attach this to the chamber first, before anything else.', answer: 'hose' },
+    { pts: 200, clue: 'This backup catches the hose if a clamp fails under suction.', answer: 'rope' },
+    { pts: 300, clue: 'Keep this open and use a spotter while backing over the trailer.', answer: 'window' },
+    { pts: 400, clue: 'Set both outriggers to this exact match so the machine sits level.', answer: 'height' }
+  ],
+  // The Cycle
+  [
+    { pts: 100, clue: 'Pull this first, before flipping the start controls.', answer: 'clutch' },
+    { pts: 200, clue: 'Operate the start controls in this direction — one, two, three.', answer: 'top to bottom' },
+    { pts: 300, clue: 'The long timer runs this many minutes of suction.', answer: '8' },
+    { pts: 400, clue: 'The chamber releases its load for this many seconds.', answer: '30' }
+  ]
+];
+
+let jScore = 0;
+let jScoreLogged = 0;
+let currentJCat = 0;
+let currentJRow = 0;
+const jUsed = Array.from({ length: 5 }, () => [false, false, false, false]);
+
+function openJeopardy() {
+  document.getElementById('jeopardy-modal').classList.add('open');
+}
+function closeJeopardy() {
+  document.getElementById('jeopardy-modal').classList.remove('open');
+  if (jScore > jScoreLogged) {
+    recordQuizResult('m5', jScore, 200);
+    jScoreLogged = jScore;
+  }
+}
+function openJQ(cat, row) {
+  if (jUsed[cat][row]) return;
+  currentJCat = cat;
+  currentJRow = row;
+  const q = jData[cat][row];
+  document.getElementById('j-pts-display').textContent = '$' + q.pts;
+  document.getElementById('j-q-text').textContent = q.clue;
+  document.getElementById('j-answer').value = '';
+  document.getElementById('j-answer').disabled = false;
+  document.getElementById('j-reveal').className = 'j-reveal';
+  document.getElementById('j-reveal').textContent = '';
+  document.getElementById('j-next-btn').style.display = 'none';
+  document.getElementById('j-q-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('j-answer').focus(), 100);
+}
+function submitJAnswer() {
+  const val = document.getElementById('j-answer').value.toLowerCase().trim();
+  const q = jData[currentJCat][currentJRow];
+  const correct = q.answer.toLowerCase();
+  const isRight = val.includes(correct) || (val.length > 1 && correct.includes(val.replace(/[^a-z0-9]/g,'')));
+  const rev = document.getElementById('j-reveal');
+  if (isRight) {
+    jScore += q.pts;
+    document.getElementById('j-score').textContent = jScore;
+    rev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><polyline points="20 6 9 17 4 12"/></svg>Correct! +$' + q.pts + ' — Full answer: ' + q.answer;
+    rev.className = 'j-reveal show right';
+    S.add(q.pts, null);
+    document.getElementById('score-val').textContent = S.score;
+  } else {
+    rev.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Not quite. The answer was: ' + q.answer;
+    rev.className = 'j-reveal show oops';
+  }
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function skipJAnswer() {
+  const q = jData[currentJCat][currentJRow];
+  const rev = document.getElementById('j-reveal');
+  rev.textContent = 'Skipped — Answer: ' + q.answer;
+  rev.className = 'j-reveal show oops';
+  document.getElementById('j-answer').disabled = true;
+  document.getElementById('j-next-btn').style.display = 'inline-block';
+  markJUsed();
+}
+function markJUsed() {
+  jUsed[currentJCat][currentJRow] = true;
+  const cells = document.querySelectorAll('.j-cell');
+  const idx = currentJRow * 5 + currentJCat;
+  if (cells[idx]) cells[idx].classList.add('used');
+}
+function closeJQ() {
+  document.getElementById('j-q-overlay').classList.remove('open');
+  document.getElementById('j-answer').disabled = false;
+}
+
+// ═══ SUPABASE TRACKING ═══
+async function recordQuizResult(module, score, maxScore) {
+  let sessionId = sessionStorage.getItem('hurricane-session-id');
+  if (!sessionId) {
+    const name = sessionStorage.getItem('hurricane-user-name');
+    if (!name) return;
+    const { data } = await _supa
+      .from('training_sessions')
+      .insert({ name, course: 'hurricane', total_score: 0, max_score: 700 })
+      .select().single();
+    if (!data) return;
+    sessionId = data.id;
+    sessionStorage.setItem('hurricane-session-id', sessionId);
+  }
+  await _supa.from('quiz_results').insert({ session_id: sessionId, module, score, max_score: maxScore });
+  await updateSessionScore();
+}
+
+async function updateSessionScore() {
+  const sessionId = sessionStorage.getItem('hurricane-session-id');
+  if (!sessionId) return;
+  await _supa.from('training_sessions').update({ total_score: S.score }).eq('id', sessionId);
+}
+
+async function loadHistory() {
+  const name = sessionStorage.getItem('hurricane-user-name');
+  const container = document.getElementById('history-content');
+  if (!container || !name) return;
+  const isAdmin = name === 'Joe Hamstra';
+  const modLabels = { m1:'The Machine', m2:'Startup', m3:'Setup & Leveling', m4:'Operating', m5:'Jeopardy Bonus', exam:'Final Exam' };
+
+  if (isAdmin) {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, name, started_at, total_score, max_score, quiz_results(module, score, max_score, completed_at)')
+      .eq('course', 'hurricane')
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No sessions recorded yet.</p>';
+      return;
+    }
+    let html = `<p style="color:var(--gray);margin-bottom:24px">Admin view — all ${sessions.length} session(s)</p>
+    <div class="admin-table-wrap"><table class="admin-table">
+      <thead><tr><th>Name</th><th>Date</th><th>Score</th><th>Max</th><th>%</th><th>Modules</th></tr></thead><tbody>`;
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const mods = (s.quiz_results || []).map(q => `${modLabels[q.module] || q.module}: ${q.score}`).join(', ') || '—';
+      html += `<tr><td>${s.name}</td><td>${date}</td><td>${s.total_score}</td><td>${s.max_score}</td><td>${pct}%</td><td style="font-size:12px;color:var(--gray)">${mods}</td></tr>`;
+    }
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  } else {
+    const { data: sessions } = await _supa
+      .from('training_sessions')
+      .select('id, started_at, total_score, max_score, quiz_results(module, score, max_score)')
+      .eq('course', 'hurricane')
+      .eq('name', name)
+      .order('started_at', { ascending: false });
+    if (!sessions || sessions.length === 0) {
+      container.innerHTML = '<p style="color:var(--gray)">No previous sessions found — complete a quiz to save your progress.</p>';
+      return;
+    }
+    let html = '';
+    for (const s of sessions) {
+      const date = new Date(s.started_at).toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      const pct = s.max_score ? Math.round((s.total_score / s.max_score) * 100) : 0;
+      const quizRows = (s.quiz_results || []).map(q => {
+        const qPct = q.max_score ? Math.round((q.score / q.max_score) * 100) : 0;
+        return `<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px">
+          <span style="color:rgba(255,255,255,.7)">${modLabels[q.module] || q.module}</span>
+          <span style="color:var(--gold);font-weight:600">${q.score} / ${q.max_score} pts &nbsp;(${qPct}%)</span>
+        </div>`;
+      }).join('') || '<p style="color:var(--gray);font-size:13px;padding:8px 0">No quiz results yet — quiz scores save when you complete each module.</p>';
+      html += `<div class="history-session">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px">${date}</div>
+            <div style="color:var(--gray);font-size:13px">Hurricane 828 Roof Vacuum Operation</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:var(--gold)">${s.total_score} pts</div>
+            <div style="font-size:12px;color:var(--gray)">${pct}% of ${s.max_score} max</div>
+          </div>
+        </div>
+        ${quizRows}
+      </div>`;
+    }
+    container.innerHTML = html;
+  }
+}
+
+// ═══ CONFETTI ═══
+function launchConfetti() {
+  const colors = ['#EB1A2C','#F5C518','#ffffff','#27ae60'];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    c.style.cssText = `left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.5?'50%':'2px'};animation-delay:${Math.random()*2}s;animation-duration:${2+Math.random()*2}s`;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+
+window.addEventListener('pagehide', () => {
+  sessionStorage.removeItem('hurricane-auth');
+  sessionStorage.removeItem('hurricane-session-id');
+  sessionStorage.removeItem('hurricane-user-name');
+});
+</script>
+</body>
+</html>
